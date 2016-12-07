@@ -1,0 +1,15 @@
+’x‰„‚È‚µ
+RsumPadd
+ range sum,point add
+RmaxPass
+ range max,point assign
+RmaxidPass
+ range argmax,point assign
+starryskytree
+ range min,range add
+segtree_Pass
+ point assign‚ÆŒ‹‡“I‚È‰‰Z‚ª¬‚è—§‚Âˆê”Ê“I‚È‚à‚Ì
+‹æŠÔadd ‹æŠÔmin
+¶‚©‚ç“ñŒÂ–Ú‚Í‚È‚É/‚Ç‚±‚©? UTPC2014 “h‘Ö‚¦
+0ˆÈã‚É‚È‚é flip paranthesis
+•”•ª˜a‚ÌÅ‘å + ‹æŠÔchange Do use(AOJ2450)

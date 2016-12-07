@@ -1,0 +1,15 @@
+structにするとrootあたりが面倒なのでグローバルにした
+
+!!insert,eraseでは返り値をちゃんと受け取ること!!
+
+問題によって不変な部分
+count,merge,split,insertの初期化以外,erase
+
+変える部分
+node(メンバ変数とコンストラクタ)
+update(これを呼んだ後は全て正しい値を持つ)
+insert(leaf作る部分のみ)
+showtree(まあ)
+
+struct node
+node update
