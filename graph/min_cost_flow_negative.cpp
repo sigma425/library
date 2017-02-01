@@ -1,4 +1,14 @@
-//DAGになってる時だけ
+/*
+負閉路がないときだけ
+
+はじめにBellman Fordするとあとはポテンシャル込みでは負辺がなくなる.
+O(EV + FElogV)
+
+DAGなら Bellman Ford すらいらなくて、はじめDPすれば O(E + FElogV)かな(こっちがいることあるかなあ)
+
+負閉路がある場合、先にそこにそって目一杯流しておく.→そのあとにこれ
+
+*/
 typedef pair<int,int> P;
 struct edge {int to,cap,cost,rev;};
 const int MAX_V=,INF=;

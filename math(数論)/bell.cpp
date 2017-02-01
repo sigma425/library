@@ -1,102 +1,130 @@
 /*
-	ベル数(第二種スターリング数の和)
-	グループに分ける方法の列挙
-	B9=21147,B10=115975,B11=678570,...
-	Nを代入してdfs(0)で全列挙
-	rep(i,K) rep(j,A) for(int k=j+1;k<A;k++)のところは 分割としてHasse図で直上のやつを全部探してる
-	これをやることで「Xの細分全体」に再帰でアクセスできる(dfs2)ので包除とかに使える
-	O((B_N)^2)とかになるのでN=9くらいまでっぽい(なんか包除するのにもっと良いオーダーのものがあるだろうか)
-	↑包除の係数は1 -1 2 -6 24 -120 みたいになります
+Bell
+区別のつくN個のものを区別の付かない箱に分割するようなものを列挙
+
+bell.init(N)で列挙が終了,返り値はbell数.
+unionfindで表現していて、bell.UFs[id] がid個めの状態を表す.
+[0]が全てバラバラのもので、[B-1]が全部連結のもの.
+0,...,B-1がちゃんとトポロジカル順序になっている(bfsをしているため,N-連結成分の個数が距離になるので)
+bfsのとこのid->nidのところで全遷移が得られている.この時点で->idなる遷移は全て得られている(上と同様の理由)ので、ここで直接DPを書いたほうがいいかも
+
+下の使用例では外から呼んでいて、どの連結成分を繋いだらどれに遷移するか(UF2idを使う)を見ている
+
 */
-typedef vector<int> vi;
-typedef vector<vi> vv;
-vector<vv> parts;
-vv now;
-map<vv,int> mp;
-vector<int> G[21147];
-int N,M;
-void dfs(int x){
-	if(x==N){
-		mp[now]=parts.size();
-		parts.pb(now);
-		return;
+struct unionfind{
+	int par[15];
+	void init(int N){rep(i,N) par[i]=i;}
+	int find(int x){
+		if(par[x]==x) return x;
+		return par[x]=find(par[x]);
 	}
-	rep(i,now.size()){
-		now[i].pb(x);
-		dfs(x+1);
-		now[i].pop_back();
+	bool same(int x,int y){
+		return find(x)==find(y);
 	}
-	now.pb(vi(1,x));
-	dfs(x+1);
-	now.pop_back();
-}
-
-bool same(vv vs,int a,int b){
-	int N=vs.size();
-	int aa=-1,bb=-1;
-	rep(i,N){
-		for(int x:vs[i]){
-			if(x==a) aa=i;
-			if(x==b) bb=i;
-		}
-	}
-	assert(aa>=0&&bb>=0);
-	return aa==bb;
-}
-void showvv(vv vs){
-	int N=vs.size();
-	rep(i,N){
-		cout<<"{";
-		for(int x:vs[i]) cout<<x<<",";
-		cout<<"}  ";
-	}
-	puts("");
-}
-
-long long calc[21147];
-bool vis[21147];
-int V;
-void dfs2(int v){
-	vis[v]=1;
-	if(V!=v) calc[V]-=calc[v];
-	for(int u:G[v]) if(!vis[u]) dfs2(u);
-}
-
-class Gxor{
-	public:
-	long long countsubs(vector <string> S){
-		M=S.size();
-		for(;;N++) if(N*(N-1)/2==S[0].size()) break;
-		dfs(0);
-		int K=parts.size();
-		show(K);
-		rep(i,K){
-			int A=parts[i].size();
-			rep(j,A) for(int k=j+1;k<A;k++){
-				vv nv;
-				rep(l,A){
-					if(l==j){
-						vi h=parts[i][j];
-						h.insert(h.end(),all(parts[i][k]));
-						sort(all(h));
-						nv.pb(h);
-					}else if(l!=k){
-						nv.pb(parts[i][l]);
-					}
-				}
-				assert(mp.count(nv));
-				int id=mp[nv];
-				G[id].pb(i);
-			}
-		}
-		for(int i=K-1;i>=0;i--){		//partition small -> large
-//			show(i);
-			V=i;
-			memset(vis,0,K);
-			dfs2(i);
-//			for(int j:G[i]) show(j),calc[i]-=calc[j];
-//			puts("");
-		}
-		return calc[0];
+	void unite(int x,int y){
+		x=find(x),y=find(y);
+		if(x==y) return;
+		if(x>y) swap(x,y);		//roots have the smallest id
+		par[y]=x;
 	}
 };
+struct Bell{
+	//(1, )1, 2, 5, 15, 52,
+	//203, 877, 4140, 21147, 115975,
+	//678570, 4213597, 27644437, 190899322, 1382958545
+	
+	vector<unionfind> UFs;
+
+	typedef vector<int> VI;
+	int N;
+	map<VI,int> VI2id;
+	queue<int> que;
+
+	VI UF2VI(unionfind UF){
+		VI vi(N);
+		rep(i,N) vi[i]=UF.find(i);
+		return vi;
+	}
+	int add(unionfind UF){
+		VI vi = UF2VI(UF);
+		int id = UFs.size();
+		VI2id[vi]=id;
+		UFs.pb(UF);
+		que.push(id);
+		return id;
+	}
+	int UF2id(unionfind UF){
+		VI vi = UF2VI(UF);
+		if(VI2id.count(vi)) return VI2id[vi];
+		return -1;
+	}
+
+	void bfs(){
+		while(!que.empty()){
+			int id = que.front();que.pop();
+//			printf("id%d -> ",id);
+//			show(UF2VI(UFs[id]));
+			VI roots;
+			rep(i,N) if(UFs[id].find(i)==i) roots.pb(i);
+			int K=roots.size();
+			rep(i,K) rep(j,i){
+				unionfind UF = UFs[id];
+				UF.unite(roots[i],roots[j]);
+				int nid;
+				if((nid=UF2id(UF))==-1){
+					nid = add(UF);
+				}
+				//id->nid
+//				printf("id%d->nid%d\n",id,nid);
+			}
+		}
+	}
+	int init(int N_){		//enum partitions
+		N=N_;
+		unionfind UF;
+		UF.init(N);
+		add(UF);
+		bfs();
+		return UFs.size();
+	}
+
+
+}bell;
+const int B8=4140;
+
+bool e[8][8];
+ll dp[B8];
+int main(){
+	int N,M;
+	cin>>N>>M;
+	int B = bell.init(N);
+	rep(i,M){
+		int a,b;
+		cin>>a>>b;
+		a--,b--;
+		e[a][b]=e[b][a]=1;
+	}
+	rep(id,B){
+//		printf("dp[%d]=%I64d\n",id,dp[id]);
+		if(id==B-1) break;
+		vector<int> roots;
+		rep(i,N) if(bell.UFs[id].find(i)==i) roots.pb(i);
+		int K=roots.size();
+		int cnt = 0;
+		rep(i,N) rep(j,i) if(e[i][j]&&bell.UFs[id].same(i,j)) cnt++;
+
+		rep(i,K) rep(j,i){
+			unionfind UF = bell.UFs[id];
+			int cand = 0;
+			rep(a,N) rep(b,N) if(e[a][b]&&UF.find(a)==roots[i]&&UF.find(b)==roots[j]) cand++;
+			if(cand==0) continue;
+
+			UF.unite(roots[i],roots[j]);
+			int nid=bell.UF2id(UF);
+			//id->nid
+			ll tmp = dp[id]*cand;
+			dp[nid] += tmp;
+//				printf("dp[%d] += %I64d\n",nid,tmp);
+		}
+	}
+}

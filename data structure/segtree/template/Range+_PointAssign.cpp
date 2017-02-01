@@ -1,5 +1,5 @@
 /*
-	point assign,range ほげ(+)
+	point assign,range +
 	semigroup D でのsegtree
 
 	変えるべきところは,
@@ -9,7 +9,14 @@
 	- structの外のD::eのinitialize
 	- (あとお好みでoperator<<)
 
+	外から使うのは
+	- update(0-indexed)
+	- calc(0-indexed 半開区間)
+	- あとinit
+
+	20161209
 */
+
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 #define show(x) cout<< #x <<" "<<x<<endl
@@ -17,7 +24,7 @@ using namespace std;
 
 struct D{
 	int x;
-	D(){}
+	D(){*this = e;}
 	D(int x):x(x){}
 	const static D e;
 	D operator+(const D& r) const {
@@ -27,27 +34,43 @@ struct D{
 };
 const D D::e = D(0);
 
-template<class D>
+template<class T>
 struct segtree{
-	static const int N=1<<;
+	int N;
 
-	D e=D::e;
-	vector<D> seg;
-	segtree():seg(N*2,e){}
-	segtree(vector<D>& vc):seg(N*2,e){
+	T e=T::e;
+	vector<T> seg;
+	segtree(){}
+	segtree(int n){
+		init(n);
+	}
+	segtree(vector<T>& vc){
+		init(vc);
+	}
+	void init(int n){
+		N=1;
+		while(N<n) N*=2;
+		seg.assign(N*2,e);
+	}
+	void init(vector<T>& vc){
+		N=1;
+		int n=vc.size();
+		while(N<n) N*=2;
+		seg.assign(N*2,e);
 		rep(i,vc.size()) seg[i+N]=vc[i];
 		for(int i=N-1;i>0;i--) seg[i]=seg[i*2]+seg[i*2+1];
 	}
-	void update(int k,D val){
-		k+=N;
-		seg[k]=val;
-		k/=2;
-		while(k){
-			seg[k]=seg[k*2]+seg[k*2+1];
-			k/=2;
+	void update(int x,T val){
+		x+=N;
+		seg[x]=val;
+		x/=2;
+		while(x){
+			seg[x]=seg[x*2]+seg[x*2+1];
+			x/=2;
 		}
 	}
-	D calc(int a,int b,int l=0,int r=N,int k=1){
+	T calc(int a,int b,int l=0,int r=-1,int k=1){
+		if(r==-1) r=N;
 		if(b<=l||r<=a) return e;
 		if(a<=l&&r<=b) return seg[k];
 		return calc(a,b,l,(l+r)/2,k*2)+calc(a,b,(l+r)/2,r,k*2+1);

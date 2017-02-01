@@ -49,25 +49,19 @@ struct CHT{
 	using D = ll;
 	typedef pair<D,D> P;
 	vector<P> deq;
-	int s,sd,t;
+	int s,t;
 	void init(int N){
 		deq.resize(N);
-		s=0,sd=0,t=0;
+		s=0,t=0;
 	}
 	void add(D a,D b){		//add ax+b     a:(広義)単調減少!!!
 		P p(a,b);
 		while(s+1<t&&check(deq[t-2],deq[t-1],p)) t--;
 		deq[t++]=p;
 	}
-	D incr_query(D x){		//x:単調増加の時,これを繰り返し呼ぶ(間にaddが挟まるのはOK)
+	D inql_query(D x){		//x:単調増加の時,これを繰り返し呼ぶ(間にaddが挟まるのはOK)
 		while(s+1<t&&f(deq[s],x)>=f(deq[s+1],x)) s++;
 		return f(deq[s],x);
-	}
-	D decr_query(D x){		//x:単調減少の時,これを繰り返し呼ぶ(間にaddが挟まるのはOK)
-		if(sd>=t) sd=t-1;
-		while(sd+1<t&&f(deq[sd],x)>=f(deq[sd+1],x)) sd++;
-		while(sd>0&&f(deq[sd],x)<f(deq[sd-1],x)) sd--;
-		return f(deq[sd],x);
 	}
 	D query(D x){
 		int lb=s-1,ub=t-1;

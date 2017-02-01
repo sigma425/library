@@ -90,14 +90,17 @@ void makedomtree(int N,int r){
 	}
 	idom[r]=-1;
 }
+void add_edge(int a,int b){
+	G[a].pb(b);
+	rG[b].pb(a);
+}
 int main(){
 	int N,M,r;
 	cin>>N>>M>>r;
 	rep(i,M){
 		int a,b;
 		cin>>a>>b;
-		G[a].pb(b);
-		rG[b].pb(a);
+		add_edge(a,b);
 	}
 	makedomtree(N,r);
 }
