@@ -86,7 +86,7 @@ struct Matrix{
 	Matrix operator*(const Matrix& b){
 		assert(W==b.H);
 		Matrix c(H,b.W);
-		rep(i,H) rep(k,W) rep(j,b.W) c[i][j]+=m[i][k]*b[k][j];
+		rep(i,H) rep(j,W) rep(k,b.W) c[i][j]+=m[i][k]*b[k][j];
 		return c;
 	}
 	Matrix operator*=(const Matrix& b){return (*this)=(*this)*b;}

@@ -1,38 +1,375 @@
-template<typeneme Handler>
+#include <bits/stdc++.h>
+#define rep(i,N) for(int i=0;i<(int)N;i++)
+#define show(x) cout << #x << " = " << x << endl
+using namespace std;
+template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
+template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
+/*
+遅延評価segtree
+データの型 val_t と操作の型 opr_t がある
+opr_t の結合律が必要
+
+いろいろ柔軟に書き換えていく必要がありそう(ex.propagateで等差数列を足すときにopr_t型だと右側では初項がずれる,これにはl,rも必要)
+それぞれ書くべきなのは、handler内の
+ - val_tのdefと+
+ - opr_tのdef
+ - getfg (setg2fg)
+ - act
+ - 外側においてあるconst static e の実体
+*/
+template<class Handler>
 struct segtree_lazy{
-	typedef typename Handler::val_t val_t;
-	typedef typename Handler::opr_t opr_t;
-	Handler hdl;
+	using val_t = typename Handler::val_t;
+	using opr_t = typename Handler::opr_t;
 	int N;
 	vector<val_t> val;
 	vector<opr_t> lazy;
-	segtree_lazy(){
+	segtree_lazy(){}
+	segtree_lazy(int n){init(n);}
+	segtree_lazy(const vector<val_t>& vc){init(vc);}
+	void init(int n){
+		N=1;
+		while(N<n) N*=2;
+		val .assign(N*2,val_t::e);
+		lazy.assign(N*2,opr_t::e);
+	}
+	void init(const vector<val_t>& vc){
+		int n = vc.size();
+		N=1;
+		while(N<n) N*=2;
+		val .assign(N*2,val_t::e);
+		rep(i,n) val[i+N] = vc[i];
+		for(int i=N-1;i>0;i--) val[i] = val[i*2] + val[i*2+1];
+		lazy.assign(N*2,opr_t::e);
+	}
+	val_t realvalue(int k,int l,int r){
+//		return Handler::act(lazy[k],val[k]);
+		return Handler::act(lazy[k],val[k],k,l,r);
+	}
+
+	val_t calc(int a,int b,int l=0,int r=-1,int k=1){	//query_calc
+		if(r==-1) r=N;
+		if(b<=l||r<=a) return val_t::e;
+		if(a<=l&&r<=b) return realvalue(k,l,r);
+		propagate(l,r,k);
+		val_t ret = calc(a,b,l,(l+r)/2,k*2) + calc(a,b,(l+r)/2,r,k*2+1);
+		val[k] = realvalue(k*2,l,(l+r)/2) + realvalue(k*2+1,(l+r)/2,r);
+		return ret;
 
 	}
-	void update(int a,int b,opr_t x,int l=0,int r=N,int k=1){
+//	val_t calc_leftassoc(){}
+	void update(int a,int b,const opr_t &x,int l=0,int r=-1,int k=1){	//query_update
+		if(r==-1) r=N;
 		if(b<=l||r<=a) return;
 		if(a<=l&&r<=b){
-			cmpsit(lazy[k],x);
+			Handler::setg2fg(x,lazy[k]);
 			return;
 		}
-		prop(lazy[k*2],lazy[k]);
-		prop(lazy[k*2+1],lazy[k]);
-		update(a,b,x,k*2,l,(l+r)/2,k*2);
-		update(a,b,x,k*2+1,(l+r)/2,r,k*2+1);
-		
+		propagate(l,r,k);
+		update(a,b,x,l,(l+r)/2,k*2);
+		update(a,b,x,(l+r)/2,r,k*2+1);
+		val[k] = realvalue(k*2,l,(l+r)/2) + realvalue(k*2+1,(l+r)/2,r);
+	}
+	void propagate(int l,int r,int k){	//opr_child -> opr_parent * opr_child		parent after child
+		Handler::setg2fg(lazy[k],lazy[k*2  ]);
+		Handler::setg2fg(lazy[k],lazy[k*2+1]);
+		lazy[k] = opr_t::e;
 	}
 };
-struct handler{
+
+struct handler1{
+	/*
+		range assign 0以上
+		range max
+
+		val_t = int,max			val[k]=max
+		opr_t(x) : y -> x		lazy[k]=assign
+
+		今回の場合opr_t::eはない(assignに単位元はない)
+		このようなときは、適当な値を単位元に設定にしておき、getfg/setg2fg/ act!! で合成しないよう処理しておけば良い
+		考えにくいけどval_tも同様.
+		最悪option型みたいにbool値をもたせれば良さそう
+	*/
 	struct val_t{
+		int x;
+		val_t(){*this = e;}
+		val_t(int x):x(x){}
 
+		const static val_t e;
+		val_t operator+(const val_t &r) const {
+			return val_t(max(x,r.x));
+		}
+		friend ostream& operator<<(ostream& o,const val_t& d){return o<<d.x;}
 	};
+
 	struct opr_t{
+		int x;
+		opr_t(){*this = e;}
+		opr_t(int x):x(x){}
 
+		const static opr_t e;
+		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
 	};
-	static void cmpsit(opr_t &x,const opr_t &y){		//opr_tの関数合成		これpropでよくない???
+
+	static void getfg(const opr_t &f, const opr_t &g){
 
 	}
-	static void prop(opr_t &x,const opr_t &y){			//k->子への遅延評価,他の情報(左か右か,長さとか)が必要になることもあるので適宜変える
+	/*
+		もしコピーコストとかが気になって,しかも楽に書けるならsetg2fgを直接書く
+		そうじゃないなら g = getfg(f,g)
+	*/
+	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
+		if(f.x != -1) g.x = f.x;
+	}
+	static val_t act(const opr_t &f, const val_t &v,int k,int l,int r){		//maxがv っていう状態のところにfを作用させるとmaxは何になりますか?
+		if(f.x == -1) return v;
+		return val_t(f.x);
+	}
+	// static void act(opr_t &f, val_t &v){
+	// 	if(f.x == -1) return;
+	// 	v.x = f.x;
+	// 	f.x = -1;
+	// }
+};
+const handler1::val_t handler1::val_t::e = val_t(0);
+const handler1::opr_t handler1::opr_t::e = opr_t(-1);
+
+
+struct handler2{
+	/*
+		range assign 0以上
+		range sum
+
+		val_t = int,+			val[k]= +
+		opr_t(x) : y -> x		lazy[k]=assign
+
+		assignは一緒なので、opr_t,getfgは変えなくていい
+		気づいたんですが,actとかにl,rが必要なケースが多すぎる(sum系とかほぼ確実に必要)ので、もうこういうのはval_tにl,rを置くことにします
+		と思ったが、やっぱりやめて、lとrを頑張ってactに渡すことにした
+		getfgとかにも必要になると絶望感が増しそう
+
+	*/
+	struct val_t{
+		int x;
+		val_t(){*this = e;}
+		val_t(int x):x(x){}
+
+		const static val_t e;
+		val_t operator+(const val_t &r) const {
+			return val_t(x+r.x);
+		}
+		friend ostream& operator<<(ostream& o,const val_t& d){return o<<d.x;}
+	};
+
+	struct opr_t{
+		int x;
+		opr_t(){*this = e;}
+		opr_t(int x):x(x){}
+
+		const static opr_t e;
+		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
+	};
+
+	static void getfg(const opr_t &f, const opr_t &g){
+
+	}
+	/*
+		もしコピーコストとかが気になって,しかも楽に書けるならsetg2fgを直接書く
+		そうじゃないなら g = getfg(f,g)
+	*/
+	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
+		if(f.x != -1) g.x = f.x;
+	}
+	static val_t act(const opr_t &f, const val_t &v,int k,int l,int r){	//assign f.x -> sum = 
+		if(f.x == -1) return v;
+		return val_t(f.x*(r-l));
+	}
+};
+const handler2::val_t handler2::val_t::e = val_t(0);
+const handler2::opr_t handler2::opr_t::e = opr_t(-1);
+
+
+struct handler3{
+	using ll = long long;
+	/*
+		range assign
+		range add
+		point val
+
+		val_t = int
+		opr_t(x) : assign x or add y
+
+		(assign x)(assign y) = (assign x)
+		(assign x)(add y) = (assign x)
+		(add x)(assign y) = (assign y+x)
+		(add x)(add y) = (add x+y)
+		(assign or add)が閉じているので、この形をopr_tとして持てば良い.
+		区間getがないとかなり考えやすいなあ
+		というか、val_t同士の演算がいらなくて、opr_tだけでできてるなこれ
+		とはいえとりあえず用意してる(単位元との合成は行われる)ので、矛盾がないようにしないとまずい(ので+とe=0にした)
+		verified at atcoder/dwango2015/qual/E_lazy.cpp 花火
+
+	*/
+	struct val_t{
+		ll x;
+		val_t(){*this = e;}
+		val_t(ll x):x(x){}
+
+		const static val_t e;
+		val_t operator+(const val_t &r) const {
+			return val_t(x+r.x);
+		}
+		friend ostream& operator<<(ostream& o,const val_t& d){return o<<d.x;}
+	};
+
+	struct opr_t{
+		bool is_add;
+		ll x;
+		opr_t(){*this = e;}
+		opr_t(bool b,ll x):is_add(b),x(x){}
+
+		const static opr_t e;
+		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<(d.is_add?"add":"assign")<<" "<<d.x;}
+	};
+
+	static opr_t getfg(const opr_t &f, const opr_t &g){
+		if(f.is_add){
+			if(g.is_add) return opr_t(true,f.x+g.x);
+			else return opr_t(false,f.x+g.x);
+		}else{
+			return f;
+		}
+	}
+	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
+		g = getfg(f,g);
+	}
+	static val_t act(const opr_t &f, const val_t &v,int k,int l,int r){	//assign f.x -> sum = 
+		if(f.is_add) return val_t(v+f.x);
+		else return val_t(f.x);
+	}
+};
+const handler3::val_t handler3::val_t::e = val_t(0);
+const handler3::opr_t handler3::opr_t::e = opr_t(true,0);	//単位元はadd 0
+
+struct handler4{
+	/*
+		OpenCup/3192/E.cpp
+		range add
+		range max ただし、このクエリが投げられるまでの全ての時間の中でのmax
+
+		val_t = その区間の、(今のmax,これまでのmax)	
+		opr_t(l,m) = (今のlazy,これまでのlazyのmax)
+
+		クエリをある一定の形でかけて、結合律が成り立つか?が重要
+		今回はこの形で持つと合成できる
+		とりあえず必要なものを持ち、結合できるように追加でデータを持つ
+
+	*/
+	struct val_t{
+		ll x,y;
+		val_t(){*this = e;}
+		val_t(ll x,ll y):x(x),y(y){}
+
+		const static val_t e;
+		val_t operator+(const val_t &r) const {
+			return val_t(max(x,r.x),max(y,r.y));
+		}
+//		friend ostream& operator<<(ostream& o,const val_t& d){return o<<"("<<d.x<<" "<<d.y<<")";}
+	};
+
+	struct opr_t{
+		ll l,m;
+		opr_t(){*this = e;}
+		opr_t(ll l,ll m):l(l),m(m){}
+
+		const static opr_t e;
+//		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
+	};
+
+	static opr_t getfg(const opr_t &f, const opr_t &g){
+		return opr_t(f.l+g.l,max(g.m,f.m+g.l));
+	}
+	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
+		g = getfg(f,g);
+	}
+	static val_t act(const opr_t &f, const val_t &v,int k,int l,int r){	//assign f.x -> sum = 
+		return val_t(v.x+f.l,max(v.y,v.x+f.m));
+	}
+};
+const handler4::val_t handler4::val_t::e = val_t(-inf,-inf);
+const handler4::opr_t handler4::opr_t::e = opr_t(0,-inf);
+
+
+struct handler5{
+	/*
+		verified at AOJ/RUPC/17/day2/I.cpp
+		{0,1,2,..9} -> {0,1,2,..9}への写像が区間にかかる、質問は区間内のiの数
+		写像だし、合成可能なのはあたりまえ。練習にちょうどよかった
+		array使ったほうが速かったかもね
 		
+	*/
+	struct val_t{
+		int n[10];
+		val_t(){*this = e;}
+		val_t(vector<int> v){
+//			show(v.size());
+			rep(i,10) n[i]=v[i];
+		}
+
+		const static val_t e;
+		val_t operator+(const val_t &r) const {
+			vector<int> v(10);
+			rep(i,10) v[i] = n[i]+r.n[i];
+			return val_t(v);
+		}
+	};
+	struct opr_t{
+		int f[10];
+		opr_t(){*this = e;}
+		opr_t(vector<int> v){
+//			show(v.size());
+			rep(i,10) f[i]=v[i];
+		}
+		const static opr_t e;
+	};
+	static opr_t getfg(const opr_t &f, const opr_t &g){
+		vector<int> v(10);
+		rep(i,10) v[i] = f.f[g.f[i]];
+		return opr_t(v);
+	}
+	static void setg2fg(const opr_t &f, opr_t &g){
+		g = getfg(f,g);
+	}
+	static val_t act(const opr_t &f, const val_t &v){
+		vector<int> x(10);
+		rep(i,10) x[f.f[i]]+=v.n[i];
+		return val_t(x);
+	}
+};
+using val_t = typename handler5::val_t;
+using opr_t = typename handler5::opr_t;
+const val_t val_t::e = val_t({0,0,0,0,0,0,0,0,0,0});
+const opr_t opr_t::e = opr_t({0,1,2,3,4,5,6,7,8,9});
+
+
+segtree_lazy<handler2> seg;
+
+int main(){
+	vector<handler2::val_t> st = {1,2,3,4};
+	seg.init(st);
+	while(true){
+		char c;
+		cin>>c;
+		if(c=='a'){	//assign
+			int l,r,x;
+			cin>>l>>r>>x;
+			seg.update(l,r,handler2::opr_t(x));
+		}else{
+			int l,r;
+			cin>>l>>r;
+			cout<<seg.calc(l,r)<<endl;
+		}
+		show(seg.val);
+		show(seg.lazy);
 	}
 }

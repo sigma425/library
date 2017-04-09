@@ -1,7 +1,17 @@
 <html>
 <head>
 <script>
-function line(x,y,a,b){c.b();c.moveTo(x,y);c.lineTo(a,b);c.s();}
+var X = 500;
+var coef = 10;
+function line(x,y,a,b,col){
+	c.b();
+	if(col == 'r') c.strokeStyle = 'rgb(255,0,0)';
+	if(col == 'g') c.strokeStyle = 'rgb(0,255,0)';
+	if(col == 'b') c.strokeStyle = 'rgb(0,0,255)';
+	c.strokeStyle = col;
+	c.moveTo(x*coef+X/2,-y*coef+X/2);c.lineTo(a*coef+X/2,-b*coef+X/2);
+	c.s();
+}
 function circle(x,y,r){c.b();c.arc(x,y,r,0,7,0);c.s();}
 window.onload=function(){d=document;d.i=d.getElementById;c=d.i('c').getContext('2d');c.b=c.beginPath;c.s=c.stroke;d.i('s').src='data.js?';};
 </script>

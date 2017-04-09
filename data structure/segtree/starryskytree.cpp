@@ -26,4 +26,17 @@ struct starryskytree{
 		if(a<=l&&r<=b) return mn[k]+ad[k];
 		return ad[k]+min(getmin(a,b,l,(l+r)/2,k*2),getmin(a,b,(l+r)/2,r,k*2+1));
 	}
+	bool hasnegative(int k,ll acm){return acm+mn[k]+ad[k]<0;}
+	int leftmostnegativeid(){
+		ll acm = 0;
+		if(!hasnegative(1,acm)) return N;
+		int k = 1;
+		while(k<N){
+			acm += ad[k];
+			if(hasnegative(k*2,acm)) k=k*2;
+			else k=k*2+1;
+		}
+		return k-N;
+	}
+
 };

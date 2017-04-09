@@ -33,6 +33,7 @@ DP[]を使う(dpではない!!!!)
 debugのために元となるrootを変えられるようにしてある(初期化とかはいらない) calcDP(N,r)
 
 verified by https://csacademy.com/contest/round-11/#task/connected-tree-subgraphs
+AGC06 black radius
 
 */
 
