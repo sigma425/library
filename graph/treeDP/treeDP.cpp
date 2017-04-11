@@ -1,39 +1,16 @@
 /*
-Data dp[MN];
-SubData init;
-SubData merge(SubData val,Data v);
-Data term(SubData val);
-void dfs(int v,int p){
-	for(int u:G[v]) if(u!=p) dfs(u,v);
-	SubData val=init;
-	for(int u:G[v]) if(u!=p) val=merge(val,dp[u]);
-	dp[v]=term(val);
-}
-これをオーダーを変えずに全方向にする
-mergeに順序が関係ない とかが必要(実はうまくやれば適切な順なら出来ると思う(ex.頂点id小さい順)けどそんなエグいのは出ないと思う)
 
-merge2が計算量的に間に合わない場合は無理だと思う(例えば,knapsackで何か荷物を追加する はO(K)で出来ても,今のdpの状況 どうしを追加するのにはO(NK)かかる)
-その場合は逆元で子を消すタイプのやつをやればよさそう(ls,rsがいらなくて,nottermedから子を一つ引く感じ)
+全方位木DP.
+Nodeの定義を書いて、
+BidirectionalTreeDP<Node> treedp(G);
+とすればよい
+get(v)でvを根とするdpが、get(v,p)でvを根としてp方向を削った時のNodeが得られる
+pic.png参照
+中でnormalizeよんでGが書き換わってることに注意
+verified by http://judge.u-aizu.ac.jp/onlinejudge/cdescription.jsp?cid=RitsCamp16Day1&pid=F
 
-
-How To Use
-Gつくる
-
-Data,SubData,init,merge,merge2を定義する(上の普通の木DPを参照)
-
-Dataは答えだけじゃなくて,再帰的に計算するときに必要な値は保持する(ex.sizeとか)
-
-merge2は,SubData同士の演算
-Data=SubData,merge=merge2に出来ることも多そう?(ただの積とか)
-
-
-calcDPをよぶ
-DP[]を使う(dpではない!!!!)
-
-debugのために元となるrootを変えられるようにしてある(初期化とかはいらない) calcDP(N,r)
-
-verified by https://csacademy.com/contest/round-11/#task/connected-tree-subgraphs
-AGC06 black radius
+oldより使いやすいと思う.ただ、dataとsubdataを一緒くたにしたので、実は集合同士のmerge2と要素をひとつ追加するmergeで計算量が違う場合
+oldを使ったほうが良さそう?でもそのときはoldでも遅いので気にしなくて良いね
 
 */
 
@@ -52,106 +29,152 @@ using namespace std;
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
 template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
 
-typedef long long ll;
-ll mod=1e9+7;
-void add(ll &x,ll y){
-	x+=y;
-	x%=mod;
-}
-ll extgcd(ll a,ll b,ll &x,ll &y){
-	if(b==0){
-		x=1,y=0;
-		return a;
+namespace Normalize{
+	template<class E>
+	void dfs(vector<vector<E>>& G,vector<int>& ord, int v,int p=-1){
+		ord.pb(v);
+		int K = G[v].size();
+		rep(i,K){
+			if(G[v][i].to==p){
+				rotate(G[v].begin()+i,G[v].begin()+i+1,G[v].end());
+				K--;
+				break;
+			}
+		}
+		rep(i,K){
+			dfs(G,ord,G[v][i].to,v);
+		}
 	}
-	ll g=extgcd(b,a%b,y,x);
-	y-=(a/b)*x;
-	return g;
-}
-ll inv(ll a){
-	ll x,y;
-	extgcd(a,mod,x,y);
-	if(x<0) x+=mod;
-	return x;
+	template<class E>
+	vector<int> normalize_and_gettopord(vector<vector<E>>& G, int r=0){
+		vector<int> ord;
+		dfs(G,ord,r);
+		return ord;
+	}
 }
 
-typedef pair<ll,int> Data;
-typedef pair<ll,int> SubData;
+/*
+	Node + に可換は仮定しなくても大丈夫(足す順序は変えてない(ただしupを足す場所は適当なので注意))
+*/
+template<class N>
+struct BidirectionalTreeDP{
+	vector<N> dp;	//dp[v] <- u1,u2,... 			pを削ってvが根
+	vector<N> up;	//up[v] <- v's brothers + pp 	vを削ってpが根
+	vector<N> rp;	//dp[r] <- rを根とした時のこたえ
 
-const int MN=100000;
-ll f[MN+1],g[MN+1];
+	vector<int> par;
+	template<class E>
+	BidirectionalTreeDP(vector<vector<E>>& G, int r=0){
+		int V = G.size();
+		dp.assign(V,N());
+		up.assign(V,N());
+		rp.assign(V,N());
+		par.assign(V,0);
 
-vector<int> G[MN];
-Data dp[MN];			//0-rooted dp[v]=term(merge(dp[u1],dp[u2],...))
-SubData dp_nottermed[MN];	//0-rooted merge(dp[u1],...)
-Data up[MN];			//up[v]= 0-rootedでのvの親をpとして, v->p方向のdpの値 term(merge(up[p],dp[v's bro1],dp[v's bro1],...))
-Data DP[MN];			//DP[v]: ans for v-rooted tree
-vector<SubData> ls,rs;		//ls/rs[i] = 0-rootedで見てvのchildrenを左/右からi個mergeしたもの(各vで使い回す)
-SubData init(1,0);
-SubData merge(SubData val,Data v){
-	return SubData(val.fs*v.fs%mod*g[v.sc]%mod,val.sc+v.sc);
-}
-SubData merge2(SubData x,SubData y){
-	return SubData(x.fs*y.fs%mod,x.sc+y.sc);
-}
-Data term(SubData val){
-	return Data(val.fs*f[val.sc]%mod,val.sc+1);
-}
-void dfs(int v,int p=-1){
-	SubData val=init;
-	for(int u:G[v]) if(u!=p){
-		dfs(u,v);
-		val=merge(val,dp[u]);
+		vector<int> ord = Normalize::normalize_and_gettopord<E>(G,r);
+		rep(t,V){
+			int v = ord[t];
+			if(v==r) par[v]=-1;
+			else par[v]=G[v].back().to;
+		}
+
+		for(int t=V-1;t>=0;t--){	//dfs
+			int v = ord[t];
+			dp[v] = N();
+			int K = G[v].size() - (v!=r);
+			rep(i,K){
+				const E& e = G[v][i];
+				int u = e.to;
+				dp[v] = dp[v] + dp[u].append_edge(v,e);
+			}
+			dp[v].finalize(v);
+		}
+
+		rep(t,V){					//ufs
+			int v = ord[t];
+			int K = G[v].size() - (v!=r);
+			vector<N> ls(K+1),rs(K+1);
+			rep(i,K){
+				ls[i+1] = ls[i] + dp[G[v][i].to].append_edge(v,G[v][i]);
+				rs[K-1-i] = dp[G[v][K-1-i].to].append_edge(v,G[v][K-1-i]) + rs[K-i];
+			}
+			rep(i,K){
+				const E& e = G[v][i];
+				int u = e.to;
+				up[u] = ls[i] + rs[i+1];
+				if(v!=r) up[u] = up[u] + up[v].append_edge(v,G[v].back());
+				up[u].finalize(v);
+			}
+			rp[v] = ls[K];
+			if(v!=r) rp[v] = rp[v] + up[v].append_edge(v,G[v].back());
+			rp[v].finalize(v);
+		}
 	}
-	dp_nottermed[v]=val;
-	dp[v]=term(val);
-//	cout<<"dp["<<v<<"]="<<dp[v]<<endl;
-}
-void ufs(int v,int p=-1){		//0-rootedでupwardな部分を計算
-	vector<int> ch;	//children
-	for(int u:G[v]) if(u!=p) ch.pb(u);
-	int K=ch.size();
-	ls.resize(K+1);
-	rs.resize(K+1);
-	ls[0]=init;
-	rs[0]=init;
-	rep(i,K){
-		ls[i+1]=merge(ls[i],dp[ch[i]]);
-		rs[i+1]=merge(rs[i],dp[ch[K-1-i]]);
+
+	N get(int v,int p=-1){	//pを削ってvが根
+		if(p==-1) return rp[v];
+		if(par[v]==p) return dp[v];
+		return up[p];
 	}
-//	if(p==-1) rep1(i,K) show(ls[i]),show(rs[i]);
-	rep(i,K){
-		int u=ch[i];
-		SubData val=merge2(ls[i],rs[K-1-i]);
-		if(p>=0) val=merge(val,up[v]);
-		up[u]=term(val);
-//		cout<<"up["<<u<<"]="<<up[u]<<endl;
+};
+
+struct Node{	//pを削ってvが根の部分木　の直径(深いのを二つ持つ)
+	int dia;
+	array<int,2> rd;
+	Node(){
+		dia=0;
+		rd[0]=rd[1]=0;
 	}
-	rep(i,K) ufs(ch[i],v);
-}
-void calcDP(int N,int r=0){
-	dfs(r);
-//	up[r]=e			//Dataの単位元(≠init)が必要で面倒なので回避
-	ufs(r);
-	rep(v,N){
-		SubData val=dp_nottermed[v];
-		if(v!=r) val=merge(val,up[v]);
-		DP[v]=term(val);
+
+	/*
+		根付き木→森
+		e=(p -> this)を追加したものを返す
+	*/
+	template<class E>
+	Node append_edge(int p,const E& e) const {
+		Node n;
+		n.rd[0] = rd[0] + e.dist;
+		n.rd[1] = 0;
+		n.dia = dia;
+		return n;
 	}
-}
+	Node operator+(const Node& r) const {
+		Node n;
+		vector<int> vc;
+		rep(t,2) vc.pb(rd[t]),vc.pb(r.rd[t]);
+		sort(all(vc),greater<int>());
+		rep(t,2) n.rd[t]=vc[t];
+		n.dia = max(dia,r.dia);
+		return n;
+	}
+	void finalize(int r){
+		chmax(dia,rd[0]+rd[1]);
+	}
+};
+
+struct Edge{
+	int to;
+	int dist;
+};
 int main(){
 	int N;
 	cin>>N;
-	f[0]=1;
-	rep1(i,N) f[i]=f[i-1]*i%mod;
-	rep(i,N+1) g[i]=inv(f[i]);
+	vector<vector<Edge>> G(N);
 	rep(i,N-1){
-		int x,y;
-		scanf("%d %d",&x,&y);
-		x--,y--;
-		G[x].pb(y);G[y].pb(x);
+		int x,y,d;
+		cin>>x>>y>>d;
+		G[x].pb({y,d});
+		G[y].pb({x,d});
 	}
-	calcDP(N);
-	ll ans=0;
-	rep(i,N) add(ans,DP[i].fs);
-	cout<<ans<<endl;
+
+	BidirectionalTreeDP<Node> treedp(G);
+	rep(v,N){
+		for(const Edge& e:G[v]){
+			int u = e.to;
+			printf("dia[%d] (par = %d)  = %d\n",v,u,treedp.get(v,u).dia);
+		}
+	}
+	rep(v,N){
+		printf("all[%d]=%d\n",v,treedp.get(v).dia);
+	}
 }
