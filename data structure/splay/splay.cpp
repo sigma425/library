@@ -1,5 +1,6 @@
 /*
-splaytree
+SplayTree
+
 変える必要があるのは
 Nodeの定義+コンストラクタ
 update
@@ -16,18 +17,20 @@ update
 #define chmin(x,y) x=min(x,y)
 #define chmax(x,y) x=max(x,y)
 using namespace std;
-typedef long long ll;
+
 struct SplayTree{
+	using D = long long;
 	struct Node;
-	typedef Node* NP;
+	using NP = Node*;
 	static NP nil;
+
 	struct Node{
 		NP p,l,r;			//parent,left child,right child
 		int sz;
-		ll v,sm;				//infos
-		Node(ll v) :p(nullptr),l(nil),r(nil),sz(1),v(v),sm(v){}
+		D v,sm;				//infos
+		Node(D v) :p(nullptr),l(nil),r(nil),sz(1),v(v),sm(v){}
 		Node() : p(nullptr),l(nullptr),r(nullptr),sz(0),v(0),sm(0){}						//単位元!!
-		int pos(){			//親の左の子か,右の子か,それとも根(or null)か
+		int pos(){			//親の左の子か,右の子か,それとも根(or nil)か
 			if(p&&p->l == this) return -1;
 			if(p&&p->r == this) return 1;
 			return 0;
@@ -76,14 +79,14 @@ struct SplayTree{
 		}
 		NP update(){		//情報更新(子が正しい時に呼ばないとダメ) (最後にupdateしてreturnするのに楽なのでNPを返す)
 			sz=1+l->sz+r->sz;
-			if(l) sm+=l->sm;
-			if(r) sm+=r->sm;
+			if(l->sz) sm+=l->sm;	//if(l) だとnilでも呼ぶ羽目になりそう
+			if(r->sz) sm+=r->sm;
 			return this;
 		}
 
 	};
 	NP n;
-	static NP merge(NP l,NP r){			//mergeした根
+	static NP merge(NP l,NP r){			//return mergeした根
 		if(r==nil) return l;
 		r=r->splay(0);
 		r->l=l;
@@ -105,7 +108,7 @@ struct SplayTree{
 		x->l = nil;
 		return {l,x->update()};
 	}
-	static NP built(int sz,ll vs[]){				//init
+	static NP built(int sz,D vs[]){				//init
 		if(!sz) return nil;
 		int md=sz/2;
 		NP x= new Node(vs[md]);
@@ -115,12 +118,27 @@ struct SplayTree{
 		x->r->p=x;
 		return x->update();
 	}
+	static NP built(int sz,const vector<D>& vs,int off){				//init
+		if(!sz) return nil;
+		int md=sz/2;
+		NP x= new Node(vs[off+md]);
+		x->l = built(md,vs,off);
+		x->l->p=x;
+		x->r=built(sz-(md+1),vs,off+md+1);
+		x->r->p=x;
+		return x->update();
+	}
+
 	SplayTree() : n(nil){}
 	SplayTree(NP n) : n(n){}
-	SplayTree(int sz,ll vs[]){
+	SplayTree(int sz,D vs[]){
 		n=built(sz,vs);
 	}
-	void insert(int k,ll v){
+	SplayTree(int sz,vector<D> vs){
+		n=built(sz,vs,0);
+	}
+
+	void insert(int k,D v){
 		auto u=split(n,k);
 		n=merge(merge(u.fs,new Node(v)),u.sc);
 	}
@@ -134,27 +152,29 @@ struct SplayTree{
 	int sz(){
 		return n->sz;
 	}
-	ll get(int k){			//kth info
+	D get(int k){			//kth info
 		auto a=split(n,k);
 		auto b=split(a.sc,1);
-		ll ret=b.fs->v;
+		D ret=b.fs->v;
 		n=merge(merge(a.fs,b.fs),b.sc);
 		return ret;
 	}
-	ll sum(int l,int r){			//[l,r)
+	D sum(int l,int r){			//[l,r)
 		auto b=split(n,r);
 		auto a=split(b.fs,l);
-		ll ret=a.sc->sm;
+		D ret=a.sc->sm;
 		n=merge(merge(a.fs,a.sc),b.sc);
 		return ret;
 	}
+
 	/*
 		search
 		平衡二分木としての役目を思い出せ
 		なんか列をくっつけたりわけたりできるとだけ思っとけば基本いいけど
 		持ってるデータに順序付いてるときにはちゃんと二分木として使える
+		D に operator< と operator<= が必要
 	*/
-	int lower_bound(int x){		//x以上で一番小さいとこのidを返す
+	int lower_bound(D x){		//x以上で一番小さいとこのidを返す
 		NP p=n;
 		int ret=0;
 		while(p!=nil){
@@ -163,7 +183,7 @@ struct SplayTree{
 		}
 		return ret;
 	}
-	int upper_bound(int x){		//xより大で一番小さいとこのidを返す
+	int upper_bound(D x){		//xより大で一番小さいとこのidを返す
 		NP p=n;
 		int ret=0;
 		while(p!=nil){
@@ -173,18 +193,22 @@ struct SplayTree{
 		return ret;
 	}
 };
-template<class T>
-typename SplayTree<T>::NP SplayTree<T>::nil = new SplayTree<T>::Node();
+SplayTree::NP SplayTree::nil = new SplayTree::Node();
+
 int main(){
 	int N;
-	ll vs[100];
+//	long long vs[100];
+	vector<long long> vs;
 	cin>>N;
+	vs.assign(N,0);
 	rep(i,N) cin>>vs[i];
 	SplayTree ST(N,vs);
-//	rep(i,N) show(ST.get(i));
-/*	while(true){
-		int x;
+
+	rep(i,N) show(ST.get(i));
+	while(true){
+		long long x;
 		cin>>x;
+		show(ST.lower_bound(x));
 		show(ST.upper_bound(x));
-	}*/
+	}
 }

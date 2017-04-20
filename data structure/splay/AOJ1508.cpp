@@ -85,7 +85,7 @@ struct SplayTree{
 		return r->update();
 	}
 	/*
-		kthでsplit(k=0ならfs=null)
+		kthでsplit(k=0ならfs=nil)
 		lは完全に切り離されてるけれど
 		rは上とつながっている?
 		まあでも基本的にsplitの第一引数はrootなので大丈夫

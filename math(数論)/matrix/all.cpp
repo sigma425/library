@@ -122,6 +122,7 @@ struct Matrix{
 				}
 				if(iszero(m[i][i])) continue;
 			}
+			r++;
 			T t=m[i][i];
 			rep(k,W) m[i][k]/=t;
 			rep(k,H) if(k!=i){
