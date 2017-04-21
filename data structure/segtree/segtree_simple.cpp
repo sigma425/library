@@ -39,14 +39,24 @@ struct segtree_simple{
 			k/=2;
 		}
 	}
-	D query(int a,int b){
-		return query(a,b,0,N,1);
+	D query(int a,int b){		//non-commutative & unrecursive
+		D L = D::e , R = D::e;
+		a+=N,b+=N;
+		while(a<b){
+			if(a&1) L = L + val[a++];
+			if(b&1) R = val[--b] + R;
+			a/=2,b/=2;
+		}
+		return L+R;
 	}
-	D query(int a,int b,int l,int r,int k){
-		if(b<=l||r<=a) return D::e;
-		if(a<=l&&r<=b) return val[k];
-		return query(a,b,l,(l+r)/2,k*2) + query(a,b,(l+r)/2,r,k*2+1);
-	}
+	// D query(int a,int b){
+	// 	return query(a,b,0,N,1);
+	// }
+	// D query(int a,int b,int l,int r,int k){
+	// 	if(b<=l||r<=a) return D::e;
+	// 	if(a<=l&&r<=b) return val[k];
+	// 	return query(a,b,l,(l+r)/2,k*2) + query(a,b,(l+r)/2,r,k*2+1);
+	// }
 };
 
 struct Dplus{		//(int,+,0)
@@ -98,6 +108,21 @@ struct Dleftmostmax{		//(int,max,-inf)
 };
 const Dleftmostmax Dleftmostmax::e = Dleftmostmax(-1e9,-1);
 
+struct Dperm{
+	const static int N = 5;
+	using V = array<int,N>;
+	V v;
+	Dperm(){*this = e;}
+	Dperm(V v):v(v){}
+	const static Dperm e;
+	Dperm operator+(const Dperm& r) const {
+		V ret;
+		rep(i,N) ret[i] = v[r.v[i]];
+		return Dperm(ret);
+	};
+};
+const Dperm Dperm::e = Dperm({0,1,2,3,4});
+
 void unittest(){	//どっちかというとstruct Dのテスト
 	{
 		vector<Dplus> vs = {4,2,5,4,8,3,1,4,1,5};
@@ -133,6 +158,22 @@ void unittest(){	//どっちかというとstruct Dのテスト
 				}
 			}
 			assert( seg.query(l,r).a == ag );
+		}
+	}
+	{
+		using D = Dperm;
+		vector<D> vs = {D({0,3,2,4,1}),D({0,3,2,1,4}),D({3,2,0,4,1}),D({0,3,4,2,1}),D({0,3,2,4,1}),D({0,3,1,4,2}),D({4,2,3,0,1}),D({3,2,4,1,0})};
+		segtree_simple<D> seg(vs);
+		int N = vs.size();
+		rep(l,N) for(int r=l+1;r<=N;r++){
+			int a[5]={0,1,2,3,4};
+			for(int i=l;i<r;i++){
+				int na[5];
+				rep(j,5) na[j] = a[vs[i].v[j]];
+				rep(j,5) a[j]=na[j];
+			}
+			D calc = seg.query(l,r);
+			rep(i,5) assert( calc.v[i] == a[i] );
 		}
 	}
 }
