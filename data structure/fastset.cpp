@@ -1,7 +1,7 @@
 /*
 	g++11 -O3
-	fastset 198[ms]
-	set 4164[ms]
+	fastset 233[ms]
+	set 7757[ms]
 	よさそう
 */
 #include <bits/stdc++.h>
@@ -97,13 +97,16 @@ void unittest(){
 	srand((unsigned)time(NULL));
 	int N = 1e7;
 
-	vector<int> qs,qs2;
+	vector<int> qs,qs2,qs3;
 	int T = 1e7;
 	rep(i,T){
 		qs.pb(rand()%(N));
 	}
 	rep(i,T){
 		qs2.pb(rand()%N);
+	}
+	rep(i,T){
+		qs3.pb(rand()%N);
 	}
 
 	vector<int> ans,ans2;
@@ -115,9 +118,9 @@ void unittest(){
 			st.insert(qs[i]);
 			int v = st.geq(qs2[i]);
 			ans.pb(v);
-		}
-		rep(i,T){
-			st.erase(qs[i]);
+			v = st.leq(qs2[i]);
+			ans.pb(v);
+			st.erase(qs3[i]);
 		}
 		printf("fastset %d[ms]\n",tm.ms());
 	}
@@ -125,14 +128,16 @@ void unittest(){
 		Timer tm;
 		tm.start();
 		set<int> st;
+		st.insert(-1);
 		st.insert(N);
 		rep(i,T){
 			st.insert(qs[i]);
 			int v = *st.lower_bound(qs2[i]);
 			ans2.pb(v);
-		}
-		rep(i,T){
-			st.erase(qs[i]);
+			auto it = st.upper_bound(qs2[i]);
+			it--;
+			ans2.pb(*it);
+			st.erase(qs3[i]);
 		}
 		printf("set %d[ms]\n",tm.ms());
 	}
