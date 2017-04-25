@@ -1,3 +1,9 @@
+/*
+	g++11 -O3
+	fastset 198[ms]
+	set 4164[ms]
+	よさそう
+*/
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 #define rep1(i,n) for(int i=1;i<=(int)(n);i++)
@@ -30,7 +36,7 @@ struct FastSet{	//[0,N)
 			seg[d][x] |= b;
 		}
 	}
-	void erase(int x){
+	void erase(int x){	//なくてもよんでいい
 		rep(d,D){
 			ull b = 1ull<<(x&63);
 			x >>= 6;
@@ -73,9 +79,65 @@ struct FastSet{	//[0,N)
 	}
 
 	int bsr(ull x){return __builtin_clzll(x)^63;}
-	int bsf(ull x){return __bultin_ctzll(x);}
+	int bsf(ull x){return __builtin_ctzll(x);}
 
 };
+
+struct Timer{
+	clock_t st;
+	void start(){
+		st = clock();
+	}
+	int ms(){
+		return (clock()-st)*1000 / CLOCKS_PER_SEC;
+	}
+};
+
+void unittest(){
+	srand((unsigned)time(NULL));
+	int N = 1e7;
+
+	vector<int> qs,qs2;
+	int T = 1e7;
+	rep(i,T){
+		qs.pb(rand()%(N));
+	}
+	rep(i,T){
+		qs2.pb(rand()%N);
+	}
+
+	vector<int> ans,ans2;
+	{
+		Timer tm;
+		tm.start();
+		FastSet st(N);
+		rep(i,T){
+			st.insert(qs[i]);
+			int v = st.geq(qs2[i]);
+			ans.pb(v);
+		}
+		rep(i,T){
+			st.erase(qs[i]);
+		}
+		printf("fastset %d[ms]\n",tm.ms());
+	}
+	{
+		Timer tm;
+		tm.start();
+		set<int> st;
+		st.insert(N);
+		rep(i,T){
+			st.insert(qs[i]);
+			int v = *st.lower_bound(qs2[i]);
+			ans2.pb(v);
+		}
+		rep(i,T){
+			st.erase(qs[i]);
+		}
+		printf("set %d[ms]\n",tm.ms());
+	}
+	assert(ans == ans2);
+}
 int main(){
-	FastSet<
+	unittest();
 }
