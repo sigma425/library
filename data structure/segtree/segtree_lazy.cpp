@@ -30,17 +30,17 @@ struct segtree_lazy{
 	void init(int n){
 		N=1;
 		while(N<n) N*=2;
-		val .assign(N*2,val_t::e);
-		lazy.assign(N*2,opr_t::e);
+		val .assign(N*2,val_t::e());
+		lazy.assign(N*2,opr_t::e());
 	}
 	void init(const vector<val_t>& vc){
 		int n = vc.size();
 		N=1;
 		while(N<n) N*=2;
-		val .assign(N*2,val_t::e);
+		val .assign(N*2,val_t::e());
 		rep(i,n) val[i+N] = vc[i];
 		for(int i=N-1;i>0;i--) val[i] = val[i*2] + val[i*2+1];
-		lazy.assign(N*2,opr_t::e);
+		lazy.assign(N*2,opr_t::e());
 	}
 	val_t realvalue(int k,int l,int r){
 //		return Handler::act(lazy[k],val[k]);
@@ -49,7 +49,7 @@ struct segtree_lazy{
 
 	val_t calc(int a,int b,int l=0,int r=-1,int k=1){	//query_calc
 		if(r==-1) r=N;
-		if(b<=l||r<=a) return val_t::e;
+		if(b<=l||r<=a) return val_t::e();
 		if(a<=l&&r<=b) return realvalue(k,l,r);
 		propagate(l,r,k);
 		val_t ret = calc(a,b,l,(l+r)/2,k*2) + calc(a,b,(l+r)/2,r,k*2+1);
@@ -73,7 +73,7 @@ struct segtree_lazy{
 	void propagate(int l,int r,int k){	//opr_child -> opr_parent * opr_child		parent after child
 		Handler::setg2fg(lazy[k],lazy[k*2  ]);
 		Handler::setg2fg(lazy[k],lazy[k*2+1]);
-		lazy[k] = opr_t::e;
+		lazy[k] = opr_t::e();
 	}
 };
 
@@ -92,10 +92,12 @@ struct handler1{
 	*/
 	struct val_t{
 		int x;
-		val_t(){*this = e;}
+		val_t(){*this = e();}
 		val_t(int x):x(x){}
 
-		const static val_t e;
+		const static val_t e(){
+			return val_t(0);
+		}
 		val_t operator+(const val_t &r) const {
 			return val_t(max(x,r.x));
 		}
@@ -104,10 +106,12 @@ struct handler1{
 
 	struct opr_t{
 		int x;
-		opr_t(){*this = e;}
+		opr_t(){*this = e();}
 		opr_t(int x):x(x){}
 
-		const static opr_t e;
+		const static opr_t e(){
+			return opr_t(-1);
+		}
 		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
 	};
 
@@ -131,8 +135,6 @@ struct handler1{
 	// 	f.x = -1;
 	// }
 };
-const handler1::val_t handler1::val_t::e = val_t(0);
-const handler1::opr_t handler1::opr_t::e = opr_t(-1);
 
 
 struct handler2{
@@ -151,10 +153,12 @@ struct handler2{
 	*/
 	struct val_t{
 		int x;
-		val_t(){*this = e;}
+		val_t(){*this = e();}
 		val_t(int x):x(x){}
 
-		const static val_t e;
+		const static val_t e(){
+			return val_t(0);
+		}
 		val_t operator+(const val_t &r) const {
 			return val_t(x+r.x);
 		}
@@ -163,10 +167,12 @@ struct handler2{
 
 	struct opr_t{
 		int x;
-		opr_t(){*this = e;}
+		opr_t(){*this = e();}
 		opr_t(int x):x(x){}
 
-		const static opr_t e;
+		const static opr_t e(){
+			return opr_t(-1);
+		}
 		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
 	};
 
@@ -185,8 +191,6 @@ struct handler2{
 		return val_t(f.x*(r-l));
 	}
 };
-const handler2::val_t handler2::val_t::e = val_t(0);
-const handler2::opr_t handler2::opr_t::e = opr_t(-1);
 
 
 struct handler3{
@@ -212,10 +216,12 @@ struct handler3{
 	*/
 	struct val_t{
 		ll x;
-		val_t(){*this = e;}
+		val_t(){*this = e();}
 		val_t(ll x):x(x){}
 
-		const static val_t e;
+		const static val_t e(){
+			return val_t(0);
+		}
 		val_t operator+(const val_t &r) const {
 			return val_t(x+r.x);
 		}
@@ -225,10 +231,12 @@ struct handler3{
 	struct opr_t{
 		bool is_add;
 		ll x;
-		opr_t(){*this = e;}
+		opr_t(){*this = e();}
 		opr_t(bool b,ll x):is_add(b),x(x){}
 
-		const static opr_t e;
+		const static opr_t e(){
+			return opr_t(true,0);	//add 0
+		}
 		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<(d.is_add?"add":"assign")<<" "<<d.x;}
 	};
 
@@ -248,8 +256,6 @@ struct handler3{
 		else return val_t(f.x);
 	}
 };
-const handler3::val_t handler3::val_t::e = val_t(0);
-const handler3::opr_t handler3::opr_t::e = opr_t(true,0);	//単位元はadd 0
 
 struct handler4{
 	/*
@@ -265,12 +271,16 @@ struct handler4{
 		とりあえず必要なものを持ち、結合できるように追加でデータを持つ
 
 	*/
+	using ll = long long;
+	const static ll inf = 1e16;
 	struct val_t{
 		ll x,y;
-		val_t(){*this = e;}
+		val_t(){*this = e();}
 		val_t(ll x,ll y):x(x),y(y){}
 
-		const static val_t e;
+		const static val_t e(){
+			return val_t(-inf,-inf);
+		}
 		val_t operator+(const val_t &r) const {
 			return val_t(max(x,r.x),max(y,r.y));
 		}
@@ -279,10 +289,12 @@ struct handler4{
 
 	struct opr_t{
 		ll l,m;
-		opr_t(){*this = e;}
+		opr_t(){*this = e();}
 		opr_t(ll l,ll m):l(l),m(m){}
 
-		const static opr_t e;
+		const static opr_t e(){
+			return opr_t(0,-inf);
+		}
 //		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
 	};
 
@@ -296,8 +308,6 @@ struct handler4{
 		return val_t(v.x+f.l,max(v.y,v.x+f.m));
 	}
 };
-const handler4::val_t handler4::val_t::e = val_t(-inf,-inf);
-const handler4::opr_t handler4::opr_t::e = opr_t(0,-inf);
 
 
 struct handler5{
@@ -310,13 +320,15 @@ struct handler5{
 	*/
 	struct val_t{
 		int n[10];
-		val_t(){*this = e;}
+		val_t(){*this = e();}
 		val_t(vector<int> v){
 //			show(v.size());
 			rep(i,10) n[i]=v[i];
 		}
 
-		const static val_t e;
+		const static val_t e(){
+			return val_t(vector<int>(10,0));
+		}
 		val_t operator+(const val_t &r) const {
 			vector<int> v(10);
 			rep(i,10) v[i] = n[i]+r.n[i];
@@ -325,12 +337,16 @@ struct handler5{
 	};
 	struct opr_t{
 		int f[10];
-		opr_t(){*this = e;}
+		opr_t(){*this = e();}
 		opr_t(vector<int> v){
 //			show(v.size());
 			rep(i,10) f[i]=v[i];
 		}
-		const static opr_t e;
+		const static opr_t e(){
+			vector<int> vc(10);
+			rep(i,10) vc[i]=i;
+			return opr_t(vc);
+		}
 	};
 	static opr_t getfg(const opr_t &f, const opr_t &g){
 		vector<int> v(10);
@@ -346,30 +362,40 @@ struct handler5{
 		return val_t(x);
 	}
 };
-using val_t = typename handler5::val_t;
-using opr_t = typename handler5::opr_t;
-const val_t val_t::e = val_t({0,0,0,0,0,0,0,0,0,0});
-const opr_t opr_t::e = opr_t({0,1,2,3,4,5,6,7,8,9});
 
+void unittest(){
+	{
+		using val_t = handler1::val_t;
+		using opr_t = handler1::opr_t;
+		vector<val_t> st = {1,2,3,4,5,6,7,8,9,0};
+		segtree_lazy<handler1> seg(st);
+		int N = st.size();
 
-segtree_lazy<handler2> seg;
+		rep(qt,100){
+			int l = rand()%N;
+			int r = rand()%N + 1;
+			int t = rand()%2;
+			if(t==0){
+				int x = rand()%10;
+				seg.update(l,r,opr_t(x));
+
+				for(int i = l;i<r;i++) st[i] = val_t(x);
+
+			}else{
+				val_t res;
+				for(int i=l;i<r;i++) res = res + st[i];
+				assert( seg.calc(l,r).x == res.x );
+			}
+		}
+	}
+	{
+		using val_t = handler5::val_t;
+		using opr_t = handler5::opr_t;
+		segtree_lazy<handler5> seg;
+	}
+}
+
 
 int main(){
-	vector<handler2::val_t> st = {1,2,3,4};
-	seg.init(st);
-	while(true){
-		char c;
-		cin>>c;
-		if(c=='a'){	//assign
-			int l,r,x;
-			cin>>l>>r>>x;
-			seg.update(l,r,handler2::opr_t(x));
-		}else{
-			int l,r;
-			cin>>l>>r;
-			cout<<seg.calc(l,r)<<endl;
-		}
-		show(seg.val);
-		show(seg.lazy);
-	}
+	unittest();
 }
