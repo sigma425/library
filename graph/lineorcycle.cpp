@@ -1,7 +1,7 @@
 /*
 無向グラフで高々次数が2のもの はlineとcycleにわけられる.これをdfsして全部見つける
 自己ループ,多重辺もちゃんとcycleで感知できる.
-普通孤立点の場合でもcalclineに投げれば良さそう.
+普通,孤立点の場合でもcalclineに投げれば良さそう.
 line,cycleをなす頂点集合をまともな順で(lineは端から)vectorにいれたものをcalcline,cycleに投げている.
 */
 #include <bits/stdc++.h>
