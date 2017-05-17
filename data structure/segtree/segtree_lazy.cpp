@@ -47,17 +47,17 @@ struct segtree_lazy{
 		return Handler::act(lazy[k],val[k],k,l,r);
 	}
 
-	val_t calc(int a,int b,int l=0,int r=-1,int k=1){	//query_calc
+	val_t query(int a,int b,int l=0,int r=-1,int k=1){	//query_calc
 		if(r==-1) r=N;
 		if(b<=l||r<=a) return val_t::e();
 		if(a<=l&&r<=b) return realvalue(k,l,r);
 		propagate(l,r,k);
-		val_t ret = calc(a,b,l,(l+r)/2,k*2) + calc(a,b,(l+r)/2,r,k*2+1);
+		val_t ret = query(a,b,l,(l+r)/2,k*2) + query(a,b,(l+r)/2,r,k*2+1);
 		val[k] = realvalue(k*2,l,(l+r)/2) + realvalue(k*2+1,(l+r)/2,r);
 		return ret;
 
 	}
-//	val_t calc_leftassoc(){}
+//	val_t query_leftassoc(){}
 	void update(int a,int b,const opr_t &x,int l=0,int r=-1,int k=1){	//query_update
 		if(r==-1) r=N;
 		if(b<=l||r<=a) return;
@@ -384,7 +384,7 @@ void unittest(){
 			}else{
 				val_t res;
 				for(int i=l;i<r;i++) res = res + st[i];
-				assert( seg.calc(l,r).x == res.x );
+				assert( seg.query(l,r).x == res.x );
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 /*
-SplayTree(かんたんver)
-simple_segtreeの上位互換.query(l,r), assign(x,d)は同じ使い方が出来る.
-verified by AOJ1508(circular RMQ)
-
-
+作業中
+予定↓
+SplayTree(lazy ver) revはなし
+lazy_segtreeの上位互換.query(l,r), assign(x,d)は同じ使い方が出来る.
 */
+
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 #define rep1(i,n) for(int i=1;i<=(int)(n);i++)
@@ -17,8 +17,11 @@ verified by AOJ1508(circular RMQ)
 #define chmax(x,y) x=max(x,y)
 using namespace std;
 
-template<class D>
+template<class Handler>
 struct SplayTree{
+	using D = typename Handler::val_t;	//data
+	using A = typename Handler::opr_t;	//action
+
 	struct Node;
 	using NP = Node*;
 	static NP nil;
@@ -27,8 +30,10 @@ struct SplayTree{
 		NP p,l,r;
 		int sz;
 		D v,sm;
-		Node(D v) :p(nullptr),l(nil),r(nil),sz(1),v(v),sm(v){}
-		Node() : p(nullptr),l(nullptr),r(nullptr),sz(0),v(D::e()),sm(D::e()){}
+		A lz;
+		Node(D v,A a) :p(nullptr),l(nil),r(nil),sz(1),v(v),sm(v),lz(a){}
+		Node(D v) :p(nullptr),l(nil),r(nil),sz(1),v(v),sm(v),lz(A::e()){}
+		Node() : p(nullptr),l(nullptr),r(nullptr),sz(0),v(D::e()),sm(D::e()),lz(A::e()){}
 		int pos(){			//親の左の子か,右の子か,それとも根(or nil)か
 			if(p&&p->l == this) return -1;
 			if(p&&p->r == this) return 1;
@@ -50,6 +55,7 @@ struct SplayTree{
 			else pp->r=this;
 		}
 		void splay(){			//thisをrootにもってくる
+			pushdown();
 			while(true){
 				int ps=pos();
 				if(ps==0) break;
@@ -81,6 +87,16 @@ struct SplayTree{
 			if(l->sz) sm = l->sm + sm;	//if(l) だとnilでも呼ぶ羽目になりそう
 			if(r->sz) sm = sm + r->sm;
 			return this;
+		}
+		void push(){
+			if(l->sz) Handler::setg2fg(lz,l->lz);
+			if(r->sz) Handler::setg2fg(lz,r->lz);
+			v = Handler::act(lz,v);
+			lz = A::e();
+		}
+		void pushdown(){	//from root to v
+			if(pos()) p->pushdown();
+			push();
 		}
 
 		void showtree(){
