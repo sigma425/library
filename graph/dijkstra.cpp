@@ -1,19 +1,25 @@
 /*
-ま、一応ね?
+	D によってinf の書き換え
+	double なら = まわりを変える
 */
-vector<P> G[100000];
-void dijkstra(ll *d, vector<P> *G){
+template<class D>
+vector<D> dijkstra(const vector<vector<pair<int,D>>>& G, int s = 0){	//G:(v,cost)
+	using P = pair<D,int>;
 	priority_queue<P,vector<P>,greater<P> > que;
-	rep(i,N) d[i]=inf;
-	d[0]=0;
-	que.push(P(0,0));
+	int N = G.size();
+
+	D inf = 1e18;
+	vector<D> d(N,inf);
+	d[s] = 0;
+	que.push(P(0,s));
+
 	while(!que.empty()){
 		P p=que.top();
 		que.pop();
-		int v=p.sc;
-		ll c=p.fs;
+		int v = p.sc;
+		D c = p.fs;
 		if(d[v]!=c) continue;
-		for(P p:G[v]){
+		for(auto p:G[v]){
 			int to=p.fs;
 			if(d[to]>d[v]+p.sc){
 				d[to]=d[v]+p.sc;
@@ -21,4 +27,6 @@ void dijkstra(ll *d, vector<P> *G){
 			}
 		}
 	}
+
+	return d;
 }
