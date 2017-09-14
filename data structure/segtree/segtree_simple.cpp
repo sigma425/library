@@ -1,5 +1,7 @@
 /*
 	point assign,range + 非再帰
+
+	struct D のコンストラクタは引数無しで単位元を返すようにしておくこと
 */
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;i++)
@@ -58,7 +60,7 @@ struct segtree_simple{
 
 struct Dplus{		//(int,+,0)
 	int x;
-	Dplus(){}
+	Dplus(){*this = e();}
 	Dplus(int x):x(x){}
 	static Dplus e(){
 		return Dplus(0);
@@ -71,7 +73,7 @@ struct Dplus{		//(int,+,0)
 
 struct Dmax{		//(int,max,-inf)
 	int x;
-	Dmax(){}
+	Dmax(){*this = e();}
 	Dmax(int x):x(x){}
 	static Dmax e(){
 		return Dmax(-1e9);
@@ -84,7 +86,7 @@ struct Dmax{		//(int,max,-inf)
 
 struct Dmin{		//(int,min,inf)
 	int x;
-	Dmin(){}
+	Dmin(){*this = e();}
 	Dmin(int x):x(x){}
 	static Dmin e(){
 		return Dmin(1e9);
@@ -98,7 +100,7 @@ struct Dmin{		//(int,min,inf)
 struct Dleftmostmax{		//(int,max,-inf)
 	using D = Dleftmostmax;
 	int x,a;	//val,argid
-	Dleftmostmax(){}
+	Dleftmostmax(){*this = e();}
 	Dleftmostmax(int x,int a):x(x),a(a){}
 	static D e(){
 		return D(-1e9,-1);
@@ -115,7 +117,7 @@ struct Dperm{
 	const static int N = 5;
 	using V = array<int,N>;
 	V v;
-	Dperm(){}
+	Dperm(){*this = e();}
 	Dperm(V v):v(v){}
 	const static D e(){
 		return D({0,1,2,3,4});
@@ -134,7 +136,7 @@ struct Dmat{
 	using V = array<T,N>;
 	using VV = array<V,N>;
 	VV a;
-	Dmat(){}
+	Dmat(){*this = e();}
 	Dmat(VV a):a(a){}
 	const static D e(){
 		VV a;
