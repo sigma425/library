@@ -68,29 +68,29 @@ struct Matrix{
 	Matrix():H(0),W(0){}
 	Matrix(int H,int W):H(H),W(W),m( vector< vector<T> >(H,vector<T>(W,zero)) ){}
 	//↓0*W行列を渡すと壊れるので危険←そんなの渡さないでしょ・・・
-	//Matrix(vector< vector<T> > m):m(m),H(m.size()),W(m[0].size()){}
-	vector<T> const& operator[](const int& i) const {return m[i];}
-	vector<T>& operator[](const int& i) {return m[i];}
+	Matrix(vector< vector<T> > m):m(m),H(m.size()),W(m[0].size()){}
+	vector<T> const& operator[](int i) const {return m[i];}
+	vector<T>& operator[](int i) const {return m[i];}
 	Matrix operator+=(const Matrix& b){
 		assert(H==b.H&&W==b.W);
-		rep(i,H) rep(j,H) m[i][j]+=b[i][j];
+		rep(i,H) rep(j,W) m[i][j]+=b[i][j];
 		return *this;
 	}
 	Matrix operator-=(const Matrix& b){
 		assert(H==b.H&&W==b.W);
-		rep(i,H) rep(j,H) m[i][j]-=b[i][j];
+		rep(i,H) rep(j,W) m[i][j]-=b[i][j];
 		return *this;
 	}
-	Matrix operator+(const Matrix& b){return Matrix(*this)+=b;}
-	Matrix operator-(const Matrix& b){return Matrix(*this)-=b;}
-	Matrix operator*(const Matrix& b){
+	Matrix operator+(const Matrix& b) const {return Matrix(*this)+=b;}
+	Matrix operator-(const Matrix& b) const {return Matrix(*this)-=b;}
+	Matrix operator*(const Matrix& b) const {
 		assert(W==b.H);
 		Matrix c(H,b.W);
-		rep(i,H) rep(j,W) rep(k,b.W) c[i][j]+=m[i][k]*b[k][j];
+		rep(i,H) rep(j,b.W) rep(k,W) c[i][j]+=m[i][k]*b[k][j];
 		return c;
 	}
 	Matrix operator*=(const Matrix& b){return (*this)=(*this)*b;}
-	vector<T> operator*(const vector<T>& b){
+	vector<T> operator*(const vector<T>& b) const {
 		assert(W==b.size());
 		vector<T> c(H);
 		rep(i,H) rep(j,W) c[i]+=m[i][j]*b[j];
@@ -101,7 +101,7 @@ struct Matrix{
 		rep(i,N) a[i][i]=one;
 		return a;
 	}
-	Matrix ex(int t) {
+	Matrix ex(int t){
 //		assert(H==W);
 		Matrix x=Matrix::E(H),b=(*this);
 		while(t){
