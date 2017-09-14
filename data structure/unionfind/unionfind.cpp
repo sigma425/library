@@ -3,9 +3,12 @@
 verified by いろんなところ
 付加情報を持つときにuniteのcontinueを忘れないこと
 */
-struct unionfind{
-	int par[];
-	void init(int N){rep(i,N) par[i]=i;}
+struct UnionFind{
+	vector<int> par;
+	UnionFind(int N){
+		par.assign(N,0);
+		rep(i,N) par[i]=i;
+	}
 	int find(int x){
 		if(par[x]==x) return x;
 		return par[x]=find(par[x]);
@@ -20,8 +23,12 @@ struct unionfind{
 	}
 };
 struct UnionFind{
-	int par[],rank[];
-	void init(int N){rep(i,N) par[i]=i,rank[i]=0;}
+	vector<int> par,rank;
+	UnionFind(int N){
+		par.assign(N,0);
+		rank.assign(N,0);
+		rep(i,N) par[i]=i;
+	}
 	int find(int x){
 		if(par[x]==x) return x;
 		return par[x]=find(par[x]);

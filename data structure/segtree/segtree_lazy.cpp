@@ -362,6 +362,10 @@ struct handler5{
 		return val_t(x);
 	}
 };
+/*
+fortune_telling
+AB
+*/
 
 void unittest(){
 	{

@@ -7,6 +7,32 @@ for all j < N-K,
 c_0 * u_j + c_1 * u_{j+1} + .. + c_K * u_{j+K} = 0
 となる.
 O(N^2)
+
+poly/mint とかがいる
+
+N項目を求めたいときは、x^N を この多項式で割る
+まあtypicalDP/T.cpp とかにあるんですけど, 一般的な処理は
+	vector<mint> vals = {0,1,1,2};
+	auto mod = berlekamp_massey(vals);
+
+	Poly<mint> a = vector<mint>{1};
+	Poly<mint> x = vector<mint>{0,1};
+
+	long long N;
+	cin>>N;
+	while(N){
+		if(N%2) (a*=x)%=mod;
+		x*=x;
+		x%=mod;
+		N/=2;
+	}
+	mint ans=0;
+	int K = mod.size();
+	rep(i,K) ans+=a.at(i)*vals[i];
+	cout<<ans<<endl;
+
+	です
+
 */
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
