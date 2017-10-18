@@ -44,6 +44,38 @@ void fft(bool type, vector<Pc> &c){	//multiply : false -> mult -> true
 	copy(begin(a),end(a),begin(c));
 }
 
+
+/*
+	double 用
+	かけざん
+*/
+template<class D>
+vector<D> multiply_fft(const vector<D>& x,const vector<D>& y){
+	int S = x.size()+y.size()-1;
+	int N = 2<<bsr(S-1);
+	vector<Pc> a(N),b(N);
+	rep(i,x.size()) a[i] = Pc( x[i] , 0 );
+	rep(i,y.size()) b[i] = Pc( y[i] , 0 );
+	fft(false,a);
+	fft(false,b);
+
+	vector<D> z(S);
+	vector<Pc> c(N);
+	rep(i,N) c[i] = a[i]*b[i];
+	fft(true,c);
+	rep(i,S){
+		c[i] *= 1.0/N;
+		z[i] = c[i].real();
+	}
+	return z;
+}
+
+
+/*
+	long long/mint 用
+	最後roundしてキャストする
+*/
+
 template<class Mint>
 vector<Mint> multiply_fft3(const vector<Mint>& x,const vector<Mint>& y){
 	const int B = 10;

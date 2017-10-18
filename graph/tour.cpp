@@ -7,6 +7,15 @@ Aを取り除くとBが橋 と同値
 llだと危険そう?
 */
 
+unsigned long long seed = 1145141919810893ULL;
+unsigned long long xor_rand(){
+  seed = seed ^ (seed<<13);
+  seed = seed ^ (seed>>7);
+  seed = seed ^ (seed<<17);
+  return seed;
+}
+
+
 class ToursDecomposition {
  public:
   struct Edge {
@@ -17,8 +26,9 @@ class ToursDecomposition {
   int n;
   vector< vector<int> > to;
   vector<int> depth;
-  vector<ll> hash;
-  map< ll, vector<Edge> > group;
+  using ull = unsigned long long;
+  vector<ull> hash;
+  map< ull, vector<Edge> > group;
   ToursDecomposition() {}
   ToursDecomposition(int n) : n(n), to(n), depth(n, -1), hash(n) {}
   void AddEdge(int u, int v) {
@@ -41,7 +51,7 @@ class ToursDecomposition {
         hash[v] += hash[u];
         group[hash[u]].push_back(Edge(u, v));
       } else if (depth[u] < depth[v] && u != p) {
-        ll r = rand();
+        ull r = xor_rand();
         group[r].push_back(Edge(u, v));
         hash[v] += r;
         hash[u] -= r;

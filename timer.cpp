@@ -21,12 +21,12 @@ struct Timer{
 	}
 };
 int main(){
-	Timer tm;
-	tm.start();
+	Timer timer;
+	timer.start();
 	unsigned long long ans = 0;
 	for(unsigned long long i = 1; i<=1000000000ull; i++ ){
 		ans ^= i;
 	}
 	show(ans);
-	show(tm.ms());
+	show(timer.ms());
 }

@@ -19,20 +19,34 @@ ll inv(ll a){
 //ただのgcdだけど、クソ速い
 typedef long long ll;
 // xの立っている最下位bitが何bit目かを返す
-int bsf(ll x) { return __builtin_ctzll(x); }
- 
-ll gcd(ll a, ll b) {
-	a = abs(a); b = abs(b);
-    if (a == 0) return b;
-    if (b == 0) return a;
-    int shift = bsf(a|b);
-    a >>= bsf(a);
-    do {
-        b >>= bsf(b);
-        if (a > b) swap(a, b);
-        b -= a;
-    } while (b);
-    return a << shift;
+int bsf(ll x) { return __builtin_ctzll(x); } 
+ll gcd(ll a, ll b){
+	a = abs(a), b = abs(b);
+	if(a==0) return b;
+	if(b==0) return a;
+	int shift = bsf(a|b);
+	a >>= bsf(a);
+	do{
+		b >>= bsf(b);
+		if(a>b) swap(a,b);
+		b -= a;
+	}while(b);
+	return a<<shift;
+}
+
+int bsf(int x){return __builtin_ctz(x);}
+int gcd(int a, int b){
+	a = abs(a), b = abs(b);
+	if(a==0) return b;
+	if(b==0) return a;
+	int shift = bsf(a|b);
+	a >>= bsf(a);
+	do{
+		b >>= bsf(b);
+		if(a>b) swap(a,b);
+		b -= a;
+	}while(b);
+	return a<<shift;
 }
 
 
