@@ -5,6 +5,8 @@
 	
 	!!! rm[i].sc,modはpairwise relatively prime !!!
 	素ベキに分解する -> 各素数ごとに矛盾しないか確かめる -> garner
+
+	barcelona2017/5s/G.cpp
 */
 typedef long long ll;
 typedef pair<ll,ll> P;		//val,mod;

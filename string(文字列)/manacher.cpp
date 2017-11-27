@@ -15,11 +15,16 @@ if(R[i]==0){
 でOK
 
 */
-int i=0,j=0;
-while(i<s.size()){
-	while(i-j>=0&&i+j<s.size()&&s[i-j]==s[i+j]) ++j;
-	R[i]=j;
-	int k=1;
-	while(i-k>=0&&i+k<s.size()&&k+R[i-k]<j) R[i+k]=R[i-k],++k;
-	i+=k,j-=k;
+vector<int> manacher(string s){
+	int N = s.size();
+	vector<int> R(N);
+	int i=0,j=0;
+	while(i<s.size()){
+		while(i-j>=0&&i+j<s.size()&&s[i-j]==s[i+j]) ++j;
+		R[i]=j;
+		int k=1;
+		while(i-k>=0&&i+k<s.size()&&k+R[i-k]<j) R[i+k]=R[i-k],++k;
+		i+=k,j-=k;
+	}
+	return R;
 }

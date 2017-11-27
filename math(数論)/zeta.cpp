@@ -20,7 +20,7 @@ gからfを求める
 void mebius(int *g,int N){
 	rep(i,N) for(int j=(1<<N)-1;j>=0;j--) if(0==(j&1<<i)) g[j]-=g[j^(1<<i)];
 }
-/*T<Sバージョン 未検証*/
+/*T<Sバージョン*/
 void mebius(int *g,int N){
 	rep(i,N) rep(j,1<<N) if(j&(1<<i)) g[j]-=g[j^(1<<i)];
 }

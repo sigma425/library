@@ -39,10 +39,10 @@ struct UnionFind{
 	void unite(int x,int y){
 		x=find(x),y=find(y);
 		if(x==y) return;
-		if(rank[x]<rank[y]) par[x]=y;
-		else{
-			par[y]=x;
-			if(rank[x]==rank[y]) rank[x]++;
-		}
+		if(rank[x]<rank[y]) swap(x,y);
+
+		//x becomes root
+		par[y]=x;
+		if(rank[x]==rank[y]) rank[x]++;
 	}
 };

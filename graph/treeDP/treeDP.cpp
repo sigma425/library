@@ -1,11 +1,13 @@
 /*
 
 全方位木DP.
-Nodeの定義を書いて、
+Node の コンストラクタ, append_edge, +, finalize だけかけばいい. コンストラクタは子が0個の時どうしたいか考えるとわかりやすい?
+pic.png参照
+
 BidirectionalTreeDP<Node> treedp(G);
 とすればよい
 get(v)でvを根とするdpが、get(v,p)でvを根としてp方向を削った時のNodeが得られる
-pic.png参照
+
 中でnormalizeよんでGが書き換わってることに注意
 verified by http://judge.u-aizu.ac.jp/onlinejudge/cdescription.jsp?cid=RitsCamp16Day1&pid=F
 
@@ -118,7 +120,11 @@ struct BidirectionalTreeDP{
 	}
 };
 
-struct Node{	//pを削ってvが根の部分木　の直径(深いのを二つ持つ)
+/*
+	get(v,p) = (部分木の直径, 部分木のmax dist, 2nd max dist)
+*/
+
+struct Node{	//
 	int dia;
 	array<int,2> rd;
 	Node(){
@@ -156,6 +162,55 @@ struct Edge{
 	int to;
 	int dist;
 };
+
+/*
+	get(v,p) = vからのmax dist, 部分木v以下の葉の個数, 葉からの距離の総和
+	"葉である" の判定のために finalize の引数にGを渡している
+
+	http://ddcc2017-final.contest.atcoder.jp/tasks/ddcc2017_final_e
+*/
+
+struct Node{	//vから最も遠い頂点への距離
+	int d;
+	ll lnum;
+	ll lsum;
+	Node(){
+		d=0;
+		lnum=0;
+		lsum=0;
+	}
+
+	/*
+		根付き木→森
+		e=(p -> this)を追加したものを返す
+	*/
+	template<class E>
+	Node append_edge(int p,const E& e) const {
+		Node n;
+		n.d = d+1;
+		n.lnum = lnum;
+		n.lsum = lsum + lnum;
+		return n;
+	}
+	Node operator+(const Node& r) const {
+		Node n;
+		n.d = max(d,r.d);
+		n.lnum = lnum + r.lnum;
+		n.lsum = lsum + r.lsum;
+		return n;
+	}
+	template<class E>
+	void finalize(int v,vector<vector<E>>& G){
+		if(G[v].size() == 1) lnum++;
+	}
+};
+
+struct Edge{
+	int to;
+};
+
+
+
 int main(){
 	int N;
 	cin>>N;
