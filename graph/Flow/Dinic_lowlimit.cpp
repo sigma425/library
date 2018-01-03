@@ -10,6 +10,8 @@
 	今度はS->s,t->TにINFを張って,S->Tに流す.
 	この値-sum 最小流量制限 が元のグラフでのmax_flowである.
 
+	verified at SRM694 hard
+
 */
 
 struct MaxFlow_lowlim{
@@ -28,7 +30,7 @@ struct MaxFlow_lowlim{
 	vector<vector<edge>> G,G_copy;
 	vector<int> level,iter;
 
-	MaxFlow(int N):S(N),T(N+1),V(N+2){
+	MaxFlow_lowlim(int N):S(N),T(N+1),V(N+2){
 		G = vector<vector<edge>>(V);
 		level = vector<int>(V);
 		iter = vector<int>(V);
@@ -106,5 +108,3 @@ struct MaxFlow_lowlim{
 		return f-lowsum;
 	}
 };
-
-
