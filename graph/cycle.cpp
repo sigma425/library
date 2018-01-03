@@ -3,7 +3,12 @@
 	ひとつ見つけてそれを返す ない場合{}
 	自己loopがある場合それを返してしまう(長さ1のサイクルを返す) ← 適当に変えられる
 	多重辺があっても無視する(長さ2のサイクルは返さない) ← pじゃなくてedge id で保存すると回避できる
+
+	いまdirectedで、undirectedにしたいならpをもってdfscする
+
+	verified at codefestival2016 final J (Neue Spiel)
 */
+
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 #define rep1(i,n) for(int i=1;i<=(int)(n);i++)
@@ -18,9 +23,7 @@ using namespace std;
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
 template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
 
-const int MN = 100000;
-vector<int> G[MN];
-bool dfsc(int v, int p, vector<int>& vis, vector<int>& cyc, bool& done){
+bool dfsc(int v, const vector<vector<int>>& G, vector<int>& vis, vector<int>& cyc, bool& done){
 	if(vis[v]==1){
 		cyc.pb(v);
 		return 1;
@@ -28,8 +31,8 @@ bool dfsc(int v, int p, vector<int>& vis, vector<int>& cyc, bool& done){
 	if(vis[v]==2) return 0;
 
 	vis[v] = 1;
-	for(int u:G[v]) if(u!=p){
-		if(dfsc(u,v,vis,cyc,done)){
+	for(int u:G[v]){
+		if(dfsc(u,G,vis,cyc,done)){
 			if(v==cyc[0]) done=1;
 			if(!done) cyc.pb(v);
 			return 1;
@@ -38,12 +41,13 @@ bool dfsc(int v, int p, vector<int>& vis, vector<int>& cyc, bool& done){
 	vis[v] = 2;
 	return 0;
 }
-vector<int> getcycle(int N){
+vector<int> getcycle(const vector<vector<int>>& G){
+	int N = G.size();
 	vector<int> vis(N,0);	//0:yet 1:now 2:done
 	bool done = 0;
 	vector<int> cyc;
 	rep(i,N) if(vis[i]==0){
-		if(dfsc(i,-1,vis,cyc,done)){
+		if(dfsc(i,G,vis,cyc,done)){
 			reverse(all(cyc));
 			return cyc;
 		}
