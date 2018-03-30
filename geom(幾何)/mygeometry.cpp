@@ -9,9 +9,9 @@
 #define all(c) c.begin(),c.end()
 #define fs first
 #define sc second
+#define pb push_back
 #define X real()
 #define Y imag()
-#define pb push_back
 using namespace std;
 typedef double D;
 typedef complex<D> P;

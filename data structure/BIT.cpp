@@ -8,8 +8,9 @@
 using namespace std;
 
 struct BIT{
+	using D = int;
 	int N;
-	vector<int> bit;
+	vector<D> bit;
 	BIT(int n){		//nは区間幅!!!
 		N=n;
 		bit.assign(n+1,0);
@@ -19,25 +20,25 @@ struct BIT{
 		N=n;
 		bit.assign(n+1,0);
 	}
-	int sum(int i){		//i個の和a[0]+..a[i-1]
-		int s=0;
+	D sum(int i){		//i個の和a[0]+..a[i-1]
+		D s=0;
 		while(i>0){
 			s+=bit[i];
 			i-=(i&-i);
 		}
 		return s;
 	}
-	int val(int i){	//return a[i]	(0-ind)
+	D val(int i){	//return a[i]	(0-ind)
 		return sum(i+1)-sum(i);
 	}
-	void add(int i,int x){	//a[i]+=x (0-indexed)
+	void add(int i,D x){	//a[i]+=x (0-indexed)
 		i++;
 		while(i<=N){
 			bit[i]+=x;
 			i+=(i&-i);
 		}
 	}
-	void assign(int i,int x){	//a[i]=x
+	void assign(int i,D x){	//a[i]=x
 		add(i,x-val(i));
 	}
 	/*
