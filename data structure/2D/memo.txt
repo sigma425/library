@@ -1,0 +1,34 @@
+2次元で point add, range sum とかを扱う系
+
+- range add + range sum
+	一般の場合は難しい、確か O(Nsqrt(N)logN) みたいなのは出来たと思うけど、実装はしてないから諦めたほうがいい
+	add が縦vectorだけ, sum が横vector だけ みたいなのは log^2 N で出来る (atcoder/DDCC2016/final/E.cpp)
+
+- point add + point sum
+	そう･･･
+
+- range add + point sum
+	多分 point add + range sum を逆にすれば出来るけど、ちょっとすぐに書ける自信ないなあ
+
+- point add + range sum
+	主題.
+	http://sigma425.hatenablog.com/entry/2016/03/13/180106 にも書いてるけど.
+	更新がある場合はどれも O(log^2 N) per query だけど、定数倍がかなり違う
+
+	- 更新がない and オフラインクエリ
+		time sweep して下からやれば 1D BIT 持つだけ O(log N)
+
+	- 更新がある or オンラインクエリ
+
+		- 先に更新のある点集合を取得できる(足される値とかはわかんなくてもいい)
+			(座標幅でかければ座圧してから) 2Dseg_BIT.cpp
+
+		- 出来ない
+
+			- 横座標幅が O(N)
+				2Dseg_splay.cpp ただし、weighted 版に書き換えるのはかなり大変
+
+			- 横座標もでかい
+				splaytree on splaytree 絶対に実装したくないので諦める
+
+使えるなら絶対 2Dseg_BIT.cpp を使う
