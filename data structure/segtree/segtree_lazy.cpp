@@ -16,6 +16,11 @@ opr_t の結合律が必要
  - getfg (setg2fg)
  - act
  - 外側においてあるconst static e の実体
+
+ あと、actにl,rを渡す必要があるとかそういったことで内側を書き換える(引数増やすだけ)
+
+2018/07/11変更
+	lazyかけるタイミングでvalも変更させちゃったほうが良さそうなので実装を変えた, unittestは通った
 */
 template<class Handler>
 struct segtree_lazy{
@@ -42,37 +47,34 @@ struct segtree_lazy{
 		for(int i=N-1;i>0;i--) val[i] = val[i*2] + val[i*2+1];
 		lazy.assign(N*2,opr_t::e());
 	}
-	val_t realvalue(int k,int l,int r){
-//		return Handler::act(lazy[k],val[k]);
-		return Handler::act(lazy[k],val[k],k,l,r);
-	}
 
 	val_t query(int a,int b,int l=0,int r=-1,int k=1){	//query_calc
 		if(r==-1) r=N;
 		if(b<=l||r<=a) return val_t::e();
-		if(a<=l&&r<=b) return realvalue(k,l,r);
+		if(a<=l&&r<=b) return val[k];
 		propagate(l,r,k);
-		val_t ret = query(a,b,l,(l+r)/2,k*2) + query(a,b,(l+r)/2,r,k*2+1);
-		val[k] = realvalue(k*2,l,(l+r)/2) + realvalue(k*2+1,(l+r)/2,r);
-		return ret;
-
+		return query(a,b,l,(l+r)/2,k*2) + query(a,b,(l+r)/2,r,k*2+1);
 	}
-//	val_t query_leftassoc(){}
-	void update(int a,int b,const opr_t &x,int l=0,int r=-1,int k=1){	//query_update
+	void addlazy(int k,const opr_t &f){
+		Handler::setg2fg(f,lazy[k]);
+		val[k] = Handler::act(f,val[k]);
+	}
+
+	void update(int a,int b,const opr_t &f,int l=0,int r=-1,int k=1){	//query_update
 		if(r==-1) r=N;
 		if(b<=l||r<=a) return;
 		if(a<=l&&r<=b){
-			Handler::setg2fg(x,lazy[k]);
+			addlazy(k,f);
 			return;
 		}
 		propagate(l,r,k);
-		update(a,b,x,l,(l+r)/2,k*2);
-		update(a,b,x,(l+r)/2,r,k*2+1);
-		val[k] = realvalue(k*2,l,(l+r)/2) + realvalue(k*2+1,(l+r)/2,r);
+		update(a,b,f,l,(l+r)/2,k*2);
+		update(a,b,f,(l+r)/2,r,k*2+1);
+		val[k] = val[k*2] + val[k*2+1];
 	}
 	void propagate(int l,int r,int k){	//opr_child -> opr_parent * opr_child		parent after child
-		Handler::setg2fg(lazy[k],lazy[k*2  ]);
-		Handler::setg2fg(lazy[k],lazy[k*2+1]);
+		addlazy(k*2  ,lazy[k]);
+		addlazy(k*2+1,lazy[k]);
 		lazy[k] = opr_t::e();
 	}
 };
@@ -115,9 +117,9 @@ struct handler1{
 		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
 	};
 
-	static void getfg(const opr_t &f, const opr_t &g){
-
-	}
+//	static opr_t getfg(const opr_t &f, const opr_t &g){
+//
+//	}
 	/*
 		もしコピーコストとかが気になって,しかも楽に書けるならsetg2fgを直接書く
 		そうじゃないなら g = getfg(f,g)
@@ -125,15 +127,10 @@ struct handler1{
 	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
 		if(f.x != -1) g.x = f.x;
 	}
-	static val_t act(const opr_t &f, const val_t &v,int k,int l,int r){		//maxがv っていう状態のところにfを作用させるとmaxは何になりますか?
+	static val_t act(const opr_t &f, const val_t &v){		//maxがv っていう状態のところにfを作用させるとmaxは何になりますか?
 		if(f.x == -1) return v;
 		return val_t(f.x);
 	}
-	// static void act(opr_t &f, val_t &v){
-	// 	if(f.x == -1) return;
-	// 	v.x = f.x;
-	// 	f.x = -1;
-	// }
 };
 
 
@@ -177,7 +174,7 @@ struct handler2{
 	};
 
 	static void getfg(const opr_t &f, const opr_t &g){
-
+		
 	}
 	/*
 		もしコピーコストとかが気になって,しかも楽に書けるならsetg2fgを直接書く
@@ -392,14 +389,10 @@ void unittest(){
 			}
 		}
 	}
-	{
-		using val_t = handler5::val_t;
-		using opr_t = handler5::opr_t;
-		segtree_lazy<handler5> seg;
-	}
 }
 
 
 int main(){
 	unittest();
+	puts("OK");
 }
