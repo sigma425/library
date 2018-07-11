@@ -35,6 +35,7 @@ struct SplayTree{
 			return 0;
 		}
 		void rot(){				//rootで呼ぶと死
+			assert(p != nullptr);
 			NP pp=p->p;
 			int pps=p->pos();
 			if(p->l==this){
