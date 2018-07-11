@@ -1,8 +1,11 @@
 /*
-作業中
-予定↓
 SplayTree(lazy ver) revはなし
 lazy_segtreeの上位互換.query(l,r), assign(x,d)は同じ使い方が出来る.
+区間addlazyはupdate(l,r,f)
+unittestを見ると使い方がわかりそう
+
+2018/07/12 unittest OK
+
 */
 
 #include <bits/stdc++.h>
@@ -40,6 +43,7 @@ struct SplayTree{
 			return 0;
 		}
 		void rot(){				//rootで呼ぶと死
+			assert(p != nullptr);
 			NP pp=p->p;
 			int pps=p->pos();
 			if(p->l==this){
@@ -88,10 +92,14 @@ struct SplayTree{
 			if(r->sz) sm = sm + r->sm;
 			return this;
 		}
+		void addlazy(const A& f){
+			Handler::setg2fg(f,lz);
+			v = Handler::act(f,v);
+			sm = Handler::act(f,sm);
+		}
 		void push(){
-			if(l->sz) Handler::setg2fg(lz,l->lz);
-			if(r->sz) Handler::setg2fg(lz,r->lz);
-			v = Handler::act(lz,v);
+			if(l->sz) l->addlazy(lz);
+			if(r->sz) r->addlazy(lz);
 			lz = A::e();
 		}
 		void pushdown(){	//from root to v
@@ -202,6 +210,13 @@ struct SplayTree{
 		n=merge(merge(a.fs,a.sc),b.sc);
 		return ret;
 	}
+	void update(int l,int r,const A& f){
+		auto b=split(n,r);
+		auto a=split(b.fs,l);
+		a.sc->addlazy(f);
+		n=merge(merge(a.fs,a.sc),b.sc);
+		return;
+	}
 
 	/*
 		search
@@ -240,92 +255,97 @@ struct SplayTree{
 };
 
 
-struct Dmin{		//(int,min,inf)
-	int x;
-	Dmin(){}
-	Dmin(int x):x(x){}
-	static Dmin e(){
-		return Dmin(1e9);
-	}
-	Dmin operator+(const Dmin& r) const {
-		return Dmin(min(x,r.x));
-	}
-	friend ostream& operator<<(ostream& o,const Dmin& d){return o<<d.x;}
-};
-template<>
-SplayTree<Dmin>::NP SplayTree<Dmin>::nil = new SplayTree<Dmin>::Node();
+struct handler{
+	/*
+		range assign 0以上
+		range max
 
-struct Dmat{
-	using T = int;
-	using D = Dmat;
-	const static int N = 5;
-	using V = array<T,N>;
-	using VV = array<V,N>;
-	VV a;
-	Dmat(){}
-	Dmat(VV a):a(a){}
-	const static D e(){
-		VV a;
-		rep(i,N) rep(j,N) a[i][j] = (i==j?1:0);
-		return D(a);
-	}
-	D operator+(const D& r) const {
-		VV c;
-		rep(i,N) rep(j,N) c[i][j]=0;
-		rep(i,N) rep(j,N) rep(k,N) c[i][j] += a[i][k] * r.a[k][j];
-		return D(c);
+		val_t = int,max			val[k]=max
+		opr_t(x) : y -> x		lazy[k]=assign
+
+		今回の場合opr_t::eはない(assignに単位元はない)
+		このようなときは、適当な値を単位元に設定にしておき、getfg/setg2fg/ act!! で合成しないよう処理しておけば良い
+		考えにくいけどval_tも同様.
+		最悪option型みたいにbool値をもたせれば良さそう
+	*/
+	struct val_t{
+		int x;
+		val_t(){*this = e();}
+		val_t(int x):x(x){}
+
+		const static val_t e(){
+			return val_t(0);
+		}
+		val_t operator+(const val_t &r) const {
+			return val_t(max(x,r.x));
+		}
+		friend ostream& operator<<(ostream& o,const val_t& d){return o<<d.x;}
 	};
-	bool operator==(const D& r) const {
-		return a==r.a;
+
+	struct opr_t{
+		int x;
+		opr_t(){*this = e();}
+		opr_t(int x):x(x){}
+
+		const static opr_t e(){
+			return opr_t(-1);
+		}
+		friend ostream& operator<<(ostream& o,const opr_t& d){return o<<d.x;}
+	};
+
+	static void setg2fg(const opr_t &f, opr_t &g){	//g -> fg		f after g
+		if(f.x != -1) g.x = f.x;
+	}
+	static val_t act(const opr_t &f, const val_t &v){		//maxがv っていう状態のところにfを作用させるとmaxは何になりますか?
+		if(f.x == -1) return v;
+		return val_t(f.x);
 	}
 };
 template<>
-SplayTree<Dmat>::NP SplayTree<Dmat>::nil = new SplayTree<Dmat>::Node();
+SplayTree<handler>::NP SplayTree<handler>::nil = new SplayTree<handler>::Node();
 
 void unittest(){
-	{
-		using D = Dmin;
-		vector<D> vc;
-		int N = 100;
-		rep(i,N) vc.pb(Dmin(rand()%1000));
-		SplayTree<Dmin> Stree(vc);
-		rep(l,N) for(int r=l;r<=N;r++){
-			int mn = 1e9;
-			for(int i=l;i<r;i++) chmin(mn,vc[i].x);
-			assert( Stree.query(l,r).x == mn);
-		}
-	}
-	{
-		using D = Dmat;
-		const int K = Dmat::N;
-		using T = int;
-		using V = array<T,K>;
-		using VV = array<V,K>;
+	int N = 1000, Q = 1000;
+	using D = handler::val_t;
+	using A = handler::opr_t;
 
-		vector<D> vs;
-		int N = 100;
-		rep(i,N){
-			VV a;
-			rep(x,K) rep(y,K) a[x][y] = rand()%201+100;
-			vs.push_back(D(a));
+	vector<int> a(N);
+	rep(i,N) a[i] = rand()%1000+1;
+
+	vector<D> a_(N);
+	rep(i,N) a_[i] = a[i];
+	SplayTree<handler> st(a_);
+
+	rep(q,Q){
+		if(q%3 == 0){
+			int l = rand()%N, r = rand()%N;
+			if(l>r) swap(l,r);
+			r++;
+
+			int brute = 0;
+			for(int i=l;i<r;i++) chmax(brute,a[i]);
+
+			int res = st.query(l,r).x;
+
+			assert(brute == res);
 		}
-//		segtree_simple<D> seg(vs);
-		SplayTree<D> Stree(vs);
-		rep(qt,1000){
-			if(rand()%2){
-				VV a;
-				rep(x,K) rep(y,K) a[x][y] = rand()%201+100;
-				int idx = rand()%N;
-				vs[idx] = D(a);
-				Stree.assign(idx,D(a));
-			}else{
-				int l = rand()%100, r = rand()%100;
-				if(l>r) swap(l,r);
-				r++;
-				D x = D::e();
-				for(int i=l;i<r;i++) x = x+vs[i];
-				assert( Stree.query(l,r) == x );
-			}
+		if(q%3 == 1){
+			int l = rand()%N, r = rand()%N;
+			if(l>r) swap(l,r);
+			r++;
+			int x = rand()%1000;
+
+			for(int i=l;i<r;i++) a[i] = x;
+
+			st.update(l,r,A(x));
+		}
+		if(q%3 == 2){	//[0,..,L)[L,..,N) -> [L,..,N)[0,..,L)
+			int L = rand()%(N+1);
+
+			rotate(a.begin(),a.begin()+L,a.end());
+
+			auto m = st.split(st.n,L);
+			st.n = st.merge(m.sc,m.fs);
 		}
 	}
 }
@@ -333,6 +353,7 @@ void unittest(){
 int main(){
 	srand((unsigned)time(NULL));
 	unittest();
+	puts("OK");
 
 // 	int N,Q;	//AOJ1508
 // 	vector<D> vs;
