@@ -34,8 +34,11 @@
 		https://github.com/yosupo06/Algorithm/blob/master/datastructure/linkcuttree.h#L36 (かなり信頼できる)
 		https://www.slideshare.net/iwiwi/2-12188845 (iwiwiさんのいつものやつ)
 
-	verified at do use segment tree
-		バグらせたとこ: actの時長さが引数にいる, 引数はsmはszでいいけどvは1
+	verified
+		do use segment tree
+			バグらせたとこ: actの時長さが引数にいる, 引数はsmはszでいいけどvは1
+		spaceships
+			lcaのverifyになったね
 */
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
