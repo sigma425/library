@@ -11,17 +11,17 @@
 using namespace std;
 
 template<class D>
-struct segtree_simple{
+struct segtree{
 	int N;
 	vector<D> val;
 
-	segtree_simple(){}
-	segtree_simple(int n){
+	segtree(){}
+	segtree(int n){
 		N=1;
 		while(N<n) N*=2;
 		val.assign(N*2,D::e());
 	}
-	segtree_simple(const vector<D>& ds){
+	segtree(const vector<D>& ds){
 		int n = ds.size();
 		N=1;
 		while(N<n) N*=2;
@@ -157,7 +157,7 @@ struct Dmat{
 void unittest(){	//どっちかというとstruct Dのテスト
 	{
 		vector<Dplus> vs = {4,2,5,4,8,3,1,4,1,5};
-		segtree_simple<Dplus> seg(vs);
+		segtree<Dplus> seg(vs);
 		rep(l,10) for(int r=l;r<=10;r++){
 			int sum = 0;
 			for(int i=l;i<r;i++) sum+=vs[i].x;
@@ -166,7 +166,7 @@ void unittest(){	//どっちかというとstruct Dのテスト
 	}
 	{
 		vector<Dmax> vs = {-4,2,-5,-4,8,-3,1,-4,1,5};
-		segtree_simple<Dmax> seg1(vs);
+		segtree<Dmax> seg1(vs);
 		rep(l,10) for(int r=l;r<=10;r++){
 			int mx = Dmax::e().x;
 			for(int i=l;i<r;i++) chmax(mx,vs[i].x);
@@ -178,7 +178,7 @@ void unittest(){	//どっちかというとstruct Dのテスト
 		vector<int> vi = {1,1,2,1,3,2,1,3,2,1};
 		vector<D> vs;
 		rep(i,10) vs.push_back(D(vi[i],i));
-		segtree_simple<D> seg(vs);
+		segtree<D> seg(vs);
 		rep(l,10) for(int r=l+1;r<=10;r++){
 			int mx = D::e().x;
 			int ag = -1;
@@ -194,7 +194,7 @@ void unittest(){	//どっちかというとstruct Dのテスト
 	{
 		using D = Dperm;
 		vector<D> vs = {D({0,3,2,4,1}),D({0,3,2,1,4}),D({3,2,0,4,1}),D({0,3,4,2,1}),D({0,3,2,4,1}),D({0,3,1,4,2}),D({4,2,3,0,1}),D({3,2,4,1,0})};
-		segtree_simple<D> seg(vs);
+		segtree<D> seg(vs);
 		int N = vs.size();
 		rep(l,N) for(int r=l;r<=N;r++){
 			int a[5]={0,1,2,3,4};
@@ -221,7 +221,7 @@ void unittest(){	//どっちかというとstruct Dのテスト
 			rep(x,K) rep(y,K) a[x][y] = rand()%201+100;
 			vs.push_back(D(a));
 		}
-		segtree_simple<D> seg(vs);
+		segtree<D> seg(vs);
 		rep(l,N) for(int r=l;r<=N;r++){
 			D x = D::e();
 			for(int i=l;i<r;i++) x = x+vs[i];
