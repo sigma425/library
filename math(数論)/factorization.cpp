@@ -51,7 +51,7 @@ ll pollard_single(ll n){
 	if(isprime(n)) return n;
 	if(!(n&1)) return 2;
 	ll i,x,y,p;
-	for(i=1;i<20;i++){
+	for(i=1;;i++){
 		x=i; y=f(x,n); p=gcd(y-x,n);
 		while(p==1){
 			x=f(x,n); y=f(f(y,n),n); p=gcd((y-x+n)%n,n)%n;

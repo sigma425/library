@@ -41,23 +41,20 @@ verified by CF/868/F.cpp
 using D = ll;
 void minima(int lx,int rx,int ly,int ry){	//[lx,rx) について bestpos[x] を求める 調べる範囲は[ly,ry)でよい
 	if(lx >= rx) return;
-
-	int m = (lx+rx)/2;
-	D best = 1e18;
-	int bestpos = -1;
+	int x = (lx+rx)/2;
+	D best = ?;
+	int besty = -1;
 	for(int y = ly; y<ry; y++){
-//		D val = f(x,y)
+		D val = f(x,y)
 //		D val = dp[k-1][y] + cost(y,m);
-		if(best>val){
+		if(best ? val){
 			best = val;
-			bestpos = y;
+			besty = y;
 		}
 	}
 
-	dp[k][m] = best;
+//	opt[x] = y
 	
-	minima(k,lx,m,ly,bestpos+1);
-
-	minima(k,m+1,rx,bestpos,ry);
+	minima(k,lx,m,ly,besty+1);
+	minima(k,m+1,rx,besty,ry);
 }
-
