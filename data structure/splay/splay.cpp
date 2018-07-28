@@ -2,7 +2,14 @@
 SplayTree(かんたんver)
 simple_segtreeの上位互換.query(l,r), assign(x,d)は同じ使い方が出来る.
 verified by AOJ1508(circular RMQ)
+列に分割するときは,split関数を外で定義しないとくっそ書きづらいのでそうする
 
+SplayTree<Dmin>::NP merge(SplayTree<Dmin>::NP x, SplayTree<Dmin>::NP y){
+	return SplayTree<Dmin>::merge(x,y);
+}
+pair<SplayTree<Dmin>::NP,SplayTree<Dmin>::NP> split(SplayTree<Dmin>::NP x, int k){
+	return SplayTree<Dmin>::split(x,k);
+}
 
 */
 #include <bits/stdc++.h>
@@ -240,6 +247,14 @@ struct Dmin{		//(int,min,inf)
 template<>
 SplayTree<Dmin>::NP SplayTree<Dmin>::nil = new SplayTree<Dmin>::Node();
 
+SplayTree<Dmin>::NP merge(SplayTree<Dmin>::NP x, SplayTree<Dmin>::NP y){
+	return SplayTree<Dmin>::merge(x,y);
+}
+pair<SplayTree<Dmin>::NP,SplayTree<Dmin>::NP> split(SplayTree<Dmin>::NP x, int k){
+	return SplayTree<Dmin>::split(x,k);
+}
+
+/*
 struct Dmat{
 	using T = int;
 	using D = Dmat;
@@ -266,6 +281,8 @@ struct Dmat{
 };
 template<>
 SplayTree<Dmat>::NP SplayTree<Dmat>::nil = new SplayTree<Dmat>::Node();
+
+*/
 
 void unittest(){
 	{
