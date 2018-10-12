@@ -162,5 +162,5 @@ vector<Mint> multiply_fft1(const vector<Mint>& x,const vector<Mint>& y){
 }
 template<class Mint>
 vector<Mint> multiply_fft(const vector<Mint>& x,const vector<Mint>& y){
-	return multiply_fft3(x,y);
+	return multiply_fft2(x,y);
 }
