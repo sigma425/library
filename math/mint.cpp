@@ -53,7 +53,7 @@ using mint = ModInt<1000000007>;
 	実は素数じゃなくても互いに素でないやつの割り算以外の演算には使える
 */
 
-unsigned int mod;
+unsigned int mod = 1;
 
 struct ModInt{
 	using uint = unsigned int;
