@@ -3,7 +3,7 @@
 		頂点に値が乗っている
 			辺に乗ってる場合は、頂点vに辺(v,p)が乗ってると思ってやる
 			[u,v] は [u,w)と(w,v]になる
-			OnEdge = 1 とするだけで普通に使えるようにした
+			 ****** OnEdge = 1 ****** とするだけで普通に使えるようにした
 			ただし辺(v,p)をの初期化はupdate(v,HLD.par[v]) でよぶ
 
 		a*b*..*c*d から d*c*..*b*a が簡単に計算できる (up を reverse する必要がある)
@@ -13,6 +13,7 @@
 	initは面倒なのでなしで
 
 	verified at AGC14/E
+				OpenCup/9922/E.cpp
 */
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
