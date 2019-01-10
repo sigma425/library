@@ -17,7 +17,23 @@
 		結局 (d+1)(k+1) + k - 1 項あれば十分
 
 	使い方:
+		- とりあえず数列の deg と ord を知りたい場合:
+			この実装だとdegは固定なので、
+			find_recurrence_relation(vector<mint> terms, int deg) を deg = 0~ 試していく
+			計算量 O(n^2 * deg * ord)
+			見つけられなかったらassert(0),
+			見つかったらコメント付きでいろいろ教えてくれる
+		
+		- reccurence relation が見つかったら
+			n項目まで求めたいなら extended_terms(n,coefs,terms)
 
+		- degree も order もわかってる場合
+			coeff埋め込みとかができなくてしかも遅い場合
+			V<mint> get_extended_sequence(int n, const vector<mint>& terms, int degree, int order) で呼べば最適
+
+	
+	verified at
+		dwacon 2019 final E
 */
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
@@ -121,7 +137,12 @@ vector<mint> extended(int n, const vector< vector<mint> >& coeffs, const vector<
 	return ret;
 }
 
-vector< vector<mint> > find_recurrence_relation(const vector<mint>& terms, int deg, bool verify=true) {
+vector< vector<mint> > find_recurrence_relation(vector<mint> terms, int deg, int ord = -1, bool verify=true) {
+
+	if(ord != -1){		//given order
+		int n = (deg+1)*(ord+1)+ord-1;
+		while((int)terms.size()>n) terms.pop_back();
+	}
 
 	const int n = terms.size();
 	const int B = (n + 2) / (deg + 2); // number of blocks
@@ -178,6 +199,7 @@ vector< vector<mint> > find_recurrence_relation(const vector<mint>& terms, int d
 	}
 
 	int order = rank / (deg + 1);
+
 	vector< vector<mint> > ret(order + 1, vector<mint>(deg + 1));
 	ret[0][rank % (deg + 1)] = 1;
 	for (int y = rank - 1; y >= 0; --y) {
@@ -207,7 +229,7 @@ vector< vector<mint> > find_recurrence_relation(const vector<mint>& terms, int d
 			fprintf(stderr, "  {");
 			for (int d = 0; d <= deg; ++d) {
 				if (d) fprintf(stderr, ", ");
-				fprintf(stderr, "%d", ret[k][d].v <= mint::mod / 2 ? ret[k][d].v : ret[k][d].v - mint::mod);
+				fprintf(stderr, "%d", ret[k][d].v);
 			}
 			fprintf(stderr, "}%s\n", k == order ? "" : ",");
 		}
@@ -218,17 +240,22 @@ vector< vector<mint> > find_recurrence_relation(const vector<mint>& terms, int d
 	return ret;
 }
 
-void show_extended_sequence(int n, const vector<mint>& terms, int degree) {
-	auto coeffs = find_recurrence_relation(terms, degree);
+void show_extended_sequence(int n, const vector<mint>& terms, int degree, int order = -1) {
+	auto coeffs = find_recurrence_relation(terms, degree, order);
 	auto extended_terms = extended(n, coeffs, terms);
 	for (int i = 0; i < (int) extended_terms.size(); ++i) {
 		printf("%d %d\n", i, extended_terms[i].v);
 	}
 	puts("");
 }
+V<mint> get_extended_sequence(int n, const vector<mint>& terms, int degree, int order = -1) {
+	auto coeffs = find_recurrence_relation(terms, degree, order);
+	return extended(n, coeffs, terms);
+}
+
 
 int main() {
-	while(true){
+	while(false){
 		int N,deg;
 		cin>>N>>deg;
 		V<mint> a(N);
@@ -282,7 +309,7 @@ int main() {
 		536397091, 555447300, 597473569, 217709372, 24981477, 
 		143561526, 171000806, 137649694, 749333590, 700935246, 
 		916763337, 762367836, 296796066, 236278263, 398507715, 
-	}, 2);
+	}, 2,14);
 
 	// binom(3 * i, i) ** 2 + binom(2 * i, i + 1): order 8, degree 5
 	show_extended_sequence(128, {
