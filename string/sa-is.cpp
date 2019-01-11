@@ -1,23 +1,69 @@
 /*
-SA-IS
-O(長さN+文字種K)で、どうせ圧縮できるからO(N)
-s[]に数字でもいいしcharでもいいし渡せばいい
-sa_lcp.cppと同じように
-sa[0]=Nになっている
+	SA-IS + LCP
 
-charなら,
-string s;
-s.c_str()
+	SuffixArray SA(V<int,ll>) もしくは SA(string)
+	でSA.sa,isa,lcpに入る
 
-lcpもO(N)
+	[0,N]   sa[i] = i番目に小さいものは s[ sa[i],N ) なので sa[0] = N
+	[0,N]   isa[i] = s[i,N) が何番目にいるか
+	[0,N-1] lcp[i] = s[ sa[i],N ) と s[ sa[i+1],N ) のlcp lcp[0] = 0
+	任意のprefix同士のlcpがsegtree_minで求まる
+	あるsubstringが何回出てくるか? とか
 
+	s = abcabac
+
+		(eps)
+		abac
+		abcabac
+		ac
+		bac
+		bcabac
+		c
+		cabac
 */
-#include <bits/stdc++.h>
-#define rep(i,N) for(int i=0;i<(int)N;i++)
-#define rep1(i,N) for(int i=1;i<=(int)N;i++)
-#define pb push_back
-using namespace std;
-namespace SuffixArray{
+
+struct SuffixArray{
+	V<int> sa;
+	V<int> isa;
+	V<int> lcp;
+
+	template<class T>
+	SuffixArray(const vector<T>& s){	//int,ll
+		int N = s.size();
+		T s_arr[N];
+		rep(i,N) s_arr[i] = s[i];
+		int sa_arr[N+1];
+		int lcp_arr[N];
+		{	//zaatsu
+			V<T> vs = s;
+			sort(all(vs));
+			vs.erase(unique(all(vs)),vs.end());
+			rep(i,N) s_arr[i] = lower_bound(all(vs),s[i]) - vs.begin();
+		}
+		int K = N;
+		SA(N,s_arr,sa_arr,K);
+		LCP(N,s_arr,sa_arr,lcp_arr);
+		sa = V<int>(sa_arr,sa_arr+(N+1));
+		isa.resize(N+1);
+		rep(i,N+1) isa[sa[i]] = i;
+		lcp = V<int>(lcp_arr,lcp_arr+N);
+	}
+	SuffixArray(const string& s){
+		int N = s.size();
+		char s_arr[N];
+		rep(i,N) s_arr[i] = s[i];
+		int sa_arr[N+1];
+		int lcp_arr[N];
+		SA(N,s_arr,sa_arr,256);
+		LCP(N,s_arr,sa_arr,lcp_arr);
+		sa = V<int>(sa_arr,sa_arr+(N+1));
+		isa.resize(N+1);
+		rep(i,N+1) isa[sa[i]] = i;
+		lcp = V<int>(lcp_arr,lcp_arr+N);
+	}
+
+	private:
+
 	template<class T>
 	void induce(int N,const T s[],bool is[],int sa[],int lbase[],int K){
 		int it[K+1];
@@ -120,17 +166,6 @@ namespace SuffixArray{
 				if(s[j+h]!=s[i+h]) break;
 			}
 			lcp[isa[i]-1]=h;
-//			printf("lcp[%d]=%d\n",isa[i]-1,h);
 		}
 	}
-}
-int main(){
-	string s;
-	int sa[100],lcp[100];
-	cin>>s;
-	int N=s.size();
-	SuffixArray::SA(N,s.c_str(),sa,256);
-	SuffixArray::LCP(N,s.c_str(),sa,lcp);
-	rep(i,N+1) cout<<sa[i]<<" ";
-
-}
+};
