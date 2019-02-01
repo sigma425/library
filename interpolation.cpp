@@ -16,17 +16,7 @@
 	OpenCup/1101/I.cpp がmint,poly,interpolationを複合して使ってる例
 
 */
-#include <bits/stdc++.h>
-#define rep(i,n) for(int i=0;i<(int)(n);i++)
-#define rep1(i,n) for(int i=1;i<=(int)(n);i++)
-#define all(c) c.begin(),c.end()
-#define pb push_back
-#define fs first
-#define sc second
-#define show(x) cout << #x << " = " << x << endl
-#define chmin(x,y) x=min(x,y)
-#define chmax(x,y) x=max(x,y)
-using namespace std;
+
 template<class T>
 T interpolate(vector<T> xs,vector<T> ys,T x){
 	int N=xs.size();
@@ -41,33 +31,24 @@ T interpolate(vector<T> xs,vector<T> ys,T x){
 	}
 	return ret;
 }
-ll interpolate(vector<ll> xs,vector<ll> ys,ll x){
-	int N=xs.size();
+
+/*
+	多項式自体を求める O(N^3 log N)
+	O(N^2 log N) とかにしたいなら(x - x[i]) の左右からの累積積を計算しておく 面倒だから書いてないけど
+*/
+Poly<mint> interpolate(V<mint> x, V<mint> y){
+	assert(x.size() == y.size())
+	int N = x.size();
+	Poly<mint> f;
 	rep(i,N){
-		if(xs[i]==x) return ys[i];
+		Poly<mint> g({y[i]});
+		mint coef = 1;
+		rep(j,N) if(j!=i){
+			g *= Poly<mint>({-x[j],1});
+			coef *= (x[i]-x[j]);
+		}
+		g *= coef.inv();
+		f += g;
 	}
-	ll ret=0;
-	rep(i,N){
-		ll a=ys[i];
-		rep(j,N) if(j!=i) a=a*(x-xs[j])%mod*inv(xs[i]-xs[j])%mod;
-		ret+=a;
-	}
-	ret=(ret%mod+mod)%mod;
-	return ret;
-}
-int main(){
-	int N;
-	vector<double> xs,ys;
-	cin>>N;
-	rep(i,N){
-		double x,y;
-		cin>>x>>y;
-		xs.pb(x);
-		ys.pb(y);
-	}
-	while(true){
-		double x;
-		cin>>x;
-		printf("%.12f\n",interpolate(xs,ys,x));
-	}
+	return f;
 }
