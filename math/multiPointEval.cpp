@@ -15,27 +15,25 @@
 */
 using P = pair<int,int>;
 map<pair<int,int>,Poly<mint>> qs;
-Poly<mint> calcq(int l,int r){
+Poly<mint> calcq(int l,int r,V<mint>& a){
 	if(r-l==1){
-		return qs[P(l,r)] = Poly<mint>(V<mint>{-l,1});
+		return qs[P(l,r)] = Poly<mint>(V<mint>{-a[l],1});
 	}
-	return qs[P(l,r)] = calcq(l,(l+r)/2) * calcq((l+r)/2,r);
+	return qs[P(l,r)] = calcq(l,(l+r)/2,a) * calcq((l+r)/2,r,a);
 }
-void calc(int l,int r,Poly<mint> f, V<mint>& res){
-	// cout<<"("<<l<<","<<r<<") ";
-	// show(qs[P(l,r)]);
+void calc(int l,int r,Poly<mint> f, V<mint>& a, V<mint>& res){
 	f %= qs[P(l,r)];
 	if(r-l<=1024){
-		for(int i=l;i<r;i++) res[i] = f.eval(i);
+		for(int i=l;i<r;i++) res[i] = f.eval(a[i]);
 		return;
 	}
-	calc(l,(l+r)/2,f,res);
-	calc((l+r)/2,r,f,res);
+	calc(l,(l+r)/2,f,a,res);
+	calc((l+r)/2,r,f,a,res);
 }
-V<mint> multiPointEval(Poly<mint>& f,int N){//0~N
-	V<mint> res(N+1);
-	calcq(0,N+1);
-//	show(timer.ms());
-	calc(0,N+1,f,res);
+V<mint> multiPointEval(Poly<mint>& f,V<mint> a){    //return {f(a_i)}
+    int N = a.size();
+	V<mint> res(N);
+	calcq(0,N,a);
+	calc(0,N,f,a,res);
 	return res;
 }
