@@ -3,30 +3,58 @@
 shrink()でleading-0を取り除き,常にこの意味での正規系を値として持つ.
 その意味でintとmint以外はまあまあまずいかな
 でも+-とか簡単なのは出来る(いるか?)
-mintだと,fft or ntt(おそい) を使って乗除ができる.
-諸々含めてverified by フィボナッチ(TDPC T)
 
-だいたいいろいろ組み合わせると思うんですけど,/atcoder/typicalDP/T.cppを参照
+割り算も O(NlogN) だがNが小さい時遅いので分割統治みたいなことをするときは注意
+
+TODO:
+	微積分
+	sqrt
+	log
+
+計測:
+	-O2
+
+	fft2 *
+	- N = 100000
+	141 [ms]
+	- N = 200000
+	279 [ms]
+	- N = 500000
+	595 [ms]
+	- N = 1000000
+	1186 [ms]
+
+	fft2 N % N/4 くらい 割る側の次数はこれくらいが一番遅い気がする
+	- N = 10000
+	44 [ms]
+	- N = 100000
+	643 [ms]
+	- N = 200000
+	1340 [ms]
+	- N = 500000
+	3033 [ms]
+	- N = 1000000
+	5875 [ms]
+
+	ntt * 
+	- N = 1000000
+	231 [ms]
+
+	ntt N % N/4
+	- N = 200000
+	147 [ms]
+	- N = 500000
+	310 [ms]
+	- N = 1000000
+	646 [ms]
+
 */
-#include <bits/stdc++.h>
-#define rep(i,n) for(int i=0;i<(int)(n);i++)
-#define rep1(i,n) for(int i=1;i<=(int)(n);i++)
-#define all(c) c.begin(),c.end()
-#define pb push_back
-#define fs first
-#define sc second
-#define show(x) cout << #x << " = " << x << endl
-#define chmin(x,y) x=min(x,y)
-#define chmax(x,y) x=max(x,y)
-using namespace std;
-template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
-template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
 
 template<class D>
 struct Poly{
 	vector<D> v;
 	int size() const{ return v.size();}	//deg+1
-	Poly(int N=0) : v(vector<D>(N)){}
+	Poly(){}
 	Poly(vector<D> v) : v(v){shrink();}
 
 	Poly& shrink(){
@@ -43,7 +71,17 @@ struct Poly{
 		shrink();
 		return;
 	}
-	
+	D eval(D x){
+		D res = 0;
+		int n = size();
+		D a = 1;
+		rep(i,n){
+			res += a*v[i];
+			a *= x;
+		}
+		return res;
+	}
+
 	Poly operator+(const Poly &r) const{
 		int N=max(size(),r.size());
 		vector<D> ret(N);
@@ -64,7 +102,7 @@ struct Poly{
 	}
 	Poly operator*(const Poly &r) const{
 		if(size()==0||r.size()==0) return Poly();
-		return mul_fft(r);
+		return mul_fft(r);									// FFT or NTT ?
 	}
 	Poly operator*(const D &r) const{
 		int N=size();
@@ -117,11 +155,10 @@ struct Poly{
 		return Poly(ret);
 	}
 	Poly mul_ntt(const Poly &r) const{
-		return Poly(multiply_ntt(this->v,r.v));
+		return Poly(multiply_ntt(v,r.v));
 	}
 	Poly mul_fft(const Poly &r) const{
-		vector<D> ret = multiply_fft(v,r.v);
-		return Poly(ret);
+		return Poly(multiply_fft(v,r.v));
 	}
 
 	Poly div_fast_with_inv(const Poly &inv, int B) const {
@@ -155,6 +192,10 @@ struct Poly{
 		reverse(all(res));
 		return Poly(res);
 	}
+
+	/*
+		inv : O(NlogN)
+	*/
 	Poly inv(int n) const{		// f * f.inv() = x^B + r(x) (B>=n)
 		int N = size();
 		assert(N>=1);		//f : non0
@@ -163,7 +204,7 @@ struct Poly{
 		Poly a = rev();
 		Poly g(vector<D>(1,coef));
 		for(int i=1; i+N-2<n; i*=2){		//need to strip!!
-			g *= (Poly(vector<D>{2})-a*g).strip(2*i);
+			g *= (Poly(vector<D>{2})-a.strip(2*i)*g).strip(2*i);
 		}
 		return g.rev(n+1-N);
 	}
@@ -177,8 +218,47 @@ struct Poly{
 		return o;
 	}
 };
+
+
+/*
+	↓ test
+*/
+
+template<class T>
+T rnd(T l,T r){	//[l,r)
+	using D = uniform_int_distribution<T>;
+	static random_device rd;
+	static mt19937 gen(rd());
+	return D(l,r-1)(gen);
+}
+template<class T>
+T rnd(T n){	//[0,n)
+	return rnd(0,n);
+}
+struct Timer{
+	clock_t st;
+	void start(){
+		st = clock();
+	}
+	int ms(){
+		return (clock()-st)*1000 / CLOCKS_PER_SEC;
+	}
+}timer;
+
+
+void unittest(){
+	vector<int> Ns = {2,10,100,1000,10000,100000,200000,500000,1000000};
+	for(int N: Ns){
+		Poly<mint> f,g;
+		rep(i,N) f.set(i,rnd<int>(mint::mod));
+		rep(i,N) g.set(i,rnd<int>(mint::mod));
+		timer.start();
+		auto h = f*g;
+		cerr << "- N = " << N << endl;
+		cerr << "  " << timer.ms() << " [ms]" << endl;
+	}
+}
+
 int main(){
-	vector<int> vc={1,0,2,-1,0};
-	Poly<int> poly(vc);
-	show(poly);
+	unittest();
 }
