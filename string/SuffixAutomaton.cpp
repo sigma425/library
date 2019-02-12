@@ -1,6 +1,7 @@
 /*
 	Suffix Automaton
 		https://www37.atwiki.jp/uwicoder/pages/2842.html
+		http://e-maxx.ru/algo/suffix_automata
 		https://codeforces.com/blog/entry/20861
 	s の substring について t に何回現れるか、とかが得意
 	application 参照
