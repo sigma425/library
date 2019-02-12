@@ -1,4 +1,6 @@
 /*
+	多重辺、自己ループも大丈夫
+
 	MaxMatching(N) -> add_edge(x,y) -> maxMatching()
 	mate[v] = u or -1
 
@@ -21,6 +23,7 @@ struct MaxMatching{
 	V<int> mate;
 
 	void add_edge(int a,int b){
+		if(a == b) return;
 		G[a].pb(b);
 		G[b].pb(a);
 	}
