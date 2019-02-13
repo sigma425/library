@@ -118,18 +118,9 @@ vector<D> multiply_fft(const vector<D>& x,const vector<D>& y){
 	K=2 のFFTよりは圧倒的に速いのでまともmodなら絶対こっち
 	原子根 G=3 を変えること！！(998244353 なら 3 でいい)
 */
-
-mint mpow(mint x,int p){
-	mint a = 1;
-	while(p){
-		if(p&1) a *= x;
-		x *= x;
-		p >>= 1;
-	}
-	return a;
-}
+int bsr(int x) { return 31 - __builtin_clz(x); }
 void ntt(bool type, V<mint>& c) {
-	const int G = 3;	//primitive root
+	const mint G = 3;	//primitive root
 
 	int N = int(c.size());
 	int s = bsr(N);
@@ -138,7 +129,7 @@ void ntt(bool type, V<mint>& c) {
 	V<mint> a = c, b(N);
 	rep1(i,s){
 		int W = 1 << (s - i);
-		mint base = mpow(G,(mint::mod - 1)>>i);
+		mint base = G.pow((mint::mod - 1)>>i);
 		if(type) base = base.inv();
 		mint now = 1;
 		for(int y = 0; y < N / 2; y += W) {
