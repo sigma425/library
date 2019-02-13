@@ -21,5 +21,10 @@ template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
 using ll = long long;
 template<class T> using V = vector<T>;
 template<class T> using VV = vector<vector<T>>;
+
 int main(){
+	cin.tie(0);
+	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
+
+	
 }
