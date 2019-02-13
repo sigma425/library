@@ -13,6 +13,7 @@
 	verified at:
 		http://uoj.ac/problem/79
 		https://www.spoj.com/problems/ADABLOOM/
+		https://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems
 
 */
 
