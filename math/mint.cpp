@@ -45,6 +45,7 @@ struct ModInt{
 		return make(normS(x+mod));
 	}
 	ModInt pow(ll p) const {
+		if(p<0) return inv().pow(-p);
 		ModInt a = 1;
 		ModInt x = *this;
 		while(p){
