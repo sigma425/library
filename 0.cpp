@@ -5,7 +5,6 @@
 #define pb push_back
 #define fs first
 #define sc second
-#define show(x) cout << #x << " = " << (x) << endl
 #define chmin(x,y) x=min(x,y)
 #define chmax(x,y) x=max(x,y)
 using namespace std;
@@ -21,10 +20,18 @@ template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
 using ll = long long;
 template<class T> using V = vector<T>;
 template<class T> using VV = vector<vector<T>>;
+constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
+
+#ifdef LOCAL
+#define show(x) cerr << "LINE" << __LINE__ << " : " << #x << " = " << (x) << endl
+#else
+#define show(x) true
+#endif
 
 int main(){
 	cin.tie(0);
 	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
-
+	cout << fixed << setprecision(20);
+	
 	
 }
