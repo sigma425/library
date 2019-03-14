@@ -33,5 +33,5 @@ int main(){
 	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
 	cout << fixed << setprecision(20);
 	
-	
+
 }

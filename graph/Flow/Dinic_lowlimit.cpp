@@ -12,6 +12,8 @@
 
 	verified at SRM694 hard
 
+	TODO : 復元は自明な方法ではできない、すぬけのブログを観ること！
+
 */
 
 struct MaxFlow_lowlim{
