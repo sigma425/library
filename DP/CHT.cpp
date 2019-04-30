@@ -45,18 +45,18 @@
 using namespace std;
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
 template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
+
 struct CHT{
 	using D = ll;
 	typedef pair<D,D> P;
 	vector<P> deq;
 	int s,sd,t;
-	void init(int N){
-		deq.resize(N);
-		s=0,sd=0,t=0;
-	}
+
+	CHT():s(0),sd(0),t(0){}
 	void add(D a,D b){		//add ax+b     a:(広義)単調減少!!!
 		P p(a,b);
 		while(s+1<t&&check(deq[t-2],deq[t-1],p)) t--;
+		if(t == (int)deq.size()) deq.pb(p);
 		deq[t++]=p;
 	}
 	D incr_query(D x){		//x:単調増加の時,これを繰り返し呼ぶ(間にaddが挟まるのはOK)
@@ -88,7 +88,8 @@ struct CHT{
 	D f(P &p,int x){
 		return p.fs*x+p.sc;
 	}
-}cht;
+};
+
 int main(){
 	cht.init(3);
 	cht.add(2,3);
