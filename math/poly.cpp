@@ -308,6 +308,21 @@ struct Poly{
 		return Poly(u);
 	}
 
+	Poly pow(long long n, int L) const {		// f^n, ignoring x^L,x^{L+1},..
+		Poly a({1});
+		Poly x = *this;
+		while(n){
+			if(n&1){
+				a *= x;
+				a = a.strip(L);
+			}
+			x *= x;
+			x = x.strip(L);
+			n /= 2;
+		}
+		return a;
+	}
+
 	/*
 		[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..
 		f(0) should be 0
