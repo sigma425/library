@@ -1,33 +1,21 @@
 /*
-	assumption :
-		頂点に値が乗っている
-			辺に乗ってる場合は、頂点vに辺(v,p)が乗ってると思ってやる
-			[u,v] は [u,w)と(w,v]になる
-			 ****** OnEdge = 1 ****** とするだけで普通に使えるようにした
-			ただし辺(v,p)をの初期化はupdate(v,HLD.par[v]) でよぶ
+	HL-decomposition for lazy
+	lazy segtree と同じことを木の(頂点集合 / 辺集合)に対してできる
+	**** OnEdge **** という bool を変えるだけで使える
 
+	assumption :
 		a*b*..*c*d から d*c*..*b*a が簡単に計算できる (up を reverse する必要がある)
 			そうでない場合、上向きと下向きのsegtreeを両方保つ必要がある(今は下向きだけ)
 
-	vector<vector<Edge>> G をconstructorに渡した後 query(u,v) と update(u,v,x) がsegtree_lazy 同様に使える
-	initは面倒なのでなしで
+	usage : 
+		OnEdge 変える
+		vector<vector<Edge>> G をconstructorに渡す
+		query(u,val_t)
+		update(u,v,opr_t)
 
 	verified at AGC14/E
 				OpenCup/9922/E.cpp
 */
-#include <bits/stdc++.h>
-#define rep(i,n) for(int i=0;i<(int)(n);i++)
-#define rep1(i,n) for(int i=1;i<=(int)(n);i++)
-#define all(c) c.begin(),c.end()
-#define pb push_back
-#define fs first
-#define sc second
-#define show(x) cout << #x << " = " << x << endl
-#define chmin(x,y) x=min(x,y)
-#define chmax(x,y) x=max(x,y)
-using namespace std;
-template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
-template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
 
 template<class Handler>
 struct segtree_lazy{
@@ -111,7 +99,7 @@ struct HLdecomp{
 	vector<vector<int>> chains;	//chains[c][i] = v <=> id[v] = P(c,i)
 	vector<segtree> segs;
 
-	HLdecomp(const vector<vector<E>>& G, int r = 0):G(G){
+	HLdecomp(const vector<vector<E>>& G_, int r = 0):G(G_){
 		int N = G.size();
 		C = 1;
 		chains.pb({0});
