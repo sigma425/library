@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from atcodertools.client.models.contest import Contest
 from atcodertools.client.atcoder import AtCoderClient
+import sys
 
 # write contest id here
-cid = ''
+cid = sys.argv[1]
 
 print('Contest ID = {}'.format(cid))
 
