@@ -38,3 +38,4 @@ else
         run "$f"
     done
 fi
+rm -r test
