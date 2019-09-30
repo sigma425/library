@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/sigma425/library.svg?style=svg)](https://circleci.com/gh/sigma425/library)
+
 # library
 バグっても責任は取りません。
 
