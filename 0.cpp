@@ -24,8 +24,11 @@ constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 
 #ifdef LOCAL
 #define show(x) cerr << "LINE" << __LINE__ << " : " << #x << " = " << (x) << endl
+#define dump(x) cerr << "LINE" << __LINE__ << " : " << #x << " = {";  \
+	for(auto v: x) cerr << v << ","; cerr << "}" << endl;
 #else
 #define show(x) true
+#define dump(x) true
 #endif
 
 int main(){
