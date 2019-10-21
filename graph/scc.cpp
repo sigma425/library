@@ -16,7 +16,7 @@ struct SCC{
     int I=0;
 
 	void dfs(int v){
-		ord[v] = low[v] = I;
+		ord[v] = low[v] = I++;
 		st.pb(v); inS[v] = true;
 		for(auto e: G[v]){
 			int u = e.to;
