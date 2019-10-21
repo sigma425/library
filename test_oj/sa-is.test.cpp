@@ -30,7 +30,7 @@ constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 #define show(x) true
 #endif
 
-#include "sa-is.cpp"
+#include "../string/sa-is.cpp"
 
 int main(){
 	cin.tie(0);
