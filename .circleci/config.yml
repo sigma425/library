@@ -9,4 +9,4 @@ jobs:
       - run:
           command: |
             pip3 install --user online-judge-tools
-            test_oj/test_oj.sh
+            ./test_oj/test_oj.sh
