@@ -11,21 +11,42 @@
 #define pb push_back
 #define fs first
 #define sc second
-#define show(x) cout << #x << " = " << x << endl
 #define chmin(x,y) x=min(x,y)
 #define chmax(x,y) x=max(x,y)
 using namespace std;
-template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){return o<<"("<<p.fs<<","<<p.sc<<")";}
-template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){o<<"sz = "<<vc.size()<<endl<<"[";for(const T& v:vc) o<<v<<",";o<<"]";return o;}
+template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){
+	return o<<"("<<p.fs<<","<<p.sc<<")";
+}
+template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
+	o<<"{";
+	for(const T& v:vc) o<<v<<",";
+	o<<"}";
+	return o;
+}
+using ll = long long;
+template<class T> using V = vector<T>;
+template<class T> using VV = vector<vector<T>>;
+constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
+
+#ifdef LOCAL
+#define show(x) cerr << "LINE" << __LINE__ << " : " << #x << " = " << (x) << endl
+#define dump(x) cerr << "LINE" << __LINE__ << " : " << #x << " = {";  \
+	for(auto v: x) cerr << v << ","; cerr << "}" << endl;
+#else
+#define show(x) true
+#define dump(x) true
+#endif
 
 struct FastSet{	//[0,N)
 	using ull = unsigned long long;
 	int N,D;
 	vector<vector<ull>> seg;
-	FastSet(int N):N(N){
-		while(N>1){
-			N = (N+63)>>6;
-			seg.pb(vector<ull>(N));
+	FastSet(int N_):N(N_){
+		assert(N_ >= 1);
+		if(N_ == 1) N_++;
+		while(N_>1){
+			N_ = (N_+63)>>6;
+			seg.pb(vector<ull>(N_));
 		}
 		D = seg.size();
 	}
@@ -45,6 +66,8 @@ struct FastSet{	//[0,N)
 		}
 	}
 	int geq(int x){		//x<=res
+		if(x >= N) return N;
+		if(x < 0) x = 0;
 		rep(d,D){
 			int i = x>>6, r = x&63;
 			if(i == (int)seg[d].size()) break;
@@ -62,6 +85,8 @@ struct FastSet{	//[0,N)
 		return N;
 	}
 	int leq(int x){		//res<=x
+		if(x < 0) return -1;
+		if(x >= N) x = N-1;
 		rep(d,D){
 			if(x == -1) break;
 			int i = x>>6, r = x&63;
@@ -77,11 +102,16 @@ struct FastSet{	//[0,N)
 		}
 		return -1;
 	}
+	bool has(int x){
+		if(x<0 || x>=N) return false;
+		return (seg[0][x>>6]>>(x&63))&1;
+	}
 
 	int bsr(ull x){return __builtin_clzll(x)^63;}
 	int bsf(ull x){return __builtin_ctzll(x);}
 
 };
+
 
 struct Timer{
 	clock_t st;
@@ -144,5 +174,24 @@ void unittest(){
 	assert(ans == ans2);
 }
 int main(){
+	int N; cin >> N;
+	FastSet st(N);
+	while(true){
+		string s; cin >> s;
+		int x; cin >> x;
+		if(s == "insert"){
+			st.insert(x);
+		}else if(s == "erase"){
+			st.erase(x);
+		}else if(s == "leq"){
+			show(st.leq(x));
+		}else if(s == "geq"){
+			show(st.geq(x));
+		}else if(s == "has"){
+			show(st.has(x));
+		}else{
+			cerr << "waf" << endl;
+		}
+	}
 	unittest();
 }
