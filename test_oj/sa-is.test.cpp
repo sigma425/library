@@ -1,4 +1,4 @@
-#define PROBLEM https://judge.yosupo.jp/problem/suffixarray
+#define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)

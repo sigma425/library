@@ -1,4 +1,4 @@
-#define PROBLEM https://judge.yosupo.jp/problem/scc
+#define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
