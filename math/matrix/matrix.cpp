@@ -20,15 +20,6 @@
 
 */
 
-const mint zero(0);
-const mint one(1);
-bool iszero(mint x){
-	return x.v==0;
-}
-bool isone(mint x){
-	return x.v==1;
-}
-
 template<class T>
 struct Matrix{
 	int H,W;
