@@ -13,8 +13,8 @@ using uint = unsigned int;
 #define sc second
 template<class T> using V = vector<T>;
 template<class T> using VV = vector<vector<T>>;
-template<class T,class U> void chmax(T& x, U& y){if(x<y) x=y;}
-template<class T,class U> void chmin(T& x, U& y){if(y<x) x=y;}
+template<class T,class U> void chmax(T& x, U y){if(x<y) x=y;}
+template<class T,class U> void chmin(T& x, U y){if(y<x) x=y;}
 template<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){
 	return o<<"("<<p.fs<<","<<p.sc<<")";
@@ -48,5 +48,5 @@ int main(){
 	cin.tie(0);
 	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
 	cout << fixed << setprecision(20);
-	
+
 }
