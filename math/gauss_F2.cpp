@@ -27,7 +27,7 @@ void add(ull x){
         if(B[i] == 0 && x&1ULL<<i){ // add to base
             B[i] = x;
             return;
-        }else if(x&&1ULL<<i){
+        }else if(x&1ULL<<i){
             x ^= B[i];
         }
     }
