@@ -67,4 +67,27 @@ struct LCA{
 	int distance(int u,int v){
 		return depth[u] + depth[v] - 2*depth[lca(u,v)];
 	}
+
+	/*
+		xからyにむかってdうごく
+		dist(x,y) < d なら y を返す
+		CF621 F
+	*/
+	int jump(int x,int y,int d){
+		int z = lca(x,y);
+		int d1 = depth[x]-depth[z];
+		int d2 = depth[y]-depth[z];
+		if(d <= d1){
+			// up d from x
+			rep(i,n+1) if(d&1<<i) x = par[x][i];
+			return x;
+		}else if(d <= d1+d2){
+			// up d1+d2-d from y
+			d = d1+d2-d;
+			rep(i,n+1) if(d&1<<i) y = par[y][i];
+			return y;
+		}else{
+			return y;
+		}
+	}
 };
