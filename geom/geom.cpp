@@ -105,6 +105,7 @@ inline int iCL(C c, L l){		//num of intersection(s)
 bool containCC(C a,C b){	//a contain c? (edge case is true)
 	return abs(a.p-b.p)+b.r<a.r+eps;
 }
+// 交点が2個のとき、aをbが削ると思うと、削れた部分はret[0] -> res[1] (ccw) の部分
 inline Pol intCC(C a,C b){
 	int x=large(abs(a.p-b.p),(a.r+b.r));
 	Pol ret;
@@ -116,8 +117,8 @@ inline Pol intCC(C a,C b){
 	if(containCC(a,b)||containCC(b,a)) return ret;
 	D d=abs(a.p-b.p);
 	D theta=acos((a.r*a.r+d*d-b.r*b.r)/(2.0*a.r*d));
-	ret.pb(a.p+(b.p-a.p)/d*polar(a.r,theta));
 	ret.pb(a.p+(b.p-a.p)/d*polar(a.r,-theta));
+	ret.pb(a.p+(b.p-a.p)/d*polar(a.r,theta));
 	return ret;
 }
 inline vector<L> tanCP(C c,P p){
