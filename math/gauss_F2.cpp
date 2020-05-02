@@ -3,6 +3,7 @@
     add が O(D)
     merge は add を D回、 O(D^2)
 
+    given a に対し、 min(max){a^v | v \in space} は上の桁からxorするかしないか貪欲に選べばいい
 
     (normalize)
         部分空間を状態として持ちたいときはBを正規化する必要がある
