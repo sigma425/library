@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/sigma425/library.svg?style=svg)](https://circleci.com/gh/sigma425/library)
+[![Actions Status](https://github.com/sigma425/library/workflows/verify/badge.svg)](https://github.com/sigma425/library/actions)
 
 # library
 バグっても責任は取りません。

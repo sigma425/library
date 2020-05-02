@@ -1,4 +1,8 @@
-#define PROBLEM https://judge.yosupo.jp/problem/suffixarray
+#ifdef __clang__
+#define IGNORE
+#else
+#define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
+#endif
 
 #include <bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
