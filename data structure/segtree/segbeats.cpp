@@ -1,7 +1,64 @@
+/*
+	simple,lazy,beats どれもこれで書ける
+
+	コンストラクタ:
+		segbeats(n)
+		segbeats(vec) 型が違ってもキャストできればOK
+
+	change クエリ:
+		seg.ch(l,r,&D::set,x)
+
+	get クエリ:
+		seg.get(l,r,&D::getsum,[](ll x,ll y){return x+y;},0LL)
+		型しっかりかかないと怒られるので注意
+
+	findl クエリ:
+
+
+	注意:
+		point クエリも range と全く同じように書いていい、どうせ外から (i,i+1) でしか呼ばないなら関数が適用されるのもサイズ1のノードだけだから、好き勝手やっていい
+
+
+	struct D{
+		コンストラクタ:
+			D() が単位元になる必要がある
+
+		merge(l,r):
+			l,rのlazy系はidだと仮定して良い
+		
+		push(x,y):
+			this -> x
+			this -> y
+			this_lazy.clear()
+			lazyをかけたタイミングでvalを正しい値に変える
+
+		ch系:
+			bool set(int x) とか
+			early return していいなら true
+			つまりbeatsじゃなければ全部true
+		
+		get系:
+			取り出したい情報を取り出すだけ
+
+		find系:
+			このノード内にある → true
+	}
+
+	beats: https://yukicoder.me/submissions/386293
+	findl: https://codeforces.com/contest/1037/submission/61831108
+*/
+
 template<class N>
 struct segbeats{
 	V<N> x;
 	int s;
+
+	segbeats(int n){
+		s = 1;
+		while(s<n) s *= 2;
+		x.resize(s*2);
+		for(int i=s-1;i>0;i--) upd(i);
+	}
 	template<class T>
 	segbeats(const V<T>& a){
 		int n = a.size();
@@ -20,6 +77,10 @@ struct segbeats{
 	template<class F,class G,class H>
 	auto get(int a,int b,F f,G g,H h){
 		return get_(a,b,0,s,1,f,g,h);
+	}
+
+	N getNode(int a,int b){
+		return getNode_(a,b,0,s,1);
 	}
 
 	template<class F,class... Args>
@@ -62,6 +123,17 @@ struct segbeats{
 		int m = (l+r)/2;
 		return g(get_(a,b,l,m,i*2,f,g,h),get_(a,b,m,r,i*2+1,f,g,h));
 	}
+	N getNode_(int a,int b,int l,int r,int i){
+		if(b<=l || r<=a){
+			return N();
+		}
+		if(a<=l && r<=b){
+			return x[i];
+		}
+		push(i);
+		int m = (l+r)/2;
+		return N::merge(getNode_(a,b,l,m,i*2),getNode_(a,b,m,r,i*2+1));
+	}
 	template<class F,class... Args>
 	pair<int,N> findl_(int a,int b,int l,int r,int i,F f,Args&... args){
 		if(b<=l || r<=a){
@@ -102,7 +174,6 @@ struct segbeats{
     range x_i = gcd(x_i,a)
     range max
     range sum
-*/
 
 struct D{
 	int sz=1;
@@ -144,9 +215,8 @@ struct D{
 	}
 };
 
-/*
-    CF 1037 (Manthan 18) H
-*/
+
+CF 1037 (Manthan 18) H
 struct D{
 	int x,y,z;	// min sa, min lcp, min sa+lcp
 	D(int l=inf):x(inf),y(l),z(inf){}
@@ -170,3 +240,5 @@ struct D{
 		return false;
 	}
 };
+
+*/
