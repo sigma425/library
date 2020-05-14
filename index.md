@@ -214,6 +214,7 @@ layout: default
 * :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :warning: <a href="library/graph/dir_mst.cpp.html">graph/dir_mst.cpp</a>
 * :warning: <a href="library/graph/dir_mst_test.cpp.html">graph/dir_mst_test.cpp</a>
+* :warning: <a href="library/graph/edge_coloring.cpp.html">graph/edge_coloring.cpp</a>
 * :warning: <a href="library/graph/eulertour.cpp.html">graph/eulertour.cpp</a>
 * :warning: <a href="library/graph/lca.cpp.html">graph/lca.cpp</a>
 * :warning: <a href="library/graph/lineorcycle.cpp.html">graph/lineorcycle.cpp</a>
@@ -234,7 +235,6 @@ layout: default
 * :warning: <a href="library/graph/Flow/Dinic_lowlimit.cpp.html">graph/Flow/Dinic_lowlimit.cpp</a>
 * :warning: <a href="library/graph/Flow/Ford_Fulkerson.cpp.html">graph/Flow/Ford_Fulkerson.cpp</a>
 * :warning: <a href="library/graph/Flow/min_cost_flow.cpp.html">graph/Flow/min_cost_flow.cpp</a>
-* :warning: <a href="library/graph/Flow/min_cost_flow_double.cpp.html">graph/Flow/min_cost_flow_double.cpp</a>
 * :warning: <a href="library/graph/Flow/min_cost_flow_negative.cpp.html">graph/Flow/min_cost_flow_negative.cpp</a>
 
 
