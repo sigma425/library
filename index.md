@@ -1,334 +1,571 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: 0.cpp
+      title: 0.cpp
+    - icon: ':warning:'
+      path: BigInt.cpp
+      title: BigInt.cpp
+    - icon: ':warning:'
+      path: bsr.cpp
+      title: bsr.cpp
+    - icon: ':warning:'
+      path: hashmap.cpp
+      title: hashmap.cpp
+    - icon: ':warning:'
+      path: int128.cpp
+      title: int128.cpp
+    - icon: ':warning:'
+      path: interpolation.cpp
+      title: interpolation.cpp
+    - icon: ':warning:'
+      path: mult_CF.cpp
+      title: mult_CF.cpp
+    - icon: ':warning:'
+      path: sample_collector.py
+      title: sample_collector.py
+    - icon: ':warning:'
+      path: slide.cpp
+      title: slide.cpp
+    - icon: ':warning:'
+      path: stack_expand.cpp
+      title: stack_expand.cpp
+    - icon: ':warning:'
+      path: timer.cpp
+      title: timer.cpp
+  - name: DP
+    pages:
+    - icon: ':warning:'
+      path: DP/CHT.cpp
+      title: DP/CHT.cpp
+    - icon: ':warning:'
+      path: DP/CHT_set.cpp
+      title: DP/CHT_set.cpp
+    - icon: ':warning:'
+      path: DP/DPjust.cpp
+      title: DP/DPjust.cpp
+    - icon: ':warning:'
+      path: DP/Helvetic_O.cpp
+      title: DP/Helvetic_O.cpp
+    - icon: ':warning:'
+      path: DP/Narou.cpp
+      title: DP/Narou.cpp
+    - icon: ':warning:'
+      path: DP/monotone minima.cpp
+      title: DP/monotone minima.cpp
+  - name: DP/monge
+    pages:
+    - icon: ':warning:'
+      path: DP/monge/ATC002C.cpp
+      title: DP/monge/ATC002C.cpp
+    - icon: ':warning:'
+      path: DP/monge/monge.cpp
+      title: DP/monge/monge.cpp
+  - name: data structure/2D
+    pages:
+    - icon: ':warning:'
+      path: data structure/2D/2Dseg_BIT.cpp
+      title: data structure/2D/2Dseg_BIT.cpp
+    - icon: ':warning:'
+      path: data structure/2D/splay_2Dsegtree.cpp
+      title: data structure/2D/splay_2Dsegtree.cpp
+  - name: data structure
+    pages:
+    - icon: ':warning:'
+      path: data structure/BIT.cpp
+      title: data structure/BIT.cpp
+    - icon: ':warning:'
+      path: data structure/HL_old.cpp
+      title: data structure/HL_old.cpp
+    - icon: ':warning:'
+      path: data structure/HLdecomp_lazy.cpp
+      title: data structure/HLdecomp_lazy.cpp
+    - icon: ':warning:'
+      path: data structure/HLdecomp_simple.cpp
+      title: data structure/HLdecomp_simple.cpp
+    - icon: ':warning:'
+      path: data structure/MaxMatching.cpp
+      title: data structure/MaxMatching.cpp
+    - icon: ':warning:'
+      path: data structure/RadixHeap.cpp
+      title: data structure/RadixHeap.cpp
+    - icon: ':warning:'
+      path: data structure/SparseTable.cpp
+      title: data structure/SparseTable.cpp
+    - icon: ':warning:'
+      path: data structure/decomposing.cpp
+      title: data structure/decomposing.cpp
+    - icon: ':warning:'
+      path: data structure/fastset.cpp
+      title: data structure/fastset.cpp
+    - icon: ':warning:'
+      path: data structure/heap.cpp
+      title: data structure/heap.cpp
+    - icon: ':warning:'
+      path: data structure/kth.cpp
+      title: data structure/kth.cpp
+    - icon: ':warning:'
+      path: data structure/mo.cpp
+      title: data structure/mo.cpp
+  - name: data structure/RBST
+    pages:
+    - icon: ':warning:'
+      path: data structure/RBST/RBST.cpp
+      title: data structure/RBST/RBST.cpp
+    - icon: ':warning:'
+      path: data structure/RBST/RBST_copy.cpp
+      title: data structure/RBST/RBST_copy.cpp
+    - icon: ':warning:'
+      path: data structure/RBST/RBST_pool.cpp
+      title: data structure/RBST/RBST_pool.cpp
+    - icon: ':warning:'
+      path: data structure/RBST/circular RMQ.cpp
+      title: data structure/RBST/circular RMQ.cpp
+  - name: data structure/segtree
+    pages:
+    - icon: ':warning:'
+      path: data structure/segtree/dynamic.cpp
+      title: data structure/segtree/dynamic.cpp
+    - icon: ':heavy_check_mark:'
+      path: data structure/segtree/segbeats.cpp
+      title: data structure/segtree/segbeats.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/segtree_lazy.cpp
+      title: data structure/segtree/segtree_lazy.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/segtree_simple.cpp
+      title: data structure/segtree/segtree_simple.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/starryskytree.cpp
+      title: data structure/segtree/starryskytree.cpp
+  - name: data structure/segtree/old
+    pages:
+    - icon: ':warning:'
+      path: data structure/segtree/old/Range+_PointAssign.cpp
+      title: data structure/segtree/old/Range+_PointAssign.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/segtree_subseqmax_lazy.cpp
+      title: data structure/segtree/old/segtree_subseqmax_lazy.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/segtree_subseqmax_lazy_old.cpp
+      title: data structure/segtree/old/segtree_subseqmax_lazy_old.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/unrecursive_range.cpp
+      title: data structure/segtree/old/unrecursive_range.cpp
+  - name: data structure/segtree/old/tests
+    pages:
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/0.cpp
+      title: data structure/segtree/old/tests/0.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/RmaxPass.cpp
+      title: data structure/segtree/old/tests/RmaxPass.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/RmaxidPass.cpp
+      title: data structure/segtree/old/tests/RmaxidPass.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/RsumPadd.cpp
+      title: data structure/segtree/old/tests/RsumPadd.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/segtree.cpp
+      title: data structure/segtree/old/tests/segtree.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/old/tests/starryskytree_test.cpp
+      title: data structure/segtree/old/tests/starryskytree_test.cpp
+  - name: data structure/segtree/persistent segtree
+    pages:
+    - icon: ':warning:'
+      path: data structure/segtree/persistent segtree/NPCA97.cpp
+      title: data structure/segtree/persistent segtree/NPCA97.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/persistent segtree/Sign on Fence.cpp
+      title: data structure/segtree/persistent segtree/Sign on Fence.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/persistent segtree/hogloid.cpp
+      title: data structure/segtree/persistent segtree/hogloid.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/persistent segtree/pers.cpp
+      title: data structure/segtree/persistent segtree/pers.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/persistent segtree/pers_R-Pass_template.cpp
+      title: data structure/segtree/persistent segtree/pers_R-Pass_template.cpp
+  - name: data structure/segtree/specialized
+    pages:
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_argmax_leftmost.cpp
+      title: data structure/segtree/specialized/segtree_argmax_leftmost.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_argmax_rightmost.cpp
+      title: data structure/segtree/specialized/segtree_argmax_rightmost.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_argmin_leftmost.cpp
+      title: data structure/segtree/specialized/segtree_argmin_leftmost.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_argmin_rightmost.cpp
+      title: data structure/segtree/specialized/segtree_argmin_rightmost.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_max.cpp
+      title: data structure/segtree/specialized/segtree_max.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_min.cpp
+      title: data structure/segtree/specialized/segtree_min.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_setmin.cpp
+      title: data structure/segtree/specialized/segtree_setmin.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_simple.cpp
+      title: data structure/segtree/specialized/segtree_simple.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/specialized/segtree_sum.cpp
+      title: data structure/segtree/specialized/segtree_sum.cpp
+  - name: data structure/splay
+    pages:
+    - icon: ':warning:'
+      path: data structure/splay/L.cpp
+      title: data structure/splay/L.cpp
+    - icon: ':warning:'
+      path: data structure/splay/LCTree.cpp
+      title: data structure/splay/LCTree.cpp
+    - icon: ':warning:'
+      path: data structure/splay/arc33C.cpp
+      title: data structure/splay/arc33C.cpp
+    - icon: ':warning:'
+      path: data structure/splay/splay.cpp
+      title: data structure/splay/splay.cpp
+    - icon: ':warning:'
+      path: data structure/splay/splay_lazy.cpp
+      title: data structure/splay/splay_lazy.cpp
+    - icon: ':warning:'
+      path: data structure/splay/splay_simple.cpp
+      title: data structure/splay/splay_simple.cpp
+    - icon: ':warning:'
+      path: data structure/splay/test_template_static.cpp
+      title: data structure/splay/test_template_static.cpp
+  - name: data structure/unionfind
+    pages:
+    - icon: ':warning:'
+      path: data structure/unionfind/quickfind.cpp
+      title: data structure/unionfind/quickfind.cpp
+    - icon: ':warning:'
+      path: data structure/unionfind/unionfind.cpp
+      title: data structure/unionfind/unionfind.cpp
+    - icon: ':warning:'
+      path: data structure/unionfind/unionfind_dif.cpp
+      title: data structure/unionfind/unionfind_dif.cpp
+  - name: geom
+    pages:
+    - icon: ':warning:'
+      path: geom/argsort.cpp
+      title: geom/argsort.cpp
+    - icon: ':warning:'
+      path: geom/geom.cpp
+      title: geom/geom.cpp
+  - name: graph
+    pages:
+    - icon: ':warning:'
+      path: graph/Centroid Decomposition.cpp
+      title: graph/Centroid Decomposition.cpp
+    - icon: ':warning:'
+      path: graph/CompressSubtree.cpp
+      title: graph/CompressSubtree.cpp
+    - icon: ':warning:'
+      path: graph/Cow.cpp
+      title: graph/Cow.cpp
+    - icon: ':warning:'
+      path: graph/DominatorTree.cpp
+      title: graph/DominatorTree.cpp
+    - icon: ':warning:'
+      path: graph/FunctionalGraph.cpp
+      title: graph/FunctionalGraph.cpp
+    - icon: ':warning:'
+      path: graph/MinimalCycle.cpp
+      title: graph/MinimalCycle.cpp
+    - icon: ':warning:'
+      path: graph/articulation.cpp
+      title: graph/articulation.cpp
+    - icon: ':warning:'
+      path: graph/articulation_old.cpp
+      title: graph/articulation_old.cpp
+    - icon: ':warning:'
+      path: graph/biedge.cpp
+      title: graph/biedge.cpp
+    - icon: ':warning:'
+      path: graph/biedge_test.cpp
+      title: graph/biedge_test.cpp
+    - icon: ':warning:'
+      path: graph/bipartite_matching.cpp
+      title: graph/bipartite_matching.cpp
+    - icon: ':warning:'
+      path: graph/cycle.cpp
+      title: graph/cycle.cpp
+    - icon: ':warning:'
+      path: graph/dijkstra.cpp
+      title: graph/dijkstra.cpp
+    - icon: ':warning:'
+      path: graph/dir_mst.cpp
+      title: graph/dir_mst.cpp
+    - icon: ':warning:'
+      path: graph/dir_mst_test.cpp
+      title: graph/dir_mst_test.cpp
+    - icon: ':warning:'
+      path: graph/edge_coloring.cpp
+      title: graph/edge_coloring.cpp
+    - icon: ':warning:'
+      path: graph/eulertour.cpp
+      title: graph/eulertour.cpp
+    - icon: ':warning:'
+      path: graph/lca.cpp
+      title: graph/lca.cpp
+    - icon: ':warning:'
+      path: graph/lineorcycle.cpp
+      title: graph/lineorcycle.cpp
+    - icon: ':warning:'
+      path: graph/normalize.cpp
+      title: graph/normalize.cpp
+    - icon: ':warning:'
+      path: graph/retrograde_analysis.cpp
+      title: graph/retrograde_analysis.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/scc.cpp
+      title: graph/scc.cpp
+    - icon: ':warning:'
+      path: graph/topo.cpp
+      title: graph/topo.cpp
+    - icon: ':warning:'
+      path: graph/topo_test.cpp
+      title: graph/topo_test.cpp
+    - icon: ':warning:'
+      path: graph/tour.cpp
+      title: graph/tour.cpp
+    - icon: ':warning:'
+      path: graph/twosat.cpp
+      title: graph/twosat.cpp
+  - name: graph/Flow
+    pages:
+    - icon: ':warning:'
+      path: graph/Flow/Dinic.cpp
+      title: graph/Flow/Dinic.cpp
+    - icon: ':warning:'
+      path: graph/Flow/Dinic_double.cpp
+      title: graph/Flow/Dinic_double.cpp
+    - icon: ':warning:'
+      path: graph/Flow/Dinic_lowlimit.cpp
+      title: graph/Flow/Dinic_lowlimit.cpp
+    - icon: ':warning:'
+      path: graph/Flow/Ford_Fulkerson.cpp
+      title: graph/Flow/Ford_Fulkerson.cpp
+    - icon: ':warning:'
+      path: graph/Flow/min_cost_flow.cpp
+      title: graph/Flow/min_cost_flow.cpp
+    - icon: ':warning:'
+      path: graph/Flow/min_cost_flow_negative.cpp
+      title: graph/Flow/min_cost_flow_negative.cpp
+  - name: graph/maximal_ind
+    pages:
+    - icon: ':warning:'
+      path: graph/maximal_ind/bip.cpp
+      title: graph/maximal_ind/bip.cpp
+    - icon: ':warning:'
+      path: graph/maximal_ind/com.cpp
+      title: graph/maximal_ind/com.cpp
+    - icon: ':warning:'
+      path: graph/maximal_ind/dia.cpp
+      title: graph/maximal_ind/dia.cpp
+    - icon: ':warning:'
+      path: graph/maximal_ind/maximal_independent.cpp
+      title: graph/maximal_ind/maximal_independent.cpp
+  - name: graph/treeDP
+    pages:
+    - icon: ':warning:'
+      path: graph/treeDP/!treeDP_inv.cpp
+      title: graph/treeDP/!treeDP_inv.cpp
+    - icon: ':warning:'
+      path: graph/treeDP/treeDP.cpp
+      title: graph/treeDP/treeDP.cpp
+    - icon: ':warning:'
+      path: graph/treeDP/treeDP_old.cpp
+      title: graph/treeDP/treeDP_old.cpp
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/BaseP.cpp
+      title: math/BaseP.cpp
+    - icon: ':warning:'
+      path: math/Comb_modM.cpp
+      title: math/Comb_modM.cpp
+    - icon: ':warning:'
+      path: math/FFT.cpp
+      title: math/FFT.cpp
+    - icon: ':warning:'
+      path: math/FFT64.cpp
+      title: math/FFT64.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/FloorKthRoot.cpp
+      title: math/FloorKthRoot.cpp
+    - icon: ':warning:'
+      path: math/LPsolver.cpp
+      title: math/LPsolver.cpp
+    - icon: ':warning:'
+      path: math/Precursive.cpp
+      title: math/Precursive.cpp
+    - icon: ':warning:'
+      path: math/Q.cpp
+      title: math/Q.cpp
+    - icon: ':warning:'
+      path: math/SumFloor.cpp
+      title: math/SumFloor.cpp
+    - icon: ':warning:'
+      path: math/babygiant.cpp
+      title: math/babygiant.cpp
+    - icon: ':warning:'
+      path: math/bell.cpp
+      title: math/bell.cpp
+    - icon: ':warning:'
+      path: math/bell_old.cpp
+      title: math/bell_old.cpp
+    - icon: ':warning:'
+      path: math/berlekamp-massey.cpp
+      title: math/berlekamp-massey.cpp
+    - icon: ':warning:'
+      path: math/factorization.cpp
+      title: math/factorization.cpp
+    - icon: ':warning:'
+      path: math/garner.cpp
+      title: math/garner.cpp
+    - icon: ':warning:'
+      path: math/gauss_F2.cpp
+      title: math/gauss_F2.cpp
+    - icon: ':warning:'
+      path: math/gcd.cpp
+      title: math/gcd.cpp
+    - icon: ':warning:'
+      path: math/hadamard.cpp
+      title: math/hadamard.cpp
+    - icon: ':warning:'
+      path: math/intervalorder.cpp
+      title: math/intervalorder.cpp
+    - icon: ':warning:'
+      path: math/inv.cpp
+      title: math/inv.cpp
+    - icon: ':warning:'
+      path: math/isprime.cpp
+      title: math/isprime.cpp
+    - icon: ':warning:'
+      path: math/linear_min_mod.cpp
+      title: math/linear_min_mod.cpp
+    - icon: ':warning:'
+      path: math/mint.cpp
+      title: math/mint.cpp
+    - icon: ':warning:'
+      path: math/multiPointEval.cpp
+      title: math/multiPointEval.cpp
+    - icon: ':warning:'
+      path: math/periodic_maxmin.cpp
+      title: math/periodic_maxmin.cpp
+    - icon: ':warning:'
+      path: math/poly.cpp
+      title: math/poly.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/prime.cpp
+      title: math/prime.cpp
+    - icon: ':warning:'
+      path: math/primitiveroot.cpp
+      title: math/primitiveroot.cpp
+    - icon: ':warning:'
+      path: math/rand.cpp
+      title: math/rand.cpp
+    - icon: ':warning:'
+      path: math/sqrt_seg.cpp
+      title: math/sqrt_seg.cpp
+    - icon: ':warning:'
+      path: math/subset.cpp
+      title: math/subset.cpp
+    - icon: ':warning:'
+      path: math/unrooted_tree.cpp
+      title: math/unrooted_tree.cpp
+    - icon: ':warning:'
+      path: math/zeta.cpp
+      title: math/zeta.cpp
+  - name: math/matrix
+    pages:
+    - icon: ':warning:'
+      path: math/matrix/bitset.cpp
+      title: math/matrix/bitset.cpp
+    - icon: ':warning:'
+      path: math/matrix/det_modp_band.cpp
+      title: math/matrix/det_modp_band.cpp
+    - icon: ':warning:'
+      path: math/matrix/det_modp_band_test.cpp
+      title: math/matrix/det_modp_band_test.cpp
+    - icon: ':warning:'
+      path: math/matrix/matrix.cpp
+      title: math/matrix/matrix.cpp
+    - icon: ':warning:'
+      path: math/matrix/rank_mod2.cpp
+      title: math/matrix/rank_mod2.cpp
+  - name: string
+    pages:
+    - icon: ':warning:'
+      path: string/AhoCorasick.cpp
+      title: string/AhoCorasick.cpp
+    - icon: ':warning:'
+      path: string/PalindromicTree.cpp
+      title: string/PalindromicTree.cpp
+    - icon: ':warning:'
+      path: string/SuffixAutomaton.cpp
+      title: string/SuffixAutomaton.cpp
+    - icon: ':warning:'
+      path: string/Z.cpp
+      title: string/Z.cpp
+    - icon: ':warning:'
+      path: string/kmp.cpp
+      title: string/kmp.cpp
+    - icon: ':warning:'
+      path: string/manacher.cpp
+      title: string/manacher.cpp
+    - icon: ':warning:'
+      path: string/period_substr.cpp
+      title: string/period_substr.cpp
+    - icon: ':heavy_check_mark:'
+      path: string/sa-is.cpp
+      title: string/sa-is.cpp
+  verificationCategories:
+  - name: test_oj
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test_oj/FloorKthRoot.test.cpp
+      title: test_oj/FloorKthRoot.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/enumerate_primes.test.cpp
+      title: test_oj/enumerate_primes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/sa-is.test.cpp
+      title: test_oj/sa-is.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/scc.test.cpp
+      title: test_oj/scc.test.cpp
+  - name: test_oj/beats
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/point_add_range_sum.test.cpp
+      title: test_oj/beats/point_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/point_set_range_composite.test.cpp
+      title: test_oj/beats/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/range_affine_range_sum.test.cpp
+      title: test_oj/beats/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+      title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/simple_min.test.cpp
+      title: test_oj/beats/simple_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/beats/simple_sum.test.cpp
+      title: test_oj/beats/simple_sum.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="5058f1af8388633f609cadb75a75dc9d"></div>
-
-### .
-
-* :warning: <a href="library/0.cpp.html">0.cpp</a>
-* :warning: <a href="library/BigInt.cpp.html">BigInt.cpp</a>
-* :warning: <a href="library/bsr.cpp.html">bsr.cpp</a>
-* :warning: <a href="library/hashmap.cpp.html">hashmap.cpp</a>
-* :warning: <a href="library/int128.cpp.html">int128.cpp</a>
-* :warning: <a href="library/interpolation.cpp.html">interpolation.cpp</a>
-* :warning: <a href="library/mult_CF.cpp.html">mult_CF.cpp</a>
-* :warning: <a href="library/slide.cpp.html">slide.cpp</a>
-* :warning: <a href="library/stack_expand.cpp.html">stack_expand.cpp</a>
-* :warning: <a href="library/timer.cpp.html">timer.cpp</a>
-
-
-<div id="e2fca8135c2fadca093abd79a6b1c0d2"></div>
-
-### DP
-
-* :warning: <a href="library/DP/CHT.cpp.html">DP/CHT.cpp</a>
-* :warning: <a href="library/DP/CHT_set.cpp.html">DP/CHT_set.cpp</a>
-* :warning: <a href="library/DP/DPjust.cpp.html">DP/DPjust.cpp</a>
-* :warning: <a href="library/DP/Helvetic_O.cpp.html">DP/Helvetic_O.cpp</a>
-* :warning: <a href="library/DP/Narou.cpp.html">DP/Narou.cpp</a>
-* :warning: <a href="library/DP/monotone minima.cpp.html">DP/monotone minima.cpp</a>
-
-
-<div id="d960fa802d50288c7dd865c652257d89"></div>
-
-### DP/monge
-
-* :warning: <a href="library/DP/monge/ATC002C.cpp.html">DP/monge/ATC002C.cpp</a>
-* :warning: <a href="library/DP/monge/monge.cpp.html">DP/monge/monge.cpp</a>
-
-
-<div id="37305dfb5e3ae8ec66b10a691aedead8"></div>
-
-### data structure
-
-* :warning: <a href="library/data structure/BIT.cpp.html">data structure/BIT.cpp</a>
-* :warning: <a href="library/data structure/HL_old.cpp.html">data structure/HL_old.cpp</a>
-* :warning: <a href="library/data structure/HLdecomp_lazy.cpp.html">data structure/HLdecomp_lazy.cpp</a>
-* :warning: <a href="library/data structure/HLdecomp_simple.cpp.html">data structure/HLdecomp_simple.cpp</a>
-* :warning: <a href="library/data structure/MaxMatching.cpp.html">data structure/MaxMatching.cpp</a>
-* :warning: <a href="library/data structure/RadixHeap.cpp.html">data structure/RadixHeap.cpp</a>
-* :warning: <a href="library/data structure/SparseTable.cpp.html">data structure/SparseTable.cpp</a>
-* :warning: <a href="library/data structure/decomposing.cpp.html">data structure/decomposing.cpp</a>
-* :warning: <a href="library/data structure/fastset.cpp.html">data structure/fastset.cpp</a>
-* :warning: <a href="library/data structure/heap.cpp.html">data structure/heap.cpp</a>
-* :warning: <a href="library/data structure/kth.cpp.html">data structure/kth.cpp</a>
-* :warning: <a href="library/data structure/mo.cpp.html">data structure/mo.cpp</a>
-
-
-<div id="eb0b63dc6df90e849fe933d9d9d16989"></div>
-
-### data structure/2D
-
-* :warning: <a href="library/data structure/2D/2Dseg_BIT.cpp.html">data structure/2D/2Dseg_BIT.cpp</a>
-* :warning: <a href="library/data structure/2D/splay_2Dsegtree.cpp.html">data structure/2D/splay_2Dsegtree.cpp</a>
-
-
-<div id="9846a78653378aed8f1d0374ba169811"></div>
-
-### data structure/RBST
-
-* :warning: <a href="library/data structure/RBST/RBST.cpp.html">data structure/RBST/RBST.cpp</a>
-* :warning: <a href="library/data structure/RBST/RBST_copy.cpp.html">data structure/RBST/RBST_copy.cpp</a>
-* :warning: <a href="library/data structure/RBST/RBST_pool.cpp.html">data structure/RBST/RBST_pool.cpp</a>
-* :warning: <a href="library/data structure/RBST/circular RMQ.cpp.html">data structure/RBST/circular RMQ.cpp</a>
-
-
-<div id="ae8524dc43a549526bf4130058d83666"></div>
-
-### data structure/segtree
-
-* :warning: <a href="library/data structure/segtree/dynamic.cpp.html">data structure/segtree/dynamic.cpp</a>
-* :heavy_check_mark: <a href="library/data structure/segtree/segbeats.cpp.html">data structure/segtree/segbeats.cpp</a>
-* :warning: <a href="library/data structure/segtree/segtree_lazy.cpp.html">data structure/segtree/segtree_lazy.cpp</a>
-* :warning: <a href="library/data structure/segtree/segtree_simple.cpp.html">data structure/segtree/segtree_simple.cpp</a>
-* :warning: <a href="library/data structure/segtree/starryskytree.cpp.html">data structure/segtree/starryskytree.cpp</a>
-
-
-<div id="fd751f78534902643f339bc0ff029c45"></div>
-
-### data structure/segtree/old
-
-* :warning: <a href="library/data structure/segtree/old/Range+_PointAssign.cpp.html">data structure/segtree/old/Range+_PointAssign.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/segtree_subseqmax_lazy.cpp.html">data structure/segtree/old/segtree_subseqmax_lazy.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/segtree_subseqmax_lazy_old.cpp.html">data structure/segtree/old/segtree_subseqmax_lazy_old.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/unrecursive_range.cpp.html">data structure/segtree/old/unrecursive_range.cpp</a>
-
-
-<div id="1640c839eda6cc5d1d5d19f7d1867e25"></div>
-
-### data structure/segtree/old/tests
-
-* :warning: <a href="library/data structure/segtree/old/tests/0.cpp.html">data structure/segtree/old/tests/0.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/tests/RmaxPass.cpp.html">data structure/segtree/old/tests/RmaxPass.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/tests/RmaxidPass.cpp.html">data structure/segtree/old/tests/RmaxidPass.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/tests/RsumPadd.cpp.html">data structure/segtree/old/tests/RsumPadd.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/tests/segtree.cpp.html">data structure/segtree/old/tests/segtree.cpp</a>
-* :warning: <a href="library/data structure/segtree/old/tests/starryskytree_test.cpp.html">data structure/segtree/old/tests/starryskytree_test.cpp</a>
-
-
-<div id="804b46389e12899b5eab90f4bea5a2e6"></div>
-
-### data structure/segtree/persistent segtree
-
-* :warning: <a href="library/data structure/segtree/persistent segtree/NPCA97.cpp.html">data structure/segtree/persistent segtree/NPCA97.cpp</a>
-* :warning: <a href="library/data structure/segtree/persistent segtree/Sign on Fence.cpp.html">data structure/segtree/persistent segtree/Sign on Fence.cpp</a>
-* :warning: <a href="library/data structure/segtree/persistent segtree/hogloid.cpp.html">data structure/segtree/persistent segtree/hogloid.cpp</a>
-* :warning: <a href="library/data structure/segtree/persistent segtree/pers.cpp.html">data structure/segtree/persistent segtree/pers.cpp</a>
-* :warning: <a href="library/data structure/segtree/persistent segtree/pers_R-Pass_template.cpp.html">data structure/segtree/persistent segtree/pers_R-Pass_template.cpp</a>
-
-
-<div id="2d26a1b1de5ccf32c90554b209fe486c"></div>
-
-### data structure/segtree/specialized
-
-* :warning: <a href="library/data structure/segtree/specialized/segtree_argmax_leftmost.cpp.html">data structure/segtree/specialized/segtree_argmax_leftmost.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_argmax_rightmost.cpp.html">data structure/segtree/specialized/segtree_argmax_rightmost.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_argmin_leftmost.cpp.html">data structure/segtree/specialized/segtree_argmin_leftmost.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_argmin_rightmost.cpp.html">data structure/segtree/specialized/segtree_argmin_rightmost.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_max.cpp.html">data structure/segtree/specialized/segtree_max.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_min.cpp.html">data structure/segtree/specialized/segtree_min.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_setmin.cpp.html">data structure/segtree/specialized/segtree_setmin.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_simple.cpp.html">data structure/segtree/specialized/segtree_simple.cpp</a>
-* :warning: <a href="library/data structure/segtree/specialized/segtree_sum.cpp.html">data structure/segtree/specialized/segtree_sum.cpp</a>
-
-
-<div id="a139cdef544a41bbe9de0547a0bc58bb"></div>
-
-### data structure/splay
-
-* :warning: <a href="library/data structure/splay/L.cpp.html">data structure/splay/L.cpp</a>
-* :warning: <a href="library/data structure/splay/LCTree.cpp.html">data structure/splay/LCTree.cpp</a>
-* :warning: <a href="library/data structure/splay/arc33C.cpp.html">data structure/splay/arc33C.cpp</a>
-* :warning: <a href="library/data structure/splay/splay.cpp.html">data structure/splay/splay.cpp</a>
-* :warning: <a href="library/data structure/splay/splay_lazy.cpp.html">data structure/splay/splay_lazy.cpp</a>
-* :warning: <a href="library/data structure/splay/splay_simple.cpp.html">data structure/splay/splay_simple.cpp</a>
-* :warning: <a href="library/data structure/splay/test_template_static.cpp.html">data structure/splay/test_template_static.cpp</a>
-
-
-<div id="c2dde45cf8b056fa1d016e48f1da538e"></div>
-
-### data structure/unionfind
-
-* :warning: <a href="library/data structure/unionfind/quickfind.cpp.html">data structure/unionfind/quickfind.cpp</a>
-* :warning: <a href="library/data structure/unionfind/unionfind.cpp.html">data structure/unionfind/unionfind.cpp</a>
-* :warning: <a href="library/data structure/unionfind/unionfind_dif.cpp.html">data structure/unionfind/unionfind_dif.cpp</a>
-
-
-<div id="dd992be5859bfc12e59d4c15b4c17cf8"></div>
-
-### geom
-
-* :warning: <a href="library/geom/argsort.cpp.html">geom/argsort.cpp</a>
-* :warning: <a href="library/geom/geom.cpp.html">geom/geom.cpp</a>
-
-
-<div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
-
-### graph
-
-* :warning: <a href="library/graph/Centroid Decomposition.cpp.html">graph/Centroid Decomposition.cpp</a>
-* :warning: <a href="library/graph/CompressSubtree.cpp.html">graph/CompressSubtree.cpp</a>
-* :warning: <a href="library/graph/Cow.cpp.html">graph/Cow.cpp</a>
-* :warning: <a href="library/graph/DominatorTree.cpp.html">graph/DominatorTree.cpp</a>
-* :warning: <a href="library/graph/FunctionalGraph.cpp.html">graph/FunctionalGraph.cpp</a>
-* :warning: <a href="library/graph/MinimalCycle.cpp.html">graph/MinimalCycle.cpp</a>
-* :warning: <a href="library/graph/articulation.cpp.html">graph/articulation.cpp</a>
-* :warning: <a href="library/graph/articulation_old.cpp.html">graph/articulation_old.cpp</a>
-* :warning: <a href="library/graph/biedge.cpp.html">graph/biedge.cpp</a>
-* :warning: <a href="library/graph/biedge_test.cpp.html">graph/biedge_test.cpp</a>
-* :warning: <a href="library/graph/bipartite_matching.cpp.html">graph/bipartite_matching.cpp</a>
-* :warning: <a href="library/graph/cycle.cpp.html">graph/cycle.cpp</a>
-* :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
-* :warning: <a href="library/graph/dir_mst.cpp.html">graph/dir_mst.cpp</a>
-* :warning: <a href="library/graph/dir_mst_test.cpp.html">graph/dir_mst_test.cpp</a>
-* :warning: <a href="library/graph/edge_coloring.cpp.html">graph/edge_coloring.cpp</a>
-* :warning: <a href="library/graph/eulertour.cpp.html">graph/eulertour.cpp</a>
-* :warning: <a href="library/graph/lca.cpp.html">graph/lca.cpp</a>
-* :warning: <a href="library/graph/lineorcycle.cpp.html">graph/lineorcycle.cpp</a>
-* :warning: <a href="library/graph/normalize.cpp.html">graph/normalize.cpp</a>
-* :warning: <a href="library/graph/retrograde_analysis.cpp.html">graph/retrograde_analysis.cpp</a>
-* :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
-* :warning: <a href="library/graph/topo.cpp.html">graph/topo.cpp</a>
-* :warning: <a href="library/graph/topo_test.cpp.html">graph/topo_test.cpp</a>
-* :warning: <a href="library/graph/tour.cpp.html">graph/tour.cpp</a>
-
-
-<div id="c1b32428735d2269ee124b3a330cfcaa"></div>
-
-### graph/Flow
-
-* :warning: <a href="library/graph/Flow/Dinic.cpp.html">graph/Flow/Dinic.cpp</a>
-* :warning: <a href="library/graph/Flow/Dinic_double.cpp.html">graph/Flow/Dinic_double.cpp</a>
-* :warning: <a href="library/graph/Flow/Dinic_lowlimit.cpp.html">graph/Flow/Dinic_lowlimit.cpp</a>
-* :warning: <a href="library/graph/Flow/Ford_Fulkerson.cpp.html">graph/Flow/Ford_Fulkerson.cpp</a>
-* :warning: <a href="library/graph/Flow/min_cost_flow.cpp.html">graph/Flow/min_cost_flow.cpp</a>
-* :warning: <a href="library/graph/Flow/min_cost_flow_negative.cpp.html">graph/Flow/min_cost_flow_negative.cpp</a>
-
-
-<div id="f52356fd59e70894433d4f82b2dfb2b1"></div>
-
-### graph/maximal_ind
-
-* :warning: <a href="library/graph/maximal_ind/bip.cpp.html">graph/maximal_ind/bip.cpp</a>
-* :warning: <a href="library/graph/maximal_ind/com.cpp.html">graph/maximal_ind/com.cpp</a>
-* :warning: <a href="library/graph/maximal_ind/dia.cpp.html">graph/maximal_ind/dia.cpp</a>
-* :warning: <a href="library/graph/maximal_ind/maximal_independent.cpp.html">graph/maximal_ind/maximal_independent.cpp</a>
-
-
-<div id="30966a17a4c6c7e53deee3e83490106f"></div>
-
-### graph/treeDP
-
-* :warning: <a href="library/graph/treeDP/!treeDP_inv.cpp.html">graph/treeDP/!treeDP_inv.cpp</a>
-* :warning: <a href="library/graph/treeDP/treeDP.cpp.html">graph/treeDP/treeDP.cpp</a>
-* :warning: <a href="library/graph/treeDP/treeDP_old.cpp.html">graph/treeDP/treeDP_old.cpp</a>
-
-
-<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
-
-### math
-
-* :warning: <a href="library/math/BaseP.cpp.html">math/BaseP.cpp</a>
-* :warning: <a href="library/math/Comb_modM.cpp.html">math/Comb_modM.cpp</a>
-* :warning: <a href="library/math/FFT.cpp.html">math/FFT.cpp</a>
-* :warning: <a href="library/math/FFT64.cpp.html">math/FFT64.cpp</a>
-* :warning: <a href="library/math/LPsolver.cpp.html">math/LPsolver.cpp</a>
-* :warning: <a href="library/math/Precursive.cpp.html">math/Precursive.cpp</a>
-* :warning: <a href="library/math/Q.cpp.html">math/Q.cpp</a>
-* :warning: <a href="library/math/SumFloor.cpp.html">math/SumFloor.cpp</a>
-* :warning: <a href="library/math/babygiant.cpp.html">math/babygiant.cpp</a>
-* :warning: <a href="library/math/bell.cpp.html">math/bell.cpp</a>
-* :warning: <a href="library/math/bell_old.cpp.html">math/bell_old.cpp</a>
-* :warning: <a href="library/math/berlekamp-massey.cpp.html">math/berlekamp-massey.cpp</a>
-* :warning: <a href="library/math/factorization.cpp.html">math/factorization.cpp</a>
-* :warning: <a href="library/math/garner.cpp.html">math/garner.cpp</a>
-* :warning: <a href="library/math/gauss_F2.cpp.html">math/gauss_F2.cpp</a>
-* :warning: <a href="library/math/gcd.cpp.html">math/gcd.cpp</a>
-* :warning: <a href="library/math/hadamard.cpp.html">math/hadamard.cpp</a>
-* :warning: <a href="library/math/intervalorder.cpp.html">math/intervalorder.cpp</a>
-* :warning: <a href="library/math/inv.cpp.html">math/inv.cpp</a>
-* :warning: <a href="library/math/isprime.cpp.html">math/isprime.cpp</a>
-* :warning: <a href="library/math/linear_min_mod.cpp.html">math/linear_min_mod.cpp</a>
-* :warning: <a href="library/math/mint.cpp.html">math/mint.cpp</a>
-* :warning: <a href="library/math/multiPointEval.cpp.html">math/multiPointEval.cpp</a>
-* :warning: <a href="library/math/periodic_maxmin.cpp.html">math/periodic_maxmin.cpp</a>
-* :warning: <a href="library/math/poly.cpp.html">math/poly.cpp</a>
-* :warning: <a href="library/math/prime.cpp.html">math/prime.cpp</a>
-* :warning: <a href="library/math/primitiveroot.cpp.html">math/primitiveroot.cpp</a>
-* :warning: <a href="library/math/rand.cpp.html">math/rand.cpp</a>
-* :warning: <a href="library/math/sqrt_seg.cpp.html">math/sqrt_seg.cpp</a>
-* :warning: <a href="library/math/subset.cpp.html">math/subset.cpp</a>
-* :warning: <a href="library/math/unrooted_tree.cpp.html">math/unrooted_tree.cpp</a>
-* :warning: <a href="library/math/zeta.cpp.html">math/zeta.cpp</a>
-
-
-<div id="a9839e7477a4d9c748aee996b52a14d5"></div>
-
-### math/matrix
-
-* :warning: <a href="library/math/matrix/bitset.cpp.html">math/matrix/bitset.cpp</a>
-* :warning: <a href="library/math/matrix/det_modp_band.cpp.html">math/matrix/det_modp_band.cpp</a>
-* :warning: <a href="library/math/matrix/det_modp_band_test.cpp.html">math/matrix/det_modp_band_test.cpp</a>
-* :warning: <a href="library/math/matrix/matrix.cpp.html">math/matrix/matrix.cpp</a>
-* :warning: <a href="library/math/matrix/rank_mod2.cpp.html">math/matrix/rank_mod2.cpp</a>
-
-
-<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
-
-### string
-
-* :warning: <a href="library/string/AhoCorasick.cpp.html">string/AhoCorasick.cpp</a>
-* :warning: <a href="library/string/PalindromicTree.cpp.html">string/PalindromicTree.cpp</a>
-* :warning: <a href="library/string/SuffixAutomaton.cpp.html">string/SuffixAutomaton.cpp</a>
-* :warning: <a href="library/string/Z.cpp.html">string/Z.cpp</a>
-* :warning: <a href="library/string/kmp.cpp.html">string/kmp.cpp</a>
-* :warning: <a href="library/string/manacher.cpp.html">string/manacher.cpp</a>
-* :warning: <a href="library/string/period_substr.cpp.html">string/period_substr.cpp</a>
-* :heavy_check_mark: <a href="library/string/sa-is.cpp.html">string/sa-is.cpp</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/test_oj/beats/point_add_range_sum.test.cpp.html">test_oj/beats/point_add_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/beats/point_set_range_composite.test.cpp.html">test_oj/beats/point_set_range_composite.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/beats/range_affine_range_sum.test.cpp.html">test_oj/beats/range_affine_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp.html">test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/beats/simple_min.test.cpp.html">test_oj/beats/simple_min.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/beats/simple_sum.test.cpp.html">test_oj/beats/simple_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/sa-is.test.cpp.html">test_oj/sa-is.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test_oj/scc.test.cpp.html">test_oj/scc.test.cpp</a>
-
-
