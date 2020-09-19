@@ -1,5 +1,31 @@
 /*
 
+dp の途中状態 vs finalized というのがあって 、途中状態の方をメインに考えること！
+最終的にほしいのはfinalizedなんだけど、+ は 途中状態 同士の演算であることに注意
+	+: (途中,途中) -> 途中
+	append_edge: finalized -> 途中
+	finalize: 途中 -> finalized
+
+dp[v] = N()
+for(int u: child[v]){
+	dp[v] = dp[v] + dp[u].append_edge(v,edge(v,u))
+}
+dp[v].finalize(v)
+
+lp[] + rp[] みたいなのもあるから、順番に足していくというよりかは本当にDPテーブル2つのマージを + に書く必要がある
+
+普通の木DPでよくあるのが dp[v] を求めるのに
+	V<int> sub(N);
+	for(int u: G[v]){
+		sub を dp[u] 使って更新
+	}
+	dp[v] <- subから計算できるなにか
+みたいなやつで、全方位なら N() が subの初期化、みたいな
+
+ほしいのはなにか → 途中状態は何か → +,N() → finalize,append あたりの順番で考えるといいと思う
+
+-----------
+
 全方位木DP.
 Node の コンストラクタ, append_edge, +, finalize だけかけばいい. コンストラクタは子が0個の時どうしたいか考えるとわかりやすい?
 pic.png参照
@@ -119,6 +145,49 @@ struct BidirectionalTreeDP{
 		return up[p];
 	}
 };
+
+/*
+	0/1点除いて完全マッチングを作る通り数
+	-> subの状態は、(根を使った,点を除いた)
+*/
+struct Node{
+	int f[2][2];int sz;
+	Node(){
+		f[0][1] = f[1][0] = f[1][1] = 0;
+		f[0][0] = 1;
+		sz = 0;
+	}
+
+	/*	
+		根付き木→森
+		e=(p -> this)を追加したものを返す
+	*/
+	template<class E>
+	Node append_edge(int p,const E& e) const {
+		Node n;
+		n.f[1][0] = f[0][0];
+		n.f[1][1] = f[0][1];
+		n.f[0][0] = f[1][0];
+		n.f[0][1] = f[1][1];
+		n.sz = sz;
+		return n;
+	}
+	friend Node operator+(const Node& l,const Node& r){
+		Node z;	rep(i,2) rep(j,2) z.f[i][j] = 0;
+		rep(i,2) rep(j,2) if(l.f[i][j]){
+			rep(k,2-i) rep(m,2-j) if(r.f[k][m]){
+				z.f[i+k][j+m] += l.f[i][j]*r.f[k][m];
+			}
+		}
+		z.sz = l.sz+r.sz;
+		return z;
+	}
+	void finalize(int r){
+		if(f[0][0]) f[1][1]++;
+		sz++;
+	}
+};
+
 
 /*
 	get(v,p) = (部分木の直径, 部分木のmax dist, 2nd max dist)
