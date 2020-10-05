@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://www.codechef.com/LTIME37/problems/TRAVTREE
   bundledCode: "#line 1 \"graph/eulertour.cpp\"\n/*\n\t- in \u306E\u307F\n\t- in out\

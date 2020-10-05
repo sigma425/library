@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://codeforces.com/blog/entry/70247
   bundledCode: "#line 1 \"mult_CF.cpp\"\n/*\n    int128\u304C\u5165\u3063\u3066\u306A\

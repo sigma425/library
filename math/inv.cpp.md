@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/inv.cpp\"\nvector<mint> fac,ifac,inv;\nvoid precalc(int\
     \ N){\t//[0,N]\n\tN++;\n\tfac.resize(N);\n\tifac.resize(N);\n\tinv.resize(N);\n\

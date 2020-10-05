@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/AhoCorasick.cpp\"\n/*\n\tAho-Corasick\n\t\u8907\u6570\
     \u6587\u5B57\u5217\u306E trie + failure link\n\n\tbuild(p) : O(|p0| + |p1| + ..)\n\

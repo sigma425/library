@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/splay/splay.cpp\"\n/*\r\nSplayTree(\u304B\
     \u3093\u305F\u3093ver)\r\nsimple_segtree\u306E\u4E0A\u4F4D\u4E92\u63DB.query(l,r),\

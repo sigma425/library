@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/twosat.cpp\"\n/*\n\t2-SAT\n\ttrue,false\u3068\u3044\
     \u3046\u3088\u308A\u304B\u306F a0 xor a1 (\u6392\u53CD) \u307F\u305F\u3044\u306A\

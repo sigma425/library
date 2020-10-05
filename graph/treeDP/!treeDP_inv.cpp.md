@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/treeDP/!treeDP_inv.cpp\"\n/*\n\n\u308F\u304B\u308A\
     \u306B\u304F\u3044\u3057,merge(\u5DE6\u305F\u3061,\u53F3\u305F\u3061)\u306B\u6642\

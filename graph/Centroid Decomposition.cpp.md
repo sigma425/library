@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://beta.atcoder.jp/contests/ddcc2016-qual/tasks/ddcc_2016_qual_d
     - https://beta.atcoder.jp/contests/yahoo-procon2018-final/tasks/yahoo_procon2018_final_c)

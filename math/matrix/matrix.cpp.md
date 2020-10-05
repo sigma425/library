@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2624
     - https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K

@@ -9,7 +9,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/scc.cpp\"\n/*\r\n    SCC O(M+N)\r\n    id[v] = v \u306E\
     \ \u9023\u7D50\u6210\u5206\u306E id\r\n    groups[i] : i\u756A\u76EE\u306E\u9023\

@@ -9,7 +9,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/sa-is.cpp\"\n/*\n\tSA-IS + LCP\n\n\tSuffixArray SA(V<int,ll>)\
     \ \u3082\u3057\u304F\u306F SA(string)\n\t\u3067SA.sa,isa,lcp\u306B\u5165\u308B\

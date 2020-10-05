@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/unrooted_tree.cpp\"\n/*\n\t\u30E9\u30D9\u30EB\u306A\
     \u3057\u6839\u306A\u3057\u306E\u6728\u306E\u6570\u3048\u4E0A\u3052\n\tO(N^2logN)\n\

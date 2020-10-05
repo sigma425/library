@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://codeforces.com/contest/662/problem/C
   bundledCode: "#line 1 \"math/matrix/rank_mod2.cpp\"\n/*\rAx = b mod 2\r\u306E\u89E3\

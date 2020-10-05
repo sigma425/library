@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://codeforces.com/contest/438/problem/E
     - https://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/

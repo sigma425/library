@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/periodic_maxmin.cpp\"\n/*\n\ta[i] = sin(2pi*i/N) \u307F\
     \u305F\u3044\u306B\u3001\n\t- \u5468\u671F\u7684\u3067\u3042\u3063\u3066\n\t-\

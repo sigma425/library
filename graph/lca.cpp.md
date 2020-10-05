@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/lca.cpp\"\n/*\nverified by AOJ GRL 5C\n\nlca(u,v)\u3092\
     \u30AF\u30A8\u30EAO(logN)\u3067\u6C42\u3081\u308B\n\u524D\u51E6\u7406O(NlogN)\n\

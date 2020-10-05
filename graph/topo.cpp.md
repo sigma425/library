@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/topo.cpp\"\n/*\nself loop\u3082 not dag\nvis\u3092\
     0\u3067\u521D\u671F\u5316\u3057\u3066,G\u3092\u4F5C\u3063\u3066\u3001maketopo(\u9802\

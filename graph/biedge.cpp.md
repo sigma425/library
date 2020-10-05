@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/biedge.cpp\"\n/*\nbiedge connected component\nbs\u306B\
     bridge,cc\u306B\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u304C\u5165\u308B\n\

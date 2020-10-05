@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/articulation.cpp\"\n/*\n\t\u95A2\u7BC0\u70B9\n\tord[v]:\
     \ dfs\u68EE\u3067\u306Eid\n\tlow[v]: lowlink, dfs\u6728\u3067\u5B50\u306B\u3044\

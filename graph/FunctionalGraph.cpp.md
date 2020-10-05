@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/FunctionalGraph.cpp\"\n/*\n\tFunctionalGraph \u306E\
     \ cycle\u5217\u6319, \u9006\u30B0\u30E9\u30D5(\u30B5\u30A4\u30AF\u30EB\u8FBA\u9664\

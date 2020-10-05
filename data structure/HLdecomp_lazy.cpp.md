@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/HLdecomp_lazy.cpp\"\n/*\n\tHL-decomposition\
     \ for lazy\n\tlazy segtree \u3068\u540C\u3058\u3053\u3068\u3092\u6728\u306E(\u9802\

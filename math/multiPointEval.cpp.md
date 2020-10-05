@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/multiPointEval.cpp\"\n/*\n    f: N\u6B21\u591A\u9805\
     \u5F0F\n    a_1,..,a_Q : \u5024 \u306E\u3068\u304D\u306B\u3001\n    f(a_i) \u3092\

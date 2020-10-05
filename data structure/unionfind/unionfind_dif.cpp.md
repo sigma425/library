@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330
   bundledCode: "#line 1 \"data structure/unionfind/unionfind_dif.cpp\"\n/*\n\tw[x]-w[y]=d\

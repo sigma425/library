@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/specialized/segtree_max.cpp\"\n/*\n\
     \tpoint assign\n\trange max\n\tint/long long/double\n*/\n#include <bits/stdc++.h>\n\

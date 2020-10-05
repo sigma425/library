@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/persistent segtree/hogloid.cpp\"\n\
     #include<iostream>\n#include<cstdio>\n#define REP(i,m) for(int i=0;i<(m);++i)\n\

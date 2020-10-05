@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/Dinic_lowlimit.cpp\"\n/*\n\tmaxflow\u306B,\u6700\
     \u5C0F\u6D41\u91CF\u5236\u7D04\u304C\u52A0\u308F\u3063\u305F\u3082\u306E\n\tmax_flow(s,t)\

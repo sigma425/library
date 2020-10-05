@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/bell_old.cpp\"\n/*\n\t\u30D9\u30EB\u6570(\u7B2C\u4E8C\
     \u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\u306E\u548C)\n\t\u30B0\u30EB\u30FC\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/Z.cpp\"\n/*\n\tZ-algorithm\n\tthe longest common\
     \ prefix of S and S[i~]\n\ts: aaabaaaab\n\tZ: 921034210\n\n    s[i~] \u3068 t\

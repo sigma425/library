@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=1675225
     - http://yosupo.hatenablog.com/entry/2014/12/26/001414

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://arc033.contest.atcoder.jp/submissions/521951
   bundledCode: "#line 1 \"data structure/splay/arc33C.cpp\"\n//k-th set\n//http://arc033.contest.atcoder.jp/submissions/521951\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/2D/splay_2Dsegtree.cpp\"\n/*\r\n\t2\u6B21\
     \u5143(N*N grid) \u3067point add, range sum \u304C\u51FA\u6765\u308B\r\n\tseg.add(x,y)\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://codeforces.com/contest/1299/problem/D
   bundledCode: "#line 1 \"math/gauss_F2.cpp\"\n/*\n    F2 ^ D\u306E\u57FA\u5E95\u6301\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - "http://code-festival-2015-final-open.contest.atcoder.jp/tasks/codefestival_2015_final_d(\u8DB3\
       \u30B2\u30FC\u30E0II)"

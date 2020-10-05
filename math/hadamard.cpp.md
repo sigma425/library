@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://codeforces.com/problemset/problem/662/C
   bundledCode: "#line 1 \"math/hadamard.cpp\"\n/*\n\txor convolution\n\trep(i,N) rep(j,N)\

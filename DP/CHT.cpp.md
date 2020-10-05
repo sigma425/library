@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"DP/CHT.cpp\"\n/*\n\tconvex hull trick\n\t\u76F4\u7DDA\u96C6\
     \u5408 S={y=ax+b}\u306B\u5BFE\u3057,\u6B21\u306E\u64CD\u4F5C\u304C\u3067\u304D\

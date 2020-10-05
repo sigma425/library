@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/subset.cpp\"\n// size k\nint c=(1<<k)-1;\nwhile(c<1<<n){\n\
     \t// hoge\n\tint x=c&-c,y=c+x;\n\tc=(((c&~y)/x)>>1)|y;\n}\n\n//subset of b(descending)\n\

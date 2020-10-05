@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/manacher.cpp\"\n/*\n\tR[i] = s[i] \u3092\u4E2D\u5FC3\
     \u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84((len+1)/2)\n\ts:abaaababa\n\

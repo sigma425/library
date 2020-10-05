@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/min_cost_flow.cpp\"\nstruct MinCostFlow{\n\t\
     using C = ll;\t\t// capacity\n\tusing D = ll;\t\t// cost (distance)\n\tconst D\

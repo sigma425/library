@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://uoj.ac/problem/79
     - https://min-25.hatenablog.com/entry/2016/11/21/222625

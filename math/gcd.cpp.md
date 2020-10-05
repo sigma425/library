@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/gcd.cpp\"\n/*\n\tg = gcd(a, b) >= 0\n\tax + by = g\n\
     */\nstruct EG { ll g, x, y; };\nEG ext_gcd(ll a, ll b) {\n\tif(b == 0){\n\t\t\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K
   bundledCode: "#line 1 \"math/Q.cpp\"\n/*\r\n\t\u6709\u7406\u6570\u4F53\r\n\t\u4EFB\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/babygiant.cpp\"\n//g in group G, x in set X\n//G,X\u3092\
     class\u3067\u306A\u304Ftypedef\u306B\u3059\u308B\u3068\u304D\u306F==\u306E\u6761\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/BaseP.cpp\"\n/*\r\n\tbase-10\u306Estring\u3092p\u9032\
     \u8868\u8A18\u306B\u3057\u305F\u306E\u3092\u8FD4\u3059 ret[0]\u304C1\u306E\u4F4D\

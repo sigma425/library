@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/HLdecomp_simple.cpp\"\n/*\n    \u3053\u3063\
     \u3061\u306F lazy \u304C\u306A\u3044\u65B9\u306E HLdecomp\n        OnEdge\n  \

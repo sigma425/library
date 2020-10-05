@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/specialized/segtree_setmin.cpp\"\n\
     /*\n\tpoint val\n\tset range min\n*/\nstruct segtree2{\n\tusing D = int;\n\tD\

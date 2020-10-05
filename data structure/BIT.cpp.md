@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/BIT.cpp\"\n/*\n\tBinary Indexed Tree\n\t\
     1\u6B21\u5143\n\tkth\u306F\u307E\u3060\u624B\u5143\u3067\u8A66\u3057\u305F\u3060\

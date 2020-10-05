@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://github.com/kth-competitive-programming/kactl/blob/master/content/data-structures/LineContainer.h
   bundledCode: "#line 1 \"DP/CHT_set.cpp\"\n/*\n    add(k,m): add kx + m\n    query(x)\

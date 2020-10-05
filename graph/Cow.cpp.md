@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2633
   bundledCode: "#line 1 \"graph/Cow.cpp\"\n/*\n\t\u725B\u30B2\u30FC\n\tx_t - x_s <=\

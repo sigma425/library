@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/lineorcycle.cpp\"\ntemplate<class E>\nvoid solve(const\
     \ VV<int>& G){\n\tint N = G.size();\n\tauto do_isolated = [&](int v){\n\n\t};\n\

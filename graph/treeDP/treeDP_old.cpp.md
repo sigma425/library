@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://csacademy.com/contest/round-11/#task/connected-tree-subgraphs
   bundledCode: "#line 1 \"graph/treeDP/treeDP_old.cpp\"\n/*\nData dp[MN];\nSubData\

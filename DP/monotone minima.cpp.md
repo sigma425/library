@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"DP/monotone minima.cpp\"\n/*\r\n\r\n\r\nmonotone minima\r\
     \nH*W \u306E\u914D\u5217a\u304C\u3042\u3063\u3066, a[0] \u306E\u6700\u5C0F\u3092\

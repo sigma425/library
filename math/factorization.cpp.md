@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/factorization.cpp\"\n/*\r\n\t\u7D20\u56E0\u6570\u5206\
     \u89E3 1 <= n <= 10^18\r\n\tisprime.cpp \u304C\u5FC5\u8981\r\n\tpollard_rho's\

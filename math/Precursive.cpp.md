@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/Precursive.cpp\"\n/*\r\n\tP-recursive (holonomic) sequence\
     \ \u306E\u6F38\u5316\u5F0F\u3092\u6C42\u3081\u308B\r\n\tn\u9805\u76EE\u3092\u6C42\

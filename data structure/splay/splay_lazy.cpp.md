@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/splay/splay_lazy.cpp\"\n/*\r\nSplayTree(lazy\
     \ ver) rev\u306F\u306A\u3057\r\nlazy_segtree\u306E\u4E0A\u4F4D\u4E92\u63DB.query(l,r),\

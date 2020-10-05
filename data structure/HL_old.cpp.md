@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/HL_old.cpp\"\n//AOJ2450\u3092\u305D\u306E\
     \u307E\u307E\u30B3\u30D4\u30FC\u3057\u305F\u3060\u3051\n#include <bits/stdc++.h>\n\

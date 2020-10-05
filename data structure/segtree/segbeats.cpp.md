@@ -4,27 +4,26 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test_oj/beats/simple_min.test.cpp
-    title: test_oj/beats/simple_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-    title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_oj/beats/range_affine_range_sum.test.cpp
-    title: test_oj/beats/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_oj/beats/simple_sum.test.cpp
-    title: test_oj/beats/simple_sum.test.cpp
+    path: test_oj/beats/point_add_range_sum.test.cpp
+    title: test_oj/beats/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_oj/beats/point_set_range_composite.test.cpp
     title: test_oj/beats/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_oj/beats/point_add_range_sum.test.cpp
-    title: test_oj/beats/point_add_range_sum.test.cpp
+    path: test_oj/beats/range_affine_range_sum.test.cpp
+    title: test_oj/beats/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+    title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/simple_min.test.cpp
+    title: test_oj/beats/simple_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/simple_sum.test.cpp
+    title: test_oj/beats/simple_sum.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://codeforces.com/contest/1037/submission/61831108
     - https://yukicoder.me/submissions/386293

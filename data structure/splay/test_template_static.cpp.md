@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/splay/test_template_static.cpp\"\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n/*\tOK\ntemplate<class T>\nstruct A{\n\

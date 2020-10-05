@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"slide.cpp\"\n/*\n\t\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\u5024\
     \n\t[0,L), [1,L+1), .. , [N-L,N) \u306E\u3046\u3061\u306E !!!ARGMIN!!! \u3092\u8FD4\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/dijkstra.cpp\"\n/*\n\tD \u306B\u3088\u3063\u3066inf\
     \ \u306E\u66F8\u304D\u63DB\u3048\n\tdouble \u306A\u3089 = \u307E\u308F\u308A\u3092\

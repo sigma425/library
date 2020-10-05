@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/period_substr.cpp\"\n/*\n\t\u6587\u5B57\u5217s\u304C\
     \u4E0E\u3048\u3089\u308C\u308B. \u30AF\u30A8\u30EA\u3068\u3057\u3066[l,r) \u304C\

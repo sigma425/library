@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/bell.cpp\"\n/*\nBell\n\u533A\u5225\u306E\u3064\u304F\
     N\u500B\u306E\u3082\u306E\u3092\u533A\u5225\u306E\u4ED8\u304B\u306A\u3044\u7BB1\

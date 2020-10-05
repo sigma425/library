@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"stack_expand.cpp\"\n//#define BEGIN_STACK_EXTEND(size) void\
     \ * stack_extend_memory_ = malloc(size);void * stack_extend_origin_memory_;char\

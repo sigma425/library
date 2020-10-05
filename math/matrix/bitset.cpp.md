@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/matrix/bitset.cpp\"\n/*\n\tx[a][b]= (can go from a\
     \ to b ?) \u306E\u304B\u3051\u3056\u3093\n\tbitset\u306F\u3084\u3044\n\t\u3061\

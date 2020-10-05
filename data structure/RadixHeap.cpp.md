@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://nyc2015.contest.atcoder.jp/submissions/1089478
   bundledCode: "#line 1 \"data structure/RadixHeap.cpp\"\n/*\n\tRadixHeap\n\tHeap\u306A\

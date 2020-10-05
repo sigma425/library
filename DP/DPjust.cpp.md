@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"DP/DPjust.cpp\"\n/*\nN\u500B\u4E2DK\u500B\u9078\u3093\u3067\
     \u3067\u304D\u308B\u3082\u306E\u306E\u548C\u3092\u5217\u6319(\u7DCF\u548C\u3092\

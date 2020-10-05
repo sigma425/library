@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/sqrt_seg.cpp\"\n/*\r\n    x \\in [L,R] \u306B\u5BFE\
     \u3057\u3066 N/x = v \u306A\u308B\u533A\u9593 [l,r] \u3092\u5217\u6319\r\n   \

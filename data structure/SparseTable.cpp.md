@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/SparseTable.cpp\"\nint bsr(unsigned int x){\n\
     \tif(x==0) return -1;\n\treturn 31 ^ __builtin_clz(x);\n}\n\nstruct SparseTable{\n\

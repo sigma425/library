@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/unionfind/quickfind.cpp\"\n/*\nquickfind\n\
     \u4F7F\u3046\u3053\u3068\u3042\u308B\u304B\u306A\u3042\nverified by \u3069\u3053\

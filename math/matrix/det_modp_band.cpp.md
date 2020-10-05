@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/matrix/det_modp_band.cpp\"\n/*\nuse under a[i][j]!=0\
     \ -> abs(i-j)<=B\n(\u9AD8\u3005+-B\u306B\u3057\u304B\u8FBA\u304C\u8CBC\u3089\u308C\

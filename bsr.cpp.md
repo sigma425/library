@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"bsr.cpp\"\n/*\nx       0  1  2  3  4  5  6  7  8  9\nbsr(x)\
     \ -1  0  1  1  2  2  2  2  3  3\n\u6700\u4E0A\u4F4Dbit\n*/\nint bsr(uint x){\n\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/segtree_lazy.cpp\"\n#include <bits/stdc++.h>\r\
     \n#define rep(i,N) for(int i=0;i<(int)N;i++)\r\n#define show(x) cout << #x <<\

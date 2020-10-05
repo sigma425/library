@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/SumFloor.cpp\"\n/*\n\treturn sum_{k=0~n-1} [ak/b]\n\
     \n\ta>=0,b>0,n>=0\n\tO(log(max(a,b)))\n\t\u8A08\u7B97\u9014\u4E2D\u3067max(a,b,n)^2\

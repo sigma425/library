@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"DP/Helvetic_O.cpp\"\n/*\nN\u500B\u306E\u5217\u3092K\u500B\
     \u306E\u9023\u7D9A\u5217\u306B\u5206\u89E3\u3059\u308B\u5834\u5408,\u611A\u76F4\

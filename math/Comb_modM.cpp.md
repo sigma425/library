@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/Comb_modM.cpp\"\n/*\n\t\u4EFB\u610Fmod \u3067\u306E\
     \ a choose b\n\tmod \u306F\u3067\u304B\u304F\u3066\u3082\u3044\u3044\n\tX! \u307E\

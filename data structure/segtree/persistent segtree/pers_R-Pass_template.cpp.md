@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/persistent segtree/pers_R-Pass_template.cpp\"\
     \n/*\n\tpoint assign,range \u307B\u3052(+)\n\tsemigroup D \u3067\u306Esegtree\n\

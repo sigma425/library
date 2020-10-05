@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/garner.cpp\"\n/*\n\tx % rm[i].sc = rm[i].fs\n\t\u3092\
     \u307F\u305F\u3059\u975E\u8CA0\u6574\u6570\u306E\u3046\u3061\u6700\u5C0F\u306E\

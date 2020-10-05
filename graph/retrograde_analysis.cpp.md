@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/retrograde_analysis.cpp\"\n/*\nretrograde analysis\
     \ \u5F8C\u9000\u89E3\u6790\n\u30B0\u30E9\u30D5\u4E0A\u3067\u30BF\u30FC\u30F3\u6BCE\

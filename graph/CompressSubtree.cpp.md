@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://www.codechef.com/problems/UNIVERSE
   bundledCode: "#line 1 \"graph/CompressSubtree.cpp\"\n/*\n\t\u6728\u304C\u4E0E\u3048\

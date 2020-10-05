@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"DP/Narou.cpp\"\n/*\r\n\t\u6298\u308C\u7DDA\u3092\u4FDD\u3064\
     DP\r\n\t\u3067\u304D\u308B\u3053\u3068 : \r\n\t\tf'(x) := min_[x+l <= y <= x+r]\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/MinimalCycle.cpp\"\n/*\r\n    minimal \u306A ( <=>\
     \ induced graph \u3082 cycle, chordless?) cycle \u3092\u4E00\u3064\u8FD4\u3059\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://e-maxx.ru/algo/suffix_automata
     - https://codeforces.com/blog/entry/20861

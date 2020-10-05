@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/fastset.cpp\"\n/*\n\tg++11 -O3\n\tfastset\
     \ 233[ms]\n\tset 7757[ms]\n\t\u3088\u3055\u305D\u3046\n*/\n#include <bits/stdc++.h>\n\

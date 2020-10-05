@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"geom/geom.cpp\"\n#include <cstdio>\n#include <iostream>\n\
     #include <complex>\n#include <vector>\n#include <cmath>\n#include <algorithm>\n\

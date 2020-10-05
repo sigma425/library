@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/dynamic.cpp\"\n/*\n\tRange+_PointAssign\
     \ \u306E\u52D5\u7684\u7248\n\t\u65B0\u898F\u306B\u30A2\u30AF\u30BB\u30B9\u3059\

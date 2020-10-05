@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/primitiveroot.cpp\"\n/*\n\tZ/pZ \u539F\u59CB\u6839\u53D6\
     \u5F97\n\t2 <= p <= 10^18, p: prime\n\t\u539F\u59CB\u6839\u304B\u3069\u3046\u304B\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://judge.npca.jp/problems/view/97
   bundledCode: "#line 1 \"data structure/segtree/persistent segtree/NPCA97.cpp\"\n\

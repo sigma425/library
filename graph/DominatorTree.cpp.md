@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://www.codechef.com/problems/GRAPHCNT
   bundledCode: "#line 1 \"graph/DominatorTree.cpp\"\n/*\n\tG : directed graph\n\t\

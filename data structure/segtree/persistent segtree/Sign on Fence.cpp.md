@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://codeforces.com/contest/484/problem/E
   bundledCode: "#line 1 \"data structure/segtree/persistent segtree/Sign on Fence.cpp\"\

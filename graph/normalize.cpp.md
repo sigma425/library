@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/normalize.cpp\"\n/*\n\t\u7121\u5411\u30B0\u30E9\u30D5\
     \u3092dfs\u3057\u305F\u3068\u304D\u306B,\u5404v\u306B\u5BFE\u3057G[v]\u306E\u4E2D\

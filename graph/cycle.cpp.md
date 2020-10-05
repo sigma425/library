@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/cycle.cpp\"\n/*\n\t(directed/undirected)\u30B5\u30A4\
     \u30AF\u30EB\u691C\u51FA\n\t\u3072\u3068\u3064\u898B\u3064\u3051\u3066\u305D\u308C\

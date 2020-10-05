@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/zeta.cpp\"\n/* zeta\nS:(subset of N) -> f(S) \u304B\
     \u3089\ng(S)=sigma f(T) for all T>S \u3092\u6C42\u3081\u308B\ng(10010) = sigma\

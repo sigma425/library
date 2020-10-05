@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://code-festival-2015-final-open.contest.atcoder.jp/tasks/codefestival_2015_final_d
   bundledCode: "#line 1 \"data structure/segtree/old/tests/starryskytree_test.cpp\"\

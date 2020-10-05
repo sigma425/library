@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://hos.ac/slides/20110504_graph.pdf
   bundledCode: "#line 1 \"graph/articulation_old.cpp\"\n/*\nhttp://hos.ac/slides/20110504_graph.pdf\n\

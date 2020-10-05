@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://sigma425.hatenablog.com/entry/2016/03/13/180106
   bundledCode: "#line 1 \"data structure/2D/2Dseg_BIT.cpp\"\n/*\r\n\tpoint add range\

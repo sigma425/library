@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/berlekamp-massey.cpp\"\n/*\nBerlekamp-Massey\n\u4F53\
     K\u4E0A\u306En+1\u9805\u9593\u7DDA\u5F62\u6F38\u5316\u5F0F\u304B\u3089\u751F\u6210\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/FFT.cpp\"\n/*\n\tFFT, NTT\n\tFFT\u3057\u305F\u5F8C\u306E\
     \u914D\u5217\u306B\u5165\u3063\u3066\u3044\u308B\u5024\u306F\u3001\u672C\u6765\

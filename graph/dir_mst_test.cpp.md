@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/dir_mst_test.cpp\"\n/*\nr\u3092\u6839\u3068\u3059\u308B\
     \u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728\nO(NM)\u306A\u306E\u3067\u96A3\u63A5\

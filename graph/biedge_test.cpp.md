@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/biedge_test.cpp\"\n#include <bits/stdc++.h>\n#define\
     \ chmin(x,y) x=min(x,y)\n#define pb push_back\n#define rep(i,n) for(int i=0;i<(int)(n);i++)\n\

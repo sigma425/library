@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - http://atc002.contest.atcoder.jp/tasks/atc002_c
   bundledCode: "#line 1 \"DP/monge/ATC002C.cpp\"\n// http://atc002.contest.atcoder.jp/tasks/atc002_c\n\

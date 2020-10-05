@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/old/unrecursive_range.cpp\"\nint\
     \ sum(int a,int b){\n\tint ret=0;\n\ta+=p2,b+=p2;\n\twhile(a<b){\n\t\tif(a&1)\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"interpolation.cpp\"\n/*\n\t\u591A\u9805\u5F0F\u88DC\u9593\
     \n\tLagrange interpolation\n\tO(N^2)\n\tN\u70B9(xs[i],ys[i])\u304C\u4E0E\u3048\

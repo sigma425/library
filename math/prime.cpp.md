@@ -9,7 +9,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/prime.cpp\"\n\nV<bool> isp;\nV<int> pr;\nV<int> sf;\
     \ //smallest factor, sf[9*5*11] = 3\nvoid linear_sieve(int X){\t\t// <= X\n\t\

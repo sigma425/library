@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/min_cost_flow_negative.cpp\"\n/*\n\u8CA0\u9589\
     \u8DEF\u304C\u306A\u3044\u3068\u304D\u3060\u3051\n\n\u306F\u3058\u3081\u306BBellman\

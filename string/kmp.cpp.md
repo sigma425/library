@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"string/kmp.cpp\"\n/*\n\tkmp[i] = \u9577\u3055 i \u306E prefix\
     \ \u306E longest border\n\ts : aabaabaaa\n\tk : _010123452\n\n\t\u306F\u3058\u3081\

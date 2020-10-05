@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/kth.cpp\"\nll sum(int a,int b,int l,int r,int\
     \ k){\n\tif(r<=a||b<=l) return 0;\n\tif(a<=l&&r<=b) return seg[k];\n\treturn sum(a,b,l,(l+r)/2,k*2+1,seg)+sum(a,b,(l+r)/2,r,k*2+2,seg);\n\

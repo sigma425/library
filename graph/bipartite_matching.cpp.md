@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/bipartite_matching.cpp\"\nstruct Bipartite_matching{\n\
     \tint V;\n\tvector< vector<int> > G;\n\tvector<int> match;\n\tvector<bool> used;\n\

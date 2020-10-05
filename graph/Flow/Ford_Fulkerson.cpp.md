@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/Ford_Fulkerson.cpp\"\nstruct edge {int to,cap,rev;};\n\
     const int MAX_V=,INF=;\nvector<edge> G[MAX_V];\nbool used[MAX_V];\nvoid add_edge(int\

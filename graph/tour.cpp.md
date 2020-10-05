@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links:
     - https://gist.github.com/snuke/df5d66a2adb575228c96
   bundledCode: "#line 1 \"graph/tour.cpp\"\n/*\nhttps://gist.github.com/snuke/df5d66a2adb575228c96\n\

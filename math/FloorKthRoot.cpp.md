@@ -9,7 +9,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/FloorKthRoot.cpp\"\n// floor(a^(1/k))\n// by risjiroh,\
     \ hos\n\ntemplate <class T, class Op = multiplies<>>\nconstexpr T power(T a, uint64_t\

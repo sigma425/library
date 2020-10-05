@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/LPsolver.cpp\"\n/*\n\tLP\n\tmax cx\n\ts.t. Ax <= b,\
     \ x >= 0\n\n\ttime complexity: exponential. fast $O(HW^2)$ in experiment. dependent\

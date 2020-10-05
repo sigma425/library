@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/Dinic.cpp\"\n/*\n\tDinic\n\tD\u3068inf\u3092\u66F8\
     \u304D\u63DB\u3048\u308B\n\t\u521D\u671F\u5316\u306F\u9802\u70B9\u6570\n*/\nstruct\

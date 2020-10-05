@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/mo.cpp\"\n/*\r\n\tmo-algorithm\r\n\t\u533A\
     \u9593\u30AF\u30A8\u30EA\u304C\u3044\u3063\u3071\u3044\u6765\u308B\u3068\u304D\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/intervalorder.cpp\"\n/*\n\u9577\u3055\u304C\u6B63\u306E\
     \u533A\u9593\u304CM\u500B\u4E0E\u3048\u3089\u308C\u305F\u3068\u304D\u306B\u3001\

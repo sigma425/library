@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"geom/argsort.cpp\"\n/*\n\u30ED\u30D0\u30B9\u30C8\u306A\u504F\
     \u89D2\u30BD\u30FC\u30C8 (0,0)\u3092\u6E21\u3059\u306A\n(0,+)\u304C\u6700\u5C0F\

@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/decomposing.cpp\"\n/*\n\tdecomposable problem\n\
     \t\u30C7\u30FC\u30BF\u3092\u8907\u6570\u500B\u306E\u30C7\u30FC\u30BF\u306B\u5206\

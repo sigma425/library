@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"graph/Flow/Dinic_double.cpp\"\nstruct edge {\n\tint to;\n\
     \tD cap;\n\tint rev;\n\tedge(int to,D cap,int rev) :to(to),cap(cap),rev(rev){}\n\

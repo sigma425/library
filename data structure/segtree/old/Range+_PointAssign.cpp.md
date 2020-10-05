@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/old/Range+_PointAssign.cpp\"\n/*\n\
     \tpoint assign,range +\n\tsemigroup D \u3067\u306Esegtree\n\n\t\u5909\u3048\u308B\

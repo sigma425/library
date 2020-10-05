@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/old/tests/segtree.cpp\"\n/*\n\tpoint\
     \ assign, range \u306A\u3093\u3089\u304B(operator +)\n*/\n#include <bits/stdc++.h>\n\

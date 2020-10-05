@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"BigInt.cpp\"\n/*\n\t\u56FA\u5B9A\u9577\u591A\u500D\u9577\
     \n\t0 <= x < 10^N_\n\n\t\u4E00\u684110^6 (\u639B\u3051\u7B97\u3057\u305F\u6642\

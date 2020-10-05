@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/rand.cpp\"\n/*\n\trand\n\tT\u306F\u6574\u6570\u578B\
     \u306A\u3089\u306A\u3093\u3067\u3082\u3044\u3044\n\t\u5B9F\u6570\u306A\u3089uniform_real_distirbution\n\

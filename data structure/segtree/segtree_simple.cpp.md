@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"data structure/segtree/segtree_simple.cpp\"\n/*\r\n\tpoint\
     \ assign,range + \u975E\u518D\u5E30\r\n\r\n\tstruct D \u306E\u30B3\u30F3\u30B9\

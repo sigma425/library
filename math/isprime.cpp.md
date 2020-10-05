@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"math/isprime.cpp\"\n/*\n\t\u7D20\u6570\u5224\u5B9A n <=\
     \ 10^18\n\t\u3053\u306E\u7BC4\u56F2\u306A\u308937\u4EE5\u4E0B\u306E\u7D20\u6570\
