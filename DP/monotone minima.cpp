@@ -1,60 +1,31 @@
 /*
-
-
-monotone minima
-H*W の配列aがあって, a[0] の最小を取る場所 <= a[1] の最小を取る場所 <= a[2] の最小を取る場所 ...
-となっている時に、これらの場所をすべて求める
-
-O(W log H)
-
-ex.
-H = 3, W = 5
-3 2 4 3 5
-3 4 1 2 2
-1 1 0 1 0
-
-Monge->totally monotone なので、
-
-logつけるだけで一般化出来るからこっちが主流かなあ(mongeわかりにくいし)
-
-重要な例:
-
-dp[k][x]: k回切って今場所x
-
-rep(k,K){
-	rep(x,N+1){
-		rep(y,x) chmin(dp[k+1][x],dp[k][y] + cost(y,x));
-	}
-}
-
-っていうのがある時に、k,xでの最適yをA[k][x] とおいた時に A[k][x] <= A[k][x+1] が成り立つなら、これが適用できる
-(kがないと、xを順番に計算せざるを得ないので無理?)
-
-rep(k,K){
-	minima(0,N+1,0,N+1); (内側でdp[k-1]を使う)
-}
-
-verified by CF/868/F.cpp
-
+	f(x,y) の row maxima (rightmost) が 講義単調増加なとき、 O(H + W logH) 回の f() call で row maxima(のindex) をすべて求める
+	maxima / minima , leftmost / rightmost で4通りあるけどコメントある行の不等号変えるだけで可能、一貫性はないといけないことに注意
+	特にDPで使うとき、rowが全部infだから初手で右端になってしまって壊れる、みたいなのに十分注意すること
+	verified at:
+		https://atcoder.jp/contests/appini/submissions/11754773
+		CF/868/F.cpp
 */
 
-using D = ll;
-void minima(int lx,int rx,int ly,int ry){	//[lx,rx) について bestpos[x] を求める 調べる範囲は[ly,ry)でよい
-	if(lx >= rx) return;
-	int x = (lx+rx)/2;
-	D best = ?;
-	int besty = -1;
-	for(int y = ly; y<ry; y++){
-		D val = f(x,y)
-//		D val = dp[k-1][y] + cost(y,m);
-		if(best ? val){
-			best = val;
-			besty = y;
+template<class F> V<int> row_maxima(F f,int H,int W){
+	using D = typename result_of<F(int,int)>::type;
+	V<int> res(H);
+	auto sub = [&](auto self,int l,int r,int lb,int ub)->void{
+		if(l >= r) return;
+		int x = (l+r)/2;
+		D best = f(x,lb);
+		int argy = lb;
+		for(int y=lb+1;y<=ub;y++){
+			D val = f(x,y);
+			if(val >= best){				//maxima (rightmost)
+				best = val;
+				argy = y;
+			}
 		}
-	}
-
-//	opt[x] = y
-	
-	minima(k,lx,m,ly,besty+1);
-	minima(k,m+1,rx,besty,ry);
+		res[x] = argy;
+		self(self,l,x,lb,argy);
+		self(self,x+1,r,argy,ub);
+	};
+	sub(sub,0,H,0,W-1);
+	return res;
 }
