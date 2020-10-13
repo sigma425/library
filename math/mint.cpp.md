@@ -34,12 +34,13 @@ data:
     \ b) const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return\
     \ v!=b.v;}\n\tfriend istream& operator>>(istream &o,ModInt& x){\n\t\tll tmp;\n\
     \t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\t}\n\tfriend ostream& operator<<(ostream\
-    \ &o,const ModInt& x){ return o<<x.v;}\n};\nusing mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
-    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    \ &o,const ModInt& x){ return o<<x.v;}\n};\nusing mint = ModInt<998244353>;\n\
+    //using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\nmint Choose(int\
+    \ a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n\
+    }\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
     ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
-    \ * (i+1);\n}\n"
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n"
   code: "/*\n\t\u4EFB\u610Fmod \u306A\u3089 \n\ttemplate \u306A\u304F\u3057\u3066\
     \ costexpr \u306E\u884C\u6D88\u3057\u3066 global \u306B unsigned int mod = 1;\n\
     \t\u3067 cin>>mod \u3057\u3066\u304B\u3089\u4F7F\u3046\n*/\n\ntemplate<unsigned\
@@ -67,17 +68,18 @@ data:
     \ b) const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return\
     \ v!=b.v;}\n\tfriend istream& operator>>(istream &o,ModInt& x){\n\t\tll tmp;\n\
     \t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\t}\n\tfriend ostream& operator<<(ostream\
-    \ &o,const ModInt& x){ return o<<x.v;}\n};\nusing mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
-    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    \ &o,const ModInt& x){ return o<<x.v;}\n};\nusing mint = ModInt<998244353>;\n\
+    //using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\nmint Choose(int\
+    \ a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n\
+    }\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
     ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
-    \ * (i+1);\n}\n"
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/mint.cpp
   requiredBy: []
-  timestamp: '2019-04-30 09:07:58+01:00'
+  timestamp: '2020-10-14 02:20:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/mint.cpp
