@@ -65,18 +65,22 @@ struct ModInt{
 	}
 	friend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}
 };
-using mint = ModInt<1000000007>;
+using mint = ModInt<998244353>;
+//using mint = ModInt<1000000007>;
 
-V<mint> fact,ifact;
+V<mint> fact,ifact,invs;
 mint Choose(int a,int b){
 	if(b<0 || a<b) return 0;
 	return fact[a] * ifact[b] * ifact[a-b];
 }
-void InitFact(int N){
+void InitFact(int N){	//[0,N]
+	N++;
 	fact.resize(N);
 	ifact.resize(N);
+	invs.resize(N);
 	fact[0] = 1;
 	rep1(i,N-1) fact[i] = fact[i-1] * i;
 	ifact[N-1] = fact[N-1].inv();
 	for(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);
+	rep1(i,N-1) invs[i] = fact[i-1] * ifact[i];
 }
