@@ -31,16 +31,12 @@ struct Matrix{
 
 	static Matrix E(int n){
 		Matrix a(n,n);
-		rep(i,n) a.set(i,i,1);
+		rep(i,n) a[i][i] = 1;
 		return a;
 	}
 
-	T at(int i,int j) const {
-		return a[i][j];
-	}
-	void set(int i,int j,T v){
-		a[i][j] = v;
-	}
+	V<T>& operator[](int i){return a[i];}
+	const V<T>& operator[](int i) const {return a[i];}
 
 	Matrix operator+(const Matrix& r) const {
 		assert(H==r.H && W==r.W);
@@ -122,14 +118,14 @@ Matrix<T> inv(const Matrix<T>& A){
 	assert(A.H==A.W);
 	int N = A.H;
 	Matrix<T> X(N,2*N);
-	rep(i,N) rep(j,N) X.set(i,j,A.at(i,j));
-	rep(i,N) X.set(i,i+N,one);
+	rep(i,N) rep(j,N) X[i][j] = A[i][j];
+	rep(i,N) X[i][i+N] = 1;
 	int rank = X.sweep(N);
 	if(rank < N) return Matrix<T>();
 	Matrix<T> B(N,N);
 	rep(i,N){
 		rep(j,N){
-			B.set(i,j,X.at(i,j+N));
+			B[i][j] = X[i][j+N];
 		}
 	}
 	return B;
@@ -148,14 +144,14 @@ pair< int, vector<T> > solveLinearEquation(const Matrix<T>& A, vector<T> b){
 	int H = A.H, W = A.W;
 
 	Matrix<T> X(H,W+1);
-	rep(i,H) rep(j,W) X.set(i,j,A.at(i,j));
-	rep(i,H) X.set(i,W,b[i]);
+	rep(i,H) rep(j,W) X[i][j] = A[i][j];
+	rep(i,H) X[i][W] = b[i];
 	int rank = X.sweep(W);
 	rep(i,H){
 		bool allzero = true;
-		rep(j,W) if(!iszero(X.at(i,j))) allzero = false;
+		rep(j,W) if(!iszero(X[i][j])) allzero = false;
 		if(allzero){
-			if(!iszero(X.at(i,W))){		//0x + 0y + 0z = non0
+			if(!iszero(X[i][W])){		//0x + 0y + 0z = non0
 				return pair<int,vector<T> >(-1,vector<T>());
 			}
 		}
@@ -166,11 +162,11 @@ pair< int, vector<T> > solveLinearEquation(const Matrix<T>& A, vector<T> b){
 		int c0 = 0, c1 = 0;
 		int I = -1;
 		rep(i,H){
-			if(iszero(X.at(i,j))) c0++;
-			else if(isone(X.at(i,j))) c1++,I=i;
+			if(iszero(X[i][j])) c0++;
+			else if(isone(X[i][j])) c1++,I=i;
 		}
 		if(c0==H-1 && c1==1 && !done[I]){
-			x[j] = X.at(I,W);
+			x[j] = X[I][W];
 			done[I] = true;
 		}
 	}
@@ -181,33 +177,25 @@ pair< int, vector<T> > solveLinearEquation(const Matrix<T>& A, vector<T> b){
 	determinant
 */
 template<class T>
-T det(Matrix<T> A){
-	assert(A.H==A.W);
-	int N = A.H;
-	int rank = A.sweep(N);
-	if(rank < N) return zero;
-	T d = one;
-	vector<int> to(N);
+T det(VV<T> a){
+	const int N = a.size();
+	if(N == 0) return T(1);
+	assert(int(a[0].size()) == N);
+	T ans(1);
 	rep(i,N){
-		rep(j,N){
-			if(!iszero(A.at(i,j))){
-				to[i] = j;
-				d *= A.at(i,j);
-			}
+		for(int j=i+1;j<N;j++) if(!iszero(a[j][i])){
+			ans = -ans;
+			swap(a[j],a[i]);
+			break;
+		}
+		if(iszero(a[i][i])) return T(0);
+		ans *= a[i][i];
+		for(int j=i+1;j<N;j++){
+			mint w = -a[j][i]/a[i][i];
+			for(int k=i;k<N;k++) a[j][k] += a[i][k]*w;
 		}
 	}
-	vector<bool> done(N);
-	rep(i,N) if(!done[i]){
-		int x = i;
-		bool odd = 1;
-		while(!done[x]){
-			done[x] = 1;
-			x = to[x];
-			odd = !odd;
-		}
-		if(odd) d = -d;
-	}
-	return d;
+	return ans;
 }
 
 /*
