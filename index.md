@@ -314,6 +314,9 @@ data:
       path: graph/edge_coloring.cpp
       title: graph/edge_coloring.cpp
     - icon: ':warning:'
+      path: graph/enumTrees.cpp
+      title: graph/enumTrees.cpp
+    - icon: ':warning:'
       path: graph/eulertour.cpp
       title: graph/eulertour.cpp
     - icon: ':warning:'
