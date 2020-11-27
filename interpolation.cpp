@@ -37,7 +37,7 @@ T interpolate(vector<T> xs,vector<T> ys,T x){
 	O(N^2 log N) とかにしたいなら(x - x[i]) の左右からの累積積を計算しておく 面倒だから書いてないけど
 */
 Poly<mint> interpolate(V<mint> x, V<mint> y){
-	assert(x.size() == y.size())
+	assert(x.size() == y.size());
 	int N = x.size();
 	Poly<mint> f;
 	rep(i,N){
