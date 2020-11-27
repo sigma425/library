@@ -31,8 +31,8 @@ data:
     \u3044\u306A\u3089(x - x[i]) \u306E\u5DE6\u53F3\u304B\u3089\u306E\u7D2F\u7A4D\u7A4D\
     \u3092\u8A08\u7B97\u3057\u3066\u304A\u304F \u9762\u5012\u3060\u304B\u3089\u66F8\
     \u3044\u3066\u306A\u3044\u3051\u3069\n*/\nPoly<mint> interpolate(V<mint> x, V<mint>\
-    \ y){\n\tassert(x.size() == y.size())\n\tint N = x.size();\n\tPoly<mint> f;\n\t\
-    rep(i,N){\n\t\tPoly<mint> g({y[i]});\n\t\tmint coef = 1;\n\t\trep(j,N) if(j!=i){\n\
+    \ y){\n\tassert(x.size() == y.size());\n\tint N = x.size();\n\tPoly<mint> f;\n\
+    \trep(i,N){\n\t\tPoly<mint> g({y[i]});\n\t\tmint coef = 1;\n\t\trep(j,N) if(j!=i){\n\
     \t\t\tg *= Poly<mint>({-x[j],1});\n\t\t\tcoef *= (x[i]-x[j]);\n\t\t}\n\t\tg *=\
     \ coef.inv();\n\t\tf += g;\n\t}\n\treturn f;\n}\n"
   code: "/*\n\t\u591A\u9805\u5F0F\u88DC\u9593\n\tLagrange interpolation\n\tO(N^2)\n\
@@ -59,7 +59,7 @@ data:
     \ x[i]) \u306E\u5DE6\u53F3\u304B\u3089\u306E\u7D2F\u7A4D\u7A4D\u3092\u8A08\u7B97\
     \u3057\u3066\u304A\u304F \u9762\u5012\u3060\u304B\u3089\u66F8\u3044\u3066\u306A\
     \u3044\u3051\u3069\n*/\nPoly<mint> interpolate(V<mint> x, V<mint> y){\n\tassert(x.size()\
-    \ == y.size())\n\tint N = x.size();\n\tPoly<mint> f;\n\trep(i,N){\n\t\tPoly<mint>\
+    \ == y.size());\n\tint N = x.size();\n\tPoly<mint> f;\n\trep(i,N){\n\t\tPoly<mint>\
     \ g({y[i]});\n\t\tmint coef = 1;\n\t\trep(j,N) if(j!=i){\n\t\t\tg *= Poly<mint>({-x[j],1});\n\
     \t\t\tcoef *= (x[i]-x[j]);\n\t\t}\n\t\tg *= coef.inv();\n\t\tf += g;\n\t}\n\t\
     return f;\n}\n"
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: interpolation.cpp
   requiredBy: []
-  timestamp: '2019-02-01 17:31:39+09:00'
+  timestamp: '2020-11-28 05:52:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: interpolation.cpp
