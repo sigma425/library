@@ -346,6 +346,9 @@ data:
     - icon: ':warning:'
       path: graph/twosat.cpp
       title: graph/twosat.cpp
+    - icon: ':warning:'
+      path: graph/voronoi_coloring.cpp
+      title: graph/voronoi_coloring.cpp
   - name: graph/Flow
     pages:
     - icon: ':warning:'
