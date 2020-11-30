@@ -91,3 +91,69 @@ struct LCA{
 		}
 	}
 };
+
+// weighted graph
+// distance(x,y) が重み付きのグラフで欲しい時
+
+int bsr(int x){	//4~7 -> 2
+	if(x==0) return -1;
+	return 31 ^ __builtin_clz(x);
+}
+template<class D>
+struct LCA{
+	int N,n;
+	vector<int> depth;
+	V<D> d;
+	vector<vector<int>> par;
+
+	void dfs(int v,int p,const vector<vector<pair<int,D>>>& G){
+		par[v][0] = p;
+		for(auto e: G[v]) if(e.fs != p){
+			depth[e.fs] = depth[v] + 1;
+			d[e.fs] = d[v] + e.sc;
+			dfs(e.fs,v,G);
+		}
+	}
+
+	LCA(const vector<vector<pair<int,D>>>& G){
+		N = G.size();
+		n = bsr(N);
+		depth = V<int>(N);
+		d = V<D>(N);
+		par = vector<vector<int>>(N,vector<int>(n+1,0));
+
+		dfs(0,-1,G);
+		rep1(i,n){
+			rep(v,N){
+				if(par[v][i-1]==-1){
+					par[v][i]=-1;
+				}else{
+					par[v][i]=par[par[v][i-1]][i-1];
+				}
+			}
+		}
+	}
+
+	int lca(int u,int v){
+		if(depth[u]<depth[v]){
+			swap(u,v);
+		}
+		int d=depth[u]-depth[v];
+		rep(i,n+1){
+			if((d>>i)&1) u=par[u][i];
+		}
+		if(u==v) return u;
+		for(int i=n;i>=0;i--){
+			if(par[u][i]!=par[v][i]){
+				u=par[u][i];
+				v=par[v][i];
+			}
+		}
+		return par[v][0];
+	}
+
+	D distance(int u,int v){
+		return d[u] + d[v] - 2*d[lca(u,v)];
+	}
+
+};
