@@ -1,4 +1,15 @@
 /*
+
+メモ： constructor (int n) を入れると Poly<mint>({2}) とかで破壊される
+initializer list? 
+ Poly() {}
+  explicit Poly(int n) : vector<Mint>(n) {}
+  Poly(const vector<Mint> &vec) : vector<Mint>(vec) {}
+  Poly(std::initializer_list<Mint> il) : vector<Mint>(il) {}
+
+わかんね
+めもおわり
+
 依存関係 : mint,fft(ntt)
 
 
@@ -203,6 +214,8 @@ struct Poly{
 		while(!v.empty()&&v.back()==D(0)) v.pop_back();
 		return *this;
 	}
+	D& operator[](int i){return v[i];}
+	const D& operator[](int i) const {return v[i];}
 	D at(int i) const{
 		return (i<size())?v[i]:D(0);
 	}
