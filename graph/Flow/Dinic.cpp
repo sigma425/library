@@ -1,4 +1,9 @@
 /*
+	もうACL使いましょう
+	https://codeforces.com/contest/1427/submission/95526148 これは流し戻しとかもやってる例
+*/
+
+/*
 	Dinic
 	Dとinfを書き換える
 	初期化は頂点数
