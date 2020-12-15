@@ -72,6 +72,18 @@ vector<ll> pollard(ll n){
 	return le;
 }
 
+ll totient(ll n){
+	auto v = pollard(n);
+	map<ll,int> mp; for(ll p: v) mp[p]++;
+	ll phi = 1;
+	for(auto [p,r]: mp){
+		rep(i,r-1) phi *= p;
+		phi *= p-1;
+	}
+	return phi;
+}
+
+
 int main(){
 	while(true){
 		ll n;
