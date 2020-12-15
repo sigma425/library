@@ -14,10 +14,12 @@
 		void add(int x,int y)
 
 	verified at atcoder/snuke/J (Drink Bar)
+
+	いじった、あとでverifyする
 */
 
+template<class D>
 struct BIT{
-	using D = int;
 	int N;
 	vector<D> bit;
 
@@ -44,9 +46,10 @@ struct BIT{
 	}
 };
 
+template<class D>
 struct segtree2D{
 	int N;	//[0,N) * [0,N)
-	vector<BIT> bit;
+	vector<BIT<D>> bit;
 	vector<vector<int>> vals;
 
 	//build with candidate points
@@ -77,15 +80,15 @@ struct segtree2D{
 		}
 	}
 
-	void add(int x,int y){			//add P(x,y)
+	void add(int x,int y,D v){			//add P(x,y)
 		x+=N;
 		while(x){
 			int yid = lower_bound(all(vals[x]),y) - vals[x].begin();
-			bit[x].add(yid,1);		//if weighted change this '1'
+			bit[x].add(yid,v);
 			x/=2;
 		}
 	}
-	int count(int a,int b,int ya,int yb,int l,int r,int k){		//[a,b) * [ya,yb)
+	D count(int a,int b,int ya,int yb,int l,int r,int k){		//[a,b) * [ya,yb)
 		if(b<=l||r<=a) return 0;
 		if(a<=l&&r<=b){
 			int yaid = lower_bound(all(vals[k]),ya) - vals[k].begin();
@@ -94,8 +97,21 @@ struct segtree2D{
 		}
 		return count(a,b,ya,yb,l,(l+r)/2,k*2)+count(a,b,ya,yb,(l+r)/2,r,k*2+1);
 	}
-	int count(int a,int b){
-//		printf("count [0,%d)*[0,%d)\n",a,b);
-		return count(0,a,0,b,0,N,1);
+	D count_00(int b,int yb,int l,int r,int k){		//[0,b) * [0,yb)
+		if(b<=l||r<=0) return 0;
+		if(0<=l&&r<=b){
+			int ybid = lower_bound(all(vals[k]),yb) - vals[k].begin();
+			return bit[k].sum(ybid);
+		}
+		return count_00(b,yb,l,(l+r)/2,k*2)+count_00(b,yb,(l+r)/2,r,k*2+1);
+	}
+
+	D count(int x,int y){
+//		printf("count [0,%d)*[0,%d)\n",x,y);
+		return count_00(x,y,0,N,1);
+	}
+	D count(int xa,int xb,int ya,int yb){
+//		printf("count [%d,%d)*[%d,%d)\n",xa,xb,ya,yb);
+		return count(xa,xb,ya,yb,0,N,1);
 	}
 };
