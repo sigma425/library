@@ -18,46 +18,32 @@ ll gcd(ll a, ll b){
 	return a<<shift;
 }
 
-struct F{
+struct Frac{
 	ll x,y;		// x/y
-	F():x(0),y(1){}
-	F(ll x):x(x),y(1){}
-	F(ll x,ll y):x(x),y(y){}
-
-	F norm(ll x,ll y) const {
-		ll g = gcd(x,y);
-		x /= g, y /= g;
-		if(y<0){
-			x = -x;
-			y = -y;
-		}
-		return F(x,y);
+	Frac(ll x_ = 0):x(x_),y(1){}
+	Frac(ll x_,ll y_){
+		ll g = gcd(x_,y_);
+		if(y_ < 0) g = -g;
+		x = x_ / g;
+		y = y_ / g;
 	}
 
-	F operator+(const F& r) const {
-		ll X = x * r.y + y * r.x;
-		ll Y = y * r.y;
-		return norm(X,Y);
-	}
-	F operator-(const F& r) const {
-		ll X = x * r.y - y * r.x;
-		ll Y = y * r.y;
-		return norm(X,Y);
-	}
-	F operator*(const F& r) const {
-		ll X = x * r.x;
-		ll Y = y * r.y;
-		return norm(X,Y);
-	}
-	F operator/(const F& r) const {
-		ll X = x * r.y;
-		ll Y = y * r.x;
-		return norm(X,Y);
-	}
-	bool operator==(const F& r) const {
-		return x == r.x && y == r.y;
-	}
-	friend ostream& operator<<(ostream &o,const F& x){
-		return o<<x.x<<"/"<<x.y;
+	Frac operator-() const { return {-x,y}; }
+	Frac operator+(const Frac& r) const { return {x * r.y + y * r.x, y * r.y}; }
+	Frac operator-(const Frac& r) const { return *this + (-r); }
+	Frac operator*(const Frac& r) const { return {x * r.x, y * r.y}; }
+	Frac operator/(const Frac& r) const { return {x * r.y, y * r.x}; }
+	Frac& operator+=(const Frac& r) { return *this = *this + r; }
+	Frac& operator-=(const Frac& r) { return *this = *this - r; }
+	Frac& operator*=(const Frac& r) { return *this = *this * r; }
+	Frac& operator/=(const Frac& r) { return *this = *this / r; }
+	bool operator<(const Frac& r) const { return x * r.y < y * r.x; }
+	bool operator>(const Frac& r) const { return r < *this; }
+	bool operator<=(const Frac& r) const { return !(r < *this); }
+	bool operator>=(const Frac& r) const { return !(*this < r); }
+	bool operator==(const Frac& r) const { return x == r.x && y == r.y; }
+	bool operator!=(const Frac& r) const { return !(*this == r); }
+	friend ostream& operator<<(ostream &o,const Frac& x){
+		return o << x.x << "/" << x.y;
 	}
 };
