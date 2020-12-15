@@ -1,4 +1,18 @@
 /*
+	！！！！！！！！！！雰囲気で関数を書くな！！！！！！！！！！
+	lazyなら関数の合成をすることは絶対必要 ちゃんと "モノイドと作用を分けて" "各演算を考える" ことは必ず必要
+	このライブラリだと直接そういう型を持ってるわけじゃないからなんかいい感じにかけてしまうことがあるけど、それは間違ってるからちゃんと閉じた演算をかけ
+	特に、複雑な場合はもう型を作ってしまう(segtree_lazy) 方がいいケースが多々ある
+
+	関数適用の閉じた形を作らなきゃいけないのは大前提で、その上でいちいち（呼び出し側が）適用したい関数をその型で書くのが面倒だからこういうふうになってるのであって
+	合成を考えずに(lzをなんか適用した結果のモノイドの一部みたいに)扱っていいわけではない
+
+	ちなみに点更新の関数は↑の閉じた形には含めなくて良い、それはlzではなく値を直接いじればいいから。特に ch(i,i+1,&D::hoge) 使っていい
+
+	頭を壊してしまった例: https://atcoder.jp/contests/acl2/submissions/16994422
+*/
+
+/*
 	simple,lazy,beats どれもこれで書ける
 
 	コンストラクタ:
@@ -145,11 +159,10 @@ struct segbeats{
 		}
 		push(i);
 		int m = (l+r)/2;
-		auto x = findl_(a,b,l,m,i*2,f,args...);
-		if(x.fs < b) return x;
+		auto res = findl_(a,b,l,m,i*2,f,args...);
+		if(res.fs < b) return res;
 		return findl_(a,b,m,r,i*2+1,f,args...);
 	}
-
 	// template<class F,class... Args>
 	// pair<int,N> findr_(int a,int b,int l,int r,int i,F f,Args&... args){
 	// 	if(b<=l || r<=a){
