@@ -28,10 +28,12 @@ data:
     \ p==n) continue;\r\n\t\treturn p;\r\n\t}\r\n\tassert(0);\r\n}\r\n\r\nvector<ll>\
     \ pollard(ll n){\r\n\tif(n==1) return {};\r\n\tll x = pollard_single(n);\r\n\t\
     if(x==n) return {x};\r\n\tvector<ll> le = pollard(x);\r\n\tvector<ll> ri = pollard(n/x);\r\
-    \n\tfor(ll d: ri) le.push_back(d);\r\n\treturn le;\r\n}\r\n\r\nint main(){\r\n\
-    \twhile(true){\r\n\t\tll n;\r\n\t\tcin>>n;\r\n\t\tvector<ll> ps = pollard(n);\r\
-    \n\t\tprintf(\"factors:  \");\r\n\t\tfor(ll p:ps) cout<<p<<\" \";\r\n\t\tputs(\"\
-    \");\r\n\t}\r\n}\n"
+    \n\tfor(ll d: ri) le.push_back(d);\r\n\treturn le;\r\n}\r\n\r\nll totient(ll n){\r\
+    \n\tauto v = pollard(n);\r\n\tmap<ll,int> mp; for(ll p: v) mp[p]++;\r\n\tll phi\
+    \ = 1;\r\n\tfor(auto [p,r]: mp){\r\n\t\trep(i,r-1) phi *= p;\r\n\t\tphi *= p-1;\r\
+    \n\t}\r\n\treturn phi;\r\n}\r\n\r\n\r\nint main(){\r\n\twhile(true){\r\n\t\tll\
+    \ n;\r\n\t\tcin>>n;\r\n\t\tvector<ll> ps = pollard(n);\r\n\t\tprintf(\"factors:\
+    \  \");\r\n\t\tfor(ll p:ps) cout<<p<<\" \";\r\n\t\tputs(\"\");\r\n\t}\r\n}\n"
   code: "/*\r\n\t\u7D20\u56E0\u6570\u5206\u89E3 1 <= n <= 10^18\r\n\tisprime.cpp \u304C\
     \u5FC5\u8981\r\n\tpollard_rho's algorithm\r\n\tO(n^0.25 polylog(n)) \u304F\u3089\
     \u3044\u3089\u3057\u3044\r\n*/\r\n#include<bits/stdc++.h>\r\nusing namespace std;\r\
@@ -52,15 +54,17 @@ data:
     \ p==n) continue;\r\n\t\treturn p;\r\n\t}\r\n\tassert(0);\r\n}\r\n\r\nvector<ll>\
     \ pollard(ll n){\r\n\tif(n==1) return {};\r\n\tll x = pollard_single(n);\r\n\t\
     if(x==n) return {x};\r\n\tvector<ll> le = pollard(x);\r\n\tvector<ll> ri = pollard(n/x);\r\
-    \n\tfor(ll d: ri) le.push_back(d);\r\n\treturn le;\r\n}\r\n\r\nint main(){\r\n\
-    \twhile(true){\r\n\t\tll n;\r\n\t\tcin>>n;\r\n\t\tvector<ll> ps = pollard(n);\r\
-    \n\t\tprintf(\"factors:  \");\r\n\t\tfor(ll p:ps) cout<<p<<\" \";\r\n\t\tputs(\"\
-    \");\r\n\t}\r\n}"
+    \n\tfor(ll d: ri) le.push_back(d);\r\n\treturn le;\r\n}\r\n\r\nll totient(ll n){\r\
+    \n\tauto v = pollard(n);\r\n\tmap<ll,int> mp; for(ll p: v) mp[p]++;\r\n\tll phi\
+    \ = 1;\r\n\tfor(auto [p,r]: mp){\r\n\t\trep(i,r-1) phi *= p;\r\n\t\tphi *= p-1;\r\
+    \n\t}\r\n\treturn phi;\r\n}\r\n\r\n\r\nint main(){\r\n\twhile(true){\r\n\t\tll\
+    \ n;\r\n\t\tcin>>n;\r\n\t\tvector<ll> ps = pollard(n);\r\n\t\tprintf(\"factors:\
+    \  \");\r\n\t\tfor(ll p:ps) cout<<p<<\" \";\r\n\t\tputs(\"\");\r\n\t}\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/factorization.cpp
   requiredBy: []
-  timestamp: '2018-09-18 03:14:42+09:00'
+  timestamp: '2020-12-16 01:46:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/factorization.cpp

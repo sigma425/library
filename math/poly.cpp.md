@@ -9,17 +9,22 @@ data:
     links:
     - https://codeforces.com/contest/438/problem/E
     - https://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/
-  bundledCode: "#line 1 \"math/poly.cpp\"\n/*\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\
-    \n\n\u591A\u9805\u5F0F.\nshrink()\u3067leading-0\u3092\u53D6\u308A\u9664\u304D\
-    ,\u5E38\u306B\u3053\u306E\u610F\u5473\u3067\u306E\u6B63\u898F\u7CFB\u3092\u5024\
-    \u3068\u3057\u3066\u6301\u3064.\n\u305D\u306E\u610F\u5473\u3067int\u3068mint\u4EE5\
-    \u5916\u306F\u307E\u3042\u307E\u3042\u307E\u305A\u3044\u304B\u306A\n\u3067\u3082\
-    +-\u3068\u304B\u7C21\u5358\u306A\u306E\u306F\u51FA\u6765\u308B(\u3044\u308B\u304B\
-    ?)\n\n\u5272\u308A\u7B97\u3082 O(NlogN) \u3060\u304CN\u304C\u5C0F\u3055\u3044\u6642\
-    \u9045\u3044\u306E\u3067\u5206\u5272\u7D71\u6CBB\u307F\u305F\u3044\u306A\u3053\
-    \u3068\u3092\u3059\u308B\u3068\u304D\u306F\u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N)\
-    \ : N\u6B21\u307E\u3067\u3092\u8FD4\u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified:\
-    \ \u3042\u308A\u3059\u304E\u3066\u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E\
+  bundledCode: "#line 1 \"math/poly.cpp\"\n/*\n\n\u30E1\u30E2\uFF1A constructor (int\
+    \ n) \u3092\u5165\u308C\u308B\u3068 Poly<mint>({2}) \u3068\u304B\u3067\u7834\u58CA\
+    \u3055\u308C\u308B\ninitializer list? \n Poly() {}\n  explicit Poly(int n) : vector<Mint>(n)\
+    \ {}\n  Poly(const vector<Mint> &vec) : vector<Mint>(vec) {}\n  Poly(std::initializer_list<Mint>\
+    \ il) : vector<Mint>(il) {}\n\n\u308F\u304B\u3093\u306D\n\u3081\u3082\u304A\u308F\
+    \u308A\n\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\n\n\u591A\u9805\u5F0F.\n\
+    shrink()\u3067leading-0\u3092\u53D6\u308A\u9664\u304D,\u5E38\u306B\u3053\u306E\
+    \u610F\u5473\u3067\u306E\u6B63\u898F\u7CFB\u3092\u5024\u3068\u3057\u3066\u6301\
+    \u3064.\n\u305D\u306E\u610F\u5473\u3067int\u3068mint\u4EE5\u5916\u306F\u307E\u3042\
+    \u307E\u3042\u307E\u305A\u3044\u304B\u306A\n\u3067\u3082+-\u3068\u304B\u7C21\u5358\
+    \u306A\u306E\u306F\u51FA\u6765\u308B(\u3044\u308B\u304B?)\n\n\u5272\u308A\u7B97\
+    \u3082 O(NlogN) \u3060\u304CN\u304C\u5C0F\u3055\u3044\u6642\u9045\u3044\u306E\u3067\
+    \u5206\u5272\u7D71\u6CBB\u307F\u305F\u3044\u306A\u3053\u3068\u3092\u3059\u308B\
+    \u3068\u304D\u306F\u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N) : N\u6B21\u307E\
+    \u3067\u3092\u8FD4\u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified: \u3042\u308A\
+    \u3059\u304E\u3066\u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E\
     \ (sqrt,inv)\n\thttps://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/\
     \ (exp,log)\n\n\u8A08\u6E2C:\n\t-O2\n\n\tfft2 *\n\t- N = 100000\n\t141 [ms]\n\t\
     - N = 200000\n\t279 [ms]\n\t- N = 500000\n\t595 [ms]\n\t- N = 1000000\n\t1186\
@@ -81,76 +86,77 @@ data:
     template<class D>\nstruct Poly{\n\tvector<D> v;\n\tint size() const{ return v.size();}\t\
     //deg+1\n\tPoly(){}\n\tPoly(vector<D> _v) : v(_v){shrink();}\n\n\tPoly& shrink(){\n\
     \t\twhile(!v.empty()&&v.back()==D(0)) v.pop_back();\n\t\treturn *this;\n\t}\n\t\
-    D at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid set(int i,const\
-    \ D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\twhile(i>=size())\
-    \ v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\t}\n\tD operator()(D\
-    \ x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a = 1;\n\t\trep(i,n){\n\
-    \t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn res;\n\t}\n\n\tPoly operator+(const\
-    \ Poly &r) const{\n\t\tint N=max(size(),r.size());\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator-(const\
-    \ Poly &r) const{\n\t\tint N=max(size(),r.size());\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator-()\
-    \ const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i] = -at(i);\n\
-    \t\treturn Poly(ret);\n\t}\n\tPoly operator*(const Poly &r) const{\n\t\tif(size()==0||r.size()==0)\
-    \ return Poly();\n\t\treturn mul_ntt(r);\t\t\t\t\t\t\t\t\t// FFT or NTT ?\n\t\
-    }\n\tPoly operator*(const D &r) const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\
-    \t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn Poly(ret);\n\t}\n\tPoly operator/(const\
-    \ D &r) const{\n\t\treturn *this * r.inv();\n\t}\n\tPoly operator/(const Poly\
-    \ &y) const{\n\t\treturn div_fast(y);\n\t}\n\tPoly operator%(const Poly &y) const{\n\
-    \t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\t}\n\tPoly operator<<(const\
-    \ int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\tint N=size();\n\t\tvector<D>\
-    \ ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn Poly(ret);\n\t}\n\tPoly operator>>(const\
-    \ int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\t\tint N=size();\n\t\tif(N<=n)\
-    \ return Poly();\n\t\tvector<D> ret(N-n);\n\t\trep(i,N-n) ret[i]=v[i+n];\n\t\t\
-    return Poly(ret);\n\t}\n\tbool operator==(const Poly &y) const{\n\t\treturn v==y.v;\n\
-    \t}\n\tbool operator!=(const Poly &y) const{\n\t\treturn v!=y.v;\n\t}\n\n\tPoly&\
-    \ operator+=(const Poly &r) {return *this = *this+r;}\n\tPoly& operator-=(const\
-    \ Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const Poly &r) {return\
-    \ *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this = *this*r;}\n\
-    \tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\tPoly& operator/=(const\
-    \ D &r) {return *this = *this/r;}\n\tPoly& operator%=(const Poly &y) {return *this\
-    \ = *this%y;}\n\tPoly& operator<<=(const int &n) {return *this = *this<<n;}\n\t\
-    Poly& operator>>=(const int &n) {return *this = *this>>n;}\n\n\tPoly diff() const\
-    \ {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\tV<D> u(n-1);\n\t\t\
-    rep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t}\n\tPoly intg() const\
-    \ {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n) u[i+1] = at(i) / (i+1);\n\
-    \t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n, int L) const {\t\t// f^n,\
-    \ ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly x = *this;\n\t\twhile(n){\n\
-    \t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\t\t\t}\n\t\t\tx *=\
-    \ x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn a;\n\t}\n\n\t/*\n\
-    \t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0) should be 0\n\n\t\
-    \tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n = 100000 : 200 [ms]\n\
-    \t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000 [ms]\n\t*/\n\tPoly\
-    \ exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}), g({1});\n\t\t\
-    for(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\tPoly q = (this->diff()).strip(i-1);\n\
-    \t\t\tPoly w = (q + g * (f.diff() - f*q)) .strip(2*i-1);\n\t\t\tf = (f + f * (*this\
-    \ - w.intg()).strip(2*i)) .strip(2*i);\n\t\t}\n\t\treturn f.strip(n+1);\n\t}\n\
-    \n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f)) = - (1-f) - (1-f)^2 / 2 - (1-f)^3 /\
-    \ 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140\
-    \ [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\t\t1e6 : 1343 [ms]\n\t*/\n\t\
-    Poly log(int n) const {\n\t\tassert(at(0) == 1);\n\t\tauto f = strip(n+1);\n\t\
-    \treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t}\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\
-    \t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\u5270\u4F59\u306A\u3089\u4F55\
-    \u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\u3069\u63A2\u3059\u306E\u304C\
-    \u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\n\t\t+- 2\u901A\u308A\u3060\u3051\
-    \u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\n\t\tO(n log n)\n\n\t\tNTT, -O3\n\
-    \t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\
-    \t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly f = strip(n+1);\n\
-    \t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1))\
-    \ / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1\
-    \ = (1-f) + (1-f)^2 + ...\n\t\tf * f.inv(n) = 1 + x^n * poly\n\t\tf(0) should\
-    \ be non0\n\t\tO(n log n)\n\t*/\n\tPoly inv(int n) const {\n\t\tassert(at(0) !=\
-    \ 0);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({at(0).inv()});\n\t\tfor(int i=1;\
-    \ i<=n; i*=2){\t\t//need to strip!!\n\t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\
-    \t\t}\n\t\treturn g.strip(n+1);\n\t}\t\n\n\tPoly exp_naive(int n) const {\n\t\t\
-    assert(at(0) == 0);\n\t\tPoly res;\n\t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\t\
-    res += fk;\n\t\t\tfk *= *this;\n\t\t\tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tPoly log_naive(int n) const {\n\t\tassert(at(0) == 1);\n\t\
-    \tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\t\t\tg *= (Poly({1}) - *this);\n\
-    \t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\t\t}\n\t\treturn res;\n\t}\n\n\n\
-    \tPoly mul_naive(const Poly &r) const{\n\t\tint N=size(),M=r.size();\n\t\tvector<D>\
-    \ ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
+    D& operator[](int i){return v[i];}\n\tconst D& operator[](int i) const {return\
+    \ v[i];}\n\tD at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid\
+    \ set(int i,const D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\t\
+    while(i>=size()) v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\
+    \t}\n\tD operator()(D x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a\
+    \ = 1;\n\t\trep(i,n){\n\t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\n\tPoly operator+(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
+    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\
+    \t}\n\tPoly operator-(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
+    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\
+    \t}\n\tPoly operator-() const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\t\
+    rep(i,N) ret[i] = -at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator*(const\
+    \ Poly &r) const{\n\t\tif(size()==0||r.size()==0) return Poly();\n\t\treturn mul_ntt(r);\t\
+    \t\t\t\t\t\t\t\t// FFT or NTT ?\n\t}\n\tPoly operator*(const D &r) const{\n\t\t\
+    int N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn\
+    \ Poly(ret);\n\t}\n\tPoly operator/(const D &r) const{\n\t\treturn *this * r.inv();\n\
+    \t}\n\tPoly operator/(const Poly &y) const{\n\t\treturn div_fast(y);\n\t}\n\t\
+    Poly operator%(const Poly &y) const{\n\t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\
+    \t}\n\tPoly operator<<(const int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\t\
+    int N=size();\n\t\tvector<D> ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn\
+    \ Poly(ret);\n\t}\n\tPoly operator>>(const int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\
+    \t\tint N=size();\n\t\tif(N<=n) return Poly();\n\t\tvector<D> ret(N-n);\n\t\t\
+    rep(i,N-n) ret[i]=v[i+n];\n\t\treturn Poly(ret);\n\t}\n\tbool operator==(const\
+    \ Poly &y) const{\n\t\treturn v==y.v;\n\t}\n\tbool operator!=(const Poly &y) const{\n\
+    \t\treturn v!=y.v;\n\t}\n\n\tPoly& operator+=(const Poly &r) {return *this = *this+r;}\n\
+    \tPoly& operator-=(const Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const\
+    \ Poly &r) {return *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this\
+    \ = *this*r;}\n\tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\t\
+    Poly& operator/=(const D &r) {return *this = *this/r;}\n\tPoly& operator%=(const\
+    \ Poly &y) {return *this = *this%y;}\n\tPoly& operator<<=(const int &n) {return\
+    \ *this = *this<<n;}\n\tPoly& operator>>=(const int &n) {return *this = *this>>n;}\n\
+    \n\tPoly diff() const {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\
+    \tV<D> u(n-1);\n\t\trep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t\
+    }\n\tPoly intg() const {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n)\
+    \ u[i+1] = at(i) / (i+1);\n\t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n,\
+    \ int L) const {\t\t// f^n, ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly\
+    \ x = *this;\n\t\twhile(n){\n\t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\
+    \t\t\t}\n\t\t\tx *= x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn\
+    \ a;\n\t}\n\n\t/*\n\t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0)\
+    \ should be 0\n\n\t\tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n =\
+    \ 100000 : 200 [ms]\n\t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000\
+    \ [ms]\n\t*/\n\tPoly exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}),\
+    \ g({1});\n\t\tfor(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\
+    \tPoly q = (this->diff()).strip(i-1);\n\t\t\tPoly w = (q + g * (f.diff() - f*q))\
+    \ .strip(2*i-1);\n\t\t\tf = (f + f * (*this - w.intg()).strip(2*i)) .strip(2*i);\n\
+    \t\t}\n\t\treturn f.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f))\
+    \ = - (1-f) - (1-f)^2 / 2 - (1-f)^3 / 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log\
+    \ n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140 [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\
+    \t\t1e6 : 1343 [ms]\n\t*/\n\tPoly log(int n) const {\n\t\tassert(at(0) == 1);\n\
+    \t\tauto f = strip(n+1);\n\t\treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t\
+    }\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\
+    \u5270\u4F59\u306A\u3089\u4F55\u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\
+    \u3069\u63A2\u3059\u306E\u304C\u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\
+    \n\t\t+- 2\u901A\u308A\u3060\u3051\u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\
+    \n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t\
+    5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0)\
+    \ == 1);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\
+    \t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1)) / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\
+    \t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1 = (1-f) + (1-f)^2 + ...\n\t\tf *\
+    \ f.inv(n) = 1 + x^n * poly\n\t\tf(0) should be non0\n\t\tO(n log n)\n\t*/\n\t\
+    Poly inv(int n) const {\n\t\tassert(at(0) != 0);\n\t\tPoly f = strip(n+1);\n\t\
+    \tPoly g({at(0).inv()});\n\t\tfor(int i=1; i<=n; i*=2){\t\t//need to strip!!\n\
+    \t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\t\t}\n\t\treturn g.strip(n+1);\n\
+    \t}\t\n\n\tPoly exp_naive(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly res;\n\
+    \t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\tres += fk;\n\t\t\tfk *= *this;\n\t\t\
+    \tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\treturn res;\n\t}\n\tPoly log_naive(int\
+    \ n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\
+    \t\t\tg *= (Poly({1}) - *this);\n\t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\n\n\tPoly mul_naive(const Poly &r) const{\n\t\t\
+    int N=size(),M=r.size();\n\t\tvector<D> ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\
+    \t\treturn Poly(ret);\n\t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
     \t}\n\tPoly mul_fft(const Poly &r) const{\n\t\treturn Poly(multiply_fft(v,r.v));\n\
     \t}\n\n\tPoly div_fast_with_inv(const Poly &inv, int B) const {\n\t\treturn (*this\
     \ * inv)>>(B-1);\n\t}\n\tPoly div_fast(const Poly &y) const{\n\t\tif(size()<y.size())\
@@ -187,18 +193,23 @@ data:
     \ f = ((Poly<mint>({1}) - Poly<mint>({1,-4}).sqrt(N)) / Poly<mint>({0,2})) . strip(N+1);\n\
     \tshow(f);\n}\n\nint main(){\n//\tunittest();\n//\tinvtest();\n\tCatalan();\n\
     }\n"
-  code: "/*\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\n\n\u591A\u9805\u5F0F.\nshrink()\u3067\
-    leading-0\u3092\u53D6\u308A\u9664\u304D,\u5E38\u306B\u3053\u306E\u610F\u5473\u3067\
-    \u306E\u6B63\u898F\u7CFB\u3092\u5024\u3068\u3057\u3066\u6301\u3064.\n\u305D\u306E\
-    \u610F\u5473\u3067int\u3068mint\u4EE5\u5916\u306F\u307E\u3042\u307E\u3042\u307E\
-    \u305A\u3044\u304B\u306A\n\u3067\u3082+-\u3068\u304B\u7C21\u5358\u306A\u306E\u306F\
-    \u51FA\u6765\u308B(\u3044\u308B\u304B?)\n\n\u5272\u308A\u7B97\u3082 O(NlogN) \u3060\
-    \u304CN\u304C\u5C0F\u3055\u3044\u6642\u9045\u3044\u306E\u3067\u5206\u5272\u7D71\
-    \u6CBB\u307F\u305F\u3044\u306A\u3053\u3068\u3092\u3059\u308B\u3068\u304D\u306F\
-    \u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N) : N\u6B21\u307E\u3067\u3092\u8FD4\
-    \u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified: \u3042\u308A\u3059\u304E\u3066\
-    \u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E (sqrt,inv)\n\
-    \thttps://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/\
+  code: "/*\n\n\u30E1\u30E2\uFF1A constructor (int n) \u3092\u5165\u308C\u308B\u3068\
+    \ Poly<mint>({2}) \u3068\u304B\u3067\u7834\u58CA\u3055\u308C\u308B\ninitializer\
+    \ list? \n Poly() {}\n  explicit Poly(int n) : vector<Mint>(n) {}\n  Poly(const\
+    \ vector<Mint> &vec) : vector<Mint>(vec) {}\n  Poly(std::initializer_list<Mint>\
+    \ il) : vector<Mint>(il) {}\n\n\u308F\u304B\u3093\u306D\n\u3081\u3082\u304A\u308F\
+    \u308A\n\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\n\n\u591A\u9805\u5F0F.\n\
+    shrink()\u3067leading-0\u3092\u53D6\u308A\u9664\u304D,\u5E38\u306B\u3053\u306E\
+    \u610F\u5473\u3067\u306E\u6B63\u898F\u7CFB\u3092\u5024\u3068\u3057\u3066\u6301\
+    \u3064.\n\u305D\u306E\u610F\u5473\u3067int\u3068mint\u4EE5\u5916\u306F\u307E\u3042\
+    \u307E\u3042\u307E\u305A\u3044\u304B\u306A\n\u3067\u3082+-\u3068\u304B\u7C21\u5358\
+    \u306A\u306E\u306F\u51FA\u6765\u308B(\u3044\u308B\u304B?)\n\n\u5272\u308A\u7B97\
+    \u3082 O(NlogN) \u3060\u304CN\u304C\u5C0F\u3055\u3044\u6642\u9045\u3044\u306E\u3067\
+    \u5206\u5272\u7D71\u6CBB\u307F\u305F\u3044\u306A\u3053\u3068\u3092\u3059\u308B\
+    \u3068\u304D\u306F\u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N) : N\u6B21\u307E\
+    \u3067\u3092\u8FD4\u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified: \u3042\u308A\
+    \u3059\u304E\u3066\u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E\
+    \ (sqrt,inv)\n\thttps://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/\
     \ (exp,log)\n\n\u8A08\u6E2C:\n\t-O2\n\n\tfft2 *\n\t- N = 100000\n\t141 [ms]\n\t\
     - N = 200000\n\t279 [ms]\n\t- N = 500000\n\t595 [ms]\n\t- N = 1000000\n\t1186\
     \ [ms]\n\n\tfft2 N % N/4 \u304F\u3089\u3044 \u5272\u308B\u5074\u306E\u6B21\u6570\
@@ -259,76 +270,77 @@ data:
     template<class D>\nstruct Poly{\n\tvector<D> v;\n\tint size() const{ return v.size();}\t\
     //deg+1\n\tPoly(){}\n\tPoly(vector<D> _v) : v(_v){shrink();}\n\n\tPoly& shrink(){\n\
     \t\twhile(!v.empty()&&v.back()==D(0)) v.pop_back();\n\t\treturn *this;\n\t}\n\t\
-    D at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid set(int i,const\
-    \ D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\twhile(i>=size())\
-    \ v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\t}\n\tD operator()(D\
-    \ x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a = 1;\n\t\trep(i,n){\n\
-    \t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn res;\n\t}\n\n\tPoly operator+(const\
-    \ Poly &r) const{\n\t\tint N=max(size(),r.size());\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator-(const\
-    \ Poly &r) const{\n\t\tint N=max(size(),r.size());\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator-()\
-    \ const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i] = -at(i);\n\
-    \t\treturn Poly(ret);\n\t}\n\tPoly operator*(const Poly &r) const{\n\t\tif(size()==0||r.size()==0)\
-    \ return Poly();\n\t\treturn mul_ntt(r);\t\t\t\t\t\t\t\t\t// FFT or NTT ?\n\t\
-    }\n\tPoly operator*(const D &r) const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\
-    \t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn Poly(ret);\n\t}\n\tPoly operator/(const\
-    \ D &r) const{\n\t\treturn *this * r.inv();\n\t}\n\tPoly operator/(const Poly\
-    \ &y) const{\n\t\treturn div_fast(y);\n\t}\n\tPoly operator%(const Poly &y) const{\n\
-    \t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\t}\n\tPoly operator<<(const\
-    \ int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\tint N=size();\n\t\tvector<D>\
-    \ ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn Poly(ret);\n\t}\n\tPoly operator>>(const\
-    \ int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\t\tint N=size();\n\t\tif(N<=n)\
-    \ return Poly();\n\t\tvector<D> ret(N-n);\n\t\trep(i,N-n) ret[i]=v[i+n];\n\t\t\
-    return Poly(ret);\n\t}\n\tbool operator==(const Poly &y) const{\n\t\treturn v==y.v;\n\
-    \t}\n\tbool operator!=(const Poly &y) const{\n\t\treturn v!=y.v;\n\t}\n\n\tPoly&\
-    \ operator+=(const Poly &r) {return *this = *this+r;}\n\tPoly& operator-=(const\
-    \ Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const Poly &r) {return\
-    \ *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this = *this*r;}\n\
-    \tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\tPoly& operator/=(const\
-    \ D &r) {return *this = *this/r;}\n\tPoly& operator%=(const Poly &y) {return *this\
-    \ = *this%y;}\n\tPoly& operator<<=(const int &n) {return *this = *this<<n;}\n\t\
-    Poly& operator>>=(const int &n) {return *this = *this>>n;}\n\n\tPoly diff() const\
-    \ {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\tV<D> u(n-1);\n\t\t\
-    rep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t}\n\tPoly intg() const\
-    \ {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n) u[i+1] = at(i) / (i+1);\n\
-    \t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n, int L) const {\t\t// f^n,\
-    \ ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly x = *this;\n\t\twhile(n){\n\
-    \t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\t\t\t}\n\t\t\tx *=\
-    \ x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn a;\n\t}\n\n\t/*\n\
-    \t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0) should be 0\n\n\t\
-    \tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n = 100000 : 200 [ms]\n\
-    \t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000 [ms]\n\t*/\n\tPoly\
-    \ exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}), g({1});\n\t\t\
-    for(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\tPoly q = (this->diff()).strip(i-1);\n\
-    \t\t\tPoly w = (q + g * (f.diff() - f*q)) .strip(2*i-1);\n\t\t\tf = (f + f * (*this\
-    \ - w.intg()).strip(2*i)) .strip(2*i);\n\t\t}\n\t\treturn f.strip(n+1);\n\t}\n\
-    \n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f)) = - (1-f) - (1-f)^2 / 2 - (1-f)^3 /\
-    \ 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140\
-    \ [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\t\t1e6 : 1343 [ms]\n\t*/\n\t\
-    Poly log(int n) const {\n\t\tassert(at(0) == 1);\n\t\tauto f = strip(n+1);\n\t\
-    \treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t}\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\
-    \t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\u5270\u4F59\u306A\u3089\u4F55\
-    \u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\u3069\u63A2\u3059\u306E\u304C\
-    \u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\n\t\t+- 2\u901A\u308A\u3060\u3051\
-    \u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\n\t\tO(n log n)\n\n\t\tNTT, -O3\n\
-    \t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\
-    \t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly f = strip(n+1);\n\
-    \t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1))\
-    \ / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1\
-    \ = (1-f) + (1-f)^2 + ...\n\t\tf * f.inv(n) = 1 + x^n * poly\n\t\tf(0) should\
-    \ be non0\n\t\tO(n log n)\n\t*/\n\tPoly inv(int n) const {\n\t\tassert(at(0) !=\
-    \ 0);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({at(0).inv()});\n\t\tfor(int i=1;\
-    \ i<=n; i*=2){\t\t//need to strip!!\n\t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\
-    \t\t}\n\t\treturn g.strip(n+1);\n\t}\t\n\n\tPoly exp_naive(int n) const {\n\t\t\
-    assert(at(0) == 0);\n\t\tPoly res;\n\t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\t\
-    res += fk;\n\t\t\tfk *= *this;\n\t\t\tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\t\
-    return res;\n\t}\n\tPoly log_naive(int n) const {\n\t\tassert(at(0) == 1);\n\t\
-    \tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\t\t\tg *= (Poly({1}) - *this);\n\
-    \t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\t\t}\n\t\treturn res;\n\t}\n\n\n\
-    \tPoly mul_naive(const Poly &r) const{\n\t\tint N=size(),M=r.size();\n\t\tvector<D>\
-    \ ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
+    D& operator[](int i){return v[i];}\n\tconst D& operator[](int i) const {return\
+    \ v[i];}\n\tD at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid\
+    \ set(int i,const D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\t\
+    while(i>=size()) v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\
+    \t}\n\tD operator()(D x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a\
+    \ = 1;\n\t\trep(i,n){\n\t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\n\tPoly operator+(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
+    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\
+    \t}\n\tPoly operator-(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
+    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\
+    \t}\n\tPoly operator-() const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\t\
+    rep(i,N) ret[i] = -at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator*(const\
+    \ Poly &r) const{\n\t\tif(size()==0||r.size()==0) return Poly();\n\t\treturn mul_ntt(r);\t\
+    \t\t\t\t\t\t\t\t// FFT or NTT ?\n\t}\n\tPoly operator*(const D &r) const{\n\t\t\
+    int N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn\
+    \ Poly(ret);\n\t}\n\tPoly operator/(const D &r) const{\n\t\treturn *this * r.inv();\n\
+    \t}\n\tPoly operator/(const Poly &y) const{\n\t\treturn div_fast(y);\n\t}\n\t\
+    Poly operator%(const Poly &y) const{\n\t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\
+    \t}\n\tPoly operator<<(const int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\t\
+    int N=size();\n\t\tvector<D> ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn\
+    \ Poly(ret);\n\t}\n\tPoly operator>>(const int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\
+    \t\tint N=size();\n\t\tif(N<=n) return Poly();\n\t\tvector<D> ret(N-n);\n\t\t\
+    rep(i,N-n) ret[i]=v[i+n];\n\t\treturn Poly(ret);\n\t}\n\tbool operator==(const\
+    \ Poly &y) const{\n\t\treturn v==y.v;\n\t}\n\tbool operator!=(const Poly &y) const{\n\
+    \t\treturn v!=y.v;\n\t}\n\n\tPoly& operator+=(const Poly &r) {return *this = *this+r;}\n\
+    \tPoly& operator-=(const Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const\
+    \ Poly &r) {return *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this\
+    \ = *this*r;}\n\tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\t\
+    Poly& operator/=(const D &r) {return *this = *this/r;}\n\tPoly& operator%=(const\
+    \ Poly &y) {return *this = *this%y;}\n\tPoly& operator<<=(const int &n) {return\
+    \ *this = *this<<n;}\n\tPoly& operator>>=(const int &n) {return *this = *this>>n;}\n\
+    \n\tPoly diff() const {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\
+    \tV<D> u(n-1);\n\t\trep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t\
+    }\n\tPoly intg() const {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n)\
+    \ u[i+1] = at(i) / (i+1);\n\t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n,\
+    \ int L) const {\t\t// f^n, ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly\
+    \ x = *this;\n\t\twhile(n){\n\t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\
+    \t\t\t}\n\t\t\tx *= x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn\
+    \ a;\n\t}\n\n\t/*\n\t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0)\
+    \ should be 0\n\n\t\tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n =\
+    \ 100000 : 200 [ms]\n\t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000\
+    \ [ms]\n\t*/\n\tPoly exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}),\
+    \ g({1});\n\t\tfor(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\
+    \tPoly q = (this->diff()).strip(i-1);\n\t\t\tPoly w = (q + g * (f.diff() - f*q))\
+    \ .strip(2*i-1);\n\t\t\tf = (f + f * (*this - w.intg()).strip(2*i)) .strip(2*i);\n\
+    \t\t}\n\t\treturn f.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f))\
+    \ = - (1-f) - (1-f)^2 / 2 - (1-f)^3 / 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log\
+    \ n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140 [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\
+    \t\t1e6 : 1343 [ms]\n\t*/\n\tPoly log(int n) const {\n\t\tassert(at(0) == 1);\n\
+    \t\tauto f = strip(n+1);\n\t\treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t\
+    }\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\
+    \u5270\u4F59\u306A\u3089\u4F55\u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\
+    \u3069\u63A2\u3059\u306E\u304C\u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\
+    \n\t\t+- 2\u901A\u308A\u3060\u3051\u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\
+    \n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t\
+    5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0)\
+    \ == 1);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\
+    \t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1)) / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\
+    \t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1 = (1-f) + (1-f)^2 + ...\n\t\tf *\
+    \ f.inv(n) = 1 + x^n * poly\n\t\tf(0) should be non0\n\t\tO(n log n)\n\t*/\n\t\
+    Poly inv(int n) const {\n\t\tassert(at(0) != 0);\n\t\tPoly f = strip(n+1);\n\t\
+    \tPoly g({at(0).inv()});\n\t\tfor(int i=1; i<=n; i*=2){\t\t//need to strip!!\n\
+    \t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\t\t}\n\t\treturn g.strip(n+1);\n\
+    \t}\t\n\n\tPoly exp_naive(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly res;\n\
+    \t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\tres += fk;\n\t\t\tfk *= *this;\n\t\t\
+    \tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\treturn res;\n\t}\n\tPoly log_naive(int\
+    \ n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\
+    \t\t\tg *= (Poly({1}) - *this);\n\t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\
+    \t\t}\n\t\treturn res;\n\t}\n\n\n\tPoly mul_naive(const Poly &r) const{\n\t\t\
+    int N=size(),M=r.size();\n\t\tvector<D> ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\
+    \t\treturn Poly(ret);\n\t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
     \t}\n\tPoly mul_fft(const Poly &r) const{\n\t\treturn Poly(multiply_fft(v,r.v));\n\
     \t}\n\n\tPoly div_fast_with_inv(const Poly &inv, int B) const {\n\t\treturn (*this\
     \ * inv)>>(B-1);\n\t}\n\tPoly div_fast(const Poly &y) const{\n\t\tif(size()<y.size())\
@@ -369,7 +381,7 @@ data:
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2019-06-15 18:55:20+09:00'
+  timestamp: '2020-12-16 01:48:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/poly.cpp

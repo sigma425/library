@@ -6,12 +6,16 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/Flow/Dinic.cpp\"\n/*\n\tDinic\n\tD\u3068inf\u3092\u66F8\
-    \u304D\u63DB\u3048\u308B\n\t\u521D\u671F\u5316\u306F\u9802\u70B9\u6570\n*/\nstruct\
-    \ MaxFlow{\n\tusing D = int;\n\tconst D inf = 1e9;\n\tstruct edge{\n\t\tint to;\n\
-    \t\tD cap;\n\t\tint rev;\n\t\tedge(int to,D cap,int rev):to(to),cap(cap),rev(rev){}\n\
-    \t};\n\n\tint V;\n\tvector<vector<edge>> G;\n\tvector<int> level,iter;\n\n\tMaxFlow(int\
+    links:
+    - https://codeforces.com/contest/1427/submission/95526148
+  bundledCode: "#line 1 \"graph/Flow/Dinic.cpp\"\n/*\n\t\u3082\u3046ACL\u4F7F\u3044\
+    \u307E\u3057\u3087\u3046\n\thttps://codeforces.com/contest/1427/submission/95526148\
+    \ \u3053\u308C\u306F\u6D41\u3057\u623B\u3057\u3068\u304B\u3082\u3084\u3063\u3066\
+    \u308B\u4F8B\n*/\n\n/*\n\tDinic\n\tD\u3068inf\u3092\u66F8\u304D\u63DB\u3048\u308B\
+    \n\t\u521D\u671F\u5316\u306F\u9802\u70B9\u6570\n*/\nstruct MaxFlow{\n\tusing D\
+    \ = int;\n\tconst D inf = 1e9;\n\tstruct edge{\n\t\tint to;\n\t\tD cap;\n\t\t\
+    int rev;\n\t\tedge(int to,D cap,int rev):to(to),cap(cap),rev(rev){}\n\t};\n\n\t\
+    int V;\n\tvector<vector<edge>> G;\n\tvector<int> level,iter;\n\n\tMaxFlow(int\
     \ V):V(V){\n\t\tG = vector<vector<edge>>(V);\n\t\tlevel = vector<int>(V);\n\t\t\
     iter = vector<int>(V);\n\t}\n\n\tvoid add_edge(int from, int to, D cap){\n\t\t\
     edge e1(to,cap,(int)G[to].size());\n\t\tedge e2(from,0,(int)G[from].size());\n\
@@ -28,13 +32,16 @@ data:
     \ s,int t){\n\t\tD flow=0;\n\t\twhile(true){\n\t\t\tbfs(s);\n\t\t\tif(level[t]<0)\
     \ return flow;\n\t\t\titer = vector<int>(V,0);\n\t\t\tD f;\n\t\t\twhile( (f=dfs(s,t,inf))>0\
     \ ) flow+=f;\n\t\t}\n\t}\n};\n"
-  code: "/*\n\tDinic\n\tD\u3068inf\u3092\u66F8\u304D\u63DB\u3048\u308B\n\t\u521D\u671F\
-    \u5316\u306F\u9802\u70B9\u6570\n*/\nstruct MaxFlow{\n\tusing D = int;\n\tconst\
-    \ D inf = 1e9;\n\tstruct edge{\n\t\tint to;\n\t\tD cap;\n\t\tint rev;\n\t\tedge(int\
-    \ to,D cap,int rev):to(to),cap(cap),rev(rev){}\n\t};\n\n\tint V;\n\tvector<vector<edge>>\
-    \ G;\n\tvector<int> level,iter;\n\n\tMaxFlow(int V):V(V){\n\t\tG = vector<vector<edge>>(V);\n\
-    \t\tlevel = vector<int>(V);\n\t\titer = vector<int>(V);\n\t}\n\n\tvoid add_edge(int\
-    \ from, int to, D cap){\n\t\tedge e1(to,cap,(int)G[to].size());\n\t\tedge e2(from,0,(int)G[from].size());\n\
+  code: "/*\n\t\u3082\u3046ACL\u4F7F\u3044\u307E\u3057\u3087\u3046\n\thttps://codeforces.com/contest/1427/submission/95526148\
+    \ \u3053\u308C\u306F\u6D41\u3057\u623B\u3057\u3068\u304B\u3082\u3084\u3063\u3066\
+    \u308B\u4F8B\n*/\n\n/*\n\tDinic\n\tD\u3068inf\u3092\u66F8\u304D\u63DB\u3048\u308B\
+    \n\t\u521D\u671F\u5316\u306F\u9802\u70B9\u6570\n*/\nstruct MaxFlow{\n\tusing D\
+    \ = int;\n\tconst D inf = 1e9;\n\tstruct edge{\n\t\tint to;\n\t\tD cap;\n\t\t\
+    int rev;\n\t\tedge(int to,D cap,int rev):to(to),cap(cap),rev(rev){}\n\t};\n\n\t\
+    int V;\n\tvector<vector<edge>> G;\n\tvector<int> level,iter;\n\n\tMaxFlow(int\
+    \ V):V(V){\n\t\tG = vector<vector<edge>>(V);\n\t\tlevel = vector<int>(V);\n\t\t\
+    iter = vector<int>(V);\n\t}\n\n\tvoid add_edge(int from, int to, D cap){\n\t\t\
+    edge e1(to,cap,(int)G[to].size());\n\t\tedge e2(from,0,(int)G[from].size());\n\
     \t\tG[from].push_back(e1);\n\t\tG[to].push_back(e2);\n\t}\n\tvoid bfs(int s){\n\
     \t\tlevel = vector<int>(V,-1);\n\n\t\tqueue<int> que;\n\t\tlevel[s]=0;\n\t\tque.push(s);\n\
     \t\twhile(!que.empty()){\n\t\t\tint v=que.front();\n\t\t\tque.pop();\n\t\t\tfor(int\
@@ -52,7 +59,7 @@ data:
   isVerificationFile: false
   path: graph/Flow/Dinic.cpp
   requiredBy: []
-  timestamp: '2018-01-03 22:55:44+09:00'
+  timestamp: '2020-12-16 01:38:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/Flow/Dinic.cpp

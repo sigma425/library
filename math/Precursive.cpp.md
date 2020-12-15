@@ -36,7 +36,11 @@ data:
     \ * deg * ord)\r\n\t\t\t\u898B\u3064\u3051\u3089\u308C\u306A\u304B\u3063\u305F\
     \u3089assert(0),\r\n\t\t\t\u898B\u3064\u304B\u3063\u305F\u3089\u30B3\u30E1\u30F3\
     \u30C8\u4ED8\u304D\u3067\u3044\u308D\u3044\u308D\u6559\u3048\u3066\u304F\u308C\
-    \u308B\r\n\t\t\r\n\t\t- reccurence relation \u304C\u898B\u3064\u304B\u3063\u305F\
+    \u308B\r\n\r\n\t\t\t!! \u306A\u3093\u304Bdeg\u304C\u7121\u99C4\u306B\u3067\u304B\
+    \u3044\u3068\u5909\u306A\u89E3\u3069\u3053\u308D\u304B\u898B\u3064\u3051\u3066\
+    \u304F\u308C\u306A\u304F\u306A\u308B\u3053\u3068\u304C\u3042\u308B\u3063\u307D\
+    \u3044\u306E\u3067\u3001\u3061\u3083\u3093\u30680\u304B\u3089\u9806\u306B\u8A66\
+    \u3059 !!\r\n\t\t\r\n\t\t- reccurence relation \u304C\u898B\u3064\u304B\u3063\u305F\
     \u3089\r\n\t\t\tn\u9805\u76EE\u307E\u3067\u6C42\u3081\u305F\u3044\u306A\u3089\
     \ extended_terms(n,coefs,terms)\r\n\r\n\t\t- degree \u3082 order \u3082\u308F\u304B\
     \u3063\u3066\u308B\u5834\u5408\r\n\t\t\tcoeff\u57CB\u3081\u8FBC\u307F\u3068\u304B\
@@ -164,11 +168,15 @@ data:
     \u3057\u3066\u3044\u304F\r\n\t\t\t\u8A08\u7B97\u91CF O(n^2 * deg * ord)\r\n\t\t\
     \t\u898B\u3064\u3051\u3089\u308C\u306A\u304B\u3063\u305F\u3089assert(0),\r\n\t\
     \t\t\u898B\u3064\u304B\u3063\u305F\u3089\u30B3\u30E1\u30F3\u30C8\u4ED8\u304D\u3067\
-    \u3044\u308D\u3044\u308D\u6559\u3048\u3066\u304F\u308C\u308B\r\n\t\t\r\n\t\t-\
-    \ reccurence relation \u304C\u898B\u3064\u304B\u3063\u305F\u3089\r\n\t\t\tn\u9805\
-    \u76EE\u307E\u3067\u6C42\u3081\u305F\u3044\u306A\u3089 extended_terms(n,coefs,terms)\r\
-    \n\r\n\t\t- degree \u3082 order \u3082\u308F\u304B\u3063\u3066\u308B\u5834\u5408\
-    \r\n\t\t\tcoeff\u57CB\u3081\u8FBC\u307F\u3068\u304B\u304C\u3067\u304D\u306A\u304F\
+    \u3044\u308D\u3044\u308D\u6559\u3048\u3066\u304F\u308C\u308B\r\n\r\n\t\t\t!! \u306A\
+    \u3093\u304Bdeg\u304C\u7121\u99C4\u306B\u3067\u304B\u3044\u3068\u5909\u306A\u89E3\
+    \u3069\u3053\u308D\u304B\u898B\u3064\u3051\u3066\u304F\u308C\u306A\u304F\u306A\
+    \u308B\u3053\u3068\u304C\u3042\u308B\u3063\u307D\u3044\u306E\u3067\u3001\u3061\
+    \u3083\u3093\u30680\u304B\u3089\u9806\u306B\u8A66\u3059 !!\r\n\t\t\r\n\t\t- reccurence\
+    \ relation \u304C\u898B\u3064\u304B\u3063\u305F\u3089\r\n\t\t\tn\u9805\u76EE\u307E\
+    \u3067\u6C42\u3081\u305F\u3044\u306A\u3089 extended_terms(n,coefs,terms)\r\n\r\
+    \n\t\t- degree \u3082 order \u3082\u308F\u304B\u3063\u3066\u308B\u5834\u5408\r\
+    \n\t\t\tcoeff\u57CB\u3081\u8FBC\u307F\u3068\u304B\u304C\u3067\u304D\u306A\u304F\
     \u3066\u3057\u304B\u3082\u9045\u3044\u5834\u5408\r\n\t\t\tV<mint> get_extended_sequence(int\
     \ n, const vector<mint>& terms, int degree, int order) \u3067\u547C\u3079\u3070\
     \u6700\u9069\r\n\r\n\t\r\n\tverified at\r\n\t\tdwacon 2019 final E\r\n*/\r\n\r\
@@ -268,7 +276,7 @@ data:
   isVerificationFile: false
   path: math/Precursive.cpp
   requiredBy: []
-  timestamp: '2019-11-14 14:25:15+09:00'
+  timestamp: '2020-12-16 01:41:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/Precursive.cpp

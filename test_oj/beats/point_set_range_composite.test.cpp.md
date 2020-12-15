@@ -32,9 +32,39 @@ data:
     \ n) { return (n == 0) ? 1 : 10 * TEN(n-1); }\n\n#ifdef LOCAL\n#define show(x)\
     \ cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\n#else\n\
     #define show(x) true\n#endif\n\n#line 1 \"data structure/segtree/segbeats.cpp\"\
-    \n/*\r\n\tsimple,lazy,beats \u3069\u308C\u3082\u3053\u308C\u3067\u66F8\u3051\u308B\
-    \r\n\r\n\t\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF:\r\n\t\tsegbeats(n)\r\n\t\
-    \tsegbeats(vec) \u578B\u304C\u9055\u3063\u3066\u3082\u30AD\u30E3\u30B9\u30C8\u3067\
+    \n/*\r\n\t\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\u96F0\u56F2\
+    \u6C17\u3067\u95A2\u6570\u3092\u66F8\u304F\u306A\uFF01\uFF01\uFF01\uFF01\uFF01\
+    \uFF01\uFF01\uFF01\uFF01\uFF01\r\n\tlazy\u306A\u3089\u95A2\u6570\u306E\u5408\u6210\
+    \u3092\u3059\u308B\u3053\u3068\u306F\u7D76\u5BFE\u5FC5\u8981 \u3061\u3083\u3093\
+    \u3068 \"\u30E2\u30CE\u30A4\u30C9\u3068\u4F5C\u7528\u3092\u5206\u3051\u3066\"\
+    \ \"\u5404\u6F14\u7B97\u3092\u8003\u3048\u308B\" \u3053\u3068\u306F\u5FC5\u305A\
+    \u5FC5\u8981\r\n\t\u3053\u306E\u30E9\u30A4\u30D6\u30E9\u30EA\u3060\u3068\u76F4\
+    \u63A5\u305D\u3046\u3044\u3046\u578B\u3092\u6301\u3063\u3066\u308B\u308F\u3051\
+    \u3058\u3083\u306A\u3044\u304B\u3089\u306A\u3093\u304B\u3044\u3044\u611F\u3058\
+    \u306B\u304B\u3051\u3066\u3057\u307E\u3046\u3053\u3068\u304C\u3042\u308B\u3051\
+    \u3069\u3001\u305D\u308C\u306F\u9593\u9055\u3063\u3066\u308B\u304B\u3089\u3061\
+    \u3083\u3093\u3068\u9589\u3058\u305F\u6F14\u7B97\u3092\u304B\u3051\r\n\t\u7279\
+    \u306B\u3001\u8907\u96D1\u306A\u5834\u5408\u306F\u3082\u3046\u578B\u3092\u4F5C\
+    \u3063\u3066\u3057\u307E\u3046(segtree_lazy) \u65B9\u304C\u3044\u3044\u30B1\u30FC\
+    \u30B9\u304C\u591A\u3005\u3042\u308B\r\n\r\n\t\u95A2\u6570\u9069\u7528\u306E\u9589\
+    \u3058\u305F\u5F62\u3092\u4F5C\u3089\u306A\u304D\u3083\u3044\u3051\u306A\u3044\
+    \u306E\u306F\u5927\u524D\u63D0\u3067\u3001\u305D\u306E\u4E0A\u3067\u3044\u3061\
+    \u3044\u3061\uFF08\u547C\u3073\u51FA\u3057\u5074\u304C\uFF09\u9069\u7528\u3057\
+    \u305F\u3044\u95A2\u6570\u3092\u305D\u306E\u578B\u3067\u66F8\u304F\u306E\u304C\
+    \u9762\u5012\u3060\u304B\u3089\u3053\u3046\u3044\u3046\u3075\u3046\u306B\u306A\
+    \u3063\u3066\u308B\u306E\u3067\u3042\u3063\u3066\r\n\t\u5408\u6210\u3092\u8003\
+    \u3048\u305A\u306B(lz\u3092\u306A\u3093\u304B\u9069\u7528\u3057\u305F\u7D50\u679C\
+    \u306E\u30E2\u30CE\u30A4\u30C9\u306E\u4E00\u90E8\u307F\u305F\u3044\u306B)\u6271\
+    \u3063\u3066\u3044\u3044\u308F\u3051\u3067\u306F\u306A\u3044\r\n\r\n\t\u3061\u306A\
+    \u307F\u306B\u70B9\u66F4\u65B0\u306E\u95A2\u6570\u306F\u2191\u306E\u9589\u3058\
+    \u305F\u5F62\u306B\u306F\u542B\u3081\u306A\u304F\u3066\u826F\u3044\u3001\u305D\
+    \u308C\u306Flz\u3067\u306F\u306A\u304F\u5024\u3092\u76F4\u63A5\u3044\u3058\u308C\
+    \u3070\u3044\u3044\u304B\u3089\u3002\u7279\u306B ch(i,i+1,&D::hoge) \u4F7F\u3063\
+    \u3066\u3044\u3044\r\n\r\n\t\u982D\u3092\u58CA\u3057\u3066\u3057\u307E\u3063\u305F\
+    \u4F8B: https://atcoder.jp/contests/acl2/submissions/16994422\r\n*/\r\n\r\n/*\r\
+    \n\tsimple,lazy,beats \u3069\u308C\u3082\u3053\u308C\u3067\u66F8\u3051\u308B\r\
+    \n\r\n\t\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF:\r\n\t\tsegbeats(n)\r\n\t\t\
+    segbeats(vec) \u578B\u304C\u9055\u3063\u3066\u3082\u30AD\u30E3\u30B9\u30C8\u3067\
     \u304D\u308C\u3070OK\r\n\r\n\tchange \u30AF\u30A8\u30EA:\r\n\t\tseg.ch(l,r,&D::set,x)\r\
     \n\r\n\tget \u30AF\u30A8\u30EA:\r\n\t\tseg.get(l,r,&D::getsum,[](ll x,ll y){return\
     \ x+y;},0LL)\r\n\t\t\u578B\u3057\u3063\u304B\u308A\u304B\u304B\u306A\u3044\u3068\
@@ -86,8 +116,8 @@ data:
     \ l,int r,int i,F f,Args&... args){\r\n\t\tif(b<=l || r<=a){\r\n\t\t\treturn {b,N()};\r\
     \n\t\t}\r\n\t\tif(a<=l && r<=b){\r\n\t\t\tif(!(x[i].*f)(args...)) return {b,N()};\r\
     \n\t\t\tif(r-l == 1) return {l,x[i]};\r\n\t\t}\r\n\t\tpush(i);\r\n\t\tint m =\
-    \ (l+r)/2;\r\n\t\tauto x = findl_(a,b,l,m,i*2,f,args...);\r\n\t\tif(x.fs < b)\
-    \ return x;\r\n\t\treturn findl_(a,b,m,r,i*2+1,f,args...);\r\n\t}\r\n\r\n\t//\
+    \ (l+r)/2;\r\n\t\tauto res = findl_(a,b,l,m,i*2,f,args...);\r\n\t\tif(res.fs <\
+    \ b) return res;\r\n\t\treturn findl_(a,b,m,r,i*2+1,f,args...);\r\n\t}\r\n\t//\
     \ template<class F,class... Args>\r\n\t// pair<int,N> findr_(int a,int b,int l,int\
     \ r,int i,F f,Args&... args){\r\n\t// \tif(b<=l || r<=a){\r\n\t// \t\treturn {a-1,N()};\r\
     \n\t// \t}\r\n\t// \tif(a<=l && r<=b){\r\n\t// \t\tif(!(x[i].*f)(args...)) return\
@@ -205,7 +235,7 @@ data:
   isVerificationFile: true
   path: test_oj/beats/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2020-05-09 23:25:43+09:00'
+  timestamp: '2020-12-16 01:37:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/beats/point_set_range_composite.test.cpp

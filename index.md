@@ -255,6 +255,9 @@ data:
     - icon: ':warning:'
       path: data structure/unionfind/unionfind_dif.cpp
       title: data structure/unionfind/unionfind_dif.cpp
+    - icon: ':warning:'
+      path: data structure/unionfind/unionfind_rollback.cpp
+      title: data structure/unionfind/unionfind_rollback.cpp
   - name: geom
     pages:
     - icon: ':warning:'
@@ -301,6 +304,9 @@ data:
     - icon: ':warning:'
       path: graph/cycle.cpp
       title: graph/cycle.cpp
+    - icon: ':warning:'
+      path: graph/diameter_path.cpp
+      title: graph/diameter_path.cpp
     - icon: ':warning:'
       path: graph/dijkstra.cpp
       title: graph/dijkstra.cpp
@@ -378,9 +384,6 @@ data:
       path: graph/maximal_ind/com.cpp
       title: graph/maximal_ind/com.cpp
     - icon: ':warning:'
-      path: graph/maximal_ind/dia.cpp
-      title: graph/maximal_ind/dia.cpp
-    - icon: ':warning:'
       path: graph/maximal_ind/maximal_independent.cpp
       title: graph/maximal_ind/maximal_independent.cpp
   - name: graph/treeDP
@@ -415,14 +418,14 @@ data:
       path: math/FloorKthRoot.cpp
       title: math/FloorKthRoot.cpp
     - icon: ':warning:'
+      path: math/Frac.cpp
+      title: math/Frac.cpp
+    - icon: ':warning:'
       path: math/LPsolver.cpp
       title: math/LPsolver.cpp
     - icon: ':warning:'
       path: math/Precursive.cpp
       title: math/Precursive.cpp
-    - icon: ':warning:'
-      path: math/Q.cpp
-      title: math/Q.cpp
     - icon: ':warning:'
       path: math/SumFloor.cpp
       title: math/SumFloor.cpp
