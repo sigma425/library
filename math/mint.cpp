@@ -29,21 +29,6 @@ struct ModInt{
 	ModInt& operator/=(const ModInt& b){ return *this=*this/b;}
 	ModInt& operator++(int){ return *this=*this+1;}
 	ModInt& operator--(int){ return *this=*this-1;}
-	ll extgcd(ll a,ll b,ll &x,ll &y) const{
-		ll p[]={a,1,0},q[]={b,0,1};
-		while(*q){
-			ll t=*p/ *q;
-			rep(i,3) swap(p[i]-=t*q[i],q[i]);
-		}
-		if(p[0]<0) rep(i,3) p[i]=-p[i];
-		x=p[1],y=p[2];
-		return p[0];
-	}
-	ModInt inv() const {
-		ll x,y;
-		extgcd(v,mod,x,y);
-		return make(normS(x+mod));
-	}
 	ModInt pow(ll p) const {
 		if(p<0) return inv().pow(-p);
 		ModInt a = 1;
@@ -55,8 +40,28 @@ struct ModInt{
 		}
 		return a;
 	}
+	ModInt inv() const {		// should be prime
+		return pow(mod-2);
+	}
+	// ll extgcd(ll a,ll b,ll &x,ll &y) const{
+	// 	ll p[]={a,1,0},q[]={b,0,1};
+	// 	while(*q){
+	// 		ll t=*p/ *q;
+	// 		rep(i,3) swap(p[i]-=t*q[i],q[i]);
+	// 	}
+	// 	if(p[0]<0) rep(i,3) p[i]=-p[i];
+	// 	x=p[1],y=p[2];
+	// 	return p[0];
+	// }
+	// ModInt inv() const {
+	// 	ll x,y;
+	// 	extgcd(v,mod,x,y);
+	// 	return make(normS(x+mod));
+	// }
+
 	bool operator==(const ModInt& b) const { return v==b.v;}
 	bool operator!=(const ModInt& b) const { return v!=b.v;}
+	bool operator<(const ModInt& b) const { return v<b.v;}
 	friend istream& operator>>(istream &o,ModInt& x){
 		ll tmp;
 		o>>tmp;
