@@ -21,6 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/beats/simple_sum.test.cpp
     title: test_oj/beats/simple_sum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -261,8 +262,8 @@ data:
   - test_oj/beats/simple_sum.test.cpp
   - test_oj/beats/point_add_range_sum.test.cpp
   - test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-  - test_oj/beats/point_set_range_composite.test.cpp
   - test_oj/beats/simple_min.test.cpp
+  - test_oj/beats/point_set_range_composite.test.cpp
 documentation_of: data structure/segtree/segbeats.cpp
 layout: document
 redirect_from:

@@ -472,9 +472,6 @@ data:
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
-      path: math/multiPointEval.cpp
-      title: math/multiPointEval.cpp
-    - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
     - icon: ':warning:'

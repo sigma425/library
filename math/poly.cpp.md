@@ -3,47 +3,22 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://codeforces.com/contest/438/problem/E
-    - https://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/
-  bundledCode: "#line 1 \"math/poly.cpp\"\n/*\n\n\u30E1\u30E2\uFF1A constructor (int\
-    \ n) \u3092\u5165\u308C\u308B\u3068 Poly<mint>({2}) \u3068\u304B\u3067\u7834\u58CA\
-    \u3055\u308C\u308B\ninitializer list? \n Poly() {}\n  explicit Poly(int n) : vector<Mint>(n)\
-    \ {}\n  Poly(const vector<Mint> &vec) : vector<Mint>(vec) {}\n  Poly(std::initializer_list<Mint>\
-    \ il) : vector<Mint>(il) {}\n\n\u308F\u304B\u3093\u306D\n\u3081\u3082\u304A\u308F\
-    \u308A\n\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\n\n\u591A\u9805\u5F0F.\n\
-    shrink()\u3067leading-0\u3092\u53D6\u308A\u9664\u304D,\u5E38\u306B\u3053\u306E\
-    \u610F\u5473\u3067\u306E\u6B63\u898F\u7CFB\u3092\u5024\u3068\u3057\u3066\u6301\
-    \u3064.\n\u305D\u306E\u610F\u5473\u3067int\u3068mint\u4EE5\u5916\u306F\u307E\u3042\
-    \u307E\u3042\u307E\u305A\u3044\u304B\u306A\n\u3067\u3082+-\u3068\u304B\u7C21\u5358\
-    \u306A\u306E\u306F\u51FA\u6765\u308B(\u3044\u308B\u304B?)\n\n\u5272\u308A\u7B97\
-    \u3082 O(NlogN) \u3060\u304CN\u304C\u5C0F\u3055\u3044\u6642\u9045\u3044\u306E\u3067\
-    \u5206\u5272\u7D71\u6CBB\u307F\u305F\u3044\u306A\u3053\u3068\u3092\u3059\u308B\
-    \u3068\u304D\u306F\u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N) : N\u6B21\u307E\
-    \u3067\u3092\u8FD4\u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified: \u3042\u308A\
-    \u3059\u304E\u3066\u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E\
-    \ (sqrt,inv)\n\thttps://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/\
-    \ (exp,log)\n\n\u8A08\u6E2C:\n\t-O2\n\n\tfft2 *\n\t- N = 100000\n\t141 [ms]\n\t\
-    - N = 200000\n\t279 [ms]\n\t- N = 500000\n\t595 [ms]\n\t- N = 1000000\n\t1186\
-    \ [ms]\n\n\tfft2 N % N/4 \u304F\u3089\u3044 \u5272\u308B\u5074\u306E\u6B21\u6570\
-    \u306F\u3053\u308C\u304F\u3089\u3044\u304C\u4E00\u756A\u9045\u3044\u6C17\u304C\
-    \u3059\u308B\n\t- N = 10000\n\t44 [ms]\n\t- N = 100000\n\t643 [ms]\n\t- N = 200000\n\
-    \t1340 [ms]\n\t- N = 500000\n\t3033 [ms]\n\t- N = 1000000\n\t5875 [ms]\n\n\tntt\
-    \ * \n\t- N = 1000000\n\t231 [ms]\n\n\tntt N % N/4\n\t- N = 200000\n\t147 [ms]\n\
-    \t- N = 500000\n\t310 [ms]\n\t- N = 1000000\n\t646 [ms]\n\n*/\n\n#include <bits/stdc++.h>\n\
-    #define rep(i,n) for(int i=0;i<(int)(n);i++)\n#define rep1(i,n) for(int i=1;i<=(int)(n);i++)\n\
-    #define all(c) c.begin(),c.end()\n#define pb push_back\n#define fs first\n#define\
-    \ sc second\n#define show(x) cout << #x << \" = \" << (x) << endl\n#define chmin(x,y)\
-    \ x=min(x,y)\n#define chmax(x,y) x=max(x,y)\nusing namespace std;\ntemplate<class\
-    \ S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){\n\treturn o<<\"\
-    (\"<<p.fs<<\",\"<<p.sc<<\")\";\n}\ntemplate<class T> ostream& operator<<(ostream&\
-    \ o,const vector<T> &vc){\n\to<<\"{\";\n\tfor(const T& v:vc) o<<v<<\",\";\n\t\
-    o<<\"}\";\n\treturn o;\n}\nusing ll = long long;\ntemplate<class T> using V =\
-    \ vector<T>;\ntemplate<class T> using VV = vector<vector<T>>;\n\ntemplate<unsigned\
-    \ int mod_>\nstruct ModInt{\n\tusing uint = unsigned int;\n\tusing ll = long long;\n\
+    - https://judge.yosupo.jp/submission/3240
+    - https://judge.yosupo.jp/submission/36732
+    - https://judge.yosupo.jp/submission/44937
+    - https://judge.yosupo.jp/submission/44938
+    - https://judge.yosupo.jp/submission/44962
+    - https://judge.yosupo.jp/submission/44992
+    - https://judge.yosupo.jp/submission/44997
+    - https://judge.yosupo.jp/submission/45006
+  bundledCode: "#line 1 \"math/poly.cpp\"\n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\
+    \n\tpoly \u57FA\u672C, MultipointEval, Interpolate\n*/\ntemplate<unsigned int\
+    \ mod_>\nstruct ModInt{\n\tusing uint = unsigned int;\n\tusing ll = long long;\n\
     \tusing ull = unsigned long long;\n\n\tconstexpr static uint mod = mod_;\n\n\t\
     uint v;\n\tModInt():v(0){}\n\tModInt(ll _v):v(normS(_v%mod+mod)){}\n\texplicit\
     \ operator bool() const {return v!=0;}\n\tstatic uint normS(const uint &x){return\
@@ -57,331 +32,438 @@ data:
     \ ModInt& b){ return *this=*this-b;}\n\tModInt& operator*=(const ModInt& b){ return\
     \ *this=*this*b;}\n\tModInt& operator/=(const ModInt& b){ return *this=*this/b;}\n\
     \tModInt& operator++(int){ return *this=*this+1;}\n\tModInt& operator--(int){\
-    \ return *this=*this-1;}\n\tll extgcd(ll a,ll b,ll &x,ll &y) const{\n\t\tll p[]={a,1,0},q[]={b,0,1};\n\
-    \t\twhile(*q){\n\t\t\tll t=*p/ *q;\n\t\t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t\
-    \t}\n\t\tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t\tx=p[1],y=p[2];\n\t\treturn p[0];\n\
-    \t}\n\tModInt inv() const {\n\t\tll x,y;\n\t\textgcd(v,mod,x,y);\n\t\treturn make(normS(x+mod));\n\
-    \t}\n\tModInt pow(ll p) const {\n\t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\t\
-    while(p){\n\t\t\tif(p&1) a *= x;\n\t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn\
-    \ a;\n\t}\n\tbool operator==(const ModInt& b) const { return v==b.v;}\n\tbool\
-    \ operator!=(const ModInt& b) const { return v!=b.v;}\n\tfriend istream& operator>>(istream\
+    \ return *this=*this-1;}\n\tModInt pow(ll p) const {\n\t\tif(p<0) return inv().pow(-p);\n\
+    \t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\twhile(p){\n\t\t\tif(p&1) a *= x;\n\
+    \t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn a;\n\t}\n\tModInt inv() const\
+    \ {\t\t// should be prime\n\t\treturn pow(mod-2);\n\t}\n\t// ll extgcd(ll a,ll\
+    \ b,ll &x,ll &y) const{\n\t// \tll p[]={a,1,0},q[]={b,0,1};\n\t// \twhile(*q){\n\
+    \t// \t\tll t=*p/ *q;\n\t// \t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t// \t}\n\t\
+    // \tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t// \tx=p[1],y=p[2];\n\t// \treturn p[0];\n\
+    \t// }\n\t// ModInt inv() const {\n\t// \tll x,y;\n\t// \textgcd(v,mod,x,y);\n\
+    \t// \treturn make(normS(x+mod));\n\t// }\n\n\tbool operator==(const ModInt& b)\
+    \ const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return v!=b.v;}\n\
+    \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    };\nusing mint = ModInt<998244353>;\n\nint bsr(int x) { return 31 - __builtin_clz(x);\
-    \ }\nvoid ntt(bool type, V<mint>& c) {\n\tconst mint G = 3;\t//primitive root\n\
-    \n\tint N = int(c.size());\n\tint s = bsr(N);\n\tassert(1 << s == N);\n\n\tV<mint>\
-    \ a = c, b(N);\n\trep1(i,s){\n\t\tint W = 1 << (s - i);\n\t\tmint base = G.pow((mint::mod\
-    \ - 1)>>i);\n\t\tif(type) base = base.inv();\n\t\tmint now = 1;\n\t\tfor(int y\
-    \ = 0; y < N / 2; y += W) {\n\t\t\tfor (int x = 0; x < W; x++) {\n\t\t\t\tauto\
-    \ l = a[y << 1 | x];\n\t\t\t\tauto r = now * a[y << 1 | x | W];\n\t\t\t\tb[y |\
-    \ x] = l + r;\n\t\t\t\tb[y | x | N >> 1] = l - r;\n\t\t\t}\n\t\t\tnow *= base;\n\
-    \t\t}\n\t\tswap(a, b);\n\t}\n\tc = a;\n}\n\nV<mint> multiply_ntt(const V<mint>&\
-    \ a, const V<mint>& b) {\n\tint A = int(a.size()), B = int(b.size());\n\tif (!A\
-    \ || !B) return {};\n\tint lg = 0;\n\twhile ((1 << lg) < A + B - 1) lg++;\n\t\
-    int N = 1 << lg;\n\tV<mint> ac(N), bc(N);\n\tfor (int i = 0; i < A; i++) ac[i]\
-    \ = a[i];\n\tfor (int i = 0; i < B; i++) bc[i] = b[i];\n\tntt(false, ac);\n\t\
-    ntt(false, bc);\n\tfor (int i = 0; i < N; i++) {\n\t\tac[i] *= bc[i];\n\t}\n\t\
-    ntt(true, ac);\n\tV<mint> c(A + B - 1);\n\tmint iN = mint(N).inv();\n\tfor (int\
-    \ i = 0; i < A + B - 1; i++) {\n\t\tc[i] = ac[i] * iN;\n\t}\n\treturn c;\n}\n\n\
-    template<class D>\nstruct Poly{\n\tvector<D> v;\n\tint size() const{ return v.size();}\t\
-    //deg+1\n\tPoly(){}\n\tPoly(vector<D> _v) : v(_v){shrink();}\n\n\tPoly& shrink(){\n\
-    \t\twhile(!v.empty()&&v.back()==D(0)) v.pop_back();\n\t\treturn *this;\n\t}\n\t\
-    D& operator[](int i){return v[i];}\n\tconst D& operator[](int i) const {return\
-    \ v[i];}\n\tD at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid\
-    \ set(int i,const D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\t\
-    while(i>=size()) v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\
-    \t}\n\tD operator()(D x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a\
-    \ = 1;\n\t\trep(i,n){\n\t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\n\tPoly operator+(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
-    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly operator-(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
-    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly operator-() const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i] = -at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator*(const\
-    \ Poly &r) const{\n\t\tif(size()==0||r.size()==0) return Poly();\n\t\treturn mul_ntt(r);\t\
-    \t\t\t\t\t\t\t\t// FFT or NTT ?\n\t}\n\tPoly operator*(const D &r) const{\n\t\t\
-    int N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn\
-    \ Poly(ret);\n\t}\n\tPoly operator/(const D &r) const{\n\t\treturn *this * r.inv();\n\
-    \t}\n\tPoly operator/(const Poly &y) const{\n\t\treturn div_fast(y);\n\t}\n\t\
-    Poly operator%(const Poly &y) const{\n\t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\
-    \t}\n\tPoly operator<<(const int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\t\
-    int N=size();\n\t\tvector<D> ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn\
-    \ Poly(ret);\n\t}\n\tPoly operator>>(const int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\
-    \t\tint N=size();\n\t\tif(N<=n) return Poly();\n\t\tvector<D> ret(N-n);\n\t\t\
-    rep(i,N-n) ret[i]=v[i+n];\n\t\treturn Poly(ret);\n\t}\n\tbool operator==(const\
-    \ Poly &y) const{\n\t\treturn v==y.v;\n\t}\n\tbool operator!=(const Poly &y) const{\n\
-    \t\treturn v!=y.v;\n\t}\n\n\tPoly& operator+=(const Poly &r) {return *this = *this+r;}\n\
-    \tPoly& operator-=(const Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const\
-    \ Poly &r) {return *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this\
-    \ = *this*r;}\n\tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\t\
-    Poly& operator/=(const D &r) {return *this = *this/r;}\n\tPoly& operator%=(const\
-    \ Poly &y) {return *this = *this%y;}\n\tPoly& operator<<=(const int &n) {return\
-    \ *this = *this<<n;}\n\tPoly& operator>>=(const int &n) {return *this = *this>>n;}\n\
-    \n\tPoly diff() const {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\
-    \tV<D> u(n-1);\n\t\trep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t\
-    }\n\tPoly intg() const {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n)\
-    \ u[i+1] = at(i) / (i+1);\n\t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n,\
-    \ int L) const {\t\t// f^n, ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly\
-    \ x = *this;\n\t\twhile(n){\n\t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\
-    \t\t\t}\n\t\t\tx *= x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn\
-    \ a;\n\t}\n\n\t/*\n\t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0)\
-    \ should be 0\n\n\t\tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n =\
-    \ 100000 : 200 [ms]\n\t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000\
-    \ [ms]\n\t*/\n\tPoly exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}),\
-    \ g({1});\n\t\tfor(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\
-    \tPoly q = (this->diff()).strip(i-1);\n\t\t\tPoly w = (q + g * (f.diff() - f*q))\
-    \ .strip(2*i-1);\n\t\t\tf = (f + f * (*this - w.intg()).strip(2*i)) .strip(2*i);\n\
-    \t\t}\n\t\treturn f.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f))\
-    \ = - (1-f) - (1-f)^2 / 2 - (1-f)^3 / 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log\
-    \ n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140 [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\
-    \t\t1e6 : 1343 [ms]\n\t*/\n\tPoly log(int n) const {\n\t\tassert(at(0) == 1);\n\
-    \t\tauto f = strip(n+1);\n\t\treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t\
-    }\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\
-    \u5270\u4F59\u306A\u3089\u4F55\u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\
-    \u3069\u63A2\u3059\u306E\u304C\u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\
-    \n\t\t+- 2\u901A\u308A\u3060\u3051\u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\
-    \n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t\
-    5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0)\
-    \ == 1);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\
-    \t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1)) / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\
-    \t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1 = (1-f) + (1-f)^2 + ...\n\t\tf *\
-    \ f.inv(n) = 1 + x^n * poly\n\t\tf(0) should be non0\n\t\tO(n log n)\n\t*/\n\t\
-    Poly inv(int n) const {\n\t\tassert(at(0) != 0);\n\t\tPoly f = strip(n+1);\n\t\
-    \tPoly g({at(0).inv()});\n\t\tfor(int i=1; i<=n; i*=2){\t\t//need to strip!!\n\
-    \t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\t\t}\n\t\treturn g.strip(n+1);\n\
-    \t}\t\n\n\tPoly exp_naive(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly res;\n\
-    \t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\tres += fk;\n\t\t\tfk *= *this;\n\t\t\
-    \tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\treturn res;\n\t}\n\tPoly log_naive(int\
-    \ n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\
-    \t\t\tg *= (Poly({1}) - *this);\n\t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\n\n\tPoly mul_naive(const Poly &r) const{\n\t\t\
-    int N=size(),M=r.size();\n\t\tvector<D> ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\
-    \t\treturn Poly(ret);\n\t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
-    \t}\n\tPoly mul_fft(const Poly &r) const{\n\t\treturn Poly(multiply_fft(v,r.v));\n\
-    \t}\n\n\tPoly div_fast_with_inv(const Poly &inv, int B) const {\n\t\treturn (*this\
-    \ * inv)>>(B-1);\n\t}\n\tPoly div_fast(const Poly &y) const{\n\t\tif(size()<y.size())\
-    \ return Poly();\n\t\tint n = size();\n\t\treturn div_fast_with_inv(y.inv_div(n-1),n);\n\
-    \t}\n\tPoly rem_naive(const Poly &y) const{\n\t\tPoly x = *this;\n\t\twhile(y.size()<=x.size()){\n\
-    \t\t\tint N=x.size(),M=y.size();\n\t\t\tD coef = x.v[N-1]/y.v[M-1];\n\t\t\tx -=\
-    \ (y<<(N-M))*coef;\n\t\t}\n\t\treturn x;\n\t}\n\tPoly rem_fast(const Poly &y)\
-    \ const{\n\t\treturn *this - y * div_fast(y);\n\t}\n\tPoly strip(int n) const\
-    \ {\t//ignore x^n , x^n+1,...\n\t\tvector<D> res = v;\n\t\tres.resize(min(n,size()));\n\
-    \t\treturn Poly(res);\n\t}\n\tPoly rev(int n = -1) const {\t//ignore x^n ~  ->\
-    \  return x^(n-1) * f(1/x)\n\t\tvector<D> res = v;\n\t\tif(n!=-1) res.resize(n);\n\
-    \t\treverse(all(res));\n\t\treturn Poly(res);\n\t}\n\n\t/*\n\t\tf.inv_div(n) =\
-    \ x^n / f\n\t\tf should be non0\n\t\tO((N+n) log n)\n\n\t\tfor division\n\t*/\n\
-    \tPoly inv_div(int n) const {\n\t\tn++;\n\t\tint d = size() - 1;\n\t\tassert(d\
-    \ != -1);\n\t\tif(n < d) return Poly();\n\t\tPoly a = rev();\n\t\tPoly g({at(d).inv()});\n\
-    \t\tfor(int i=1; i+d<=n; i*=2){\t\t//need to strip!!\n\t\t\tg *= (Poly({2})-a.strip(2*i)*g).strip(2*i);\n\
-    \t\t}\n\t\treturn g.rev(n-d);\n\t}\n\n\n\tfriend ostream& operator<<(ostream &o,const\
-    \ Poly& x){\n\t\tif(x.size()==0) return o<<0;\n\t\trep(i,x.size()) if(x.v[i]!=D(0)){\n\
-    \t\t\to<<x.v[i]<<\"x^\"<<i;\n\t\t\tif(i!=x.size()-1) o<<\" + \";\n\t\t}\n\t\t\
-    return o;\n\t}\n};\n\n\n/*\n\t\u2193 test\n*/\n\ntemplate<class T>\nT rnd(T l,T\
-    \ r){\t//[l,r)\n\tusing D = uniform_int_distribution<T>;\n\tstatic random_device\
-    \ rd;\n\tstatic mt19937 gen(rd());\n\treturn D(l,r-1)(gen);\n}\ntemplate<class\
-    \ T>\nT rnd(T n){\t//[0,n)\n\treturn rnd(0,n);\n}\nstruct Timer{\n\tclock_t st;\n\
-    \tvoid start(){\n\t\tst = clock();\n\t}\n\tint ms(){\n\t\treturn (clock()-st)*1000\
-    \ / CLOCKS_PER_SEC;\n\t}\n}timer;\n\n\nvoid unittest(){\n\tvector<int> Ns = {2,10,100,1000,10000,100000,200000,500000,1000000};\n\
-    \tfor(int N: Ns){\n\t\tPoly<mint> f,g;\n\t\trep(i,N) f.set(i,rnd<int>(mint::mod));\n\
-    \t\trep(i,N) g.set(i,rnd<int>(mint::mod));\n\t\ttimer.start();\n\t\tauto h = f*g;\n\
-    \t\tcerr << \"- N = \" << N << endl;\n\t\tcerr << \"  \" << timer.ms() << \" [ms]\"\
-    \ << endl;\n\t}\n}\nvoid invtest(){\n\twhile(true){\n\t\tint N,n;\n\t\tcin >>\
-    \ N >> n;\n\t\tPoly<mint> f;\n\t\tf.set(0,1);\n\t\trep1(i,N-1) f.set(i,rnd<int>(mint::mod));\n\
-    \t\ttimer.start();\n\t\tauto g = f.sqrt(n);\n\t\tshow((f-g*g).strip(n+1));\n\t\
-    \tauto h = f.inv(n);\n\t\tshow((f*h).strip(n+1));\n\t\tcerr << \"  \" << timer.ms()\
-    \ << \" [ms]\" << endl;\n\t}\n}\nvoid Catalan(){\n\tint N;\n\tcin >> N;\n\tauto\
-    \ f = ((Poly<mint>({1}) - Poly<mint>({1,-4}).sqrt(N)) / Poly<mint>({0,2})) . strip(N+1);\n\
-    \tshow(f);\n}\n\nint main(){\n//\tunittest();\n//\tinvtest();\n\tCatalan();\n\
-    }\n"
-  code: "/*\n\n\u30E1\u30E2\uFF1A constructor (int n) \u3092\u5165\u308C\u308B\u3068\
-    \ Poly<mint>({2}) \u3068\u304B\u3067\u7834\u58CA\u3055\u308C\u308B\ninitializer\
-    \ list? \n Poly() {}\n  explicit Poly(int n) : vector<Mint>(n) {}\n  Poly(const\
-    \ vector<Mint> &vec) : vector<Mint>(vec) {}\n  Poly(std::initializer_list<Mint>\
-    \ il) : vector<Mint>(il) {}\n\n\u308F\u304B\u3093\u306D\n\u3081\u3082\u304A\u308F\
-    \u308A\n\n\u4F9D\u5B58\u95A2\u4FC2 : mint,fft(ntt)\n\n\n\u591A\u9805\u5F0F.\n\
-    shrink()\u3067leading-0\u3092\u53D6\u308A\u9664\u304D,\u5E38\u306B\u3053\u306E\
-    \u610F\u5473\u3067\u306E\u6B63\u898F\u7CFB\u3092\u5024\u3068\u3057\u3066\u6301\
-    \u3064.\n\u305D\u306E\u610F\u5473\u3067int\u3068mint\u4EE5\u5916\u306F\u307E\u3042\
-    \u307E\u3042\u307E\u305A\u3044\u304B\u306A\n\u3067\u3082+-\u3068\u304B\u7C21\u5358\
-    \u306A\u306E\u306F\u51FA\u6765\u308B(\u3044\u308B\u304B?)\n\n\u5272\u308A\u7B97\
-    \u3082 O(NlogN) \u3060\u304CN\u304C\u5C0F\u3055\u3044\u6642\u9045\u3044\u306E\u3067\
-    \u5206\u5272\u7D71\u6CBB\u307F\u305F\u3044\u306A\u3053\u3068\u3092\u3059\u308B\
-    \u3068\u304D\u306F\u6CE8\u610F\n\ninv(N),exp(N),log(N),sqrt(N) : N\u6B21\u307E\
-    \u3067\u3092\u8FD4\u3059\ndiff / intg : \u5FAE\u7A4D\n\nverified: \u3042\u308A\
-    \u3059\u304E\u3066\u5FD8\u308C\u305F\n\thttps://codeforces.com/contest/438/problem/E\
-    \ (sqrt,inv)\n\thttps://official.contest.yandex.com/ptz-winter-2019/contest/11818/problems/G1/\
-    \ (exp,log)\n\n\u8A08\u6E2C:\n\t-O2\n\n\tfft2 *\n\t- N = 100000\n\t141 [ms]\n\t\
-    - N = 200000\n\t279 [ms]\n\t- N = 500000\n\t595 [ms]\n\t- N = 1000000\n\t1186\
-    \ [ms]\n\n\tfft2 N % N/4 \u304F\u3089\u3044 \u5272\u308B\u5074\u306E\u6B21\u6570\
-    \u306F\u3053\u308C\u304F\u3089\u3044\u304C\u4E00\u756A\u9045\u3044\u6C17\u304C\
-    \u3059\u308B\n\t- N = 10000\n\t44 [ms]\n\t- N = 100000\n\t643 [ms]\n\t- N = 200000\n\
-    \t1340 [ms]\n\t- N = 500000\n\t3033 [ms]\n\t- N = 1000000\n\t5875 [ms]\n\n\tntt\
-    \ * \n\t- N = 1000000\n\t231 [ms]\n\n\tntt N % N/4\n\t- N = 200000\n\t147 [ms]\n\
-    \t- N = 500000\n\t310 [ms]\n\t- N = 1000000\n\t646 [ms]\n\n*/\n\n#include <bits/stdc++.h>\n\
-    #define rep(i,n) for(int i=0;i<(int)(n);i++)\n#define rep1(i,n) for(int i=1;i<=(int)(n);i++)\n\
-    #define all(c) c.begin(),c.end()\n#define pb push_back\n#define fs first\n#define\
-    \ sc second\n#define show(x) cout << #x << \" = \" << (x) << endl\n#define chmin(x,y)\
-    \ x=min(x,y)\n#define chmax(x,y) x=max(x,y)\nusing namespace std;\ntemplate<class\
-    \ S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){\n\treturn o<<\"\
-    (\"<<p.fs<<\",\"<<p.sc<<\")\";\n}\ntemplate<class T> ostream& operator<<(ostream&\
-    \ o,const vector<T> &vc){\n\to<<\"{\";\n\tfor(const T& v:vc) o<<v<<\",\";\n\t\
-    o<<\"}\";\n\treturn o;\n}\nusing ll = long long;\ntemplate<class T> using V =\
-    \ vector<T>;\ntemplate<class T> using VV = vector<vector<T>>;\n\ntemplate<unsigned\
-    \ int mod_>\nstruct ModInt{\n\tusing uint = unsigned int;\n\tusing ll = long long;\n\
-    \tusing ull = unsigned long long;\n\n\tconstexpr static uint mod = mod_;\n\n\t\
-    uint v;\n\tModInt():v(0){}\n\tModInt(ll _v):v(normS(_v%mod+mod)){}\n\texplicit\
-    \ operator bool() const {return v!=0;}\n\tstatic uint normS(const uint &x){return\
-    \ (x<mod)?x:x-mod;}\t\t// [0 , 2*mod-1] -> [0 , mod-1]\n\tstatic ModInt make(const\
-    \ uint &x){ModInt m; m.v=x; return m;}\n\tModInt operator+(const ModInt& b) const\
-    \ { return make(normS(v+b.v));}\n\tModInt operator-(const ModInt& b) const { return\
-    \ make(normS(v+mod-b.v));}\n\tModInt operator-() const { return make(normS(mod-v));\
-    \ }\n\tModInt operator*(const ModInt& b) const { return make((ull)v*b.v%mod);}\n\
-    \tModInt operator/(const ModInt& b) const { return *this*b.inv();}\n\tModInt&\
-    \ operator+=(const ModInt& b){ return *this=*this+b;}\n\tModInt& operator-=(const\
-    \ ModInt& b){ return *this=*this-b;}\n\tModInt& operator*=(const ModInt& b){ return\
-    \ *this=*this*b;}\n\tModInt& operator/=(const ModInt& b){ return *this=*this/b;}\n\
-    \tModInt& operator++(int){ return *this=*this+1;}\n\tModInt& operator--(int){\
-    \ return *this=*this-1;}\n\tll extgcd(ll a,ll b,ll &x,ll &y) const{\n\t\tll p[]={a,1,0},q[]={b,0,1};\n\
-    \t\twhile(*q){\n\t\t\tll t=*p/ *q;\n\t\t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t\
-    \t}\n\t\tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t\tx=p[1],y=p[2];\n\t\treturn p[0];\n\
-    \t}\n\tModInt inv() const {\n\t\tll x,y;\n\t\textgcd(v,mod,x,y);\n\t\treturn make(normS(x+mod));\n\
-    \t}\n\tModInt pow(ll p) const {\n\t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\t\
-    while(p){\n\t\t\tif(p&1) a *= x;\n\t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn\
-    \ a;\n\t}\n\tbool operator==(const ModInt& b) const { return v==b.v;}\n\tbool\
-    \ operator!=(const ModInt& b) const { return v!=b.v;}\n\tfriend istream& operator>>(istream\
+    };\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint>\
+    \ fact,ifact,invs;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\t\
+    return fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\t//[0,N]\n\t\
+    N++;\n\tfact.resize(N);\n\tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\
+    \trep1(i,N-1) fact[i] = fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int\
+    \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
+    \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
+    a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
+    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\nvoid fft(V<mint>& a){\n\
+    \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
+    \ mod;\n\tstatic const int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint\
+    \ root = 3;\t\t\t\t// primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\
+    \tint n = si(a);\n\tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t\
+    // n should be power of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\
+    \t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\t\tmagic[i] = w;\n\t\t}\n\t\
+    }\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\t\tuint v = a[i+m].v;\t\t\t\
+    \t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t// < 2M\n\t\t\ta[i].v += v;\t\
+    \t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0;\
+    \ s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\
+    \t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t}\n\t\
+    while(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\ta[i].v +=\
+    \ v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t\
+    \t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t\t\t\t\t\t\t// < M\n\t\t\t\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2 : a[i].v;\t\
+    // < 2M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\t\t\t\t\t// < 3M\n\t\t\t\t\
+    \ta[i].v += v;\t\t\t\t\t\t\t\t\t\t\t// < 3M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t\t}\n\t\t}\n\t}\n\trep(i,n){\n\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2\
+    \ : a[i].v;\t\t// < 2M\n\t\ta[i].v = (a[i].v >= mod) ? a[i].v - mod : a[i].v;\t\
+    \t// < M\n\t}\n\t// finally < mod !!\n}\nvoid invfft(V<mint>& a){\n\tstatic constexpr\
+    \ uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
+    \ int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint root = 3;\t\t\t\t//\
+    \ primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\t\
+    assert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power\
+    \ of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
+    \t\t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint\
+    \ p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
+    \t\t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
+    \t\t\t\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\t// < M\n\t\t\t}\n\t\t\
+    \tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t\tm <<= 1;\n\t}\n\tfor(;m < n>>1;\
+    \ m <<= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s+= m*2){\n\t\t\tfor(int\
+    \ i=s;i<s+(m>>1);i++){\n\t\t\t\tull x = a[i].v + mod2 - a[i+m].v;\t// < 4M\n\t\
+    \t\t\ta[i].v += a[i+m].v;\t\t\t\t\t// < 4M\n\t\t\t\ta[i].v = (a[i].v >= mod2)\
+    \ ? a[i].v - mod2 : a[i].v;\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\
+    // < M\n\t\t\t}\n\t\t\tfor(int i=s+(m>>1); i<s+m; i++){\n\t\t\t\tull x = a[i].v\
+    \ + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t// < 2M\n\t\t\t\ta[i+m].v\
+    \ = (p.v * x) % mod;\t// < M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t}\n\t}\n\tif(m < n){\n\t\trep(i,m){\n\t\t\tuint x = a[i].v + mod2 - a[i+m].v;\t\
+    // < 4M\n\t\t\ta[i].v += a[i+m].v;\t// < 4M\n\t\t\ta[i+m].v = x;\t// < 4M\n\t\t\
+    }\n\t}\n\tconst mint in = mint(n).inv();\n\trep(i,n) a[i] *= in;\t// < M\n\t//\
+    \ finally < mod !!\n}\n\n// A,B = 500000 -> 70ms\n// verify https://judge.yosupo.jp/submission/44937\n\
+    V<mint> multiply(V<mint> a, V<mint> b) {\n\tint A = si(a), B = si(b);\n\tif (!A\
+    \ || !B) return {};\n\tint n = A+B-1;\n\tint s = 1; while(s<n) s*=2;\n\tif(a ==\
+    \ b){\t\t\t// # of fft call : 3 -> 2\n\t\ta.resize(s); fft(a);\n\t\trep(i,s) a[i]\
+    \ *= a[i];\n\t}else{\n\t\ta.resize(s); fft(a);\n\t\tb.resize(s); fft(b);\n\t\t\
+    rep(i,s) a[i] *= b[i];\n\t}\n\tinvfft(a); a.resize(n);\n\treturn a;\n}\n\n/*\n\
+    \t\u4FC2\u6570\u30A2\u30AF\u30BB\u30B9\n\t\tf[i] \u3067\u3044\u3044\u304C\u3001\
+    \ \u914D\u5217\u5916\u53C2\u7167\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\
+    \u306A\u3089 at/set\n\t\n*/\n\ntemplate<class mint>\nstruct Poly: public V<mint>{\n\
+    \ttemplate<class...Args>\n\tPoly(Args...args) : V<mint>(args...){}\n\tPoly(initializer_list<mint>\
+    \ li) : V<mint>(li){}\n\n\tint size() const { return V<mint>::size(); }\n\tmint\
+    \ at(int i) const {\n\t\treturn i<size() ? (*this)[i] : 0;\n\t}\n\tvoid set(int\
+    \ i, mint x){\n\t\tif(i>=size() && !x) return;\n\t\twhile(i>=size()) this->pb(0);\n\
+    \t\t(*this)[i] = x;\n\t\treturn;\n\t}\n\tmint operator()(mint x) const {\t\t//\
+    \ eval\n\t\tmint res = 0;\n\t\tint n = size();\n\t\tmint a = 1;\n\t\trep(i,n){\n\
+    \t\t\tres += a * (*this)[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn res;\n\t}\n\tPoly\
+    \ low(int n) const {\t\t// ignore x^n (take first n), but not empty\n\t\treturn\
+    \ Poly(this->begin(), this->begin()+min(max(n,1),size()));\n\t}\n\tPoly rev()\
+    \ const {\n\t\treturn Poly(this->rbegin(), this->rend());\n\t}\n\tfriend ostream&\
+    \ operator<<(ostream &o,const Poly& f){\n\t\to << \"[\";\n\t\trep(i,f.size()){\n\
+    \t\t\to << f[i];\n\t\t\tif(i != f.size()-1) o << \",\";\n\t\t}\n\t\to << \"]\"\
+    ;\n\t\treturn o;\n\t}\n\n\tPoly operator-() const {\n\t\tPoly res = *this;\n\t\
+    \tfor(auto& v: res) v = -v;\n\t\treturn res;\n\t}\n\ttemplate<class T>\n\tPoly&\
+    \ operator+=(T c){\n\t\t(*this)[0] += c;\n\t\treturn *this;\n\t}\n\ttemplate<class\
+    \ T>\n\tPoly& operator-=(T c){\n\t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\
+    \ttemplate<class T>\n\tPoly& operator*=(T c){\n\t\tfor(auto& v: *this) v *= c;\n\
+    \t\treturn *this;\n\t}\n\ttemplate<class T>\n\tPoly& operator/=(T c){\n\t\treturn\
+    \ *this *= mint(1)/mint(c);\n\t}\n\tPoly& operator+=(const Poly& r){\n\t\tif(size()\
+    \ < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size()) (*this)[i] += r[i];\n\
+    \t\treturn *this;\n\t}\n\tPoly& operator-=(const Poly& r){\n\t\tif(size() < r.size())\
+    \ this->resize(r.size(),0);\n\t\trep(i,r.size()) (*this)[i] -= r[i];\n\t\treturn\
+    \ *this;\n\t}\n\tPoly& operator*=(const Poly& r){\n\t\treturn *this = multiply(*this,r);\n\
+    \t}\n\n\t// \u4F55\u56DE\u3082\u540C\u3058r\u3067\u5272\u308A\u7B97\u3059\u308B\
+    \u306A\u3089\u6BCE\u56DErinv\u3092\u8A08\u7B97\u3059\u308B\u306E\u306F\u7121\u99C4\
+    \u306A\u306E\u3067\u3001\u547C\u3073\u51FA\u3057\u5074\u3067\u4E00\u56DE\u8A08\
+    \u7B97\u3057\u305F\u5F8C\u76F4\u63A5\u3053\u3063\u3061\u3092\u547C\u3076\u3068\
+    \u826F\u3044\n\t// \u53D6\u308B\u3079\u304Dinv\u306E\u9577\u3055\u306B\u6CE8\u610F\
+    \n\t// \u4F8B\u3048\u3070 mod r \u3067\u8272\u3005\u8A08\u7B97\u3057\u305F\u3044\
+    \u6642\u306F\u3001\u57FA\u672C\u7684\u306B deg(r) * 2 \u9577\u3055\u306E\u591A\
+    \u9805\u5F0F\u3092 r \u3067\u5272\u308B\u3053\u3068\u306B\u306A\u308B\n\t// \u3068\
+    \u306F\u3044\u3048\u3044\u3063\u305F\u3093 rinv \u3092\u9577\u304F\u8A08\u7B97\
+    \u3057\u305F\u3089\u3088\u308A\u77ED\u3044\u5834\u5408\u306Fprefix\u898B\u308B\
+    \u3060\u3051\u3060\u3057\u3001 rinv \u3068\u3057\u3066\u30E0\u30C0\u306B\u9577\
+    \u3044\u3082\u306E\u3092\u6E21\u3057\u3066\u3082\u554F\u984C\u306A\u3044\u306E\
+    \u3067\n\t// \u5272\u3089\u308C\u308B\u591A\u9805\u5F0F\u3068\u3057\u3066\u6700\
+    \u5927\u306E\u6B21\u6570\u3092\u53D6\u308C\u3070\u3088\u3044\n\n\tPoly quotient(const\
+    \ Poly& r, const Poly& rinv){\n\t\tint m = r.size(); assert(r[m-1].v);\n\t\tint\
+    \ n = size();\n\t\tint s = n-m+1;\n\t\tif(s <= 0) return {0};\n\t\treturn (rev().low(s)*rinv.low(s)).low(s).rev();\n\
+    \t}\n\tPoly& operator/=(const Poly& r){\n\t\treturn *this = quotient(r,r.rev().inv(max(size()-r.size(),0)+1));\n\
+    \t}\n\tPoly& operator%=(const Poly& r){\n\t\t*this -= *this/r * r;\n\t\treturn\
+    \ *this = low(r.size()-1);\n\t}\n\n\t\n\ttemplate<class T> Poly operator+(T c)\
+    \ const {return Poly(*this) += c; }\n\ttemplate<class T> Poly operator-(T c) const\
+    \ {return Poly(*this) -= c; }\n\ttemplate<class T> Poly operator*(T c) const {return\
+    \ Poly(*this) *= c; }\n\ttemplate<class T> Poly operator/(T c) const {return Poly(*this)\
+    \ /= c; }\n\tPoly operator+(const Poly& r) const {return Poly(*this) += r; }\n\
+    \tPoly operator-(const Poly& r) const {return Poly(*this) -= r; }\n\tPoly operator*(const\
+    \ Poly& r) const {return Poly(*this) *= r; }\n\tPoly operator/(const Poly& r)\
+    \ const {return Poly(*this) /= r; }\n\tPoly operator%(const Poly& r) const {return\
+    \ Poly(*this) %= r; }\n\n\tPoly diff() const {\n\t\tPoly g(max(size()-1,0));\n\
+    \t\trep(i,g.size()) g[i] = (*this)[i+1] * (i+1);\n\t\treturn g;\n\t}\n\tPoly intg()\
+    \ const {\n\t\tPoly g(size()+1);\n\t\trep(i,size()) g[i+1] = (*this)[i] * invs[i+1];\n\
+    \t\treturn g;\n\t}\n\tPoly square() const {\n\t\treturn multiply(*this,*this);\n\
+    \t}\n\n\t// 1/f(x) mod x^s\n\t// N = s = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE\
+    \ fft(2n) \u3092\u547C\u3093\u3067\u3044\u308B\u306E\u3067\u3001multiply \u304C\
+    \ 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\u3068\u6BD4\u3079\u308B\u3068\n\t\
+    // \u3060\u3044\u305F\u3044 multiply \u306E 5/3 \u500D\u306E\u6642\u9593\u304C\
+    \u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\t// \t\tfg = 1 mod x^m\n\t// \t\
+    \t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) = 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\
+    \tPoly inv(int s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int\
+    \ n=1;n<s;n*=2){\t\t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n);\
+    \ f.resize(2*n);\n\t\t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\
+    \t\t\tfft(g);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n)\
+    \ f[i] = 0;\n\t\t\tfft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\
+    \t\t\tfor(int i=n;i<min(2*n,s);i++) r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\
+    \n\t// log f mod x^s\n\t// \u5C0E\u51FA: D log(f) = (D f) / f\n\t// 500000: 180ms\n\
+    \t// mult \u306E 8/3 \u500D\n\t// verify: https://judge.yosupo.jp/submission/44962\n\
+    \tPoly log(int s) const {\n\t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\
+    \t\treturn (low(s).diff() * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\
+    \t// f.log(s).exp(s) == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\
+    \u5316\uFF01\n\t// \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
+    \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\t\u3088\u304F\u308F\u304B\u3063\u3066\
+    \u306D\uFF5E\n\t// verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0)\
+    \ == 0);\n\t\tPoly f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
+    \t\t\tPoly q = low(n).diff();\n\t\t\tq = q + g * (f.diff() - f*q).low(2*n-1);\n\
+    \t\t\tf = (f + f * (low(2*n)-q.intg()) ).low(2*n);\n\t\t}\n\t\treturn f.low(s);\n\
+    \t}\n\n\t// f^p mod x^s\n\t// 500000: 600ms\n\t// \u5C0E\u51FA: f^p = e^(p log\
+    \ f)\n\t// log 1\u56DE\u3001 exp 1\u56DE\n\t// Exp.cpp (Mifafa technique) \u3082\
+    \u53C2\u7167\n\t// \tc.f. (f \u306E non0 coef \u306E\u500B\u6570) * s\n\t// verify:\
+    \ https://judge.yosupo.jp/submission/44992\n\tPoly pow(ll p, int s) const {\n\t\
+    \tif(p == 0){\n\t\t\treturn Poly(s) + 1;\t// 0^0 is 1\n\t\t}\n\t\tint ord = 0;\n\
+    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tif((s-1)/p < ord) return Poly(s);\t//\
+    \ s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0 =\
+    \ at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] = at(i+ord)\
+    \ * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_) res[i+off]\
+    \ = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t// f[0] should\
+    \ be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\tPoly\
+    \ sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2 = mint(2).inv();\n\
+    \t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\trep(i,n) z[i] *=\
+    \ z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n) d[n+i] = z[i]\
+    \ - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\trep(i,n) g2[i]\
+    \ = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\tinvfft(d);\n\
+    \t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i] * i2;\n\t\t\t\
+    if(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint> eps = g2;\n\t\t\
+    \trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n) eps[i] = 0;\n\
+    \t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\t\t\t\
+    g.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\tf.resize(s);\n\
+    \t\treturn f;\n\t}\n};\n\n\nll norm_mod(ll a, ll m){\n\ta %= m; if(a < 0) a +=\
+    \ m;\n\treturn a;\n}\n\n//p: odd (not necessarily prime)\nll jacobi(ll a,ll p){\n\
+    \ta = norm_mod(a,p);\n\tauto sgn = [](ll x){ return x&1 ? -1 : 1; };\n\tif(a ==\
+    \ 0) return p == 1;\n\telse if(a&1) return sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\
+    \telse return sgn(((p&15)*(p&15)-1)/8) * jacobi(a/2,p);\n}\n\n// p : prime\n//\
+    \ 0 <= a < p\n// return smaller solution\n// if no solution, -1\nll sqrt_mod(ll\
+    \ a,ll p){\n\tif(a == 0) return 0;\n\tif(p == 2) return 1;\n\tif(jacobi(a,p) ==\
+    \ -1)return -1;\n\tll b,c;\n\tfor(b=0;;b++){\n\t\tc = norm_mod(b*b-a,p);\n\t\t\
+    if(jacobi(c,p) == -1) break;\n\t}\n\tauto mul = [&](pair<ll,ll> x, pair<ll,ll>\
+    \ y){\n\t\treturn pair<ll,ll>(norm_mod(x.fs*y.fs+x.sc*y.sc%p*c,p),norm_mod(x.fs*y.sc+x.sc*y.fs,p));\n\
+    \t};\n\tpair<ll,ll> x(b,1),res(1,0);\n\tll n = (p+1)/2;\n\twhile(n){\n\t\tif(n&1)\
+    \ res = mul(res,x);\n\t\tx = mul(x,x);\n\t\tn >>= 1;\n\t}\n\tassert(res.sc ==\
+    \ 0);\n\treturn min(res.fs, p-res.fs);\n}\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\
+    \n// no solution -> {}\nPoly<mint> sqrt(Poly<mint> f){\n\tint n = f.size();\n\t\
+    int ord = 0;\n\twhile(ord<n && !f[ord]) ord++;\n\tif(ord == n) return {0};\n\t\
+    if(ord&1) return {};\n\tll c0 = sqrt_mod(f[ord].v,mint::mod);\n\tif(c0 == -1)\
+    \ return {};\n\tint n_ = n-ord;\n\tauto g = (Poly<mint>(f.begin()+ord,f.end())/f[ord]).sqrt(n_)\
+    \ * c0;\n\tPoly<mint> res(ord/2 + n_);\n\trep(i,n_) res[ord/2 + i] = g[i];\n\t\
+    return res;\n}\n\n// Q log^2 Q \u3067\u306F\u3042\u308B\n// \u9AD8\u901F\u306A\
+    \u306E\u306F\u3046\u307E\u304F subproduct tree \u3092\u69CB\u7BC9\u3059\u308B\u3089\
+    \u3057\u3044\n// maroon https://judge.yosupo.jp/submission/3240 160ms\n// verify:\
+    \ https://judge.yosupo.jp/submission/45006 950ms \u304A\u305B\uFF5E\ntemplate<class\
+    \ mint>\nV<mint> MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\
+    \tint s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
+    \ = {-a[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2] * g[i*2+1];\n\tg[1] = f\
+    \ % g[1];\n\tfor(int i=2;i<s+Q;i++) g[i] = g[i>>1] % g[i];\n\tV<mint> res(Q);\n\
+    \trep(i,Q) res[i] = g[s+i][0];\n\treturn res;\n}\n\n// N log^2 N \u3067\u306F\u3042\
+    \u308B\n// \u9AD8\u901F\u306A\u306E\u306F\u3046\u307E\u304F sub\u3046\u3093\u306C\
+    \u3093\ntemplate<class mint>\nPoly<mint> interpolate(const V<mint>& x, const V<mint>&\
+    \ y){\n\tint n = si(x);\n\tint s = 1; while(s<n) s*=2;\n\tV<Poly<mint>> g(s+s,{1}),\
+    \ h(s+s);\n\trep(i,n) g[s+i] = {-x[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2]\
+    \ * g[i*2+1];\n\th[1] = g[1].diff();\n\tfor(int i=2;i<s+n;i++) h[i] = h[i>>1]\
+    \ % g[i];\n\trep(i,n) h[s+i] = {y[i] / h[s+i][0]};\n\tfor(int i=s-1;i>0;i--) h[i]\
+    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}\n"
+  code: "/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
+    \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
+    \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
+    \tconstexpr static uint mod = mod_;\n\n\tuint v;\n\tModInt():v(0){}\n\tModInt(ll\
+    \ _v):v(normS(_v%mod+mod)){}\n\texplicit operator bool() const {return v!=0;}\n\
+    \tstatic uint normS(const uint &x){return (x<mod)?x:x-mod;}\t\t// [0 , 2*mod-1]\
+    \ -> [0 , mod-1]\n\tstatic ModInt make(const uint &x){ModInt m; m.v=x; return\
+    \ m;}\n\tModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}\n\
+    \tModInt operator-(const ModInt& b) const { return make(normS(v+mod-b.v));}\n\t\
+    ModInt operator-() const { return make(normS(mod-v)); }\n\tModInt operator*(const\
+    \ ModInt& b) const { return make((ull)v*b.v%mod);}\n\tModInt operator/(const ModInt&\
+    \ b) const { return *this*b.inv();}\n\tModInt& operator+=(const ModInt& b){ return\
+    \ *this=*this+b;}\n\tModInt& operator-=(const ModInt& b){ return *this=*this-b;}\n\
+    \tModInt& operator*=(const ModInt& b){ return *this=*this*b;}\n\tModInt& operator/=(const\
+    \ ModInt& b){ return *this=*this/b;}\n\tModInt& operator++(int){ return *this=*this+1;}\n\
+    \tModInt& operator--(int){ return *this=*this-1;}\n\tModInt pow(ll p) const {\n\
+    \t\tif(p<0) return inv().pow(-p);\n\t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\
+    \twhile(p){\n\t\t\tif(p&1) a *= x;\n\t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\t\
+    return a;\n\t}\n\tModInt inv() const {\t\t// should be prime\n\t\treturn pow(mod-2);\n\
+    \t}\n\t// ll extgcd(ll a,ll b,ll &x,ll &y) const{\n\t// \tll p[]={a,1,0},q[]={b,0,1};\n\
+    \t// \twhile(*q){\n\t// \t\tll t=*p/ *q;\n\t// \t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\
+    \t// \t}\n\t// \tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t// \tx=p[1],y=p[2];\n\t//\
+    \ \treturn p[0];\n\t// }\n\t// ModInt inv() const {\n\t// \tll x,y;\n\t// \textgcd(v,mod,x,y);\n\
+    \t// \treturn make(normS(x+mod));\n\t// }\n\n\tbool operator==(const ModInt& b)\
+    \ const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return v!=b.v;}\n\
+    \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    };\nusing mint = ModInt<998244353>;\n\nint bsr(int x) { return 31 - __builtin_clz(x);\
-    \ }\nvoid ntt(bool type, V<mint>& c) {\n\tconst mint G = 3;\t//primitive root\n\
-    \n\tint N = int(c.size());\n\tint s = bsr(N);\n\tassert(1 << s == N);\n\n\tV<mint>\
-    \ a = c, b(N);\n\trep1(i,s){\n\t\tint W = 1 << (s - i);\n\t\tmint base = G.pow((mint::mod\
-    \ - 1)>>i);\n\t\tif(type) base = base.inv();\n\t\tmint now = 1;\n\t\tfor(int y\
-    \ = 0; y < N / 2; y += W) {\n\t\t\tfor (int x = 0; x < W; x++) {\n\t\t\t\tauto\
-    \ l = a[y << 1 | x];\n\t\t\t\tauto r = now * a[y << 1 | x | W];\n\t\t\t\tb[y |\
-    \ x] = l + r;\n\t\t\t\tb[y | x | N >> 1] = l - r;\n\t\t\t}\n\t\t\tnow *= base;\n\
-    \t\t}\n\t\tswap(a, b);\n\t}\n\tc = a;\n}\n\nV<mint> multiply_ntt(const V<mint>&\
-    \ a, const V<mint>& b) {\n\tint A = int(a.size()), B = int(b.size());\n\tif (!A\
-    \ || !B) return {};\n\tint lg = 0;\n\twhile ((1 << lg) < A + B - 1) lg++;\n\t\
-    int N = 1 << lg;\n\tV<mint> ac(N), bc(N);\n\tfor (int i = 0; i < A; i++) ac[i]\
-    \ = a[i];\n\tfor (int i = 0; i < B; i++) bc[i] = b[i];\n\tntt(false, ac);\n\t\
-    ntt(false, bc);\n\tfor (int i = 0; i < N; i++) {\n\t\tac[i] *= bc[i];\n\t}\n\t\
-    ntt(true, ac);\n\tV<mint> c(A + B - 1);\n\tmint iN = mint(N).inv();\n\tfor (int\
-    \ i = 0; i < A + B - 1; i++) {\n\t\tc[i] = ac[i] * iN;\n\t}\n\treturn c;\n}\n\n\
-    template<class D>\nstruct Poly{\n\tvector<D> v;\n\tint size() const{ return v.size();}\t\
-    //deg+1\n\tPoly(){}\n\tPoly(vector<D> _v) : v(_v){shrink();}\n\n\tPoly& shrink(){\n\
-    \t\twhile(!v.empty()&&v.back()==D(0)) v.pop_back();\n\t\treturn *this;\n\t}\n\t\
-    D& operator[](int i){return v[i];}\n\tconst D& operator[](int i) const {return\
-    \ v[i];}\n\tD at(int i) const{\n\t\treturn (i<size())?v[i]:D(0);\n\t}\n\tvoid\
-    \ set(int i,const D& x){\t\t//v[i] := x\n\t\tif(i>=size() && !x) return;\n\t\t\
-    while(i>=size()) v.push_back(D(0));\n\t\tv[i]=x;\n\t\tshrink();\n\t\treturn;\n\
-    \t}\n\tD operator()(D x) const {\n\t\tD res = 0;\n\t\tint n = size();\n\t\tD a\
-    \ = 1;\n\t\trep(i,n){\n\t\t\tres += a*v[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\n\tPoly operator+(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
-    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)+r.at(i);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly operator-(const Poly &r) const{\n\t\tint N=max(size(),r.size());\n\
-    \t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=at(i)-r.at(i);\n\t\treturn Poly(ret);\n\
-    \t}\n\tPoly operator-() const{\n\t\tint N=size();\n\t\tvector<D> ret(N);\n\t\t\
-    rep(i,N) ret[i] = -at(i);\n\t\treturn Poly(ret);\n\t}\n\tPoly operator*(const\
-    \ Poly &r) const{\n\t\tif(size()==0||r.size()==0) return Poly();\n\t\treturn mul_ntt(r);\t\
-    \t\t\t\t\t\t\t\t// FFT or NTT ?\n\t}\n\tPoly operator*(const D &r) const{\n\t\t\
-    int N=size();\n\t\tvector<D> ret(N);\n\t\trep(i,N) ret[i]=v[i]*r;\n\t\treturn\
-    \ Poly(ret);\n\t}\n\tPoly operator/(const D &r) const{\n\t\treturn *this * r.inv();\n\
-    \t}\n\tPoly operator/(const Poly &y) const{\n\t\treturn div_fast(y);\n\t}\n\t\
-    Poly operator%(const Poly &y) const{\n\t\treturn rem_fast(y);\n//\t\treturn rem_naive(y);\n\
-    \t}\n\tPoly operator<<(const int &n) const{\t// *=x^n\n\t\tassert(n>=0);\n\t\t\
-    int N=size();\n\t\tvector<D> ret(N+n);\n\t\trep(i,N) ret[i+n]=v[i];\n\t\treturn\
-    \ Poly(ret);\n\t}\n\tPoly operator>>(const int &n) const{\t// /=x^n\n\t\tassert(n>=0);\n\
-    \t\tint N=size();\n\t\tif(N<=n) return Poly();\n\t\tvector<D> ret(N-n);\n\t\t\
-    rep(i,N-n) ret[i]=v[i+n];\n\t\treturn Poly(ret);\n\t}\n\tbool operator==(const\
-    \ Poly &y) const{\n\t\treturn v==y.v;\n\t}\n\tbool operator!=(const Poly &y) const{\n\
-    \t\treturn v!=y.v;\n\t}\n\n\tPoly& operator+=(const Poly &r) {return *this = *this+r;}\n\
-    \tPoly& operator-=(const Poly &r) {return *this = *this-r;}\n\tPoly& operator*=(const\
-    \ Poly &r) {return *this = *this*r;}\n\tPoly& operator*=(const D &r) {return *this\
-    \ = *this*r;}\n\tPoly& operator/=(const Poly &r) {return *this = *this/r;}\n\t\
-    Poly& operator/=(const D &r) {return *this = *this/r;}\n\tPoly& operator%=(const\
-    \ Poly &y) {return *this = *this%y;}\n\tPoly& operator<<=(const int &n) {return\
-    \ *this = *this<<n;}\n\tPoly& operator>>=(const int &n) {return *this = *this>>n;}\n\
-    \n\tPoly diff() const {\n\t\tint n = size();\n\t\tif(n == 0) return Poly();\n\t\
-    \tV<D> u(n-1);\n\t\trep(i,n-1) u[i] = at(i+1) * (i+1);\n\t\treturn Poly(u);\n\t\
-    }\n\tPoly intg() const {\n\t\tint n = size();\n\t\tV<D> u(n+1);\n\t\trep(i,n)\
-    \ u[i+1] = at(i) / (i+1);\n\t\treturn Poly(u);\n\t}\n\n\tPoly pow(long long n,\
-    \ int L) const {\t\t// f^n, ignoring x^L,x^{L+1},..\n\t\tPoly a({1});\n\t\tPoly\
-    \ x = *this;\n\t\twhile(n){\n\t\t\tif(n&1){\n\t\t\t\ta *= x;\n\t\t\t\ta = a.strip(L);\n\
-    \t\t\t}\n\t\t\tx *= x;\n\t\t\tx = x.strip(L);\n\t\t\tn /= 2;\n\t\t}\n\t\treturn\
-    \ a;\n\t}\n\n\t/*\n\t\t[x^0~n] exp(f) = 1 + f + f^2 / 2 + f^3 / 6 + ..\n\t\tf(0)\
-    \ should be 0\n\n\t\tO((N+n) log n)\t(N = size())\n\t\tNTT, -O3\n\t\t- N = n =\
-    \ 100000 : 200 [ms]\n\t\t- N = n = 200000 : 400 [ms]\n\t\t- N = n = 500000 : 1000\
-    \ [ms]\n\t*/\n\tPoly exp(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly f({1}),\
-    \ g({1});\n\t\tfor(int i=1;i<=n;i*=2){\n\t\t\tg = (g*2 - f*g*g).strip(i);\n\t\t\
-    \tPoly q = (this->diff()).strip(i-1);\n\t\t\tPoly w = (q + g * (f.diff() - f*q))\
-    \ .strip(2*i-1);\n\t\t\tf = (f + f * (*this - w.intg()).strip(2*i)) .strip(2*i);\n\
-    \t\t}\n\t\treturn f.strip(n+1);\n\t}\n\n\t/*\n\t\t[x^0~n] log(f) = log(1-(1-f))\
-    \ = - (1-f) - (1-f)^2 / 2 - (1-f)^3 / 3 - ...\n\t\tf(0) should be 1\n\t\tO(n log\
-    \ n)\n\n\t\tNTT, -O3\n\t\t1e5 : 140 [ms]\n\t\t2e5 : 296 [ms]\n\t\t5e5 : 640 [ms]\n\
-    \t\t1e6 : 1343 [ms]\n\t*/\n\tPoly log(int n) const {\n\t\tassert(at(0) == 1);\n\
-    \t\tauto f = strip(n+1);\n\t\treturn (f.diff() * f.inv(n)).strip(n).intg();\n\t\
-    }\n\n\t/*\n\t\t[x^0~n] sqrt(f)\n\t\tf(0) should be 1\n\t\t\u3044\u3084\u5E73\u65B9\
-    \u5270\u4F59\u306A\u3089\u4F55\u3067\u3082\u3044\u3044\u3068\u601D\u3046\u3051\
-    \u3069\u63A2\u3059\u306E\u304C\u3081\u3093\u3069\u304F\u3055\u3044\u306E\u3067\
-    \n\t\t+- 2\u901A\u308A\u3060\u3051\u3069 \u5B9A\u6570\u9805\u304C 1 \u306E\u65B9\
-    \n\t\tO(n log n)\n\n\t\tNTT, -O3\n\t\t1e5 : 234 [ms]\n\t\t2e5 : 484 [ms]\n\t\t\
-    5e5 : 1000 [ms]\n\t\t1e6 : 2109 [ms]\n\t*/\n\tPoly sqrt(int n) const {\n\t\tassert(at(0)\
-    \ == 1);\n\t\tPoly f = strip(n+1);\n\t\tPoly g({1});\n\t\tfor(int i=1; i<=n; i*=2){\n\
-    \t\t\tg = (g + f.strip(2*i)*g.inv(2*i-1)) / 2;\n\t\t}\n\t\treturn g.strip(n+1);\n\
-    \t}\n\n\t/*\n\t\t[x^0~n] f^-1 = (1-(1-f))^-1 = (1-f) + (1-f)^2 + ...\n\t\tf *\
-    \ f.inv(n) = 1 + x^n * poly\n\t\tf(0) should be non0\n\t\tO(n log n)\n\t*/\n\t\
-    Poly inv(int n) const {\n\t\tassert(at(0) != 0);\n\t\tPoly f = strip(n+1);\n\t\
-    \tPoly g({at(0).inv()});\n\t\tfor(int i=1; i<=n; i*=2){\t\t//need to strip!!\n\
-    \t\t\tg *= (Poly({2}) - f.strip(2*i)*g).strip(2*i);\n\t\t}\n\t\treturn g.strip(n+1);\n\
-    \t}\t\n\n\tPoly exp_naive(int n) const {\n\t\tassert(at(0) == 0);\n\t\tPoly res;\n\
-    \t\tPoly fk({1});\n\t\trep(k,n+1){\n\t\t\tres += fk;\n\t\t\tfk *= *this;\n\t\t\
-    \tfk = fk.strip(n+1) / (k+1);\n\t\t}\n\t\treturn res;\n\t}\n\tPoly log_naive(int\
-    \ n) const {\n\t\tassert(at(0) == 1);\n\t\tPoly res;\n\t\tPoly g({1});\n\t\trep1(k,n){\n\
-    \t\t\tg *= (Poly({1}) - *this);\n\t\t\tg = g.strip(n+1);\n\t\t\tres -= g / k;\n\
-    \t\t}\n\t\treturn res;\n\t}\n\n\n\tPoly mul_naive(const Poly &r) const{\n\t\t\
-    int N=size(),M=r.size();\n\t\tvector<D> ret(N+M-1);\n\t\trep(i,N) rep(j,M) ret[i+j]+=at(i)*r.at(j);\n\
-    \t\treturn Poly(ret);\n\t}\n\tPoly mul_ntt(const Poly &r) const{\n\t\treturn Poly(multiply_ntt(v,r.v));\n\
-    \t}\n\tPoly mul_fft(const Poly &r) const{\n\t\treturn Poly(multiply_fft(v,r.v));\n\
-    \t}\n\n\tPoly div_fast_with_inv(const Poly &inv, int B) const {\n\t\treturn (*this\
-    \ * inv)>>(B-1);\n\t}\n\tPoly div_fast(const Poly &y) const{\n\t\tif(size()<y.size())\
-    \ return Poly();\n\t\tint n = size();\n\t\treturn div_fast_with_inv(y.inv_div(n-1),n);\n\
-    \t}\n\tPoly rem_naive(const Poly &y) const{\n\t\tPoly x = *this;\n\t\twhile(y.size()<=x.size()){\n\
-    \t\t\tint N=x.size(),M=y.size();\n\t\t\tD coef = x.v[N-1]/y.v[M-1];\n\t\t\tx -=\
-    \ (y<<(N-M))*coef;\n\t\t}\n\t\treturn x;\n\t}\n\tPoly rem_fast(const Poly &y)\
-    \ const{\n\t\treturn *this - y * div_fast(y);\n\t}\n\tPoly strip(int n) const\
-    \ {\t//ignore x^n , x^n+1,...\n\t\tvector<D> res = v;\n\t\tres.resize(min(n,size()));\n\
-    \t\treturn Poly(res);\n\t}\n\tPoly rev(int n = -1) const {\t//ignore x^n ~  ->\
-    \  return x^(n-1) * f(1/x)\n\t\tvector<D> res = v;\n\t\tif(n!=-1) res.resize(n);\n\
-    \t\treverse(all(res));\n\t\treturn Poly(res);\n\t}\n\n\t/*\n\t\tf.inv_div(n) =\
-    \ x^n / f\n\t\tf should be non0\n\t\tO((N+n) log n)\n\n\t\tfor division\n\t*/\n\
-    \tPoly inv_div(int n) const {\n\t\tn++;\n\t\tint d = size() - 1;\n\t\tassert(d\
-    \ != -1);\n\t\tif(n < d) return Poly();\n\t\tPoly a = rev();\n\t\tPoly g({at(d).inv()});\n\
-    \t\tfor(int i=1; i+d<=n; i*=2){\t\t//need to strip!!\n\t\t\tg *= (Poly({2})-a.strip(2*i)*g).strip(2*i);\n\
-    \t\t}\n\t\treturn g.rev(n-d);\n\t}\n\n\n\tfriend ostream& operator<<(ostream &o,const\
-    \ Poly& x){\n\t\tif(x.size()==0) return o<<0;\n\t\trep(i,x.size()) if(x.v[i]!=D(0)){\n\
-    \t\t\to<<x.v[i]<<\"x^\"<<i;\n\t\t\tif(i!=x.size()-1) o<<\" + \";\n\t\t}\n\t\t\
-    return o;\n\t}\n};\n\n\n/*\n\t\u2193 test\n*/\n\ntemplate<class T>\nT rnd(T l,T\
-    \ r){\t//[l,r)\n\tusing D = uniform_int_distribution<T>;\n\tstatic random_device\
-    \ rd;\n\tstatic mt19937 gen(rd());\n\treturn D(l,r-1)(gen);\n}\ntemplate<class\
-    \ T>\nT rnd(T n){\t//[0,n)\n\treturn rnd(0,n);\n}\nstruct Timer{\n\tclock_t st;\n\
-    \tvoid start(){\n\t\tst = clock();\n\t}\n\tint ms(){\n\t\treturn (clock()-st)*1000\
-    \ / CLOCKS_PER_SEC;\n\t}\n}timer;\n\n\nvoid unittest(){\n\tvector<int> Ns = {2,10,100,1000,10000,100000,200000,500000,1000000};\n\
-    \tfor(int N: Ns){\n\t\tPoly<mint> f,g;\n\t\trep(i,N) f.set(i,rnd<int>(mint::mod));\n\
-    \t\trep(i,N) g.set(i,rnd<int>(mint::mod));\n\t\ttimer.start();\n\t\tauto h = f*g;\n\
-    \t\tcerr << \"- N = \" << N << endl;\n\t\tcerr << \"  \" << timer.ms() << \" [ms]\"\
-    \ << endl;\n\t}\n}\nvoid invtest(){\n\twhile(true){\n\t\tint N,n;\n\t\tcin >>\
-    \ N >> n;\n\t\tPoly<mint> f;\n\t\tf.set(0,1);\n\t\trep1(i,N-1) f.set(i,rnd<int>(mint::mod));\n\
-    \t\ttimer.start();\n\t\tauto g = f.sqrt(n);\n\t\tshow((f-g*g).strip(n+1));\n\t\
-    \tauto h = f.inv(n);\n\t\tshow((f*h).strip(n+1));\n\t\tcerr << \"  \" << timer.ms()\
-    \ << \" [ms]\" << endl;\n\t}\n}\nvoid Catalan(){\n\tint N;\n\tcin >> N;\n\tauto\
-    \ f = ((Poly<mint>({1}) - Poly<mint>({1,-4}).sqrt(N)) / Poly<mint>({0,2})) . strip(N+1);\n\
-    \tshow(f);\n}\n\nint main(){\n//\tunittest();\n//\tinvtest();\n\tCatalan();\n\
-    }\n"
+    };\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint>\
+    \ fact,ifact,invs;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\t\
+    return fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\t//[0,N]\n\t\
+    N++;\n\tfact.resize(N);\n\tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\
+    \trep1(i,N-1) fact[i] = fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int\
+    \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
+    \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
+    a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
+    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\nvoid fft(V<mint>& a){\n\
+    \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
+    \ mod;\n\tstatic const int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint\
+    \ root = 3;\t\t\t\t// primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\
+    \tint n = si(a);\n\tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t\
+    // n should be power of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\
+    \t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\t\tmagic[i] = w;\n\t\t}\n\t\
+    }\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\t\tuint v = a[i+m].v;\t\t\t\
+    \t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t// < 2M\n\t\t\ta[i].v += v;\t\
+    \t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0;\
+    \ s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\
+    \t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t}\n\t\
+    while(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\ta[i].v +=\
+    \ v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t\
+    \t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t\t\t\t\t\t\t// < M\n\t\t\t\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2 : a[i].v;\t\
+    // < 2M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\t\t\t\t\t// < 3M\n\t\t\t\t\
+    \ta[i].v += v;\t\t\t\t\t\t\t\t\t\t\t// < 3M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t\t}\n\t\t}\n\t}\n\trep(i,n){\n\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2\
+    \ : a[i].v;\t\t// < 2M\n\t\ta[i].v = (a[i].v >= mod) ? a[i].v - mod : a[i].v;\t\
+    \t// < M\n\t}\n\t// finally < mod !!\n}\nvoid invfft(V<mint>& a){\n\tstatic constexpr\
+    \ uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
+    \ int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint root = 3;\t\t\t\t//\
+    \ primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\t\
+    assert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power\
+    \ of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
+    \t\t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint\
+    \ p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
+    \t\t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
+    \t\t\t\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\t// < M\n\t\t\t}\n\t\t\
+    \tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t\tm <<= 1;\n\t}\n\tfor(;m < n>>1;\
+    \ m <<= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s+= m*2){\n\t\t\tfor(int\
+    \ i=s;i<s+(m>>1);i++){\n\t\t\t\tull x = a[i].v + mod2 - a[i+m].v;\t// < 4M\n\t\
+    \t\t\ta[i].v += a[i+m].v;\t\t\t\t\t// < 4M\n\t\t\t\ta[i].v = (a[i].v >= mod2)\
+    \ ? a[i].v - mod2 : a[i].v;\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\
+    // < M\n\t\t\t}\n\t\t\tfor(int i=s+(m>>1); i<s+m; i++){\n\t\t\t\tull x = a[i].v\
+    \ + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t// < 2M\n\t\t\t\ta[i+m].v\
+    \ = (p.v * x) % mod;\t// < M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t}\n\t}\n\tif(m < n){\n\t\trep(i,m){\n\t\t\tuint x = a[i].v + mod2 - a[i+m].v;\t\
+    // < 4M\n\t\t\ta[i].v += a[i+m].v;\t// < 4M\n\t\t\ta[i+m].v = x;\t// < 4M\n\t\t\
+    }\n\t}\n\tconst mint in = mint(n).inv();\n\trep(i,n) a[i] *= in;\t// < M\n\t//\
+    \ finally < mod !!\n}\n\n// A,B = 500000 -> 70ms\n// verify https://judge.yosupo.jp/submission/44937\n\
+    V<mint> multiply(V<mint> a, V<mint> b) {\n\tint A = si(a), B = si(b);\n\tif (!A\
+    \ || !B) return {};\n\tint n = A+B-1;\n\tint s = 1; while(s<n) s*=2;\n\tif(a ==\
+    \ b){\t\t\t// # of fft call : 3 -> 2\n\t\ta.resize(s); fft(a);\n\t\trep(i,s) a[i]\
+    \ *= a[i];\n\t}else{\n\t\ta.resize(s); fft(a);\n\t\tb.resize(s); fft(b);\n\t\t\
+    rep(i,s) a[i] *= b[i];\n\t}\n\tinvfft(a); a.resize(n);\n\treturn a;\n}\n\n/*\n\
+    \t\u4FC2\u6570\u30A2\u30AF\u30BB\u30B9\n\t\tf[i] \u3067\u3044\u3044\u304C\u3001\
+    \ \u914D\u5217\u5916\u53C2\u7167\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\
+    \u306A\u3089 at/set\n\t\n*/\n\ntemplate<class mint>\nstruct Poly: public V<mint>{\n\
+    \ttemplate<class...Args>\n\tPoly(Args...args) : V<mint>(args...){}\n\tPoly(initializer_list<mint>\
+    \ li) : V<mint>(li){}\n\n\tint size() const { return V<mint>::size(); }\n\tmint\
+    \ at(int i) const {\n\t\treturn i<size() ? (*this)[i] : 0;\n\t}\n\tvoid set(int\
+    \ i, mint x){\n\t\tif(i>=size() && !x) return;\n\t\twhile(i>=size()) this->pb(0);\n\
+    \t\t(*this)[i] = x;\n\t\treturn;\n\t}\n\tmint operator()(mint x) const {\t\t//\
+    \ eval\n\t\tmint res = 0;\n\t\tint n = size();\n\t\tmint a = 1;\n\t\trep(i,n){\n\
+    \t\t\tres += a * (*this)[i];\n\t\t\ta *= x;\n\t\t}\n\t\treturn res;\n\t}\n\tPoly\
+    \ low(int n) const {\t\t// ignore x^n (take first n), but not empty\n\t\treturn\
+    \ Poly(this->begin(), this->begin()+min(max(n,1),size()));\n\t}\n\tPoly rev()\
+    \ const {\n\t\treturn Poly(this->rbegin(), this->rend());\n\t}\n\tfriend ostream&\
+    \ operator<<(ostream &o,const Poly& f){\n\t\to << \"[\";\n\t\trep(i,f.size()){\n\
+    \t\t\to << f[i];\n\t\t\tif(i != f.size()-1) o << \",\";\n\t\t}\n\t\to << \"]\"\
+    ;\n\t\treturn o;\n\t}\n\n\tPoly operator-() const {\n\t\tPoly res = *this;\n\t\
+    \tfor(auto& v: res) v = -v;\n\t\treturn res;\n\t}\n\ttemplate<class T>\n\tPoly&\
+    \ operator+=(T c){\n\t\t(*this)[0] += c;\n\t\treturn *this;\n\t}\n\ttemplate<class\
+    \ T>\n\tPoly& operator-=(T c){\n\t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\
+    \ttemplate<class T>\n\tPoly& operator*=(T c){\n\t\tfor(auto& v: *this) v *= c;\n\
+    \t\treturn *this;\n\t}\n\ttemplate<class T>\n\tPoly& operator/=(T c){\n\t\treturn\
+    \ *this *= mint(1)/mint(c);\n\t}\n\tPoly& operator+=(const Poly& r){\n\t\tif(size()\
+    \ < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size()) (*this)[i] += r[i];\n\
+    \t\treturn *this;\n\t}\n\tPoly& operator-=(const Poly& r){\n\t\tif(size() < r.size())\
+    \ this->resize(r.size(),0);\n\t\trep(i,r.size()) (*this)[i] -= r[i];\n\t\treturn\
+    \ *this;\n\t}\n\tPoly& operator*=(const Poly& r){\n\t\treturn *this = multiply(*this,r);\n\
+    \t}\n\n\t// \u4F55\u56DE\u3082\u540C\u3058r\u3067\u5272\u308A\u7B97\u3059\u308B\
+    \u306A\u3089\u6BCE\u56DErinv\u3092\u8A08\u7B97\u3059\u308B\u306E\u306F\u7121\u99C4\
+    \u306A\u306E\u3067\u3001\u547C\u3073\u51FA\u3057\u5074\u3067\u4E00\u56DE\u8A08\
+    \u7B97\u3057\u305F\u5F8C\u76F4\u63A5\u3053\u3063\u3061\u3092\u547C\u3076\u3068\
+    \u826F\u3044\n\t// \u53D6\u308B\u3079\u304Dinv\u306E\u9577\u3055\u306B\u6CE8\u610F\
+    \n\t// \u4F8B\u3048\u3070 mod r \u3067\u8272\u3005\u8A08\u7B97\u3057\u305F\u3044\
+    \u6642\u306F\u3001\u57FA\u672C\u7684\u306B deg(r) * 2 \u9577\u3055\u306E\u591A\
+    \u9805\u5F0F\u3092 r \u3067\u5272\u308B\u3053\u3068\u306B\u306A\u308B\n\t// \u3068\
+    \u306F\u3044\u3048\u3044\u3063\u305F\u3093 rinv \u3092\u9577\u304F\u8A08\u7B97\
+    \u3057\u305F\u3089\u3088\u308A\u77ED\u3044\u5834\u5408\u306Fprefix\u898B\u308B\
+    \u3060\u3051\u3060\u3057\u3001 rinv \u3068\u3057\u3066\u30E0\u30C0\u306B\u9577\
+    \u3044\u3082\u306E\u3092\u6E21\u3057\u3066\u3082\u554F\u984C\u306A\u3044\u306E\
+    \u3067\n\t// \u5272\u3089\u308C\u308B\u591A\u9805\u5F0F\u3068\u3057\u3066\u6700\
+    \u5927\u306E\u6B21\u6570\u3092\u53D6\u308C\u3070\u3088\u3044\n\n\tPoly quotient(const\
+    \ Poly& r, const Poly& rinv){\n\t\tint m = r.size(); assert(r[m-1].v);\n\t\tint\
+    \ n = size();\n\t\tint s = n-m+1;\n\t\tif(s <= 0) return {0};\n\t\treturn (rev().low(s)*rinv.low(s)).low(s).rev();\n\
+    \t}\n\tPoly& operator/=(const Poly& r){\n\t\treturn *this = quotient(r,r.rev().inv(max(size()-r.size(),0)+1));\n\
+    \t}\n\tPoly& operator%=(const Poly& r){\n\t\t*this -= *this/r * r;\n\t\treturn\
+    \ *this = low(r.size()-1);\n\t}\n\n\t\n\ttemplate<class T> Poly operator+(T c)\
+    \ const {return Poly(*this) += c; }\n\ttemplate<class T> Poly operator-(T c) const\
+    \ {return Poly(*this) -= c; }\n\ttemplate<class T> Poly operator*(T c) const {return\
+    \ Poly(*this) *= c; }\n\ttemplate<class T> Poly operator/(T c) const {return Poly(*this)\
+    \ /= c; }\n\tPoly operator+(const Poly& r) const {return Poly(*this) += r; }\n\
+    \tPoly operator-(const Poly& r) const {return Poly(*this) -= r; }\n\tPoly operator*(const\
+    \ Poly& r) const {return Poly(*this) *= r; }\n\tPoly operator/(const Poly& r)\
+    \ const {return Poly(*this) /= r; }\n\tPoly operator%(const Poly& r) const {return\
+    \ Poly(*this) %= r; }\n\n\tPoly diff() const {\n\t\tPoly g(max(size()-1,0));\n\
+    \t\trep(i,g.size()) g[i] = (*this)[i+1] * (i+1);\n\t\treturn g;\n\t}\n\tPoly intg()\
+    \ const {\n\t\tPoly g(size()+1);\n\t\trep(i,size()) g[i+1] = (*this)[i] * invs[i+1];\n\
+    \t\treturn g;\n\t}\n\tPoly square() const {\n\t\treturn multiply(*this,*this);\n\
+    \t}\n\n\t// 1/f(x) mod x^s\n\t// N = s = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE\
+    \ fft(2n) \u3092\u547C\u3093\u3067\u3044\u308B\u306E\u3067\u3001multiply \u304C\
+    \ 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\u3068\u6BD4\u3079\u308B\u3068\n\t\
+    // \u3060\u3044\u305F\u3044 multiply \u306E 5/3 \u500D\u306E\u6642\u9593\u304C\
+    \u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\t// \t\tfg = 1 mod x^m\n\t// \t\
+    \t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) = 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\
+    \tPoly inv(int s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int\
+    \ n=1;n<s;n*=2){\t\t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n);\
+    \ f.resize(2*n);\n\t\t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\
+    \t\t\tfft(g);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n)\
+    \ f[i] = 0;\n\t\t\tfft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\
+    \t\t\tfor(int i=n;i<min(2*n,s);i++) r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\
+    \n\t// log f mod x^s\n\t// \u5C0E\u51FA: D log(f) = (D f) / f\n\t// 500000: 180ms\n\
+    \t// mult \u306E 8/3 \u500D\n\t// verify: https://judge.yosupo.jp/submission/44962\n\
+    \tPoly log(int s) const {\n\t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\
+    \t\treturn (low(s).diff() * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\
+    \t// f.log(s).exp(s) == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\
+    \u5316\uFF01\n\t// \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
+    \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\t\u3088\u304F\u308F\u304B\u3063\u3066\
+    \u306D\uFF5E\n\t// verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0)\
+    \ == 0);\n\t\tPoly f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
+    \t\t\tPoly q = low(n).diff();\n\t\t\tq = q + g * (f.diff() - f*q).low(2*n-1);\n\
+    \t\t\tf = (f + f * (low(2*n)-q.intg()) ).low(2*n);\n\t\t}\n\t\treturn f.low(s);\n\
+    \t}\n\n\t// f^p mod x^s\n\t// 500000: 600ms\n\t// \u5C0E\u51FA: f^p = e^(p log\
+    \ f)\n\t// log 1\u56DE\u3001 exp 1\u56DE\n\t// Exp.cpp (Mifafa technique) \u3082\
+    \u53C2\u7167\n\t// \tc.f. (f \u306E non0 coef \u306E\u500B\u6570) * s\n\t// verify:\
+    \ https://judge.yosupo.jp/submission/44992\n\tPoly pow(ll p, int s) const {\n\t\
+    \tif(p == 0){\n\t\t\treturn Poly(s) + 1;\t// 0^0 is 1\n\t\t}\n\t\tint ord = 0;\n\
+    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tif((s-1)/p < ord) return Poly(s);\t//\
+    \ s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0 =\
+    \ at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] = at(i+ord)\
+    \ * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_) res[i+off]\
+    \ = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t// f[0] should\
+    \ be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\tPoly\
+    \ sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2 = mint(2).inv();\n\
+    \t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\trep(i,n) z[i] *=\
+    \ z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n) d[n+i] = z[i]\
+    \ - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\trep(i,n) g2[i]\
+    \ = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\tinvfft(d);\n\
+    \t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i] * i2;\n\t\t\t\
+    if(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint> eps = g2;\n\t\t\
+    \trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n) eps[i] = 0;\n\
+    \t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\t\t\t\
+    g.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\tf.resize(s);\n\
+    \t\treturn f;\n\t}\n};\n\n\nll norm_mod(ll a, ll m){\n\ta %= m; if(a < 0) a +=\
+    \ m;\n\treturn a;\n}\n\n//p: odd (not necessarily prime)\nll jacobi(ll a,ll p){\n\
+    \ta = norm_mod(a,p);\n\tauto sgn = [](ll x){ return x&1 ? -1 : 1; };\n\tif(a ==\
+    \ 0) return p == 1;\n\telse if(a&1) return sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\
+    \telse return sgn(((p&15)*(p&15)-1)/8) * jacobi(a/2,p);\n}\n\n// p : prime\n//\
+    \ 0 <= a < p\n// return smaller solution\n// if no solution, -1\nll sqrt_mod(ll\
+    \ a,ll p){\n\tif(a == 0) return 0;\n\tif(p == 2) return 1;\n\tif(jacobi(a,p) ==\
+    \ -1)return -1;\n\tll b,c;\n\tfor(b=0;;b++){\n\t\tc = norm_mod(b*b-a,p);\n\t\t\
+    if(jacobi(c,p) == -1) break;\n\t}\n\tauto mul = [&](pair<ll,ll> x, pair<ll,ll>\
+    \ y){\n\t\treturn pair<ll,ll>(norm_mod(x.fs*y.fs+x.sc*y.sc%p*c,p),norm_mod(x.fs*y.sc+x.sc*y.fs,p));\n\
+    \t};\n\tpair<ll,ll> x(b,1),res(1,0);\n\tll n = (p+1)/2;\n\twhile(n){\n\t\tif(n&1)\
+    \ res = mul(res,x);\n\t\tx = mul(x,x);\n\t\tn >>= 1;\n\t}\n\tassert(res.sc ==\
+    \ 0);\n\treturn min(res.fs, p-res.fs);\n}\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\
+    \n// no solution -> {}\nPoly<mint> sqrt(Poly<mint> f){\n\tint n = f.size();\n\t\
+    int ord = 0;\n\twhile(ord<n && !f[ord]) ord++;\n\tif(ord == n) return {0};\n\t\
+    if(ord&1) return {};\n\tll c0 = sqrt_mod(f[ord].v,mint::mod);\n\tif(c0 == -1)\
+    \ return {};\n\tint n_ = n-ord;\n\tauto g = (Poly<mint>(f.begin()+ord,f.end())/f[ord]).sqrt(n_)\
+    \ * c0;\n\tPoly<mint> res(ord/2 + n_);\n\trep(i,n_) res[ord/2 + i] = g[i];\n\t\
+    return res;\n}\n\n// Q log^2 Q \u3067\u306F\u3042\u308B\n// \u9AD8\u901F\u306A\
+    \u306E\u306F\u3046\u307E\u304F subproduct tree \u3092\u69CB\u7BC9\u3059\u308B\u3089\
+    \u3057\u3044\n// maroon https://judge.yosupo.jp/submission/3240 160ms\n// verify:\
+    \ https://judge.yosupo.jp/submission/45006 950ms \u304A\u305B\uFF5E\ntemplate<class\
+    \ mint>\nV<mint> MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\
+    \tint s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
+    \ = {-a[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2] * g[i*2+1];\n\tg[1] = f\
+    \ % g[1];\n\tfor(int i=2;i<s+Q;i++) g[i] = g[i>>1] % g[i];\n\tV<mint> res(Q);\n\
+    \trep(i,Q) res[i] = g[s+i][0];\n\treturn res;\n}\n\n// N log^2 N \u3067\u306F\u3042\
+    \u308B\n// \u9AD8\u901F\u306A\u306E\u306F\u3046\u307E\u304F sub\u3046\u3093\u306C\
+    \u3093\ntemplate<class mint>\nPoly<mint> interpolate(const V<mint>& x, const V<mint>&\
+    \ y){\n\tint n = si(x);\n\tint s = 1; while(s<n) s*=2;\n\tV<Poly<mint>> g(s+s,{1}),\
+    \ h(s+s);\n\trep(i,n) g[s+i] = {-x[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2]\
+    \ * g[i*2+1];\n\th[1] = g[1].diff();\n\tfor(int i=2;i<s+n;i++) h[i] = h[i>>1]\
+    \ % g[i];\n\trep(i,n) h[s+i] = {y[i] / h[s+i][0]};\n\tfor(int i=s-1;i>0;i--) h[i]\
+    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2020-12-16 01:48:20+09:00'
+  timestamp: '2021-04-19 18:52:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/poly.cpp
