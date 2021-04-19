@@ -2,6 +2,7 @@
 using namespace std;
 using ll = long long;
 using uint = unsigned int;
+using ull = unsigned long long;
 #define rep(i,n) for(int i=0;i<int(n);i++)
 #define rep1(i,n) for(int i=1;i<=int(n);i++)
 #define per(i,n) for(int i=int(n)-1;i>=0;i--)
