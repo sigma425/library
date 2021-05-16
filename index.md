@@ -406,6 +406,9 @@ data:
       path: math/Comb_modM.cpp
       title: math/Comb_modM.cpp
     - icon: ':warning:'
+      path: math/CountYoungPaths.cpp
+      title: math/CountYoungPaths.cpp
+    - icon: ':warning:'
       path: math/Exp.cpp
       title: math/Exp.cpp
     - icon: ':warning:'
