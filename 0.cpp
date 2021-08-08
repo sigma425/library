@@ -18,6 +18,14 @@ template<class T,class U> void chmax(T& x, U y){if(x<y) x=y;}
 template<class T,class U> void chmin(T& x, U y){if(y<x) x=y;}
 template<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}
 template<class T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}
+template<class T>
+V<T> Vec(size_t a) {
+    return V<T>(a);
+}
+template<class T, class... Ts>
+auto Vec(size_t a, Ts... ts) {
+  return V<decltype(Vec<T>(ts...))>(a, Vec<T>(ts...));
+}
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){
 	return o<<"("<<p.fs<<","<<p.sc<<")";
 }
