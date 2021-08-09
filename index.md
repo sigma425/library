@@ -496,6 +496,9 @@ data:
       path: math/subset.cpp
       title: math/subset.cpp
     - icon: ':warning:'
+      path: math/subset_poly.cpp
+      title: math/subset_poly.cpp
+    - icon: ':warning:'
       path: math/unrooted_tree.cpp
       title: math/unrooted_tree.cpp
     - icon: ':warning:'
