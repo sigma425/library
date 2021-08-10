@@ -362,6 +362,7 @@ struct Poly: public V<mint>{
 		return g;
 	}
 	Poly intg() const {
+		assert(si(invs) > size());
 		Poly g(size()+1);
 		rep(i,size()) g[i+1] = (*this)[i] * invs[i+1];
 		return g;
