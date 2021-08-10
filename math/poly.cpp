@@ -585,3 +585,25 @@ Poly<mint> interpolate(const V<mint>& x, const V<mint>& y){
 	for(int i=s-1;i>0;i--) h[i] = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];
 	return h[1];
 }
+
+// [x^p] f/g
+// O(n logn logp)
+// O(f logf + g logg logn) (f が大きくてもややOK)
+// verified: https://ac.nowcoder.com/acm/contest/11259/H
+// hos,divAt : https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458
+
+template<class T>
+T Kevinsogo(Poly<T> f, Poly<T> g, ll p){
+	assert(g.at(0));
+	while(p){
+		auto gm = g;
+		for(int i=1;i<si(g);i+=2) gm[i] = -gm[i];
+		auto f2 = f*gm;
+		auto g2 = g*gm;
+		f.clear();g.clear();
+		for(int i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);
+		for(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);
+		p /= 2;
+	}
+	return f.at(0)/g.at(0);
+}
