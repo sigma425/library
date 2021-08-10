@@ -158,26 +158,27 @@ data:
     \ const {return Poly(*this) /= r; }\n\tPoly operator%(const Poly& r) const {return\
     \ Poly(*this) %= r; }\n\n\tPoly diff() const {\n\t\tPoly g(max(size()-1,0));\n\
     \t\trep(i,g.size()) g[i] = (*this)[i+1] * (i+1);\n\t\treturn g;\n\t}\n\tPoly intg()\
-    \ const {\n\t\tPoly g(size()+1);\n\t\trep(i,size()) g[i+1] = (*this)[i] * invs[i+1];\n\
-    \t\treturn g;\n\t}\n\tPoly square() const {\n\t\treturn multiply(*this,*this);\n\
-    \t}\n\n\t// 1/f(x) mod x^s\n\t// N = s = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE\
-    \ fft(2n) \u3092\u547C\u3093\u3067\u3044\u308B\u306E\u3067\u3001multiply \u304C\
-    \ 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\u3068\u6BD4\u3079\u308B\u3068\n\t\
-    // \u3060\u3044\u305F\u3044 multiply \u306E 5/3 \u500D\u306E\u6642\u9593\u304C\
-    \u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\t// \t\tfg = 1 mod x^m\n\t// \t\
-    \t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) = 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\
-    \tPoly inv(int s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int\
-    \ n=1;n<s;n*=2){\t\t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n);\
-    \ f.resize(2*n);\n\t\t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\
-    \t\t\tfft(g);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n)\
-    \ f[i] = 0;\n\t\t\tfft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\
-    \t\t\tfor(int i=n;i<min(2*n,s);i++) r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\
-    \n\t// log f mod x^s\n\t// \u5C0E\u51FA: D log(f) = (D f) / f\n\t// 500000: 180ms\n\
-    \t// mult \u306E 8/3 \u500D\n\t// verify: https://judge.yosupo.jp/submission/44962\n\
-    \tPoly log(int s) const {\n\t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\
-    \t\treturn (low(s).diff() * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\
-    \t// f.log(s).exp(s) == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\
-    \u5316\uFF01\n\t// \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
+    \ const {\n\t\tassert(si(invs) > size());\n\t\tPoly g(size()+1);\n\t\trep(i,size())\
+    \ g[i+1] = (*this)[i] * invs[i+1];\n\t\treturn g;\n\t}\n\tPoly square() const\
+    \ {\n\t\treturn multiply(*this,*this);\n\t}\n\n\t// 1/f(x) mod x^s\n\t// N = s\
+    \ = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE fft(2n) \u3092\u547C\u3093\u3067\u3044\
+    \u308B\u306E\u3067\u3001multiply \u304C 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\
+    \u3068\u6BD4\u3079\u308B\u3068\n\t// \u3060\u3044\u305F\u3044 multiply \u306E\
+    \ 5/3 \u500D\u306E\u6642\u9593\u304C\u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\
+    \t// \t\tfg = 1 mod x^m\n\t// \t\t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) =\
+    \ 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\tPoly inv(int\
+    \ s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int n=1;n<s;n*=2){\t\
+    \t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n); f.resize(2*n);\n\t\
+    \t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\t\t\tfft(g);\n\t\t\
+    \trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n) f[i] = 0;\n\t\t\t\
+    fft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\tfor(int i=n;i<min(2*n,s);i++)\
+    \ r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\n\t// log f mod x^s\n\t// \u5C0E\u51FA\
+    : D log(f) = (D f) / f\n\t// 500000: 180ms\n\t// mult \u306E 8/3 \u500D\n\t//\
+    \ verify: https://judge.yosupo.jp/submission/44962\n\tPoly log(int s) const {\n\
+    \t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\t\treturn (low(s).diff()\
+    \ * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\t// f.log(s).exp(s)\
+    \ == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\u5316\uFF01\n\t\
+    // \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
     \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\t\u3088\u304F\u308F\u304B\u3063\u3066\
     \u306D\uFF5E\n\t// verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0)\
     \ == 0);\n\t\tPoly f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
@@ -379,26 +380,27 @@ data:
     \ const {return Poly(*this) /= r; }\n\tPoly operator%(const Poly& r) const {return\
     \ Poly(*this) %= r; }\n\n\tPoly diff() const {\n\t\tPoly g(max(size()-1,0));\n\
     \t\trep(i,g.size()) g[i] = (*this)[i+1] * (i+1);\n\t\treturn g;\n\t}\n\tPoly intg()\
-    \ const {\n\t\tPoly g(size()+1);\n\t\trep(i,size()) g[i+1] = (*this)[i] * invs[i+1];\n\
-    \t\treturn g;\n\t}\n\tPoly square() const {\n\t\treturn multiply(*this,*this);\n\
-    \t}\n\n\t// 1/f(x) mod x^s\n\t// N = s = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE\
-    \ fft(2n) \u3092\u547C\u3093\u3067\u3044\u308B\u306E\u3067\u3001multiply \u304C\
-    \ 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\u3068\u6BD4\u3079\u308B\u3068\n\t\
-    // \u3060\u3044\u305F\u3044 multiply \u306E 5/3 \u500D\u306E\u6642\u9593\u304C\
-    \u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\t// \t\tfg = 1 mod x^m\n\t// \t\
-    \t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) = 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\
-    \tPoly inv(int s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int\
-    \ n=1;n<s;n*=2){\t\t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n);\
-    \ f.resize(2*n);\n\t\t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\
-    \t\t\tfft(g);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n)\
-    \ f[i] = 0;\n\t\t\tfft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\
-    \t\t\tfor(int i=n;i<min(2*n,s);i++) r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\
-    \n\t// log f mod x^s\n\t// \u5C0E\u51FA: D log(f) = (D f) / f\n\t// 500000: 180ms\n\
-    \t// mult \u306E 8/3 \u500D\n\t// verify: https://judge.yosupo.jp/submission/44962\n\
-    \tPoly log(int s) const {\n\t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\
-    \t\treturn (low(s).diff() * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\
-    \t// f.log(s).exp(s) == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\
-    \u5316\uFF01\n\t// \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
+    \ const {\n\t\tassert(si(invs) > size());\n\t\tPoly g(size()+1);\n\t\trep(i,size())\
+    \ g[i+1] = (*this)[i] * invs[i+1];\n\t\treturn g;\n\t}\n\tPoly square() const\
+    \ {\n\t\treturn multiply(*this,*this);\n\t}\n\n\t// 1/f(x) mod x^s\n\t// N = s\
+    \ = 500000 -> 90ms\n\t// inv \u306F 5 \u56DE fft(2n) \u3092\u547C\u3093\u3067\u3044\
+    \u308B\u306E\u3067\u3001multiply \u304C 3 \u56DE fft(2n) \u3092\u547C\u3076\u306E\
+    \u3068\u6BD4\u3079\u308B\u3068\n\t// \u3060\u3044\u305F\u3044 multiply \u306E\
+    \ 5/3 \u500D\u306E\u6642\u9593\u304C\u304B\u304B\u308B\n\t// \u5C0E\u51FA: Newton\n\
+    \t// \t\tfg = 1 mod x^m\n\t// \t\t(fg-1)^2 = 0 mod x^2m\n\t// \t\tf(2g-fg^2) =\
+    \ 1 mod x^2m\n\t// verify: https://judge.yosupo.jp/submission/44938\n\tPoly inv(int\
+    \ s) const {\n\t\tPoly r(s);\n\t\tr[0] = mint(1)/at(0);\n\t\tfor(int n=1;n<s;n*=2){\t\
+    \t\t// 5 times fft : length 2n\n\t\t\tV<mint> f = low(2*n); f.resize(2*n);\n\t\
+    \t\tfft(f);\n\t\t\tV<mint> g = r.low(2*n); g.resize(2*n);\n\t\t\tfft(g);\n\t\t\
+    \trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\trep(i,n) f[i] = 0;\n\t\t\t\
+    fft(f);\n\t\t\trep(i,2*n) f[i] *= g[i];\n\t\t\tinvfft(f);\n\t\t\tfor(int i=n;i<min(2*n,s);i++)\
+    \ r[i] -= f[i];\n\t\t}\n\t\treturn r;\n\t}\n\n\t// log f mod x^s\n\t// \u5C0E\u51FA\
+    : D log(f) = (D f) / f\n\t// 500000: 180ms\n\t// mult \u306E 8/3 \u500D\n\t//\
+    \ verify: https://judge.yosupo.jp/submission/44962\n\tPoly log(int s) const {\n\
+    \t\tassert(at(0) == 1);\n\t\tif(s == 1) return {0};\n\t\treturn (low(s).diff()\
+    \ * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\t// f.log(s).exp(s)\
+    \ == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\u5316\uFF01\n\t\
+    // \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
     \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\t\u3088\u304F\u308F\u304B\u3063\u3066\
     \u306D\uFF5E\n\t// verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0)\
     \ == 0);\n\t\tPoly f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
@@ -463,7 +465,7 @@ data:
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2021-04-19 18:52:20+09:00'
+  timestamp: '2021-08-11 02:00:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/poly.cpp

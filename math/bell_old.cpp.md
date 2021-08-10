@@ -24,25 +24,32 @@ data:
     \u3044(\u306A\u3093\u304B\u5305\u9664\u3059\u308B\u306E\u306B\u3082\u3063\u3068\
     \u826F\u3044\u30AA\u30FC\u30C0\u30FC\u306E\u3082\u306E\u304C\u3042\u308B\u3060\
     \u308D\u3046\u304B)\n\t\u2191\u5305\u9664\u306E\u4FC2\u6570\u306F1 -1 2 -6 24\
-    \ -120 \u307F\u305F\u3044\u306B\u306A\u308A\u307E\u3059\n*/\ntypedef vector<int>\
-    \ vi;\ntypedef vector<vi> vv;\nvector<vv> parts;\nvv now;\nmap<vv,int> mp;\nvector<int>\
-    \ G[21147];\nint N,M;\nvoid dfs(int x){\n\tif(x==N){\n\t\tmp[now]=parts.size();\n\
-    \t\tparts.pb(now);\n\t\treturn;\n\t}\n\trep(i,now.size()){\n\t\tnow[i].pb(x);\n\
-    \t\tdfs(x+1);\n\t\tnow[i].pop_back();\n\t}\n\tnow.pb(vi(1,x));\n\tdfs(x+1);\n\t\
-    now.pop_back();\n}\n\nbool same(vv vs,int a,int b){\n\tint N=vs.size();\n\tint\
-    \ aa=-1,bb=-1;\n\trep(i,N){\n\t\tfor(int x:vs[i]){\n\t\t\tif(x==a) aa=i;\n\t\t\
-    \tif(x==b) bb=i;\n\t\t}\n\t}\n\tassert(aa>=0&&bb>=0);\n\treturn aa==bb;\n}\nvoid\
-    \ showvv(vv vs){\n\tint N=vs.size();\n\trep(i,N){\n\t\tcout<<\"{\";\n\t\tfor(int\
-    \ x:vs[i]) cout<<x<<\",\";\n\t\tcout<<\"}  \";\n\t}\n\tputs(\"\");\n}\n\nlong\
-    \ long calc[21147];\nbool vis[21147];\nint V;\nvoid dfs2(int v){\n\tvis[v]=1;\n\
-    \tif(V!=v) calc[V]-=calc[v];\n\tfor(int u:G[v]) if(!vis[u]) dfs2(u);\n}\n\nclass\
-    \ Gxor{\n\tpublic:\n\tlong long countsubs(vector <string> S){\n\t\tM=S.size();\n\
-    \t\tfor(;;N++) if(N*(N-1)/2==S[0].size()) break;\n\t\tdfs(0);\n\t\tint K=parts.size();\n\
-    \t\tshow(K);\n\t\trep(i,K){\n\t\t\tint A=parts[i].size();\n\t\t\trep(j,A) for(int\
-    \ k=j+1;k<A;k++){\n\t\t\t\tvv nv;\n\t\t\t\trep(l,A){\n\t\t\t\t\tif(l==j){\n\t\t\
-    \t\t\t\tvi h=parts[i][j];\n\t\t\t\t\t\th.insert(h.end(),all(parts[i][k]));\n\t\
-    \t\t\t\t\tsort(all(h));\n\t\t\t\t\t\tnv.pb(h);\n\t\t\t\t\t}else if(l!=k){\n\t\t\
-    \t\t\t\tnv.pb(parts[i][l]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tassert(mp.count(nv));\n\
+    \ -120 \u307F\u305F\u3044\u306B\u306A\u308A\u307E\u3059\n\t\u2191\u3061\u3083\u3093\
+    \u3068\u8A00\u3046\u3068\u3001\u300C\u5168\u90E8distinct\u300D\u3092\u6C42\u3081\
+    \u308B\u306E\u306B\u3001\u5404\u5206\u5272(\u5185\u306F\u7D76\u5BFE\u306B\u540C\
+    \u3058\u5024)\u306E\u7DDA\u5F62\u548C\u3067\u304B\u3051\u308B\u304C\u3001\u305D\
+    \u306E\u4FC2\u6570\u306F\u3001\n\t\t\u9023\u7D50\u6210\u5206\u3054\u3068\u306B\
+    \u3001fac[size-1] * (-1)^(size-1) \u3092\u304B\u3051\u305F\u3082\u306E\u306B\u306A\
+    \u308B\n\t\t\u9023\u7D50\u6210\u5206\u6570\u3060\u3051\u306B\u4F9D\u5B58\u3059\
+    \u308B\u308F\u3051\u3067\u306F\u306A\u3044\u3001\u5F53\u305F\u308A\u524D\u3060\
+    \u3051\u3069(1\u6557)\n*/\ntypedef vector<int> vi;\ntypedef vector<vi> vv;\nvector<vv>\
+    \ parts;\nvv now;\nmap<vv,int> mp;\nvector<int> G[21147];\nint N,M;\nvoid dfs(int\
+    \ x){\n\tif(x==N){\n\t\tmp[now]=parts.size();\n\t\tparts.pb(now);\n\t\treturn;\n\
+    \t}\n\trep(i,now.size()){\n\t\tnow[i].pb(x);\n\t\tdfs(x+1);\n\t\tnow[i].pop_back();\n\
+    \t}\n\tnow.pb(vi(1,x));\n\tdfs(x+1);\n\tnow.pop_back();\n}\n\nbool same(vv vs,int\
+    \ a,int b){\n\tint N=vs.size();\n\tint aa=-1,bb=-1;\n\trep(i,N){\n\t\tfor(int\
+    \ x:vs[i]){\n\t\t\tif(x==a) aa=i;\n\t\t\tif(x==b) bb=i;\n\t\t}\n\t}\n\tassert(aa>=0&&bb>=0);\n\
+    \treturn aa==bb;\n}\nvoid showvv(vv vs){\n\tint N=vs.size();\n\trep(i,N){\n\t\t\
+    cout<<\"{\";\n\t\tfor(int x:vs[i]) cout<<x<<\",\";\n\t\tcout<<\"}  \";\n\t}\n\t\
+    puts(\"\");\n}\n\nlong long calc[21147];\nbool vis[21147];\nint V;\nvoid dfs2(int\
+    \ v){\n\tvis[v]=1;\n\tif(V!=v) calc[V]-=calc[v];\n\tfor(int u:G[v]) if(!vis[u])\
+    \ dfs2(u);\n}\n\nclass Gxor{\n\tpublic:\n\tlong long countsubs(vector <string>\
+    \ S){\n\t\tM=S.size();\n\t\tfor(;;N++) if(N*(N-1)/2==S[0].size()) break;\n\t\t\
+    dfs(0);\n\t\tint K=parts.size();\n\t\tshow(K);\n\t\trep(i,K){\n\t\t\tint A=parts[i].size();\n\
+    \t\t\trep(j,A) for(int k=j+1;k<A;k++){\n\t\t\t\tvv nv;\n\t\t\t\trep(l,A){\n\t\t\
+    \t\t\tif(l==j){\n\t\t\t\t\t\tvi h=parts[i][j];\n\t\t\t\t\t\th.insert(h.end(),all(parts[i][k]));\n\
+    \t\t\t\t\t\tsort(all(h));\n\t\t\t\t\t\tnv.pb(h);\n\t\t\t\t\t}else if(l!=k){\n\t\
+    \t\t\t\t\tnv.pb(parts[i][l]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tassert(mp.count(nv));\n\
     \t\t\t\tint id=mp[nv];\n\t\t\t\tG[id].pb(i);\n\t\t\t}\n\t\t}\n\t\tfor(int i=K-1;i>=0;i--){\t\
     \t//partition small -> large\n//\t\t\tshow(i);\n\t\t\tV=i;\n\t\t\tmemset(vis,0,K);\n\
     \t\t\tdfs2(i);\n//\t\t\tfor(int j:G[i]) show(j),calc[i]-=calc[j];\n//\t\t\tputs(\"\
@@ -63,34 +70,41 @@ data:
     (\u306A\u3093\u304B\u5305\u9664\u3059\u308B\u306E\u306B\u3082\u3063\u3068\u826F\
     \u3044\u30AA\u30FC\u30C0\u30FC\u306E\u3082\u306E\u304C\u3042\u308B\u3060\u308D\
     \u3046\u304B)\n\t\u2191\u5305\u9664\u306E\u4FC2\u6570\u306F1 -1 2 -6 24 -120 \u307F\
-    \u305F\u3044\u306B\u306A\u308A\u307E\u3059\n*/\ntypedef vector<int> vi;\ntypedef\
-    \ vector<vi> vv;\nvector<vv> parts;\nvv now;\nmap<vv,int> mp;\nvector<int> G[21147];\n\
-    int N,M;\nvoid dfs(int x){\n\tif(x==N){\n\t\tmp[now]=parts.size();\n\t\tparts.pb(now);\n\
-    \t\treturn;\n\t}\n\trep(i,now.size()){\n\t\tnow[i].pb(x);\n\t\tdfs(x+1);\n\t\t\
-    now[i].pop_back();\n\t}\n\tnow.pb(vi(1,x));\n\tdfs(x+1);\n\tnow.pop_back();\n\
-    }\n\nbool same(vv vs,int a,int b){\n\tint N=vs.size();\n\tint aa=-1,bb=-1;\n\t\
-    rep(i,N){\n\t\tfor(int x:vs[i]){\n\t\t\tif(x==a) aa=i;\n\t\t\tif(x==b) bb=i;\n\
-    \t\t}\n\t}\n\tassert(aa>=0&&bb>=0);\n\treturn aa==bb;\n}\nvoid showvv(vv vs){\n\
-    \tint N=vs.size();\n\trep(i,N){\n\t\tcout<<\"{\";\n\t\tfor(int x:vs[i]) cout<<x<<\"\
-    ,\";\n\t\tcout<<\"}  \";\n\t}\n\tputs(\"\");\n}\n\nlong long calc[21147];\nbool\
-    \ vis[21147];\nint V;\nvoid dfs2(int v){\n\tvis[v]=1;\n\tif(V!=v) calc[V]-=calc[v];\n\
-    \tfor(int u:G[v]) if(!vis[u]) dfs2(u);\n}\n\nclass Gxor{\n\tpublic:\n\tlong long\
-    \ countsubs(vector <string> S){\n\t\tM=S.size();\n\t\tfor(;;N++) if(N*(N-1)/2==S[0].size())\
-    \ break;\n\t\tdfs(0);\n\t\tint K=parts.size();\n\t\tshow(K);\n\t\trep(i,K){\n\t\
-    \t\tint A=parts[i].size();\n\t\t\trep(j,A) for(int k=j+1;k<A;k++){\n\t\t\t\tvv\
-    \ nv;\n\t\t\t\trep(l,A){\n\t\t\t\t\tif(l==j){\n\t\t\t\t\t\tvi h=parts[i][j];\n\
-    \t\t\t\t\t\th.insert(h.end(),all(parts[i][k]));\n\t\t\t\t\t\tsort(all(h));\n\t\
-    \t\t\t\t\tnv.pb(h);\n\t\t\t\t\t}else if(l!=k){\n\t\t\t\t\t\tnv.pb(parts[i][l]);\n\
-    \t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tassert(mp.count(nv));\n\t\t\t\tint id=mp[nv];\n\
-    \t\t\t\tG[id].pb(i);\n\t\t\t}\n\t\t}\n\t\tfor(int i=K-1;i>=0;i--){\t\t//partition\
-    \ small -> large\n//\t\t\tshow(i);\n\t\t\tV=i;\n\t\t\tmemset(vis,0,K);\n\t\t\t\
-    dfs2(i);\n//\t\t\tfor(int j:G[i]) show(j),calc[i]-=calc[j];\n//\t\t\tputs(\"\"\
-    );\n\t\t}\n\t\treturn calc[0];\n\t}\n};\n"
+    \u305F\u3044\u306B\u306A\u308A\u307E\u3059\n\t\u2191\u3061\u3083\u3093\u3068\u8A00\
+    \u3046\u3068\u3001\u300C\u5168\u90E8distinct\u300D\u3092\u6C42\u3081\u308B\u306E\
+    \u306B\u3001\u5404\u5206\u5272(\u5185\u306F\u7D76\u5BFE\u306B\u540C\u3058\u5024\
+    )\u306E\u7DDA\u5F62\u548C\u3067\u304B\u3051\u308B\u304C\u3001\u305D\u306E\u4FC2\
+    \u6570\u306F\u3001\n\t\t\u9023\u7D50\u6210\u5206\u3054\u3068\u306B\u3001fac[size-1]\
+    \ * (-1)^(size-1) \u3092\u304B\u3051\u305F\u3082\u306E\u306B\u306A\u308B\n\t\t\
+    \u9023\u7D50\u6210\u5206\u6570\u3060\u3051\u306B\u4F9D\u5B58\u3059\u308B\u308F\
+    \u3051\u3067\u306F\u306A\u3044\u3001\u5F53\u305F\u308A\u524D\u3060\u3051\u3069\
+    (1\u6557)\n*/\ntypedef vector<int> vi;\ntypedef vector<vi> vv;\nvector<vv> parts;\n\
+    vv now;\nmap<vv,int> mp;\nvector<int> G[21147];\nint N,M;\nvoid dfs(int x){\n\t\
+    if(x==N){\n\t\tmp[now]=parts.size();\n\t\tparts.pb(now);\n\t\treturn;\n\t}\n\t\
+    rep(i,now.size()){\n\t\tnow[i].pb(x);\n\t\tdfs(x+1);\n\t\tnow[i].pop_back();\n\
+    \t}\n\tnow.pb(vi(1,x));\n\tdfs(x+1);\n\tnow.pop_back();\n}\n\nbool same(vv vs,int\
+    \ a,int b){\n\tint N=vs.size();\n\tint aa=-1,bb=-1;\n\trep(i,N){\n\t\tfor(int\
+    \ x:vs[i]){\n\t\t\tif(x==a) aa=i;\n\t\t\tif(x==b) bb=i;\n\t\t}\n\t}\n\tassert(aa>=0&&bb>=0);\n\
+    \treturn aa==bb;\n}\nvoid showvv(vv vs){\n\tint N=vs.size();\n\trep(i,N){\n\t\t\
+    cout<<\"{\";\n\t\tfor(int x:vs[i]) cout<<x<<\",\";\n\t\tcout<<\"}  \";\n\t}\n\t\
+    puts(\"\");\n}\n\nlong long calc[21147];\nbool vis[21147];\nint V;\nvoid dfs2(int\
+    \ v){\n\tvis[v]=1;\n\tif(V!=v) calc[V]-=calc[v];\n\tfor(int u:G[v]) if(!vis[u])\
+    \ dfs2(u);\n}\n\nclass Gxor{\n\tpublic:\n\tlong long countsubs(vector <string>\
+    \ S){\n\t\tM=S.size();\n\t\tfor(;;N++) if(N*(N-1)/2==S[0].size()) break;\n\t\t\
+    dfs(0);\n\t\tint K=parts.size();\n\t\tshow(K);\n\t\trep(i,K){\n\t\t\tint A=parts[i].size();\n\
+    \t\t\trep(j,A) for(int k=j+1;k<A;k++){\n\t\t\t\tvv nv;\n\t\t\t\trep(l,A){\n\t\t\
+    \t\t\tif(l==j){\n\t\t\t\t\t\tvi h=parts[i][j];\n\t\t\t\t\t\th.insert(h.end(),all(parts[i][k]));\n\
+    \t\t\t\t\t\tsort(all(h));\n\t\t\t\t\t\tnv.pb(h);\n\t\t\t\t\t}else if(l!=k){\n\t\
+    \t\t\t\t\tnv.pb(parts[i][l]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tassert(mp.count(nv));\n\
+    \t\t\t\tint id=mp[nv];\n\t\t\t\tG[id].pb(i);\n\t\t\t}\n\t\t}\n\t\tfor(int i=K-1;i>=0;i--){\t\
+    \t//partition small -> large\n//\t\t\tshow(i);\n\t\t\tV=i;\n\t\t\tmemset(vis,0,K);\n\
+    \t\t\tdfs2(i);\n//\t\t\tfor(int j:G[i]) show(j),calc[i]-=calc[j];\n//\t\t\tputs(\"\
+    \");\n\t\t}\n\t\treturn calc[0];\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: math/bell_old.cpp
   requiredBy: []
-  timestamp: '2018-09-18 03:14:42+09:00'
+  timestamp: '2021-08-11 01:17:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/bell_old.cpp
