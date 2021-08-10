@@ -607,3 +607,22 @@ T Kevinsogo(Poly<T> f, Poly<T> g, ll p){
 	}
 	return f.at(0)/g.at(0);
 }
+
+/*
+	input:
+		はじめ d 項: a_0, a_1, .., a_{d-1}
+		d+1 項 reccurence: c_0 * a_{i+d} + .. + c_d * a_i = 0
+		aを無駄に与えても良い(足りないと、カス)
+		ll k
+	output:
+		a_k
+	O(d logd logk)
+	verified: https://judge.yosupo.jp/problem/find_linear_recurrence
+*/
+template<class T>
+T linearRecurrenceAt(V<T> a, V<T> c, ll k){
+	assert(!c.empty() && c[0]);
+	int d = si(c) - 1;
+	assert(si(a) >= d);
+	return Kevinsogo((Poly<T>(a.begin(),a.begin()+d) * Poly<T>(c)).low(d), Poly<T>(c), k);
+}
