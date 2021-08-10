@@ -456,7 +456,7 @@ data:
     - icon: ':warning:'
       path: math/gcd.cpp
       title: math/gcd.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/hadamard.cpp
       title: math/hadamard.cpp
     - icon: ':warning:'
@@ -471,13 +471,13 @@ data:
     - icon: ':warning:'
       path: math/linear_min_mod.cpp
       title: math/linear_min_mod.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/poly.cpp
       title: math/poly.cpp
     - icon: ':heavy_check_mark:'
@@ -557,11 +557,17 @@ data:
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_oj/linear_recurrence.test.cpp
+      title: test_oj/linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_oj/sa-is.test.cpp
       title: test_oj/sa-is.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/scc.test.cpp
       title: test_oj/scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/xorconv.test.cpp
+      title: test_oj/xorconv.test.cpp
   - name: test_oj/beats
     pages:
     - icon: ':heavy_check_mark:'

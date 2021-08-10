@@ -2,14 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/linear_recurrence.test.cpp
+    title: test_oj/linear_recurrence.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://ac.nowcoder.com/acm/contest/11259/H
     - https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458
+    - https://judge.yosupo.jp/problem/find_linear_recurrence
     - https://judge.yosupo.jp/submission/3240
     - https://judge.yosupo.jp/submission/36732
     - https://judge.yosupo.jp/submission/44937
@@ -248,7 +252,14 @@ data:
     \twhile(p){\n\t\tauto gm = g;\n\t\tfor(int i=1;i<si(g);i+=2) gm[i] = -gm[i];\n\
     \t\tauto f2 = f*gm;\n\t\tauto g2 = g*gm;\n\t\tf.clear();g.clear();\n\t\tfor(int\
     \ i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);\n\t\tfor(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);\n\
-    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n"
+    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n\n/*\n\tinput:\n\t\t\u306F\u3058\
+    \u3081 d \u9805: a_0, a_1, .., a_{d-1}\n\t\td+1 \u9805 reccurence: c_0 * a_{i+d}\
+    \ + .. + c_d * a_i = 0\n\t\ta\u3092\u7121\u99C4\u306B\u4E0E\u3048\u3066\u3082\u826F\
+    \u3044(\u8DB3\u308A\u306A\u3044\u3068\u3001\u30AB\u30B9)\n\t\tll k\n\toutput:\n\
+    \t\ta_k\n\tO(d logd logk)\n\tverified: https://judge.yosupo.jp/problem/find_linear_recurrence\n\
+    */\ntemplate<class T>\nT linearRecurrenceAt(V<T> a, V<T> c, ll k){\n\tassert(!c.empty()\
+    \ && c[0]);\n\tint d = si(c) - 1;\n\tassert(si(a) >= d);\n\treturn Kevinsogo((Poly<T>(a.begin(),a.begin()+d)\
+    \ * Poly<T>(c)).low(d), Poly<T>(c), k);\n}\n"
   code: "/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
     \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
     \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
@@ -478,14 +489,22 @@ data:
     \twhile(p){\n\t\tauto gm = g;\n\t\tfor(int i=1;i<si(g);i+=2) gm[i] = -gm[i];\n\
     \t\tauto f2 = f*gm;\n\t\tauto g2 = g*gm;\n\t\tf.clear();g.clear();\n\t\tfor(int\
     \ i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);\n\t\tfor(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);\n\
-    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n"
+    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n\n/*\n\tinput:\n\t\t\u306F\u3058\
+    \u3081 d \u9805: a_0, a_1, .., a_{d-1}\n\t\td+1 \u9805 reccurence: c_0 * a_{i+d}\
+    \ + .. + c_d * a_i = 0\n\t\ta\u3092\u7121\u99C4\u306B\u4E0E\u3048\u3066\u3082\u826F\
+    \u3044(\u8DB3\u308A\u306A\u3044\u3068\u3001\u30AB\u30B9)\n\t\tll k\n\toutput:\n\
+    \t\ta_k\n\tO(d logd logk)\n\tverified: https://judge.yosupo.jp/problem/find_linear_recurrence\n\
+    */\ntemplate<class T>\nT linearRecurrenceAt(V<T> a, V<T> c, ll k){\n\tassert(!c.empty()\
+    \ && c[0]);\n\tint d = si(c) - 1;\n\tassert(si(a) >= d);\n\treturn Kevinsogo((Poly<T>(a.begin(),a.begin()+d)\
+    \ * Poly<T>(c)).low(d), Poly<T>(c), k);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2021-08-11 02:56:44+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-08-11 04:07:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_oj/linear_recurrence.test.cpp
 documentation_of: math/poly.cpp
 layout: document
 redirect_from:
