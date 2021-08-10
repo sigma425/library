@@ -8,6 +8,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://ac.nowcoder.com/acm/contest/11259/H
+    - https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458
     - https://judge.yosupo.jp/submission/3240
     - https://judge.yosupo.jp/submission/36732
     - https://judge.yosupo.jp/submission/44937
@@ -238,7 +240,15 @@ data:
     \ h(s+s);\n\trep(i,n) g[s+i] = {-x[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2]\
     \ * g[i*2+1];\n\th[1] = g[1].diff();\n\tfor(int i=2;i<s+n;i++) h[i] = h[i>>1]\
     \ % g[i];\n\trep(i,n) h[s+i] = {y[i] / h[s+i][0]};\n\tfor(int i=s-1;i>0;i--) h[i]\
-    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}\n"
+    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}\n\n// [x^p] f/g\n//\
+    \ O(n logn logp)\n// O(f logf + g logg logn) (f \u304C\u5927\u304D\u304F\u3066\
+    \u3082\u3084\u3084OK)\n// verified: https://ac.nowcoder.com/acm/contest/11259/H\n\
+    // hos,divAt : https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458\n\
+    \ntemplate<class T>\nT Kevinsogo(Poly<T> f, Poly<T> g, ll p){\n\tassert(g.at(0));\n\
+    \twhile(p){\n\t\tauto gm = g;\n\t\tfor(int i=1;i<si(g);i+=2) gm[i] = -gm[i];\n\
+    \t\tauto f2 = f*gm;\n\t\tauto g2 = g*gm;\n\t\tf.clear();g.clear();\n\t\tfor(int\
+    \ i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);\n\t\tfor(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);\n\
+    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n"
   code: "/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
     \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
     \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
@@ -460,12 +470,20 @@ data:
     \ h(s+s);\n\trep(i,n) g[s+i] = {-x[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2]\
     \ * g[i*2+1];\n\th[1] = g[1].diff();\n\tfor(int i=2;i<s+n;i++) h[i] = h[i>>1]\
     \ % g[i];\n\trep(i,n) h[s+i] = {y[i] / h[s+i][0]};\n\tfor(int i=s-1;i>0;i--) h[i]\
-    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}"
+    \ = h[i*2]*g[i*2+1] + h[i*2+1]*g[i*2];\n\treturn h[1];\n}\n\n// [x^p] f/g\n//\
+    \ O(n logn logp)\n// O(f logf + g logg logn) (f \u304C\u5927\u304D\u304F\u3066\
+    \u3082\u3084\u3084OK)\n// verified: https://ac.nowcoder.com/acm/contest/11259/H\n\
+    // hos,divAt : https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458\n\
+    \ntemplate<class T>\nT Kevinsogo(Poly<T> f, Poly<T> g, ll p){\n\tassert(g.at(0));\n\
+    \twhile(p){\n\t\tauto gm = g;\n\t\tfor(int i=1;i<si(g);i+=2) gm[i] = -gm[i];\n\
+    \t\tauto f2 = f*gm;\n\t\tauto g2 = g*gm;\n\t\tf.clear();g.clear();\n\t\tfor(int\
+    \ i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);\n\t\tfor(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);\n\
+    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2021-08-11 02:00:48+09:00'
+  timestamp: '2021-08-11 02:56:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/poly.cpp
