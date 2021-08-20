@@ -95,11 +95,16 @@ void InitFact(int N){	//[0,N]
 //		a[i] <- (1/n) \sum_j \zeta^{-ij} a[rev(j)]
 // These two are inversions.
 
+
+// !!! CHANGE IF MOD is unusual !!!
+const int ORDER_2_MOD_MINUS_1 = 23;	// ord_2 (mod-1)
+const mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*
+
 void fft(V<mint>& a){
 	static constexpr uint mod = mint::mod;
 	static constexpr uint mod2 = mod + mod;
-	static const int H = 23;				// ord_2 (mod-1)
-	static const mint root = 3;				// primitive root of (Z/pZ)*
+	static const int H = ORDER_2_MOD_MINUS_1;
+	static const mint root = PRIMITIVE_ROOT;
 	static mint magic[H-1];
 
 	int n = si(a);
@@ -164,8 +169,8 @@ void fft(V<mint>& a){
 void invfft(V<mint>& a){
 	static constexpr uint mod = mint::mod;
 	static constexpr uint mod2 = mod + mod;
-	static const int H = 23;				// ord_2 (mod-1)
-	static const mint root = 3;				// primitive root of (Z/pZ)*
+	static const int H = ORDER_2_MOD_MINUS_1;
+	static const mint root = PRIMITIVE_ROOT;
 	static mint magic[H-1];
 
 	int n = si(a);
