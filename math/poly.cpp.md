@@ -59,25 +59,26 @@ data:
     \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
     \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
     a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
-    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\nvoid fft(V<mint>& a){\n\
+    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE IF MOD\
+    \ is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst\
+    \ mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\
     \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
-    \ mod;\n\tstatic const int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint\
-    \ root = 3;\t\t\t\t// primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\
-    \tint n = si(a);\n\tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t\
-    // n should be power of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\
-    \t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\t\tmagic[i] = w;\n\t\t}\n\t\
-    }\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\t\tuint v = a[i+m].v;\t\t\t\
-    \t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t// < 2M\n\t\t\ta[i].v += v;\t\
-    \t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0;\
-    \ s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\tuint v = (a[i+m] * p).v;\t\
-    \t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\
-    \t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t}\n\t\
-    while(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
-    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
-    \t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\ta[i].v +=\
-    \ v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t\
-    \t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
-    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \ mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root\
+    \ = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
+    \ & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\
+    \tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
+    \t\t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\
+    \t\t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\
+    \t// < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\
+    \t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
+    \t\t\t\tuint v = (a[i+m] * p).v;\t\t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod -\
+    \ v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t}\n\t}\n\twhile(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0;\
+    \ s<n; s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m]\
+    \ * p).v;\t\t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\
+    \ta[i].v += v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t\t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n;\
+    \ s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
     \t\t\t\t\t\t\t// < M\n\t\t\t\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2 : a[i].v;\t\
     // < 2M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\t\t\t\t\t// < 3M\n\t\t\t\t\
     \ta[i].v += v;\t\t\t\t\t\t\t\t\t\t\t// < 3M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
@@ -85,13 +86,13 @@ data:
     \ : a[i].v;\t\t// < 2M\n\t\ta[i].v = (a[i].v >= mod) ? a[i].v - mod : a[i].v;\t\
     \t// < M\n\t}\n\t// finally < mod !!\n}\nvoid invfft(V<mint>& a){\n\tstatic constexpr\
     \ uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
-    \ int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint root = 3;\t\t\t\t//\
-    \ primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\t\
-    assert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power\
-    \ of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
-    \t\t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint\
-    \ p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
-    \t\t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
+    \ int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root = PRIMITIVE_ROOT;\n\t\
+    static mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n & (n-1))); assert(n\
+    \ >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\tif(!magic[0]){\t\t\
+    // precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\
+    \t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint p\
+    \ = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\
+    \t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
     \t\t\t\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\t// < M\n\t\t\t}\n\t\t\
     \tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t\tm <<= 1;\n\t}\n\tfor(;m < n>>1;\
     \ m <<= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s+= m*2){\n\t\t\tfor(int\
@@ -296,25 +297,26 @@ data:
     \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
     \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
     a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
-    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\nvoid fft(V<mint>& a){\n\
+    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE IF MOD\
+    \ is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst\
+    \ mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\
     \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
-    \ mod;\n\tstatic const int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint\
-    \ root = 3;\t\t\t\t// primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\
-    \tint n = si(a);\n\tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t\
-    // n should be power of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\
-    \t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\t\tmagic[i] = w;\n\t\t}\n\t\
-    }\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\t\tuint v = a[i+m].v;\t\t\t\
-    \t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t// < 2M\n\t\t\ta[i].v += v;\t\
-    \t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0;\
-    \ s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\tuint v = (a[i+m] * p).v;\t\
-    \t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\
-    \t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t}\n\t\
-    while(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
-    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
-    \t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\ta[i].v +=\
-    \ v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t\
-    \t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
-    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \ mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root\
+    \ = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
+    \ & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\
+    \tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
+    \t\t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\
+    \t\t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\
+    \t// < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\
+    \t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
+    \t\t\t\tuint v = (a[i+m] * p).v;\t\t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod -\
+    \ v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t}\n\t}\n\twhile(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0;\
+    \ s<n; s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m]\
+    \ * p).v;\t\t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\
+    \ta[i].v += v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
+    \t\t\t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n;\
+    \ s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
     \t\t\t\t\t\t\t// < M\n\t\t\t\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2 : a[i].v;\t\
     // < 2M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\t\t\t\t\t// < 3M\n\t\t\t\t\
     \ta[i].v += v;\t\t\t\t\t\t\t\t\t\t\t// < 3M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
@@ -322,13 +324,13 @@ data:
     \ : a[i].v;\t\t// < 2M\n\t\ta[i].v = (a[i].v >= mod) ? a[i].v - mod : a[i].v;\t\
     \t// < M\n\t}\n\t// finally < mod !!\n}\nvoid invfft(V<mint>& a){\n\tstatic constexpr\
     \ uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
-    \ int H = 23;\t\t\t\t// ord_2 (mod-1)\n\tstatic const mint root = 3;\t\t\t\t//\
-    \ primitive root of (Z/pZ)*\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\t\
-    assert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power\
-    \ of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
-    \t\t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint\
-    \ p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
-    \t\t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
+    \ int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root = PRIMITIVE_ROOT;\n\t\
+    static mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n & (n-1))); assert(n\
+    \ >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\tif(!magic[0]){\t\t\
+    // precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\
+    \t\tmagic[i] = w.inv();\n\t\t}\n\t}\n\tint m = 1;\n\tif(m < n>>1){\n\t\tmint p\
+    \ = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\
+    \t\t\tull x = a[i].v + mod - a[i+m].v;\t// < 2M\n\t\t\t\ta[i].v += a[i+m].v;\t\
     \t\t\t\t// < 2M\n\t\t\t\ta[i+m].v = (p.v * x) % mod;\t\t\t// < M\n\t\t\t}\n\t\t\
     \tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t\tm <<= 1;\n\t}\n\tfor(;m < n>>1;\
     \ m <<= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s+= m*2){\n\t\t\tfor(int\
@@ -501,7 +503,7 @@ data:
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2021-08-11 04:07:40+09:00'
+  timestamp: '2021-08-21 01:23:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/linear_recurrence.test.cpp
