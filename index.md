@@ -424,6 +424,9 @@ data:
       path: math/Frac.cpp
       title: math/Frac.cpp
     - icon: ':warning:'
+      path: math/IncreasingProb.cpp
+      title: math/IncreasingProb.cpp
+    - icon: ':warning:'
       path: math/LPsolver.cpp
       title: math/LPsolver.cpp
     - icon: ':warning:'
