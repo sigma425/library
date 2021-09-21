@@ -58,11 +58,14 @@ data:
     \u308C\u306Flz\u3067\u306F\u306A\u304F\u5024\u3092\u76F4\u63A5\u3044\u3058\u308C\
     \u3070\u3044\u3044\u304B\u3089\u3002\u7279\u306B ch(i,i+1,&D::hoge) \u4F7F\u3063\
     \u3066\u3044\u3044\r\n\r\n\t\u982D\u3092\u58CA\u3057\u3066\u3057\u307E\u3063\u305F\
-    \u4F8B: https://atcoder.jp/contests/acl2/submissions/16994422\r\n*/\r\n\r\n/*\r\
-    \n\tsimple,lazy,beats \u3069\u308C\u3082\u3053\u308C\u3067\u66F8\u3051\u308B\r\
-    \n\r\n\t\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF:\r\n\t\tsegbeats(n)\r\n\t\t\
-    segbeats(vec) \u578B\u304C\u9055\u3063\u3066\u3082\u30AD\u30E3\u30B9\u30C8\u3067\
-    \u304D\u308C\u3070OK\r\n\r\n\tchange \u30AF\u30A8\u30EA:\r\n\t\tseg.ch(l,r,&D::set,x)\r\
+    \u4F8B: https://atcoder.jp/contests/acl2/submissions/16994422\r\n\r\n\tverify:\
+    \ https://sigma425.github.io/library/data%20structure/segtree/segbeats.cpp\r\n\
+    \r\n\t\u305F\u3060\u306Elazy\u3067\u4F7F\u3044\u65B9\u5FD8\u308C\u304C\u3061 \u2192\
+    \ https://sigma425.github.io/library/test_oj/beats/range_affine_range_sum.test.cpp\r\
+    \n*/\r\n\r\n/*\r\n\tsimple,lazy,beats \u3069\u308C\u3082\u3053\u308C\u3067\u66F8\
+    \u3051\u308B\r\n\r\n\t\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF:\r\n\t\tsegbeats(n)\r\
+    \n\t\tsegbeats(vec) \u578B\u304C\u9055\u3063\u3066\u3082\u30AD\u30E3\u30B9\u30C8\
+    \u3067\u304D\u308C\u3070OK\r\n\r\n\tchange \u30AF\u30A8\u30EA:\r\n\t\tseg.ch(l,r,&D::set,x)\r\
     \n\r\n\tget \u30AF\u30A8\u30EA:\r\n\t\tseg.get(l,r,&D::getsum,[](ll x,ll y){return\
     \ x+y;},0LL)\r\n\t\t\u578B\u3057\u3063\u304B\u308A\u304B\u304B\u306A\u3044\u3068\
     \u6012\u3089\u308C\u308B\u306E\u3067\u6CE8\u610F\r\n\r\n\tfindl \u30AF\u30A8\u30EA\
@@ -174,7 +177,7 @@ data:
   isVerificationFile: true
   path: test_oj/beats/simple_min.test.cpp
   requiredBy: []
-  timestamp: '2020-12-16 01:37:32+09:00'
+  timestamp: '2021-09-22 00:44:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/beats/simple_min.test.cpp
