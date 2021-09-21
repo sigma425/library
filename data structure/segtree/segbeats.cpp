@@ -10,6 +10,10 @@
 	ちなみに点更新の関数は↑の閉じた形には含めなくて良い、それはlzではなく値を直接いじればいいから。特に ch(i,i+1,&D::hoge) 使っていい
 
 	頭を壊してしまった例: https://atcoder.jp/contests/acl2/submissions/16994422
+
+	verify: https://sigma425.github.io/library/data%20structure/segtree/segbeats.cpp
+
+	ただのlazyで使い方忘れがち → https://sigma425.github.io/library/test_oj/beats/range_affine_range_sum.test.cpp
 */
 
 /*
