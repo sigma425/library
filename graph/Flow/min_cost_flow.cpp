@@ -1,3 +1,23 @@
+/*
+	F回dijkstra O(FElogV)
+
+	負のコストについて:
+		負閉路:
+			やべ～
+			コストスケーリング系なら行けるという噂があります
+		負辺:
+			気にせずに貼ってはじめにBellman Ford (min_cost_flow 関数のはじめのコメントを参照)
+
+	最小流量制限について:
+		1) -BIGを足して負辺だと思う
+			グラフの形によってはこれで十分、Fがでかくなるのでやや計算量は怪しい
+		2) なんか超頂点つくるやつ
+			むずいねんな
+			普通にS->t, s->T だと思うとまずい
+			https://snuke.hatenablog.com/entry/2016/07/10/043918
+		3) b-flow
+			すべてを解決するが遅いときもある
+*/
 struct MinCostFlow{
 	using C = ll;		// capacity
 	using D = ll;		// cost (distance)
