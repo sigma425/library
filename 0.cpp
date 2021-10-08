@@ -9,7 +9,8 @@ using ull = unsigned long long;
 #define per1(i,n) for(int i=int(n);i>0;i--)
 #define all(c) c.begin(),c.end()
 #define si(x) int(x.size())
-#define pb emplace_back
+#define pb push_back
+#define eb emplace_back
 #define fs first
 #define sc second
 template<class T> using V = vector<T>;
