@@ -33,6 +33,14 @@ struct MinCostFlow{
 		G[to].push_back(e2);
 	}
 	D min_cost_flow(int s, int t, C f){
+		// if G has negative edge && has no negative loop
+		// Bellman Ford O(MN)
+		// rep(v,N){
+		// 	for(auto& e: G[v]){
+		// 		if(e.cap > 0) chmin(h[e.to],h[v]+e.cost);
+		// 	}
+		// }
+		
 		D res = 0;
 		h = V<D>(N);
 		while(f > 0){
