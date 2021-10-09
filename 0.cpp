@@ -61,6 +61,13 @@ void dmpr(ostream&os,const T&t,const Args&... args){
 #define shows(...) void(0)
 #endif
 
+template<class D> D divFloor(D a, D b){
+	return a / b - (((a ^ b) < 0 && a % b != 0) ? 1 : 0);
+}
+template<class D> D divCeil(D a, D b) {
+	return a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);
+}
+
 int main(){
 	cin.tie(0);
 	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
