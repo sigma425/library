@@ -15,8 +15,14 @@ using ull = unsigned long long;
 #define sc second
 template<class T> using V = vector<T>;
 template<class T> using VV = vector<vector<T>>;
-template<class T,class U> void chmax(T& x, U y){if(x<y) x=y;}
-template<class T,class U> void chmin(T& x, U y){if(y<x) x=y;}
+template<class T,class U> bool chmax(T& x, U y){
+	if(x<y){ x=y; return true; }
+	return false;
+}
+template<class T,class U> bool chmin(T& x, U y){
+	if(y<x){ x=y; return true; }
+	return false;
+}
 template<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}
 template<class T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}
 template<class T>
