@@ -1,18 +1,14 @@
-/*
-	lw <= ax mod b <= up なる x に対し、
-	getAXmodB : ax を返す
-	getMin : xを返す
-
-	verified : 手元
-*/
 
 /*
-	!!! return ax mod b !!! where x is
-	min x>=0 s.t. lw <= ax mod b <= up
-	no -> -1
-
-	gcdと完全に一緒、上限ll,O(log)
+	FirstHitMod(a,m,l,r)
+	0%m, a%m, 2a%m, ... のうち、最初に [l,r] に含まれるもの(をa*xとしたときに、x)を返す
+	ないなら-1
+	m > 0
+	a,m,l,r <= 10^18 くらいまでOK
+	O(log m)
+	verified: ストレステスト
 */
+
 ll getAXmodB(ll a,ll b,ll lw,ll up){
 	if(lw == 0) return 0;
 	if(a == 0) return -1;
@@ -37,21 +33,48 @@ ll inv_mod(ll x, ll md) {
 	return (z % md + md) % md;
 }
 
-/*
-	!!! return x !!! where x is
-	min x>=0 s.t. lw <= ax mod b <= up
-	no -> -1
-
-	gcdと完全に一緒、上限ll,O(log)
-
-	getaxmodbの2.5倍くらい遅いから、ほしいときだけこっち
-*/
-ll getMin(ll a,ll b,ll lw,ll up){
-	assert(a >= 0 && b > 0 && 0 <= lw && lw <= up && up < b);
-	ll ax = getAXmodB(a,b,lw,up);
+ll FirstHitMod(ll a,ll m,ll l,ll r){
+	chmax(l,0); chmin(r,m-1);
+	if(l > r) return -1;
+	assert(m > 0);
+	a = ((a%m)+m)%m;
+	
+	ll ax = getAXmodB(a,m,l,r);
 	if(ax == -1) return -1;
-	auto e = ext_gcd(a,b);
+	auto e = ext_gcd(a,m);
 	ll g = e.g;
-	a/=g,ax/=g,b/=g;
-	return __int128((e.x+b)%b)*ax%b;
+	a/=g,ax/=g,m/=g;
+	return __int128((e.x+m)%m)*ax%m;
 }
+
+
+// ll brute(ll a,ll m,ll l,ll r){
+// 	for(int i=0;;i++){
+// 		int v = (i*a%m+m)%m;
+// 		if(i>0 && v==0) return -1;
+// 		if(l<=v && v<=r) return i;
+// 	}
+// 	assert(0);
+// }
+
+// int main(){
+// 	cin.tie(0);
+// 	ios::sync_with_stdio(false);		//DON'T USE scanf/printf/puts !!
+// 	cout << fixed << setprecision(20);
+
+// 	int X; cin >> X;
+// 	rep1(m,X){
+// 		for(int a=-X;a<=X;a++){
+// 			for(int l=-X;l<=X;l++){
+// 				for(int r=-X;r<=X;r++){
+// 					if(FirstHitMod(a,m,l,r) != brute(a,m,l,r)){
+// 						shows(a,m,l,r);
+// 						show(FirstHitMod(a,m,l,r));
+// 						show(brute(a,m,l,r));
+// 						assert(0);
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
