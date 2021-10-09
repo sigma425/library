@@ -1,36 +1,49 @@
 /*
-	return sum_{k=0~n-1} [ak/b]
+	return sum_{ i \in [0,n) } floor((a*i+b)/m)
 
-	a>=0,b>0,n>=0
-	O(log(max(a,b)))
-	計算途中でmax(a,b,n)^2 くらいの大きさにはなるのでオーバーフローに注意
+	O(log(m))
+	計算途中で max(a,b,m,n)^3 くらいの大きさにはなるのでオーバーフローに注意
+	渡す値は long long
+	返り値の型を template にしていて、
+		- 大丈夫な時は普通に ll / __int128
+		- 問題によっては mint
+		- 途中でオーバーフローするかもだけど最終的にはll, みたいなケースでは ull を指定すると安全
 
-	verified at opencup/7836/F.cpp
+	verify:
+		https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2387
 */
+
 template<class D>
-D sumFloor(D a,D b,D n){
-	assert(b!=0);
-	if(a==0 || n==0) return 0;
-	D g = gcd(a,b);
-	a/=g, b/=g;
+D sumFloor(ll a, ll b, ll m, ll n){
+	assert(m > 0);
+	assert(n >= 0);
+	assert(a >= 0);			// サボり
+	// assert(b >= 0);		// OK!
+
+	if(n == 0) return 0;
 
 	D res = 0;
-	while(a!=0 && n!=0){
-		if(a>=b){
-			res += a/b * n*(n-1)/2;
-			a %= b;
-			if(a==0) break;
-		}
-		if(n>=b){
-			res += (n/b)*(n/b-1)/2*a*b + (a-1)*(b-1)/2*(n/b) + (n/b)*a*(n%b);
-			n %= b;
-			if(n==0) break;
-		}
-		res += (b-1)*(a-1)/2 - (b-n)*(a*(n-1)/b);
-		n = a-a*(n-1)/b;
-		swap(a,b);
-		res = -res;
+	{	// a %= m
+		ll p = a/m;
+		if(n%2 == 0) res += D(n/2) * (n-1) * p;			// big!!
+		else res += D((n-1)/2) * n * p;
+		a %= m;
 	}
-	res = abs(res);
+	{	// b %= m;
+		ll p = divFloor(b,m);
+		res += D(n) * p;
+		b -= p*m;
+	}
+	if(a == 0) return res;
+	ll top = (__int128(a)*(n-1)+b)/m;			// overflow?
+	res += D(top) * n;
+	ll h = (b+m)/m;
+	if(h <= top) res -= sumFloor<D>(m,m*h-(b+1),a,top-h+1) + top-h+1;
 	return res;
+}
+
+// i \in [l,r)
+template<class D>
+D sumFloor(ll a, ll b, ll m, ll l, ll r){
+	return sumFloor<D>(a,b,m,r) - sumFloor<D>(a,b,m,l);
 }
