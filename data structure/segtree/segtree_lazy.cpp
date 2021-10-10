@@ -51,7 +51,7 @@ struct lazyseg{
 		apply(a,b,f,0,N,1);
 	}
 	void assign(int i, S x){
-		return assign(i,i+1,x,0,N,1);
+		assign(i,i+1,x,0,N,1);
 	}
 
 	private:
@@ -109,13 +109,14 @@ struct lazyseg{
 		Action composite(Action f, Action g) ( = f*g) g やって f
 
 		Monoid act(Action, Monoid)
+
+		ライブラリ内で Monoid() や Action() は呼んでない(eやidを呼んでいる) ので、必ずしも定義しなくてもよい
 */
 /*
 struct StarrySky{
 	const ll inf = TEN(18);
 	struct Monoid{
 		ll mn;
-		Monoid(){ *this = e(); }
 		Monoid(ll mn_):mn(mn_){}
 	};
 	struct Action{
@@ -149,7 +150,6 @@ struct D{
 	struct Monoid{
 		mint sm;
 		int sz;
-		Monoid(){ *this = e(); }
 		Monoid(mint v):sm(v),sz(1){}
 		Monoid(mint sm_, int sz_):sm(sm_),sz(sz_){}
 	};
