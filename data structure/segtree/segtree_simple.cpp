@@ -38,13 +38,22 @@ struct segtree{
 	}
 };
 
+/*
+	書くもの:
+		型の定義
+		演算 op
+		単位元 e()
+*/
 struct D{
-	int s=0;
-	D(){} // should be unit
+	int s;
+	D(){ *this = e(); }
 	D(int s_):s(s_){}
 	static D op(const D& x,const D& y){
 		D z;
 		z.s = x.s + y.s;
+	}
+	const static D e(){
+		return D(0);
 	}
 //	friend ostream& operator<<(ostream& o,const D& d){return o<<d.s;}
 };
