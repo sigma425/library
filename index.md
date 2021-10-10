@@ -129,18 +129,18 @@ data:
     - icon: ':warning:'
       path: data structure/segtree/dynamic.cpp
       title: data structure/segtree/dynamic.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/lazyseg_dynamic.cpp
+      title: data structure/segtree/lazyseg_dynamic.cpp
     - icon: ':heavy_check_mark:'
       path: data structure/segtree/segbeats.cpp
       title: data structure/segtree/segbeats.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data structure/segtree/segtree_lazy.cpp
       title: data structure/segtree/segtree_lazy.cpp
     - icon: ':warning:'
       path: data structure/segtree/segtree_simple.cpp
       title: data structure/segtree/segtree_simple.cpp
-    - icon: ':warning:'
-      path: data structure/segtree/starryskytree.cpp
-      title: data structure/segtree/starryskytree.cpp
   - name: data structure/segtree/persistent segtree
     pages:
     - icon: ':warning:'
@@ -557,5 +557,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/beats/simple_sum.test.cpp
       title: test_oj/beats/simple_sum.test.cpp
+  - name: test_oj/segtree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test_oj/segtree/range_affine_range_sum.test.cpp
+      title: test_oj/segtree/range_affine_range_sum.test.cpp
 layout: toppage
 ---
