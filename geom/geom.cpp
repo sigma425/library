@@ -312,3 +312,73 @@ inline D compute_shortest(P *a,int n){
 	sort(a,a+n,compxy);
 	return closest_pair(a,n);
 }
+
+// return {p \cap halfplane}
+// size = O(N^2)
+// time complexity: O(N^3) slow
+// bit表現で持ってるので大きい時はvectorに変えようね！
+// 無駄なのが含まれてるかもしれねえ　自信なし
+// verify: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1614
+V<ll> enumeratePlaneDivision(V<P> p){
+	int N = si(p);
+	V<ll> divs;
+//	rep(i,1<<N) divs.pb(i);
+	divs.pb(0); divs.pb((1LL<<N)-1);
+	rep(i,N) rep(j,N) if(i != j){
+		P mid = (p[j]+p[i])/2.0;
+		P vec = (p[j]-p[i]) * polar(1.0,1e-8);
+		ll s=0, t=0;
+		rep(k,N){
+			if(cro(vec,p[k]-mid) < 0) s |= 1LL<<k;
+			else t |= 1LL<<k;
+		}
+		divs.pb(s); divs.pb(t);
+	}
+	mkuni(divs);
+	return divs;
+}
+
+// return { {i s.t. p \in c[i]} | p: point }
+// 円の集合が与えられるので、どのような領域に分けられるか　というのを、円に含まれるか含まれないかの集合で特徴づけて計算する
+// max: N^2-N+2
+// とか言ったけどやや嘘で、正の面積をもつ領域しか列挙してない気もするし、あと無駄なのも含まれてる気もする
+// ロバストにやりたくね～ これで許してくれ
+// 各領域に対して、境界に交点を含まない場合→境界は円なので内と外をためす
+// 含む場合、交点と2つの円弧に挟まれた部分を列挙すればよい
+// と思うじゃん、bがaに内接してたら、a-bの部分は、交点の近傍からは得られないんだよね
+// よく考えると、このように内接してるやつを避けるには、（他の交点からも得られない i.e. どこでも内接 ということを考慮すると、)
+// ↑で言った円の内側を試すときにランダムな回転をして一点取れば良いことが示せる
+// かしこいね～～～ もう一切このライブラリの事信用していません
+// verify: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1614
+
+
+V<ll> enumerateCircleInclusion(V<C> c){
+	int N = si(c);
+	V<ll> inclusions;
+//	rep(i,1<<N) inclusions.pb(i);
+	V<P> cands;
+	D eps_here = 1e-8;
+	rep(i,N){
+		cands.pb(c[i].p + polar(c[i].r-eps_here, 1.0));
+		cands.pb(c[i].p + polar(c[i].r+eps_here, 1.0));
+	}
+	rep(i,N) rep(j,N) if(i!=j){
+		V<P> f = intCC(c[i],c[j]);
+		for(P p: f){
+			P d1 = (p-c[i].p); d1 /= abs(d1);
+			P d2 = (p-c[j].p); d2 /= abs(d2);
+			P dir = (d1+d2); dir /= abs(dir);
+			rep(_,4){
+				cands.pb(p + dir * eps_here);
+				dir *= P(0,1);
+			}
+		}
+	}
+	for(P p: cands){
+		ll s = 0;
+		rep(i,N) if(abs(p-c[i].p) < c[i].r) s |= 1LL<<i;
+		inclusions.pb(s);
+	}
+	mkuni(inclusions);
+	return inclusions;
+}
