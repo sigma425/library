@@ -12,5 +12,12 @@ T rnd(T l,T r){	//[l,r)
 }
 template<class T>
 T rnd(T n){	//[0,n)
-	return rnd(0,n);
+	return rnd(T(0),n);
+}
+
+// double
+double rnd(double l,double r){
+	static random_device rd;
+	static mt19937 gen(rd());
+	return uniform_real_distribution<double>(l,r)(gen);
 }
