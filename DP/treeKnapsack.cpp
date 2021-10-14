@@ -11,6 +11,7 @@
 	頂点 v には重さ w, 価値 p のものが n 個おいてあり、n 個全て使い切らない限り部分木は使えない
 	O(NW)
 	長さ W+1 のvector を N 回生成してるとこがもっと重そうだが、消し方がわからねえ
+	verify: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1631
 */
 
 namespace SlideMax{
