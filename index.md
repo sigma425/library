@@ -56,6 +56,9 @@ data:
     - icon: ':warning:'
       path: DP/monotone minima.cpp
       title: DP/monotone minima.cpp
+    - icon: ':warning:'
+      path: DP/treeKnapsack.cpp
+      title: DP/treeKnapsack.cpp
   - name: DP/monge
     pages:
     - icon: ':warning:'
