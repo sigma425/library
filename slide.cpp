@@ -1,18 +1,26 @@
 /*
 	スライド最小値っていちいち配列作って・・・ってやると重いことが多い気がするので使いまわし可能なやつを作った
 	でもグローバルは流石に嫌だから、namespaceで
+*/
 
-	例: f[x] = min(f[x],f[x-v]+1,f[x-2v]+2,..f[x-Kv]+K)
-	rep(r,v){
-		SlideMin::clear();
-		for(int x=r;x<=S;x+=v){
-			int i = x/v;
-			SlideMin::add(sum2mn[x]-i);
-			sum2mn[x] = SlideMin::getmin()+i;
-			if(i>=K) SlideMin::del();
+// shiyourei
+// nf[i] = max(f[i], f[i-w]+p, .., f[i-nw]+np)
+// (w,p) が n 個あるときの個数制限付きナップザック
+
+void slide(V<ll>& f, int w, ll p, int n){
+	int W = si(f)-1;
+	rep(r,w){
+		SlideMax::clear();
+		if(r > W) break;
+		for(int i=0,x=r;x<=W;i++,x+=w){
+			SlideMax::add(f[x]-i*p);
+			f[x] = SlideMax::getmax() + i*p;
+			if(f[x] < -inf/2) f[x] = -inf;
+			if(i >= n) SlideMax::del();
 		}
 	}
-*/
+}
+
 
 namespace SlideMin{
 	using D = int;
