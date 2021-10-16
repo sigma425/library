@@ -85,7 +85,7 @@ struct CHT{
 	bool check(P& a,P& b,P& c){
 		return (b.fs-a.fs)*(c.sc-b.sc)>=(b.sc-a.sc)*(c.fs-b.fs);
 	}
-	D f(P &p,int x){
+	D f(P &p, D x){
 		return p.fs*x+p.sc;
 	}
 };
