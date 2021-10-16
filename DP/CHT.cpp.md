@@ -74,8 +74,8 @@ data:
     \t\twhile(ub-lb>1){\n\t\t\tint m=(lb+ub)/2;\n\t\t\tif(isright(deq[m],deq[m+1],x))\
     \ lb=m;\n\t\t\telse ub=m;\n\t\t}\n\t\treturn f(deq[ub],x);\n\t}\n\n\tbool isright(P&\
     \ a,P& b,D x){\n\t\treturn f(a,x)>=f(b,x);\n\t}\n\tbool check(P& a,P& b,P& c){\n\
-    \t\treturn (b.fs-a.fs)*(c.sc-b.sc)>=(b.sc-a.sc)*(c.fs-b.fs);\n\t}\n\tD f(P &p,int\
-    \ x){\n\t\treturn p.fs*x+p.sc;\n\t}\n};\n\nint main(){\n\tcht.init(3);\n\tcht.add(2,3);\n\
+    \t\treturn (b.fs-a.fs)*(c.sc-b.sc)>=(b.sc-a.sc)*(c.fs-b.fs);\n\t}\n\tD f(P &p,\
+    \ D x){\n\t\treturn p.fs*x+p.sc;\n\t}\n};\n\nint main(){\n\tcht.init(3);\n\tcht.add(2,3);\n\
     \tcht.add(-1,4);\n\tshow(cht.query(1));\n}\n"
   code: "/*\n\tconvex hull trick\n\t\u76F4\u7DDA\u96C6\u5408 S={y=ax+b}\u306B\u5BFE\
     \u3057,\u6B21\u306E\u64CD\u4F5C\u304C\u3067\u304D\u308B\n\t- S\u306B\u76F4\u7DDA\
@@ -143,14 +143,14 @@ data:
     \t\twhile(ub-lb>1){\n\t\t\tint m=(lb+ub)/2;\n\t\t\tif(isright(deq[m],deq[m+1],x))\
     \ lb=m;\n\t\t\telse ub=m;\n\t\t}\n\t\treturn f(deq[ub],x);\n\t}\n\n\tbool isright(P&\
     \ a,P& b,D x){\n\t\treturn f(a,x)>=f(b,x);\n\t}\n\tbool check(P& a,P& b,P& c){\n\
-    \t\treturn (b.fs-a.fs)*(c.sc-b.sc)>=(b.sc-a.sc)*(c.fs-b.fs);\n\t}\n\tD f(P &p,int\
-    \ x){\n\t\treturn p.fs*x+p.sc;\n\t}\n};\n\nint main(){\n\tcht.init(3);\n\tcht.add(2,3);\n\
+    \t\treturn (b.fs-a.fs)*(c.sc-b.sc)>=(b.sc-a.sc)*(c.fs-b.fs);\n\t}\n\tD f(P &p,\
+    \ D x){\n\t\treturn p.fs*x+p.sc;\n\t}\n};\n\nint main(){\n\tcht.init(3);\n\tcht.add(2,3);\n\
     \tcht.add(-1,4);\n\tshow(cht.query(1));\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/CHT.cpp
   requiredBy: []
-  timestamp: '2019-04-30 09:07:58+01:00'
+  timestamp: '2021-10-16 23:06:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/CHT.cpp
