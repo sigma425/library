@@ -5,27 +5,30 @@
 
 /*
 	Dinic
-	Dとinfを書き換える
+	infを書き換える
 	初期化は頂点数
+	max_flow(s,t) のあと calcCut(s,t) を呼ぶことで、which[v] = minCutで頂点vがS側 ? 0 : 1 を得られる
+	verify: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1410
 */
+template<class capType>
 struct MaxFlow{
-	using D = int;
-	const D inf = 1e9;
+	using D = capType;
+	const D inf = ;
 	struct edge{
 		int to;
 		D cap;
 		int rev;
-		edge(int to,D cap,int rev):to(to),cap(cap),rev(rev){}
+		edge(int to_,D cap_,int rev_):to(to_),cap(cap_),rev(rev_){}
 	};
 
-	int V;
+	int N;
 	vector<vector<edge>> G;
 	vector<int> level,iter;
 
-	MaxFlow(int V):V(V){
-		G = vector<vector<edge>>(V);
-		level = vector<int>(V);
-		iter = vector<int>(V);
+	MaxFlow(int N_):N(N_){
+		G = vector<vector<edge>>(N);
+		level = vector<int>(N);
+		iter = vector<int>(N);
 	}
 
 	void add_edge(int from, int to, D cap){
@@ -35,7 +38,7 @@ struct MaxFlow{
 		G[to].push_back(e2);
 	}
 	void bfs(int s){
-		level = vector<int>(V,-1);
+		level = vector<int>(N,-1);
 
 		queue<int> que;
 		level[s]=0;
@@ -72,9 +75,22 @@ struct MaxFlow{
 		while(true){
 			bfs(s);
 			if(level[t]<0) return flow;
-			iter = vector<int>(V,0);
+			iter = vector<int>(N,0);
 			D f;
 			while( (f=dfs(s,t,inf))>0 ) flow+=f;
 		}
+	}
+
+	vector<int> calcCut(int s,int t){
+		vector<int> which(N,-1);			// 0: S, 1: T
+		auto dfs2 = [&](auto& self, int v) -> void{
+			if(which[v] != -1) return;
+			which[v] = 0;
+			for(auto e: G[v]) if(e.cap>0) self(self,e.to);
+		};
+		dfs2(dfs2,s);
+		rep(i,N) if(which[i] == -1) which[i] = 1;
+		assert(which[t] == 1);
+		return which;
 	}
 };
