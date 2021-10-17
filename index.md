@@ -339,6 +339,9 @@ data:
       path: graph/Flow/Ford_Fulkerson.cpp
       title: graph/Flow/Ford_Fulkerson.cpp
     - icon: ':warning:'
+      path: graph/Flow/ProjectSelection.cpp
+      title: graph/Flow/ProjectSelection.cpp
+    - icon: ':warning:'
       path: graph/Flow/min_cost_flow.cpp
       title: graph/Flow/min_cost_flow.cpp
     - icon: ':warning:'
