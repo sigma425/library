@@ -136,7 +136,7 @@ struct MinCostFlow{
 			for(int v=t;v!=s;v=prevv[v]){
 				chmin(f,G[prevv[v]][preve[v]].cap);
 			}
-			res.pb(f,h[t]);				// x, tan
+			res.emplace_back(f,h[t]);				// x, tan
 			for(int v=t;v!=s;v=prevv[v]){
 				edge &e=G[prevv[v]][preve[v]];
 				e.cap-=f;
