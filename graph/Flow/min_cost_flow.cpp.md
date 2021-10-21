@@ -62,7 +62,7 @@ data:
     \t\t\t\t\t\tpreve[e.to]=i;\n\t\t\t\t\t\tque.push(P(dist[e.to],e.to));\n\t\t\t\t\
     \t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(dist[t]==inf) break;\n\t\t\trep(v,N) h[v]+=dist[v];\n\
     \t\t\tC f = inf;\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\t\t\t\tchmin(f,G[prevv[v]][preve[v]].cap);\n\
-    \t\t\t}\n\t\t\tres.pb(f,h[t]);\t\t\t\t// x, tan\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\
+    \t\t\t}\n\t\t\tres.emplace_back(f,h[t]);\t\t\t\t// x, tan\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\
     \t\t\t\tedge &e=G[prevv[v]][preve[v]];\n\t\t\t\te.cap-=f;\n\t\t\t\tG[v][e.rev].cap+=f;\n\
     \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   code: "/*\n\tF\u56DEdijkstra O(FElogV)\n\n\t\u8CA0\u306E\u30B3\u30B9\u30C8\u306B\
@@ -118,14 +118,14 @@ data:
     \t\t\t\t\t\tpreve[e.to]=i;\n\t\t\t\t\t\tque.push(P(dist[e.to],e.to));\n\t\t\t\t\
     \t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(dist[t]==inf) break;\n\t\t\trep(v,N) h[v]+=dist[v];\n\
     \t\t\tC f = inf;\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\t\t\t\tchmin(f,G[prevv[v]][preve[v]].cap);\n\
-    \t\t\t}\n\t\t\tres.pb(f,h[t]);\t\t\t\t// x, tan\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\
+    \t\t\t}\n\t\t\tres.emplace_back(f,h[t]);\t\t\t\t// x, tan\n\t\t\tfor(int v=t;v!=s;v=prevv[v]){\n\
     \t\t\t\tedge &e=G[prevv[v]][preve[v]];\n\t\t\t\te.cap-=f;\n\t\t\t\tG[v][e.rev].cap+=f;\n\
     \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/Flow/min_cost_flow.cpp
   requiredBy: []
-  timestamp: '2021-10-09 05:33:51+09:00'
+  timestamp: '2021-10-22 07:08:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/Flow/min_cost_flow.cpp
