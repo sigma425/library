@@ -203,9 +203,10 @@ data:
     \ * inv(s-1)).low(s-1).intg();\n\t}\n\n\t// e^f mod x^s\n\t// f.log(s).exp(s)\
     \ == [1,0,...,0]\n\t// 500000 : 440ms\n\t// TODO: \u9AD8\u901F\u5316\uFF01\n\t\
     // \u901F\u3044\u5B9F\u88C5\u4F8B (hos): https://judge.yosupo.jp/submission/36732\
-    \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\t\u3088\u304F\u308F\u304B\u3063\u3066\
-    \u306D\uFF5E\n\t// verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0)\
-    \ == 0);\n\t\tPoly f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
+    \ 150ms\n\t// \u5C0E\u51FA Newton:\n\t//\t\tg = exp(f)\n\t//\t\tlog(g) - f = 0\n\
+    \t//\t\tg == g0 mod x^m\n\t//\t\tg == g0 - (log(g0) - f) / (1/g0) mod x^2m\n\t\
+    // verify: yosupo\n\tPoly exp(int s) const {\n\t\tassert(at(0) == 0);\n\t\tPoly\
+    \ f({1}),g({1});\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\tg = (g*2-g.square().low(n)*f).low(n);\n\
     \t\t\tPoly q = low(n).diff();\n\t\t\tq = q + g * (f.diff() - f*q).low(2*n-1);\n\
     \t\t\tf = (f + f * (low(2*n)-q.intg()) ).low(2*n);\n\t\t}\n\t\treturn f.low(s);\n\
     \t}\n\n\t// f^p mod x^s\n\t// 500000: 600ms\n\t// \u5C0E\u51FA: f^p = e^(p log\
@@ -318,7 +319,7 @@ data:
   isVerificationFile: true
   path: test_oj/linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2021-08-21 01:23:21+09:00'
+  timestamp: '2021-12-26 19:27:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/linear_recurrence.test.cpp

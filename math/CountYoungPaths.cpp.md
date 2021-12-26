@@ -48,9 +48,15 @@ data:
     \ for(int& v: na) v -= a[m];\n\t\tper(i,n-m-1) up[i+1] -= up[i];\n\t\tauto ur\
     \ = self(self,na,h-a[m],up);\n\t\trep1(i,si(ur)-1) res[a[m]+i] += ur[i];\n\t\t\
     return res;\n\t};\n\tV<mint> s(si(a)+1); s[0] = 1;\n\treturn rec(rec,a,h,s);\n\
-    }\n\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\tint w = a.back();\n\
-    \tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a) && a[i] == j) i++;\n\
-    \t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n"
+    }\n\n// decreasing -> decreasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty())\
+    \ return a;\n\tint w = a[0];\n\tV<int> b(w);\n\tint h = si(a);\n\trep(j,w){\n\t\
+    \twhile(h>0 && a[h-1] <= j) h--;\n\t\tb[j] = h;\n\t}\n\treturn b;\n}\n\n// increasing\
+    \ -> increasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\
+    \tint w = a.back();\n\tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a)\
+    \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
+    \ length formula\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\tauto\
+    \ b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
+    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}\n"
   code: "// \u6A2An, \u9AD8\u3055a[0],..,a[n-1] \u306E\u30E4\u30F3\u30B0\u56F3\u5F62\
     \u4E0A\u3067 (0,0) \u304B\u3089 (n,0),..,(n,a[n-1]) \u3078\u306E\u7D4C\u8DEF\u6570\
     \n// a \u4EE5\u4E0B\u306E increasing sequence \u3068\u8A00\u3063\u3066\u3082\u3044\
@@ -89,14 +95,20 @@ data:
     \ for(int& v: na) v -= a[m];\n\t\tper(i,n-m-1) up[i+1] -= up[i];\n\t\tauto ur\
     \ = self(self,na,h-a[m],up);\n\t\trep1(i,si(ur)-1) res[a[m]+i] += ur[i];\n\t\t\
     return res;\n\t};\n\tV<mint> s(si(a)+1); s[0] = 1;\n\treturn rec(rec,a,h,s);\n\
-    }\n\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\tint w = a.back();\n\
-    \tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a) && a[i] == j) i++;\n\
-    \t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n"
+    }\n\n// decreasing -> decreasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty())\
+    \ return a;\n\tint w = a[0];\n\tV<int> b(w);\n\tint h = si(a);\n\trep(j,w){\n\t\
+    \twhile(h>0 && a[h-1] <= j) h--;\n\t\tb[j] = h;\n\t}\n\treturn b;\n}\n\n// increasing\
+    \ -> increasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\
+    \tint w = a.back();\n\tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a)\
+    \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
+    \ length formula\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\tauto\
+    \ b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
+    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/CountYoungPaths.cpp
   requiredBy: []
-  timestamp: '2021-05-16 14:33:25+09:00'
+  timestamp: '2021-12-26 19:25:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/CountYoungPaths.cpp
