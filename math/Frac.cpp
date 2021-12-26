@@ -37,12 +37,19 @@ struct Frac{
 	Frac& operator-=(const Frac& r) { return *this = *this - r; }
 	Frac& operator*=(const Frac& r) { return *this = *this * r; }
 	Frac& operator/=(const Frac& r) { return *this = *this / r; }
+	template<class T> friend Frac operator+(T a, const Frac& b){ return (Frac(a) += b);}
+	template<class T> friend Frac operator-(T a, const Frac& b){ return (Frac(a) -= b);}
+	template<class T> friend Frac operator*(T a, const Frac& b){ return (Frac(a) *= b);}
+	template<class T> friend Frac operator/(T a, const Frac& b){ return (Frac(a) /= b);}
 	bool operator<(const Frac& r) const { return x * r.y < y * r.x; }
 	bool operator>(const Frac& r) const { return r < *this; }
 	bool operator<=(const Frac& r) const { return !(r < *this); }
 	bool operator>=(const Frac& r) const { return !(*this < r); }
 	bool operator==(const Frac& r) const { return x == r.x && y == r.y; }
 	bool operator!=(const Frac& r) const { return !(*this == r); }
+	Frac inv() const {
+		return Frac(y,x);
+	}
 	friend ostream& operator<<(ostream &o,const Frac& x){
 		return o << x.x << "/" << x.y;
 	}
