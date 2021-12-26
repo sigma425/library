@@ -15,6 +15,8 @@
 		sweep系はすべて O(rank * H * W)
 		rankが小さいと勝手に計算量は減る
 
+		定数倍が遅いので500とかのときは別のを使う
+
 	verified at http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2624 (solveLinearEquarion mod 2)
 	verified at https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K (sLE on Rationals)
 
@@ -26,7 +28,7 @@ struct Matrix{
 	VV<T> a;
 
 	Matrix() : H(0),W(0){}
-	Matrix(int H,int W) : H(H),W(W),a( VV<T>(H,V<T>(W)) ){}
+	Matrix(int H_,int W_) : H(H_),W(W_),a( VV<T>(H,V<T>(W)) ){}
 	Matrix(const VV<T>& v) : H(v.size()), W(v[0].size()), a(v){}
 
 	static Matrix E(int n){
@@ -62,14 +64,14 @@ struct Matrix{
 
 	Matrix pow(ll p) const {
 		assert(H == W);
-		Matrix a = E(H);
+		Matrix res = E(H);
 		Matrix x = *this;
 		while(p){
-			if(p&1) a *= x;
+			if(p&1) res *= x;
 			x *= x;
 			p >>= 1;
 		}
-		return a;
+		return res;
 	}
 
 	friend ostream& operator<<(ostream &o,const Matrix& A){
@@ -100,13 +102,12 @@ struct Matrix{
 			T t = a[i][j];
 			rep(k,W) a[i][k] = a[i][k]/t;
 			rep(k,H) if(k!=i){
-				T t = a[k][j];
-				rep(l,W) a[k][l] = a[k][l]-a[i][l]*t;
+				T tt = a[k][j];
+				rep(l,W) a[k][l] = a[k][l]-a[i][l]*tt;
 			}
 		}
 		return rank;
 	}
-
 };
 
 /*
