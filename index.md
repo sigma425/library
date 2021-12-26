@@ -135,6 +135,9 @@ data:
     - icon: ':warning:'
       path: data structure/segtree/lazyseg_dynamic.cpp
       title: data structure/segtree/lazyseg_dynamic.cpp
+    - icon: ':warning:'
+      path: data structure/segtree/lazyseg_persistent.cpp
+      title: data structure/segtree/lazyseg_persistent.cpp
     - icon: ':heavy_check_mark:'
       path: data structure/segtree/segbeats.cpp
       title: data structure/segtree/segbeats.cpp
@@ -450,6 +453,9 @@ data:
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
+      path: math/multivariate_mult.cpp
+      title: math/multivariate_mult.cpp
+    - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
     - icon: ':heavy_check_mark:'
@@ -504,6 +510,9 @@ data:
     - icon: ':warning:'
       path: string/PalindromicTree.cpp
       title: string/PalindromicTree.cpp
+    - icon: ':warning:'
+      path: string/RollingHash.cpp
+      title: string/RollingHash.cpp
     - icon: ':warning:'
       path: string/SuffixAutomaton.cpp
       title: string/SuffixAutomaton.cpp
