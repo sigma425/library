@@ -74,6 +74,20 @@ V<mint> CountYoungPaths(V<int> a,int h = -1){
 	return rec(rec,a,h,s);
 }
 
+// decreasing -> decreasing
+V<int> ConjugateYoung(V<int> a){
+	if(a.empty()) return a;
+	int w = a[0];
+	V<int> b(w);
+	int h = si(a);
+	rep(j,w){
+		while(h>0 && a[h-1] <= j) h--;
+		b[j] = h;
+	}
+	return b;
+}
+
+// increasing -> increasing
 V<int> ConjugateYoung(V<int> a){
 	if(a.empty()) return a;
 	int w = a.back();
@@ -84,4 +98,17 @@ V<int> ConjugateYoung(V<int> a){
 		b[w-1-j] = si(a)-i;
 	}
 	return b;
+}
+
+// hook length formula
+mint Hook(V<int> a){
+	int n = accumulate(all(a),0);
+	auto b = ConjugateYoung(a);
+	mint res = fact[n];
+	rep(i,si(a)){
+		rep(j,a[i]){
+			res *= invs[a[i]+b[j]-i-j-1];
+		}
+	}
+	return res;
 }
