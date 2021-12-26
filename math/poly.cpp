@@ -421,7 +421,10 @@ struct Poly: public V<mint>{
 	// TODO: 高速化！
 	// 速い実装例 (hos): https://judge.yosupo.jp/submission/36732 150ms
 	// 導出 Newton:
-	//		よくわかってね～
+	//		g = exp(f)
+	//		log(g) - f = 0
+	//		g == g0 mod x^m
+	//		g == g0 - (log(g0) - f) / (1/g0) mod x^2m
 	// verify: yosupo
 	Poly exp(int s) const {
 		assert(at(0) == 0);
