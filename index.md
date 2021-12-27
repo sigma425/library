@@ -496,9 +496,15 @@ data:
     - icon: ':warning:'
       path: math/matrix/det_modp_band_test.cpp
       title: math/matrix/det_modp_band_test.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/matrix/linear.cpp
+      title: math/matrix/linear.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/matrix/matrix_basic.cpp
+      title: math/matrix/matrix_basic.cpp
     - icon: ':warning:'
-      path: math/matrix/matrix.cpp
-      title: math/matrix/matrix.cpp
+      path: math/matrix/matrix_old.cpp
+      title: math/matrix/matrix_old.cpp
     - icon: ':warning:'
       path: math/matrix/rank_mod2.cpp
       title: math/matrix/rank_mod2.cpp
@@ -541,8 +547,17 @@ data:
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_oj/inv_matrix.test.cpp
+      title: test_oj/inv_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/linearEquation.test.cpp
+      title: test_oj/linearEquation.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_oj/linear_recurrence.test.cpp
       title: test_oj/linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/matrix_basic.test.cpp
+      title: test_oj/matrix_basic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/sa-is.test.cpp
       title: test_oj/sa-is.test.cpp

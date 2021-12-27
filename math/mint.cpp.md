@@ -4,6 +4,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test_oj/inv_matrix.test.cpp
+    title: test_oj/inv_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/linearEquation.test.cpp
+    title: test_oj/linearEquation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/matrix_basic.test.cpp
+    title: test_oj/matrix_basic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_oj/xorconv.test.cpp
     title: test_oj/xorconv.test.cpp
   _isVerificationFailed: false
@@ -103,6 +112,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/xorconv.test.cpp
+  - test_oj/matrix_basic.test.cpp
+  - test_oj/inv_matrix.test.cpp
+  - test_oj/linearEquation.test.cpp
 documentation_of: math/mint.cpp
 layout: document
 redirect_from:

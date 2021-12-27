@@ -10,7 +10,7 @@ data:
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2624
     - https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K
-  bundledCode: "#line 1 \"math/matrix/matrix.cpp\"\n/*\n\t\u884C\u5217\u306E\u57FA\
+  bundledCode: "#line 1 \"math/matrix/matrix_old.cpp\"\n/*\n\t\u884C\u5217\u306E\u57FA\
     \u672C\u6F14\u7B97, \u9023\u7ACB\u4E00\u6B21\u65B9\u7A0B\u5F0F\u306E\u89E3, \u9006\
     \u884C\u5217 \u3068\u304B\n\ttemplate \u5F15\u6570 T \u306F\u4F53\u3067\u3042\u308B\
     \u5FC5\u8981\u304C\u3042\u308B\n\t+,-,*,/, unary -\n\t\u306E\u4ED6\u306B, zero,\
@@ -162,15 +162,15 @@ data:
     \ T>\nint getrank(Matrix<T> A){\n\treturn A.sweep(A.W);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: math/matrix/matrix.cpp
+  path: math/matrix/matrix_old.cpp
   requiredBy: []
-  timestamp: '2021-12-26 19:27:08+09:00'
+  timestamp: '2021-12-27 22:48:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/matrix/matrix.cpp
+documentation_of: math/matrix/matrix_old.cpp
 layout: document
 redirect_from:
-- /library/math/matrix/matrix.cpp
-- /library/math/matrix/matrix.cpp.html
-title: math/matrix/matrix.cpp
+- /library/math/matrix/matrix_old.cpp
+- /library/math/matrix/matrix_old.cpp.html
+title: math/matrix/matrix_old.cpp
 ---
