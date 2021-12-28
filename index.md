@@ -491,6 +491,9 @@ data:
       path: math/matrix/bitset.cpp
       title: math/matrix/bitset.cpp
     - icon: ':warning:'
+      path: math/matrix/charPoly.cpp
+      title: math/matrix/charPoly.cpp
+    - icon: ':warning:'
       path: math/matrix/det_modp_band.cpp
       title: math/matrix/det_modp_band.cpp
     - icon: ':warning:'
