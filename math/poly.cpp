@@ -27,6 +27,10 @@ struct ModInt{
 	ModInt& operator/=(const ModInt& b){ return *this=*this/b;}
 	ModInt& operator++(int){ return *this=*this+1;}
 	ModInt& operator--(int){ return *this=*this-1;}
+	template<class T> friend ModInt operator+(T a, const ModInt& b){ return (ModInt(a) += b);}
+	template<class T> friend ModInt operator-(T a, const ModInt& b){ return (ModInt(a) -= b);}
+	template<class T> friend ModInt operator*(T a, const ModInt& b){ return (ModInt(a) *= b);}
+	template<class T> friend ModInt operator/(T a, const ModInt& b){ return (ModInt(a) /= b);}
 	ModInt pow(ll p) const {
 		if(p<0) return inv().pow(-p);
 		ModInt a = 1;
@@ -601,7 +605,7 @@ Poly<mint> interpolate(const V<mint>& x, const V<mint>& y){
 // hos,divAt : https://ac.nowcoder.com/acm/contest/view-submission?submissionId=48462458
 
 template<class T>
-T Kevinsogo(Poly<T> f, Poly<T> g, ll p){
+T divAt(Poly<T> f, Poly<T> g, ll p){
 	assert(g.at(0));
 	while(p){
 		auto gm = g;
@@ -632,5 +636,5 @@ T linearRecurrenceAt(V<T> a, V<T> c, ll k){
 	assert(!c.empty() && c[0]);
 	int d = si(c) - 1;
 	assert(si(a) >= d);
-	return Kevinsogo((Poly<T>(a.begin(),a.begin()+d) * Poly<T>(c)).low(d), Poly<T>(c), k);
+	return divAt((Poly<T>(a.begin(),a.begin()+d) * Poly<T>(c)).low(d), Poly<T>(c), k);
 }
