@@ -255,8 +255,11 @@ V<mint> multiply(V<mint> a, V<mint> b) {
 
 template<class mint>
 struct Poly: public V<mint>{
-	template<class...Args>
-	Poly(Args...args) : V<mint>(args...){}
+	using vector<mint>::vector;
+	Poly() {}
+	explicit Poly(int n) : V<mint>(n){}		// poly<mint> a; a = 2; shouldn't be [0,0]
+	Poly(int n, mint c) : V<mint>(n,c){}
+	Poly(const V<mint>& a) : V<mint>(a){}
 	Poly(initializer_list<mint> li) : V<mint>(li){}
 
 	int size() const { return V<mint>::size(); }
@@ -300,23 +303,19 @@ struct Poly: public V<mint>{
 		for(auto& v: res) v = -v;
 		return res;
 	}
-	template<class T>
-	Poly& operator+=(T c){
+	Poly& operator+=(const mint& c){
 		(*this)[0] += c;
 		return *this;
 	}
-	template<class T>
-	Poly& operator-=(T c){
+	Poly& operator-=(const mint& c){
 		(*this)[0] -= c;
 		return *this;
 	}
-	template<class T>
-	Poly& operator*=(T c){
+	Poly& operator*=(const mint& c){
 		for(auto& v: *this) v *= c;
 		return *this;
 	}
-	template<class T>
-	Poly& operator/=(T c){
+	Poly& operator/=(const mint& c){
 		return *this *= mint(1)/mint(c);
 	}
 	Poly& operator+=(const Poly& r){
@@ -354,11 +353,10 @@ struct Poly: public V<mint>{
 		return *this = low(r.size()-1);
 	}
 
-	
-	template<class T> Poly operator+(T c) const {return Poly(*this) += c; }
-	template<class T> Poly operator-(T c) const {return Poly(*this) -= c; }
-	template<class T> Poly operator*(T c) const {return Poly(*this) *= c; }
-	template<class T> Poly operator/(T c) const {return Poly(*this) /= c; }
+	Poly operator+(const mint& c) const {return Poly(*this) += c; }
+	Poly operator-(const mint& c) const {return Poly(*this) -= c; }
+	Poly operator*(const mint& c) const {return Poly(*this) *= c; }
+	Poly operator/(const mint& c) const {return Poly(*this) /= c; }
 	Poly operator+(const Poly& r) const {return Poly(*this) += r; }
 	Poly operator-(const Poly& r) const {return Poly(*this) -= r; }
 	Poly operator*(const Poly& r) const {return Poly(*this) *= r; }
@@ -558,7 +556,7 @@ Poly<mint> sqrt(Poly<mint> f){
 	ll c0 = sqrt_mod(f[ord].v,mint::mod);
 	if(c0 == -1) return {};
 	int n_ = n-ord;
-	auto g = (Poly<mint>(f.begin()+ord,f.end())/f[ord]).sqrt(n_) * c0;
+	auto g = (Poly<mint>(f.begin()+ord,f.end())/f[ord]).sqrt(n_) * mint(c0);
 	Poly<mint> res(ord/2 + n_);
 	rep(i,n_) res[ord/2 + i] = g[i];
 	return res;
