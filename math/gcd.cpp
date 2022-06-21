@@ -1,16 +1,51 @@
 /*
-	g = gcd(a, b) >= 0
-	ax + by = g
+	return:
+		g = gcd(a, b) >= 0
+		x,y s.t.
+			ax + by = g
+			if b == 0:
+				(1,0) or (-1,0)
+			else:
+				0 <= x < abs(b)/g
+				(uniquely exists)
+	note:
+		{(x,y)|ax+by=g} = (x,y) + t(b/g,-a/g)		if (a,b) \neq (0,0)
 */
 struct EG { ll g, x, y; };
-EG ext_gcd(ll a, ll b) {
+EG extGcdSub(ll a, ll b) {
 	if(b == 0){
 		if (a >= 0) return EG{a, 1, 0};
 		else return EG{-a, -1, 0};
 	}else{
-		auto e = ext_gcd(b, a % b);
+		auto e = extGcdSub(b, a % b);
 		return EG{e.g, e.y, e.x - a / b * e.y};
 	}
+}
+EG extGcd(ll a,ll b){
+	auto e = extGcdSub(a,b);
+	if(e.x < 0){
+		if(b > 0){
+			e.x += b/e.g;
+			e.y -= a/e.g;
+		}else{
+			e.x -= b/e.g;
+			e.y += a/e.g;
+		}
+	}
+	return e;
+}
+void test(){
+	for(ll a=-10;a<=10;a++){
+		for(ll b=-10;b<=10;b++){
+			if(b==0) continue;
+			auto e = extGcd(a,b);
+			show(a);show(b);show(e.x);show(e.y);show(e.g);
+			assert(a*e.x+b*e.y == e.g);
+			assert(0 <= e.g);
+			assert(0 <= e.x && e.x < abs(b)/e.g);
+		}
+	}
+	cout << "OK" << endl;	// OK
 }
 /*
 	xz + md? = g
