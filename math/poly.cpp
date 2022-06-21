@@ -501,6 +501,23 @@ struct Poly: public V<mint>{
 		f.resize(s);
 		return f;
 	}
+
+	// Taylor Shift
+	// return f(x+c)
+	// O(N logN)
+	// verify: yosupo
+	Poly shift(mint c){
+		int n = size();
+		assert(si(fact) >= n);	// please InitFact
+		V<mint> f(n); rep(i,n) f[i] = (*this)[i] * fact[i];
+		V<mint> g(n);
+		mint cpow = 1;
+		rep(i,n){g[i] = cpow * ifact[i]; cpow *= c;}
+		reverse(all(g));
+		V<mint> h = multiply(f,g);
+		Poly res(n); rep(i,n) res[i] = h[n-1+i] * ifact[i];
+		return res;
+	}
 };
 
 
