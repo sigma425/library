@@ -112,9 +112,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/xorconv.test.cpp
-  - test_oj/matrix_basic.test.cpp
-  - test_oj/inv_matrix.test.cpp
   - test_oj/linearEquation.test.cpp
+  - test_oj/inv_matrix.test.cpp
+  - test_oj/matrix_basic.test.cpp
 documentation_of: math/mint.cpp
 layout: document
 redirect_from:
