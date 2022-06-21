@@ -458,7 +458,7 @@ data:
     - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly.cpp
       title: math/poly.cpp
     - icon: ':heavy_check_mark:'
@@ -561,7 +561,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/matrix_basic.test.cpp
       title: test_oj/matrix_basic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/polynomial_taylor_shift.test.cpp
       title: test_oj/polynomial_taylor_shift.test.cpp
     - icon: ':heavy_check_mark:'

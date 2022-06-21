@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly.cpp
     title: math/poly.cpp
   _extendedRequiredBy: []
@@ -235,16 +235,21 @@ data:
     \trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n) eps[i] = 0;\n\
     \t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\t\t\t\
     g.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\tf.resize(s);\n\
-    \t\treturn f;\n\t}\n};\n\n\nll norm_mod(ll a, ll m){\n\ta %= m; if(a < 0) a +=\
-    \ m;\n\treturn a;\n}\n\n//p: odd (not necessarily prime)\nll jacobi(ll a,ll p){\n\
-    \ta = norm_mod(a,p);\n\tauto sgn = [](ll x){ return x&1 ? -1 : 1; };\n\tif(a ==\
-    \ 0) return p == 1;\n\telse if(a&1) return sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\
-    \telse return sgn(((p&15)*(p&15)-1)/8) * jacobi(a/2,p);\n}\n\n// p : prime\n//\
-    \ 0 <= a < p\n// return smaller solution\n// if no solution, -1\nll sqrt_mod(ll\
-    \ a,ll p){\n\tif(a == 0) return 0;\n\tif(p == 2) return 1;\n\tif(jacobi(a,p) ==\
-    \ -1)return -1;\n\tll b,c;\n\tfor(b=0;;b++){\n\t\tc = norm_mod(b*b-a,p);\n\t\t\
-    if(jacobi(c,p) == -1) break;\n\t}\n\tauto mul = [&](pair<ll,ll> x, pair<ll,ll>\
-    \ y){\n\t\treturn pair<ll,ll>(norm_mod(x.fs*y.fs+x.sc*y.sc%p*c,p),norm_mod(x.fs*y.sc+x.sc*y.fs,p));\n\
+    \t\treturn f;\n\t}\n\n\t// Taylor Shift\n\t// return f(x+c)\n\t// O(N logN)\n\t\
+    // verify: yosupo\n\tPoly shift(mint c){\n\t\tint n = size();\n\t\tassert(si(fact)\
+    \ >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i] = (*this)[i] * fact[i];\n\
+    \t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i] = cpow * ifact[i]; cpow\
+    \ *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\t\tPoly res(n);\
+    \ rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n};\n\n\nll norm_mod(ll\
+    \ a, ll m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
+    \ prime)\nll jacobi(ll a,ll p){\n\ta = norm_mod(a,p);\n\tauto sgn = [](ll x){\
+    \ return x&1 ? -1 : 1; };\n\tif(a == 0) return p == 1;\n\telse if(a&1) return\
+    \ sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\telse return sgn(((p&15)*(p&15)-1)/8)\
+    \ * jacobi(a/2,p);\n}\n\n// p : prime\n// 0 <= a < p\n// return smaller solution\n\
+    // if no solution, -1\nll sqrt_mod(ll a,ll p){\n\tif(a == 0) return 0;\n\tif(p\
+    \ == 2) return 1;\n\tif(jacobi(a,p) == -1)return -1;\n\tll b,c;\n\tfor(b=0;;b++){\n\
+    \t\tc = norm_mod(b*b-a,p);\n\t\tif(jacobi(c,p) == -1) break;\n\t}\n\tauto mul\
+    \ = [&](pair<ll,ll> x, pair<ll,ll> y){\n\t\treturn pair<ll,ll>(norm_mod(x.fs*y.fs+x.sc*y.sc%p*c,p),norm_mod(x.fs*y.sc+x.sc*y.fs,p));\n\
     \t};\n\tpair<ll,ll> x(b,1),res(1,0);\n\tll n = (p+1)/2;\n\twhile(n){\n\t\tif(n&1)\
     \ res = mul(res,x);\n\t\tx = mul(x,x);\n\t\tn >>= 1;\n\t}\n\tassert(res.sc ==\
     \ 0);\n\treturn min(res.fs, p-res.fs);\n}\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\
@@ -324,7 +329,7 @@ data:
   isVerificationFile: true
   path: test_oj/linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-06-22 08:34:31+09:00'
+  timestamp: '2022-06-22 08:43:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/linear_recurrence.test.cpp
