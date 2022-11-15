@@ -46,17 +46,31 @@ data:
     vector<vector<T>> b(w,vector<T>(h+w));\n\trep(i,h) rep(j,w) b[j][i] = a[i][j];\n\
     \trep(i,w) b[i][h+i] = 1;\n\tint r = sweep(b,h).size();\n\tvector<vector<T>> res;\n\
     \tfor(int i=r;i<w;i++) res.eb(b[i].begin()+h,b[i].end());\n\treturn res;\n}\n\n\
-    \n\n/*\n\tinversion\n\t\u306A\u3051\u308C\u3070 {{}}\n*/\ntemplate<class T>\n\
-    vector<vector<T>> inv(vector<vector<T>> a){\n\tassert(a.size() == a[0].size());\n\
-    \tvector<vector<T>> no;\n\tint n = a.size();\n\tvector<int> ih(n,-1), jh(n,-1);\n\
-    \trep(k,n){\n\t\tfor(int i=k;i<n;i++) if(ih[k] == -1){\n\t\t\tfor(int j=k;j<n;j++)\
-    \ if(a[i][j]){\n\t\t\t\tih[k] = i, jh[k] = j; break;\n\t\t\t}\n\t\t}\n\t\tif(ih[k]\
-    \ == -1) return no;\n\t\trep(j,n) swap(a[k][j],a[ih[k]][j]);\n\t\trep(i,n) swap(a[i][k],a[i][jh[k]]);\n\
-    \t\tif(!a[k][k]) return no;\n\t\ta[k][k] = a[k][k].inv();\n\t\trep(i,n) if(i !=\
-    \ k) a[k][i] *= a[k][k];\n\t\trep(i,n) if(i != k){\n\t\t\trep(j,n) if(j != k){\n\
-    \t\t\t\ta[i][j] -= a[i][k]*a[k][j];\n\t\t\t}\n\t\t}\n\t\trep(i,n) if(i != k) a[i][k]\
-    \ *= -a[k][k];\n\t}\n\tper(k,n){\n\t\trep(j,n) swap(a[k][j],a[jh[k]][j]);\n\t\t\
-    rep(i,n) swap(a[i][k],a[i][ih[k]]);\n\t}\n\treturn a;\n}\n"
+    // mod 2\n// \u5E45(\u4F8B: \u5909\u6570\u306E\u500B\u6570)\u3060\u3051bitset\u306B\
+    \u3057\u3066\u7E26\u306F\u3057\u3066\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\
+    \n// \u4F8B\u3048\u3070 Ax = b \u306E b \u306F vector<bool>\nusing BS = bitset<8010>;\t\
+    // max_width\nvector<int> sweep_mod2(vector<BS>& a, int c = -1){\n\tif(a.empty())\
+    \ return {};\n\tif(c == -1) c = a[0].size();\n\tint h = a.size(), r = 0;\n\tvector<int>\
+    \ used_col;\n\trep(i,c){\n\t\tif(r == h) break;\n\t\tfor(int j=r;j<h;j++) if(a[j][i]){\n\
+    \t\t\tswap(a[r],a[j]); break;\n\t\t}\n\t\tif(!a[r][i]) continue;\n\t\trep(j,h)\
+    \ if(j != r && a[j][i]){\n\t\t\ta[j] ^= a[r];\n\t\t}\n\t\tused_col.pb(i);\n\t\t\
+    r++;\n\t}\n\treturn used_col;\n}\nvector<bool> linearEquation_mod2(vector<BS>\
+    \ a, int w, vector<bool> b){\n\tassert(a.size() == b.size());\n\tint h = a.size();\n\
+    \trep(i,h) a[i][w] = b[i];\t\t\t// \u3053\u3053\u8FBC\u3067width\u3068\u308B\u3053\
+    \u3068\n\tvector<int> idx = sweep_mod2(a,w);\n\tfor(int i = idx.size();i<h;i++)\
+    \ if(a[i][w]) return {};\n\tvector<bool> x(w);\n\trep(i,idx.size()) x[idx[i]]\
+    \ = a[i][w];\n\treturn x;\n}\n\n\n/*\n\tinversion\n\t\u306A\u3051\u308C\u3070\
+    \ {{}}\n*/\ntemplate<class T>\nvector<vector<T>> inv(vector<vector<T>> a){\n\t\
+    assert(a.size() == a[0].size());\n\tvector<vector<T>> no;\n\tint n = a.size();\n\
+    \tvector<int> ih(n,-1), jh(n,-1);\n\trep(k,n){\n\t\tfor(int i=k;i<n;i++) if(ih[k]\
+    \ == -1){\n\t\t\tfor(int j=k;j<n;j++) if(a[i][j]){\n\t\t\t\tih[k] = i, jh[k] =\
+    \ j; break;\n\t\t\t}\n\t\t}\n\t\tif(ih[k] == -1) return no;\n\t\trep(j,n) swap(a[k][j],a[ih[k]][j]);\n\
+    \t\trep(i,n) swap(a[i][k],a[i][jh[k]]);\n\t\tif(!a[k][k]) return no;\n\t\ta[k][k]\
+    \ = a[k][k].inv();\n\t\trep(i,n) if(i != k) a[k][i] *= a[k][k];\n\t\trep(i,n)\
+    \ if(i != k){\n\t\t\trep(j,n) if(j != k){\n\t\t\t\ta[i][j] -= a[i][k]*a[k][j];\n\
+    \t\t\t}\n\t\t}\n\t\trep(i,n) if(i != k) a[i][k] *= -a[k][k];\n\t}\n\tper(k,n){\n\
+    \t\trep(j,n) swap(a[k][j],a[jh[k]][j]);\n\t\trep(i,n) swap(a[i][k],a[i][ih[k]]);\n\
+    \t}\n\treturn a;\n}\n"
   code: "/*\n\t\u7DDA\u5F62\u4EE3\u6570\u3044\u308D\u3044\u308D\n\tverified: yosupo\n\
     */\n\ntemplate<class T>\nT det(vector<vector<T>> a){\n\tassert(a.size() == a[0].size());\n\
     \tint n = a.size();\n\tT ans = 1;\n\trep(i,n){\n\t\tfor(int j=i+1;j<n;j++) if(a[j][i]){\n\
@@ -88,27 +102,40 @@ data:
     \ a, int w){\n\tint h = a.size();\n\tvector<vector<T>> b(w,vector<T>(h+w));\n\t\
     rep(i,h) rep(j,w) b[j][i] = a[i][j];\n\trep(i,w) b[i][h+i] = 1;\n\tint r = sweep(b,h).size();\n\
     \tvector<vector<T>> res;\n\tfor(int i=r;i<w;i++) res.eb(b[i].begin()+h,b[i].end());\n\
-    \treturn res;\n}\n\n\n\n/*\n\tinversion\n\t\u306A\u3051\u308C\u3070 {{}}\n*/\n\
-    template<class T>\nvector<vector<T>> inv(vector<vector<T>> a){\n\tassert(a.size()\
-    \ == a[0].size());\n\tvector<vector<T>> no;\n\tint n = a.size();\n\tvector<int>\
-    \ ih(n,-1), jh(n,-1);\n\trep(k,n){\n\t\tfor(int i=k;i<n;i++) if(ih[k] == -1){\n\
-    \t\t\tfor(int j=k;j<n;j++) if(a[i][j]){\n\t\t\t\tih[k] = i, jh[k] = j; break;\n\
-    \t\t\t}\n\t\t}\n\t\tif(ih[k] == -1) return no;\n\t\trep(j,n) swap(a[k][j],a[ih[k]][j]);\n\
-    \t\trep(i,n) swap(a[i][k],a[i][jh[k]]);\n\t\tif(!a[k][k]) return no;\n\t\ta[k][k]\
-    \ = a[k][k].inv();\n\t\trep(i,n) if(i != k) a[k][i] *= a[k][k];\n\t\trep(i,n)\
-    \ if(i != k){\n\t\t\trep(j,n) if(j != k){\n\t\t\t\ta[i][j] -= a[i][k]*a[k][j];\n\
-    \t\t\t}\n\t\t}\n\t\trep(i,n) if(i != k) a[i][k] *= -a[k][k];\n\t}\n\tper(k,n){\n\
-    \t\trep(j,n) swap(a[k][j],a[jh[k]][j]);\n\t\trep(i,n) swap(a[i][k],a[i][ih[k]]);\n\
-    \t}\n\treturn a;\n}"
+    \treturn res;\n}\n\n// mod 2\n// \u5E45(\u4F8B: \u5909\u6570\u306E\u500B\u6570\
+    )\u3060\u3051bitset\u306B\u3057\u3066\u7E26\u306F\u3057\u3066\u306A\u3044\u3053\
+    \u3068\u306B\u6CE8\u610F\n// \u4F8B\u3048\u3070 Ax = b \u306E b \u306F vector<bool>\n\
+    using BS = bitset<8010>;\t// max_width\nvector<int> sweep_mod2(vector<BS>& a,\
+    \ int c = -1){\n\tif(a.empty()) return {};\n\tif(c == -1) c = a[0].size();\n\t\
+    int h = a.size(), r = 0;\n\tvector<int> used_col;\n\trep(i,c){\n\t\tif(r == h)\
+    \ break;\n\t\tfor(int j=r;j<h;j++) if(a[j][i]){\n\t\t\tswap(a[r],a[j]); break;\n\
+    \t\t}\n\t\tif(!a[r][i]) continue;\n\t\trep(j,h) if(j != r && a[j][i]){\n\t\t\t\
+    a[j] ^= a[r];\n\t\t}\n\t\tused_col.pb(i);\n\t\tr++;\n\t}\n\treturn used_col;\n\
+    }\nvector<bool> linearEquation_mod2(vector<BS> a, int w, vector<bool> b){\n\t\
+    assert(a.size() == b.size());\n\tint h = a.size();\n\trep(i,h) a[i][w] = b[i];\t\
+    \t\t// \u3053\u3053\u8FBC\u3067width\u3068\u308B\u3053\u3068\n\tvector<int> idx\
+    \ = sweep_mod2(a,w);\n\tfor(int i = idx.size();i<h;i++) if(a[i][w]) return {};\n\
+    \tvector<bool> x(w);\n\trep(i,idx.size()) x[idx[i]] = a[i][w];\n\treturn x;\n\
+    }\n\n\n/*\n\tinversion\n\t\u306A\u3051\u308C\u3070 {{}}\n*/\ntemplate<class T>\n\
+    vector<vector<T>> inv(vector<vector<T>> a){\n\tassert(a.size() == a[0].size());\n\
+    \tvector<vector<T>> no;\n\tint n = a.size();\n\tvector<int> ih(n,-1), jh(n,-1);\n\
+    \trep(k,n){\n\t\tfor(int i=k;i<n;i++) if(ih[k] == -1){\n\t\t\tfor(int j=k;j<n;j++)\
+    \ if(a[i][j]){\n\t\t\t\tih[k] = i, jh[k] = j; break;\n\t\t\t}\n\t\t}\n\t\tif(ih[k]\
+    \ == -1) return no;\n\t\trep(j,n) swap(a[k][j],a[ih[k]][j]);\n\t\trep(i,n) swap(a[i][k],a[i][jh[k]]);\n\
+    \t\tif(!a[k][k]) return no;\n\t\ta[k][k] = a[k][k].inv();\n\t\trep(i,n) if(i !=\
+    \ k) a[k][i] *= a[k][k];\n\t\trep(i,n) if(i != k){\n\t\t\trep(j,n) if(j != k){\n\
+    \t\t\t\ta[i][j] -= a[i][k]*a[k][j];\n\t\t\t}\n\t\t}\n\t\trep(i,n) if(i != k) a[i][k]\
+    \ *= -a[k][k];\n\t}\n\tper(k,n){\n\t\trep(j,n) swap(a[k][j],a[jh[k]][j]);\n\t\t\
+    rep(i,n) swap(a[i][k],a[i][ih[k]]);\n\t}\n\treturn a;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/matrix/linear.cpp
   requiredBy: []
-  timestamp: '2021-12-27 22:49:49+09:00'
+  timestamp: '2022-11-15 14:34:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_oj/linearEquation.test.cpp
   - test_oj/inv_matrix.test.cpp
+  - test_oj/linearEquation.test.cpp
 documentation_of: math/matrix/linear.cpp
 layout: document
 redirect_from:

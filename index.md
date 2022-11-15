@@ -426,6 +426,9 @@ data:
       path: math/factorization.cpp
       title: math/factorization.cpp
     - icon: ':warning:'
+      path: math/game_number.cpp
+      title: math/game_number.cpp
+    - icon: ':warning:'
       path: math/garner.cpp
       title: math/garner.cpp
     - icon: ':warning:'

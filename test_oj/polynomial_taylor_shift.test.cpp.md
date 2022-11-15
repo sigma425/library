@@ -246,7 +246,32 @@ data:
     \ >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i] = (*this)[i] * fact[i];\n\
     \t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i] = cpow * ifact[i]; cpow\
     \ *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\t\tPoly res(n);\
-    \ rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n};\n\n\nll norm_mod(ll\
+    \ rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n\n\t// \u5408\u6210\
+    \u9006 mod x^s\n\t// O(s^2 + s^1.5 log s)\n\t// \u65B9\u91DD: lagrange [x^i]g\
+    \ = (1/i [x^i-1](x/f)^i)\n\t// \t\t(x/f)^i = (x/f)^jL (x/f)^k \u3068\u3059\u308C\
+    \u3070\u524D\u8A08\u7B97\u306Fs^1.5\u56DEFFT\n\t// \t\t2\u3064\u306E\u7A4D\u306E\
+    \u4E00\u7B87\u6240\u6C42\u3081\u308B\u3060\u3051\u306A\u306E\u3067O(s)\n\t// z\
+    \ \u3092\u304B\u3051\u307E\u304F\u3063\u305F\u308A z^L \u3092\u304B\u3051\u307E\
+    \u304F\u3063\u305F\u308A\u3059\u308B\u3068\u3053\u308D\u306FFFT\u6D88\u305B\u308B\
+    \u304B\u3089\u9AD8\u901F\u5316\u3067\u304D\u308B\n\t// verify: https://www.luogu.com.cn/problem/P5809\n\
+    \tPoly compositeInv(int s){\n\t\tassert(at(0) == 0);\n\t\tassert(at(1) != 0);\n\
+    \t\tint L = 0;\n\t\twhile(L*L < s) L++;\n\t\tPoly z0(s); rep(i,s) z0[i] = at(i+1);\n\
+    \t\tPoly z = z0.inv(s);\t// = x/f\n\t\tV<Poly> zi(L);\t// z^i\n\t\tV<Poly>\tziL(L);\t\
+    // z^iL\n\t\tzi[0] = {1};\n\t\trep(i,L-1) zi[i+1] = (zi[i] * z).low(s);\n\t\t\
+    auto zL = (zi[L-1] * z).low(s);\n\t\tziL[0] = {1};\n\t\trep(i,L-1)  ziL[i+1] =\
+    \ (ziL[i] * zL).low(s);\n\n\t\tPoly res(s);\n\t\trep1(k,s-1){\n\t\t\tint i = k/L,\
+    \ j = k%L;\t// x^(iL+j)\n\t\t\trep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);\n\
+    \t\t\tres[k] /= k;\n\t\t}\n\t\treturn res;\n\t}\n};\n\n// \u5408\u6210 f\u25CB\
+    g mod x^s\n// O(ns + sqrt(n)slogs)\n// s\u3092\u6307\u5B9A\u3057\u306A\u3044\u3068\
+    \u304D\u306Fnm\u6B21\u5168\u90E8\u8FD4\u3059 O(n^2m)?\n// \\sum_k f_k g^k = \\\
+    sum_k f_k g^iL+j = \\sum_i g^iL * (\\sum_j f_k g^j)\n// verify: https://www.luogu.com.cn/problem/P5373\n\
+    Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){\n\tint n = si(f)-1,\
+    \ m = si(g)-1;\n\tif(s == -1) s = n*m+1;\n\tint L = 0;\n\twhile(L*L <= n) L++;\n\
+    \tV<Poly<mint>> gi(L);\t// g^i\n\tV<Poly<mint>> giL(L);\t// g^iL\n\tgi[0] = {1};\n\
+    \trep(i,L-1) gi[i+1] = (gi[i] * g).low(s);\n\tauto gL = (gi[L-1] * g).low(s);\n\
+    \tgiL[0] = {1};\n\trep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);\n\n\tPoly<mint>\
+    \ res(s);\n\trep(i,L){\n\t\tPoly<mint> z;\n\t\trep(j,L) if(i*L+j <= n) z += gi[j]\
+    \ * f[i*L+j];\n\t\tres += (z * giL[i]).low(s);\n\t}\n\treturn res;\n}\n\nll norm_mod(ll\
     \ a, ll m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
     \ prime)\nll jacobi(ll a,ll p){\n\ta = norm_mod(a,p);\n\tauto sgn = [](ll x){\
     \ return x&1 ? -1 : 1; };\n\tif(a == 0) return p == 1;\n\telse if(a&1) return\
@@ -294,12 +319,18 @@ data:
     \t\ta_k\n\tO(d logd logk)\n\tverified: https://judge.yosupo.jp/problem/find_linear_recurrence\n\
     */\ntemplate<class T>\nT linearRecurrenceAt(V<T> a, V<T> c, ll k){\n\tassert(!c.empty()\
     \ && c[0]);\n\tint d = si(c) - 1;\n\tassert(si(a) >= d);\n\treturn divAt((Poly<T>(a.begin(),a.begin()+d)\
-    \ * Poly<T>(c)).low(d), Poly<T>(c), k);\n}\n#line 74 \"test_oj/polynomial_taylor_shift.test.cpp\"\
-    \n\r\nint main(){\r\n\tcin.tie(0);\r\n\tios::sync_with_stdio(false);\t\t//DON'T\
-    \ USE scanf/printf/puts !!\r\n\tcout << fixed << setprecision(20);\r\n\r\n\tint\
-    \ N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\n\tPoly<mint> f(N); rep(i,N) cin\
-    \ >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N) cout << g[i] << \" \";\r\n\t\
-    cout << endl;\r\n}\r\n"
+    \ * Poly<T>(c)).low(d), Poly<T>(c), k);\n}\n\n// return f(K+1)\n// f[k] = 0^k\
+    \ + .. + n^k\n// \\sum_{k>=0} f[k] x^k/k! = e^0x + .. + e^nx = 1-e^(n+1)x / 1-e^x\n\
+    // O(KlogK)\n// 0^0 = 1\n// keyword: faulhaber \u30D5\u30A1\u30A6\u30EB\u30CF\u30FC\
+    \u30D0\u30FC\n\nvector<mint> SumOfPower(mint n, int K){\n\tassert(si(fact) > K);\n\
+    \tPoly<mint> a(K+1),b(K+1);\n\tmint pw = 1;\n\trep1(i,K+1){\n\t\tpw *= n+1;\n\t\
+    \ta[i-1] = ifact[i];\n\t\tb[i-1] = ifact[i] * pw;\n\t}\n\tauto f = b*a.inv(K+1);\n\
+    \tV<mint> res(K+1);\n\trep(k,K+1) res[k] = f[k] * fact[k];\n\treturn res;\n}\n\
+    #line 74 \"test_oj/polynomial_taylor_shift.test.cpp\"\n\r\nint main(){\r\n\tcin.tie(0);\r\
+    \n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\r\n\tcout\
+    \ << fixed << setprecision(20);\r\n\r\n\tint N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\
+    \n\tPoly<mint> f(N); rep(i,N) cin >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N)\
+    \ cout << g[i] << \" \";\r\n\tcout << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\
     \nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
@@ -341,7 +372,7 @@ data:
   isVerificationFile: true
   path: test_oj/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2022-06-22 08:43:30+09:00'
+  timestamp: '2022-11-15 14:35:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/polynomial_taylor_shift.test.cpp
