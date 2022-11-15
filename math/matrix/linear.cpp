@@ -85,6 +85,39 @@ vector<vector<T>> kernel(vector<vector<T>> a, int w){
 	return res;
 }
 
+// mod 2
+// 幅(例: 変数の個数)だけbitsetにして縦はしてないことに注意
+// 例えば Ax = b の b は vector<bool>
+using BS = bitset<8010>;	// max_width
+vector<int> sweep_mod2(vector<BS>& a, int c = -1){
+	if(a.empty()) return {};
+	if(c == -1) c = a[0].size();
+	int h = a.size(), r = 0;
+	vector<int> used_col;
+	rep(i,c){
+		if(r == h) break;
+		for(int j=r;j<h;j++) if(a[j][i]){
+			swap(a[r],a[j]); break;
+		}
+		if(!a[r][i]) continue;
+		rep(j,h) if(j != r && a[j][i]){
+			a[j] ^= a[r];
+		}
+		used_col.pb(i);
+		r++;
+	}
+	return used_col;
+}
+vector<bool> linearEquation_mod2(vector<BS> a, int w, vector<bool> b){
+	assert(a.size() == b.size());
+	int h = a.size();
+	rep(i,h) a[i][w] = b[i];			// ここ込でwidthとること
+	vector<int> idx = sweep_mod2(a,w);
+	for(int i = idx.size();i<h;i++) if(a[i][w]) return {};
+	vector<bool> x(w);
+	rep(i,idx.size()) x[idx[i]] = a[i][w];
+	return x;
+}
 
 
 /*
