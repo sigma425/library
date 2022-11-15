@@ -518,8 +518,65 @@ struct Poly: public V<mint>{
 		Poly res(n); rep(i,n) res[i] = h[n-1+i] * ifact[i];
 		return res;
 	}
+
+	// 合成逆 mod x^s
+	// O(s^2 + s^1.5 log s)
+	// 方針: lagrange [x^i]g = (1/i [x^i-1](x/f)^i)
+	// 		(x/f)^i = (x/f)^jL (x/f)^k とすれば前計算はs^1.5回FFT
+	// 		2つの積の一箇所求めるだけなのでO(s)
+	// z をかけまくったり z^L をかけまくったりするところはFFT消せるから高速化できる
+	// verify: https://www.luogu.com.cn/problem/P5809
+	Poly compositeInv(int s){
+		assert(at(0) == 0);
+		assert(at(1) != 0);
+		int L = 0;
+		while(L*L < s) L++;
+		Poly z0(s); rep(i,s) z0[i] = at(i+1);
+		Poly z = z0.inv(s);	// = x/f
+		V<Poly> zi(L);	// z^i
+		V<Poly>	ziL(L);	// z^iL
+		zi[0] = {1};
+		rep(i,L-1) zi[i+1] = (zi[i] * z).low(s);
+		auto zL = (zi[L-1] * z).low(s);
+		ziL[0] = {1};
+		rep(i,L-1)  ziL[i+1] = (ziL[i] * zL).low(s);
+
+		Poly res(s);
+		rep1(k,s-1){
+			int i = k/L, j = k%L;	// x^(iL+j)
+			rep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);
+			res[k] /= k;
+		}
+		return res;
+	}
 };
 
+// 合成 f○g mod x^s
+// O(ns + sqrt(n)slogs)
+// sを指定しないときはnm次全部返す O(n^2m)?
+// \sum_k f_k g^k = \sum_k f_k g^iL+j = \sum_i g^iL * (\sum_j f_k g^j)
+// verify: https://www.luogu.com.cn/problem/P5373
+Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){
+	int n = si(f)-1, m = si(g)-1;
+	if(s == -1) s = n*m+1;
+	int L = 0;
+	while(L*L <= n) L++;
+	V<Poly<mint>> gi(L);	// g^i
+	V<Poly<mint>> giL(L);	// g^iL
+	gi[0] = {1};
+	rep(i,L-1) gi[i+1] = (gi[i] * g).low(s);
+	auto gL = (gi[L-1] * g).low(s);
+	giL[0] = {1};
+	rep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);
+
+	Poly<mint> res(s);
+	rep(i,L){
+		Poly<mint> z;
+		rep(j,L) if(i*L+j <= n) z += gi[j] * f[i*L+j];
+		res += (z * giL[i]).low(s);
+	}
+	return res;
+}
 
 ll norm_mod(ll a, ll m){
 	a %= m; if(a < 0) a += m;
@@ -652,4 +709,26 @@ T linearRecurrenceAt(V<T> a, V<T> c, ll k){
 	int d = si(c) - 1;
 	assert(si(a) >= d);
 	return divAt((Poly<T>(a.begin(),a.begin()+d) * Poly<T>(c)).low(d), Poly<T>(c), k);
+}
+
+// return f(K+1)
+// f[k] = 0^k + .. + n^k
+// \sum_{k>=0} f[k] x^k/k! = e^0x + .. + e^nx = 1-e^(n+1)x / 1-e^x
+// O(KlogK)
+// 0^0 = 1
+// keyword: faulhaber ファウルハーバー
+
+vector<mint> SumOfPower(mint n, int K){
+	assert(si(fact) > K);
+	Poly<mint> a(K+1),b(K+1);
+	mint pw = 1;
+	rep1(i,K+1){
+		pw *= n+1;
+		a[i-1] = ifact[i];
+		b[i-1] = ifact[i] * pw;
+	}
+	auto f = b*a.inv(K+1);
+	V<mint> res(K+1);
+	rep(k,K+1) res[k] = f[k] * fact[k];
+	return res;
 }
