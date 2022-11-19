@@ -453,7 +453,8 @@ struct Poly: public V<mint>{
 		}
 		int ord = 0;
 		while(ord<s && !at(ord)) ord++;
-		if((s-1)/p < ord) return Poly(s);	// s <= p * ord
+		assert(!(p<0 and ord>0));	// 頑張ればできる
+		if(p>0 and (s-1)/p < ord) return Poly(s);	// s <= p * ord
 		int off = p*ord;
 		int s_ = s-off;
 		const mint a0 = at(ord), ia0 = a0.inv(), ap = a0.pow(p);
