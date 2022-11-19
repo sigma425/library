@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/online_convolution.cpp
+    title: math/online_convolution.cpp
+  - icon: ':question:'
     path: math/poly.cpp
     title: math/poly.cpp
   _extendedRequiredBy: []
@@ -11,41 +14,42 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
-  bundledCode: "#line 1 \"test_oj/polynomial_taylor_shift.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\r\n\r\n#include\
-    \ <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\nusing uint\
-    \ = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n) for(int\
-    \ i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n#define\
-    \ per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
-    \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
-    \ push_back\r\n#define eb emplace_back\r\n#define fs first\r\n#define sc second\r\
-    \ntemplate<class T> using V = vector<T>;\r\ntemplate<class T> using VV = vector<vector<T>>;\r\
-    \ntemplate<class T,class U> bool chmax(T& x, U y){\r\n\tif(x<y){ x=y; return true;\
-    \ }\r\n\treturn false;\r\n}\r\ntemplate<class T,class U> bool chmin(T& x, U y){\r\
-    \n\tif(y<x){ x=y; return true; }\r\n\treturn false;\r\n}\r\ntemplate<class T>\
-    \ void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}\r\ntemplate<class\
-    \ T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}\r\
-    \ntemplate<class T>\r\nV<T> Vec(size_t a) {\r\n    return V<T>(a);\r\n}\r\ntemplate<class\
-    \ T, class... Ts>\r\nauto Vec(size_t a, Ts... ts) {\r\n  return V<decltype(Vec<T>(ts...))>(a,\
-    \ Vec<T>(ts...));\r\n}\r\ntemplate<class S,class T> ostream& operator<<(ostream&\
-    \ o,const pair<S,T> &p){\r\n\treturn o<<\"(\"<<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\
-    \ntemplate<class T> ostream& operator<<(ostream& o,const vector<T> &vc){\r\n\t\
-    o<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\n\to<<\"}\";\r\n\treturn o;\r\
-    \n}\r\nconstexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }\r\n\r\n\
-    #ifdef LOCAL\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x\
-    \ << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\ntemplate<class\
-    \ T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&... args){\r\n\
-    \tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...) cerr << \"\
-    LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define dump(x) cerr\
-    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\tfor(auto v: x)\
-    \ cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\n#define show(x) void(0)\r\
-    \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
-    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
-    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
-    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n#line 1 \"math/poly.cpp\"\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test_oj/online_conv/online_div.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\nusing ll = long long;\nusing uint = unsigned int;\nusing ull\
+    \ = unsigned long long;\n#define rep(i,n) for(int i=0;i<int(n);i++)\n#define rep1(i,n)\
+    \ for(int i=1;i<=int(n);i++)\n#define per(i,n) for(int i=int(n)-1;i>=0;i--)\n\
+    #define per1(i,n) for(int i=int(n);i>0;i--)\n#define all(c) c.begin(),c.end()\n\
+    #define si(x) int(x.size())\n#define pb push_back\n#define eb emplace_back\n#define\
+    \ fs first\n#define sc second\ntemplate<class T> using V = vector<T>;\ntemplate<class\
+    \ T> using VV = vector<vector<T>>;\ntemplate<class T,class U> bool chmax(T& x,\
+    \ U y){\n\tif(x<y){ x=y; return true; }\n\treturn false;\n}\ntemplate<class T,class\
+    \ U> bool chmin(T& x, U y){\n\tif(y<x){ x=y; return true; }\n\treturn false;\n\
+    }\ntemplate<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}\n\
+    template<class T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a)\
+    \ - v.begin();}\ntemplate<class T>\nV<T> Vec(size_t a) {\n    return V<T>(a);\n\
+    }\ntemplate<class T, class... Ts>\nauto Vec(size_t a, Ts... ts) {\n  return V<decltype(Vec<T>(ts...))>(a,\
+    \ Vec<T>(ts...));\n}\ntemplate<class S,class T> ostream& operator<<(ostream& o,const\
+    \ pair<S,T> &p){\n\treturn o<<\"(\"<<p.fs<<\",\"<<p.sc<<\")\";\n}\ntemplate<class\
+    \ T> ostream& operator<<(ostream& o,const vector<T> &vc){\n\to<<\"{\";\n\tfor(const\
+    \ T& v:vc) o<<v<<\",\";\n\to<<\"}\";\n\treturn o;\n}\nconstexpr ll TEN(int n)\
+    \ { return (n == 0) ? 1 : 10 * TEN(n-1); }\n\n#ifdef LOCAL\n#define show(x) cerr\
+    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\nvoid dmpr(ostream&\
+    \ os){os<<endl;}\ntemplate<class T,class... Args>\nvoid dmpr(ostream&os,const\
+    \ T&t,const Args&... args){\n\tos<<t<<\" ~ \";\n\tdmpr(os,args...);\n}\n#define\
+    \ shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\n\
+    #define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\
+    \n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\n#else\n#define\
+    \ show(x) void(0)\n#define dump(x) void(0)\n#define shows(...) void(0)\n#endif\n\
+    \ntemplate<class D> D divFloor(D a, D b){\n\treturn a / b - (((a ^ b) < 0 && a\
+    \ % b != 0) ? 1 : 0);\n}\ntemplate<class D> D divCeil(D a, D b) {\n\treturn a\
+    \ / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\n}\n\ntemplate<class T>\nT rnd(T\
+    \ l,T r){\t//[l,r)\n\tusing D = uniform_int_distribution<T>;\n\tstatic random_device\
+    \ rd;\n\tstatic mt19937 gen(rd());\n\treturn D(l,r-1)(gen);\n}\ntemplate<class\
+    \ T>\nT rnd(T n){\t//[0,n)\n\treturn rnd(T(0),n);\n}\n#line 1 \"math/poly.cpp\"\
     \n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
     \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
     \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
@@ -328,59 +332,110 @@ data:
     \tPoly<mint> a(K+1),b(K+1);\n\tmint pw = 1;\n\trep1(i,K+1){\n\t\tpw *= n+1;\n\t\
     \ta[i-1] = ifact[i];\n\t\tb[i-1] = ifact[i] * pw;\n\t}\n\tauto f = b*a.inv(K+1);\n\
     \tV<mint> res(K+1);\n\trep(k,K+1) res[k] = f[k] * fact[k];\n\treturn res;\n}\n\
-    #line 74 \"test_oj/polynomial_taylor_shift.test.cpp\"\n\r\nint main(){\r\n\tcin.tie(0);\r\
-    \n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\r\n\tcout\
-    \ << fixed << setprecision(20);\r\n\r\n\tint N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\
-    \n\tPoly<mint> f(N); rep(i,N) cin >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N)\
-    \ cout << g[i] << \" \";\r\n\tcout << endl;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
-    \r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\
-    \nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
-    \ for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n\
-    #define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
-    \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
-    \ push_back\r\n#define eb emplace_back\r\n#define fs first\r\n#define sc second\r\
-    \ntemplate<class T> using V = vector<T>;\r\ntemplate<class T> using VV = vector<vector<T>>;\r\
-    \ntemplate<class T,class U> bool chmax(T& x, U y){\r\n\tif(x<y){ x=y; return true;\
-    \ }\r\n\treturn false;\r\n}\r\ntemplate<class T,class U> bool chmin(T& x, U y){\r\
-    \n\tif(y<x){ x=y; return true; }\r\n\treturn false;\r\n}\r\ntemplate<class T>\
-    \ void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}\r\ntemplate<class\
-    \ T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}\r\
-    \ntemplate<class T>\r\nV<T> Vec(size_t a) {\r\n    return V<T>(a);\r\n}\r\ntemplate<class\
-    \ T, class... Ts>\r\nauto Vec(size_t a, Ts... ts) {\r\n  return V<decltype(Vec<T>(ts...))>(a,\
-    \ Vec<T>(ts...));\r\n}\r\ntemplate<class S,class T> ostream& operator<<(ostream&\
-    \ o,const pair<S,T> &p){\r\n\treturn o<<\"(\"<<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\
-    \ntemplate<class T> ostream& operator<<(ostream& o,const vector<T> &vc){\r\n\t\
-    o<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\n\to<<\"}\";\r\n\treturn o;\r\
-    \n}\r\nconstexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }\r\n\r\n\
-    #ifdef LOCAL\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x\
-    \ << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\ntemplate<class\
-    \ T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&... args){\r\n\
-    \tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...) cerr << \"\
-    LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define dump(x) cerr\
-    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\tfor(auto v: x)\
-    \ cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\n#define show(x) void(0)\r\
-    \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
-    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
-    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
-    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n#include \"../math/poly.cpp\"\
-    \r\n\r\nint main(){\r\n\tcin.tie(0);\r\n\tios::sync_with_stdio(false);\t\t//DON'T\
-    \ USE scanf/printf/puts !!\r\n\tcout << fixed << setprecision(20);\r\n\r\n\tint\
-    \ N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\n\tPoly<mint> f(N); rep(i,N) cin\
-    \ >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N) cout << g[i] << \" \";\r\n\t\
-    cout << endl;\r\n}\r\n"
+    #line 1 \"math/online_convolution.cpp\"\n/*\n\tquery(i): f_i, g_i \u3092\u53D7\
+    \u3051\u53D6\u3063\u3066 fg_i \u3092\u8FD4\u3059\n\tO(n log^2)\n\t2^18: 300ms\n\
+    \t2^19: 700ms\n\t2^20: 1500ms\n\n\t[0] [12] [3456] [7..14] .. \u3068\u308F\u3051\
+    \u3066\u3046\u307E\u304F\u3084\u308B\n*/\ntemplate<class mint>\nstruct Online_Convolution{\n\
+    \tconst int thresh = 3;\n\tV<mint> f,g,h;\n\tVV<mint> fft_f,fft_g;\n\n\tpair<V<mint>,V<mint>>\
+    \ calc_fft(int k){\n\t\t// \u9577\u3055 2^k \u306E suffix \u3092 fft \u3057\u305F\
+    \u3082\u306E\u3092\u8FD4\u3059\n\t\tint L = 1<<k;\n\t\tV<mint> f_suf(2*L), g_suf(2*L);\n\
+    \t\trep(i,L){\n\t\t\tf_suf[i] = f[si(f)-L+i];\n\t\t\tg_suf[i] = g[si(g)-L+i];\n\
+    \t\t}\n\t\tif(k > thresh){\n\t\t\tfft(f_suf); fft(g_suf);\n\t\t}\n\t\treturn {f_suf,\
+    \ g_suf};\n\t}\n\tvoid calc(int k){\n\t\tint L = 1<<k;\n\t\tauto [zf,zg] = calc_fft(k);\n\
+    \t\tV<mint> zh(L*2);\n\t\tbool fst = (k >= si(fft_f));\n\t\tif(fst){\n\t\t\tfft_f.eb(zf);\n\
+    \t\t\tfft_g.eb(zg);\n\t\t}\n\t\tif(k > thresh){\n\t\t\tif(fst){\n\t\t\t\trep(i,L*2)\
+    \ zh[i] += zf[i] * zg[i];\n\t\t\t\tinvfft(zh);\n\t\t\t}else{\n\t\t\t\trep(i,L*2){\n\
+    \t\t\t\t\tzh[i] += zf[i] * fft_g[k][i];\n\t\t\t\t\tzh[i] += zg[i] * fft_f[k][i];\n\
+    \t\t\t\t}\n\t\t\t\tinvfft(zh);\n\t\t\t}\n\t\t}else{\n\t\t\tif(fst){\n\t\t\t\t\
+    rep(i,L) rep(j,L) zh[i+j] += zf[i] * zg[j];\n\t\t\t}else{\n\t\t\t\trep(i,L) rep(j,L)\
+    \ zh[i+j] += zf[i] * fft_g[k][j];\n\t\t\t\trep(i,L) rep(j,L) zh[i+j] += zg[i]\
+    \ * fft_f[k][j];\n\t\t\t}\n\t\t}\n\t\tint off = si(f)-1;\n\t\trep(i,L*2-1){\n\t\
+    \t\tif(si(h) <= off+i) h.eb(0);\n\t\t\th[off + i] += zh[i];\n\t\t}\n\t}\n\n\t\
+    mint query(int i, mint f_i, mint g_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\
+    \t\tg.eb(g_i);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1\
+    \ ? 1 : 0);\n\t\trep(k,K) calc(k);\n\t\treturn h[i];\n\t}\n};\n\n/*\n\tquery(i):\
+    \ f_i, g_i \u3092\u53D7\u3051\u53D6\u3063\u3066 (f/g)_i \u3092\u8FD4\u3059\n\t\
+    g_0 != 0 \u3092\u4EEE\u5B9A\n\tO(n log^2)\n*/\ntemplate<class mint>\nstruct Online_Division{\n\
+    \tV<mint> f,g,h;\n\tOnline_Convolution<mint> X;\n\tmint ig0;\n\n\tmint query(int\
+    \ i, mint f_i, mint g_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\t\tg.eb(g_i);\n\
+    \t\tif(i == 0){\n\t\t\tassert(g_i);\n\t\t\tig0 = g_i.inv();\n\t\t\th.eb(f_i *\
+    \ ig0);\n\t\t}else{\n\t\t\th.eb( (f_i - X.query(i-1,g[i],h[i-1])) * ig0);\n\t\t\
+    }\n\t\treturn h[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\
+    \u3066 (f^K)_i \u3092\u8FD4\u3059\n\tf_0 != 0 \u3092\u4EEE\u5B9A (\u9811\u5F35\
+    \u308C\u3070\u5916\u305B\u308B)\n\tO(n log^2)\n\tg := f^K\n\tg'f = Kgf'\n\t\t\
+    f_0 g_1\t\tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2 + f_2 g_1\n\t= K(f_1 g_0\t\
+    \t2f_2 g_0 + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1 g_2\n*/\ntemplate<class mint>\n\
+    struct Online_Pow{\n\tOnline_Pow(ll K_):K(K_){}\n\n\tV<mint> f,g;\n\tll K;\n\t\
+    Online_Convolution<mint> X;\t\t// (f-f0)/x * g'\n\tOnline_Convolution<mint> Y;\t\
+    \t// f' * g\n\tmint if0;\n\n\tmint query(int i, mint f_i){\n\t\tassert(i == si(f));\n\
+    \t\tf.eb(f_i);\n\t\tif(i == 0){\n\t\t\tassert(f_i);\n\t\t\tif0 = f_i.inv();\n\t\
+    \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
+    \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
+    \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
+    \ g[i];\n\t}\n};\n#line 86 \"test_oj/online_conv/online_div.test.cpp\"\n\nvoid\
+    \ test(Poly<mint> f, Poly<mint> g){\n\tint n = si(f);\n\tassert(g[0]);\n\tauto\
+    \ h = f * g.inv(n);\n\tOnline_Division<mint> X;\n\trep(i,n){\n\t\tassert(X.query(i,f[i],g[i])\
+    \ == h[i]);\n\t}\n}\nvoid TEST(){\n\ttest({0},{2});\n\ttest({3},{2});\n\ttest({0,0},{9,0});\n\
+    \ttest({0,2},{9,3});\n\tfor(int N: {2,3,4,(1<<18)-1,(1<<18),(1<<18)+1}){\n\t\t\
+    Poly<mint> f(N),g(N);\n\t\trep(i,N) f[i] = rnd(mint::mod);\n\t\trep(i,N) g[i]\
+    \ = rnd(mint::mod);\n\t\ttest(f,g);\n\t}\n}\n\nint main(){\n\tcin.tie(0);\n\t\
+    ios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\n\tcout << fixed\
+    \ << setprecision(20);\n\n\tTEST();\n\n\tint a,b; cin >> a >> b; cout << a+b <<\
+    \ endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include <bits/stdc++.h>\n\
+    using namespace std;\nusing ll = long long;\nusing uint = unsigned int;\nusing\
+    \ ull = unsigned long long;\n#define rep(i,n) for(int i=0;i<int(n);i++)\n#define\
+    \ rep1(i,n) for(int i=1;i<=int(n);i++)\n#define per(i,n) for(int i=int(n)-1;i>=0;i--)\n\
+    #define per1(i,n) for(int i=int(n);i>0;i--)\n#define all(c) c.begin(),c.end()\n\
+    #define si(x) int(x.size())\n#define pb push_back\n#define eb emplace_back\n#define\
+    \ fs first\n#define sc second\ntemplate<class T> using V = vector<T>;\ntemplate<class\
+    \ T> using VV = vector<vector<T>>;\ntemplate<class T,class U> bool chmax(T& x,\
+    \ U y){\n\tif(x<y){ x=y; return true; }\n\treturn false;\n}\ntemplate<class T,class\
+    \ U> bool chmin(T& x, U y){\n\tif(y<x){ x=y; return true; }\n\treturn false;\n\
+    }\ntemplate<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}\n\
+    template<class T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a)\
+    \ - v.begin();}\ntemplate<class T>\nV<T> Vec(size_t a) {\n    return V<T>(a);\n\
+    }\ntemplate<class T, class... Ts>\nauto Vec(size_t a, Ts... ts) {\n  return V<decltype(Vec<T>(ts...))>(a,\
+    \ Vec<T>(ts...));\n}\ntemplate<class S,class T> ostream& operator<<(ostream& o,const\
+    \ pair<S,T> &p){\n\treturn o<<\"(\"<<p.fs<<\",\"<<p.sc<<\")\";\n}\ntemplate<class\
+    \ T> ostream& operator<<(ostream& o,const vector<T> &vc){\n\to<<\"{\";\n\tfor(const\
+    \ T& v:vc) o<<v<<\",\";\n\to<<\"}\";\n\treturn o;\n}\nconstexpr ll TEN(int n)\
+    \ { return (n == 0) ? 1 : 10 * TEN(n-1); }\n\n#ifdef LOCAL\n#define show(x) cerr\
+    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\nvoid dmpr(ostream&\
+    \ os){os<<endl;}\ntemplate<class T,class... Args>\nvoid dmpr(ostream&os,const\
+    \ T&t,const Args&... args){\n\tos<<t<<\" ~ \";\n\tdmpr(os,args...);\n}\n#define\
+    \ shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\n\
+    #define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\
+    \n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\n#else\n#define\
+    \ show(x) void(0)\n#define dump(x) void(0)\n#define shows(...) void(0)\n#endif\n\
+    \ntemplate<class D> D divFloor(D a, D b){\n\treturn a / b - (((a ^ b) < 0 && a\
+    \ % b != 0) ? 1 : 0);\n}\ntemplate<class D> D divCeil(D a, D b) {\n\treturn a\
+    \ / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\n}\n\ntemplate<class T>\nT rnd(T\
+    \ l,T r){\t//[l,r)\n\tusing D = uniform_int_distribution<T>;\n\tstatic random_device\
+    \ rd;\n\tstatic mt19937 gen(rd());\n\treturn D(l,r-1)(gen);\n}\ntemplate<class\
+    \ T>\nT rnd(T n){\t//[0,n)\n\treturn rnd(T(0),n);\n}\n#include \"../../math/poly.cpp\"\
+    \n#include \"../../math/online_convolution.cpp\"\n\nvoid test(Poly<mint> f, Poly<mint>\
+    \ g){\n\tint n = si(f);\n\tassert(g[0]);\n\tauto h = f * g.inv(n);\n\tOnline_Division<mint>\
+    \ X;\n\trep(i,n){\n\t\tassert(X.query(i,f[i],g[i]) == h[i]);\n\t}\n}\nvoid TEST(){\n\
+    \ttest({0},{2});\n\ttest({3},{2});\n\ttest({0,0},{9,0});\n\ttest({0,2},{9,3});\n\
+    \tfor(int N: {2,3,4,(1<<18)-1,(1<<18),(1<<18)+1}){\n\t\tPoly<mint> f(N),g(N);\n\
+    \t\trep(i,N) f[i] = rnd(mint::mod);\n\t\trep(i,N) g[i] = rnd(mint::mod);\n\t\t\
+    test(f,g);\n\t}\n}\n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\
+    \t//DON'T USE scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n\t\
+    TEST();\n\n\tint a,b; cin >> a >> b; cout << a+b << endl;\n}\n"
   dependsOn:
   - math/poly.cpp
+  - math/online_convolution.cpp
   isVerificationFile: true
-  path: test_oj/polynomial_taylor_shift.test.cpp
+  path: test_oj/online_conv/online_div.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:07:35+09:00'
+  timestamp: '2022-11-20 04:11:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_oj/polynomial_taylor_shift.test.cpp
+documentation_of: test_oj/online_conv/online_div.test.cpp
 layout: document
 redirect_from:
-- /verify/test_oj/polynomial_taylor_shift.test.cpp
-- /verify/test_oj/polynomial_taylor_shift.test.cpp.html
-title: test_oj/polynomial_taylor_shift.test.cpp
+- /verify/test_oj/online_conv/online_div.test.cpp
+- /verify/test_oj/online_conv/online_div.test.cpp.html
+title: test_oj/online_conv/online_div.test.cpp
 ---

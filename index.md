@@ -458,10 +458,13 @@ data:
     - icon: ':warning:'
       path: math/multivariate_mult.cpp
       title: math/multivariate_mult.cpp
+    - icon: ':question:'
+      path: math/online_convolution.cpp
+      title: math/online_convolution.cpp
     - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/poly.cpp
       title: math/poly.cpp
     - icon: ':heavy_check_mark:'
@@ -473,6 +476,9 @@ data:
     - icon: ':warning:'
       path: math/rand.cpp
       title: math/rand.cpp
+    - icon: ':warning:'
+      path: math/simple_permutation.cpp
+      title: math/simple_permutation.cpp
     - icon: ':warning:'
       path: math/sqrt_seg.cpp
       title: math/sqrt_seg.cpp
@@ -596,6 +602,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/beats/simple_sum.test.cpp
       title: test_oj/beats/simple_sum.test.cpp
+  - name: test_oj/online_conv
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test_oj/online_conv/online_conv.test.cpp
+      title: test_oj/online_conv/online_conv.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/online_conv/online_div.test.cpp
+      title: test_oj/online_conv/online_div.test.cpp
+    - icon: ':x:'
+      path: test_oj/online_conv/online_pow.test.cpp
+      title: test_oj/online_conv/online_pow.test.cpp
   - name: test_oj/segtree
     pages:
     - icon: ':heavy_check_mark:'

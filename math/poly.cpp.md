@@ -7,11 +7,20 @@ data:
     path: test_oj/linear_recurrence.test.cpp
     title: test_oj/linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_conv.test.cpp
+    title: test_oj/online_conv/online_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_div.test.cpp
+    title: test_oj/online_conv/online_div.test.cpp
+  - icon: ':x:'
+    path: test_oj/online_conv/online_pow.test.cpp
+    title: test_oj/online_conv/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_oj/polynomial_taylor_shift.test.cpp
     title: test_oj/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://ac.nowcoder.com/acm/contest/11259/H
@@ -207,54 +216,56 @@ data:
     \u53C2\u7167\n\t// \tc.f. (f \u306E non0 coef \u306E\u500B\u6570) * s\n\t// verify:\
     \ https://judge.yosupo.jp/submission/44992\n\tPoly pow(ll p, int s) const {\n\t\
     \tif(p == 0){\n\t\t\treturn Poly(s) + 1;\t// 0^0 is 1\n\t\t}\n\t\tint ord = 0;\n\
-    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tif((s-1)/p < ord) return Poly(s);\t//\
-    \ s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0 =\
-    \ at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] = at(i+ord)\
-    \ * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_) res[i+off]\
-    \ = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t// f[0] should\
-    \ be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\tPoly\
-    \ sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2 = mint(2).inv();\n\
-    \t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\trep(i,n) z[i] *=\
-    \ z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n) d[n+i] = z[i]\
-    \ - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\trep(i,n) g2[i]\
-    \ = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\tinvfft(d);\n\
-    \t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i] * i2;\n\t\t\t\
-    if(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint> eps = g2;\n\t\t\
-    \trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n) eps[i] = 0;\n\
-    \t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\t\t\t\
-    g.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\tf.resize(s);\n\
-    \t\treturn f;\n\t}\n\n\t// Taylor Shift\n\t// return f(x+c)\n\t// O(N logN)\n\t\
-    // verify: yosupo\n\tPoly shift(mint c){\n\t\tint n = size();\n\t\tassert(si(fact)\
-    \ >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i] = (*this)[i] * fact[i];\n\
-    \t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i] = cpow * ifact[i]; cpow\
-    \ *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\t\tPoly res(n);\
-    \ rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n\n\t// \u5408\u6210\
-    \u9006 mod x^s\n\t// O(s^2 + s^1.5 log s)\n\t// \u65B9\u91DD: lagrange [x^i]g\
-    \ = (1/i [x^i-1](x/f)^i)\n\t// \t\t(x/f)^i = (x/f)^jL (x/f)^k \u3068\u3059\u308C\
-    \u3070\u524D\u8A08\u7B97\u306Fs^1.5\u56DEFFT\n\t// \t\t2\u3064\u306E\u7A4D\u306E\
-    \u4E00\u7B87\u6240\u6C42\u3081\u308B\u3060\u3051\u306A\u306E\u3067O(s)\n\t// z\
-    \ \u3092\u304B\u3051\u307E\u304F\u3063\u305F\u308A z^L \u3092\u304B\u3051\u307E\
-    \u304F\u3063\u305F\u308A\u3059\u308B\u3068\u3053\u308D\u306FFFT\u6D88\u305B\u308B\
-    \u304B\u3089\u9AD8\u901F\u5316\u3067\u304D\u308B\n\t// verify: https://www.luogu.com.cn/problem/P5809\n\
-    \tPoly compositeInv(int s){\n\t\tassert(at(0) == 0);\n\t\tassert(at(1) != 0);\n\
-    \t\tint L = 0;\n\t\twhile(L*L < s) L++;\n\t\tPoly z0(s); rep(i,s) z0[i] = at(i+1);\n\
-    \t\tPoly z = z0.inv(s);\t// = x/f\n\t\tV<Poly> zi(L);\t// z^i\n\t\tV<Poly>\tziL(L);\t\
-    // z^iL\n\t\tzi[0] = {1};\n\t\trep(i,L-1) zi[i+1] = (zi[i] * z).low(s);\n\t\t\
-    auto zL = (zi[L-1] * z).low(s);\n\t\tziL[0] = {1};\n\t\trep(i,L-1)  ziL[i+1] =\
-    \ (ziL[i] * zL).low(s);\n\n\t\tPoly res(s);\n\t\trep1(k,s-1){\n\t\t\tint i = k/L,\
-    \ j = k%L;\t// x^(iL+j)\n\t\t\trep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);\n\
-    \t\t\tres[k] /= k;\n\t\t}\n\t\treturn res;\n\t}\n};\n\n// \u5408\u6210 f\u25CB\
-    g mod x^s\n// O(ns + sqrt(n)slogs)\n// s\u3092\u6307\u5B9A\u3057\u306A\u3044\u3068\
-    \u304D\u306Fnm\u6B21\u5168\u90E8\u8FD4\u3059 O(n^2m)?\n// \\sum_k f_k g^k = \\\
-    sum_k f_k g^iL+j = \\sum_i g^iL * (\\sum_j f_k g^j)\n// verify: https://www.luogu.com.cn/problem/P5373\n\
-    Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){\n\tint n = si(f)-1,\
-    \ m = si(g)-1;\n\tif(s == -1) s = n*m+1;\n\tint L = 0;\n\twhile(L*L <= n) L++;\n\
-    \tV<Poly<mint>> gi(L);\t// g^i\n\tV<Poly<mint>> giL(L);\t// g^iL\n\tgi[0] = {1};\n\
-    \trep(i,L-1) gi[i+1] = (gi[i] * g).low(s);\n\tauto gL = (gi[L-1] * g).low(s);\n\
-    \tgiL[0] = {1};\n\trep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);\n\n\tPoly<mint>\
-    \ res(s);\n\trep(i,L){\n\t\tPoly<mint> z;\n\t\trep(j,L) if(i*L+j <= n) z += gi[j]\
-    \ * f[i*L+j];\n\t\tres += (z * giL[i]).low(s);\n\t}\n\treturn res;\n}\n\nll norm_mod(ll\
-    \ a, ll m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
+    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tassert(!(p<0 and ord>0));\t// \u9811\u5F35\
+    \u308C\u3070\u3067\u304D\u308B\n\t\tif(p>0 and (s-1)/p < ord) return Poly(s);\t\
+    // s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0\
+    \ = at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] =\
+    \ at(i+ord) * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_)\
+    \ res[i+off] = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t//\
+    \ f[0] should be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\
+    \tPoly sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2\
+    \ = mint(2).inv();\n\t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\
+    \t\trep(i,n) z[i] *= z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n)\
+    \ d[n+i] = z[i] - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\
+    \trep(i,n) g2[i] = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\
+    \tinvfft(d);\n\t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i]\
+    \ * i2;\n\t\t\tif(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint>\
+    \ eps = g2;\n\t\t\trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n)\
+    \ eps[i] = 0;\n\t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\
+    \t\t\tg.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\t\
+    f.resize(s);\n\t\treturn f;\n\t}\n\n\t// Taylor Shift\n\t// return f(x+c)\n\t\
+    // O(N logN)\n\t// verify: yosupo\n\tPoly shift(mint c){\n\t\tint n = size();\n\
+    \t\tassert(si(fact) >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i]\
+    \ = (*this)[i] * fact[i];\n\t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i]\
+    \ = cpow * ifact[i]; cpow *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\
+    \t\tPoly res(n); rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n\
+    \n\t// \u5408\u6210\u9006 mod x^s\n\t// O(s^2 + s^1.5 log s)\n\t// \u65B9\u91DD\
+    : lagrange [x^i]g = (1/i [x^i-1](x/f)^i)\n\t// \t\t(x/f)^i = (x/f)^jL (x/f)^k\
+    \ \u3068\u3059\u308C\u3070\u524D\u8A08\u7B97\u306Fs^1.5\u56DEFFT\n\t// \t\t2\u3064\
+    \u306E\u7A4D\u306E\u4E00\u7B87\u6240\u6C42\u3081\u308B\u3060\u3051\u306A\u306E\
+    \u3067O(s)\n\t// z \u3092\u304B\u3051\u307E\u304F\u3063\u305F\u308A z^L \u3092\
+    \u304B\u3051\u307E\u304F\u3063\u305F\u308A\u3059\u308B\u3068\u3053\u308D\u306F\
+    FFT\u6D88\u305B\u308B\u304B\u3089\u9AD8\u901F\u5316\u3067\u304D\u308B\n\t// verify:\
+    \ https://www.luogu.com.cn/problem/P5809\n\tPoly compositeInv(int s){\n\t\tassert(at(0)\
+    \ == 0);\n\t\tassert(at(1) != 0);\n\t\tint L = 0;\n\t\twhile(L*L < s) L++;\n\t\
+    \tPoly z0(s); rep(i,s) z0[i] = at(i+1);\n\t\tPoly z = z0.inv(s);\t// = x/f\n\t\
+    \tV<Poly> zi(L);\t// z^i\n\t\tV<Poly>\tziL(L);\t// z^iL\n\t\tzi[0] = {1};\n\t\t\
+    rep(i,L-1) zi[i+1] = (zi[i] * z).low(s);\n\t\tauto zL = (zi[L-1] * z).low(s);\n\
+    \t\tziL[0] = {1};\n\t\trep(i,L-1)  ziL[i+1] = (ziL[i] * zL).low(s);\n\n\t\tPoly\
+    \ res(s);\n\t\trep1(k,s-1){\n\t\t\tint i = k/L, j = k%L;\t// x^(iL+j)\n\t\t\t\
+    rep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);\n\t\t\tres[k] /= k;\n\t\t}\n\
+    \t\treturn res;\n\t}\n};\n\n// \u5408\u6210 f\u25CBg mod x^s\n// O(ns + sqrt(n)slogs)\n\
+    // s\u3092\u6307\u5B9A\u3057\u306A\u3044\u3068\u304D\u306Fnm\u6B21\u5168\u90E8\
+    \u8FD4\u3059 O(n^2m)?\n// \\sum_k f_k g^k = \\sum_k f_k g^iL+j = \\sum_i g^iL\
+    \ * (\\sum_j f_k g^j)\n// verify: https://www.luogu.com.cn/problem/P5373\nPoly<mint>\
+    \ composite(Poly<mint> f, Poly<mint> g, int s=-1){\n\tint n = si(f)-1, m = si(g)-1;\n\
+    \tif(s == -1) s = n*m+1;\n\tint L = 0;\n\twhile(L*L <= n) L++;\n\tV<Poly<mint>>\
+    \ gi(L);\t// g^i\n\tV<Poly<mint>> giL(L);\t// g^iL\n\tgi[0] = {1};\n\trep(i,L-1)\
+    \ gi[i+1] = (gi[i] * g).low(s);\n\tauto gL = (gi[L-1] * g).low(s);\n\tgiL[0] =\
+    \ {1};\n\trep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);\n\n\tPoly<mint> res(s);\n\
+    \trep(i,L){\n\t\tPoly<mint> z;\n\t\trep(j,L) if(i*L+j <= n) z += gi[j] * f[i*L+j];\n\
+    \t\tres += (z * giL[i]).low(s);\n\t}\n\treturn res;\n}\n\nll norm_mod(ll a, ll\
+    \ m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
     \ prime)\nll jacobi(ll a,ll p){\n\ta = norm_mod(a,p);\n\tauto sgn = [](ll x){\
     \ return x&1 ? -1 : 1; };\n\tif(a == 0) return p == 1;\n\telse if(a&1) return\
     \ sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\telse return sgn(((p&15)*(p&15)-1)/8)\
@@ -487,54 +498,56 @@ data:
     \u53C2\u7167\n\t// \tc.f. (f \u306E non0 coef \u306E\u500B\u6570) * s\n\t// verify:\
     \ https://judge.yosupo.jp/submission/44992\n\tPoly pow(ll p, int s) const {\n\t\
     \tif(p == 0){\n\t\t\treturn Poly(s) + 1;\t// 0^0 is 1\n\t\t}\n\t\tint ord = 0;\n\
-    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tif((s-1)/p < ord) return Poly(s);\t//\
-    \ s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0 =\
-    \ at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] = at(i+ord)\
-    \ * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_) res[i+off]\
-    \ = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t// f[0] should\
-    \ be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\tPoly\
-    \ sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2 = mint(2).inv();\n\
-    \t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\t\trep(i,n) z[i] *=\
-    \ z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n) d[n+i] = z[i]\
-    \ - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\trep(i,n) g2[i]\
-    \ = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\tinvfft(d);\n\
-    \t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i] * i2;\n\t\t\t\
-    if(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint> eps = g2;\n\t\t\
-    \trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n) eps[i] = 0;\n\
-    \t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\t\t\t\
-    g.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\tf.resize(s);\n\
-    \t\treturn f;\n\t}\n\n\t// Taylor Shift\n\t// return f(x+c)\n\t// O(N logN)\n\t\
-    // verify: yosupo\n\tPoly shift(mint c){\n\t\tint n = size();\n\t\tassert(si(fact)\
-    \ >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i] = (*this)[i] * fact[i];\n\
-    \t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i] = cpow * ifact[i]; cpow\
-    \ *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\t\tPoly res(n);\
-    \ rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n\n\t// \u5408\u6210\
-    \u9006 mod x^s\n\t// O(s^2 + s^1.5 log s)\n\t// \u65B9\u91DD: lagrange [x^i]g\
-    \ = (1/i [x^i-1](x/f)^i)\n\t// \t\t(x/f)^i = (x/f)^jL (x/f)^k \u3068\u3059\u308C\
-    \u3070\u524D\u8A08\u7B97\u306Fs^1.5\u56DEFFT\n\t// \t\t2\u3064\u306E\u7A4D\u306E\
-    \u4E00\u7B87\u6240\u6C42\u3081\u308B\u3060\u3051\u306A\u306E\u3067O(s)\n\t// z\
-    \ \u3092\u304B\u3051\u307E\u304F\u3063\u305F\u308A z^L \u3092\u304B\u3051\u307E\
-    \u304F\u3063\u305F\u308A\u3059\u308B\u3068\u3053\u308D\u306FFFT\u6D88\u305B\u308B\
-    \u304B\u3089\u9AD8\u901F\u5316\u3067\u304D\u308B\n\t// verify: https://www.luogu.com.cn/problem/P5809\n\
-    \tPoly compositeInv(int s){\n\t\tassert(at(0) == 0);\n\t\tassert(at(1) != 0);\n\
-    \t\tint L = 0;\n\t\twhile(L*L < s) L++;\n\t\tPoly z0(s); rep(i,s) z0[i] = at(i+1);\n\
-    \t\tPoly z = z0.inv(s);\t// = x/f\n\t\tV<Poly> zi(L);\t// z^i\n\t\tV<Poly>\tziL(L);\t\
-    // z^iL\n\t\tzi[0] = {1};\n\t\trep(i,L-1) zi[i+1] = (zi[i] * z).low(s);\n\t\t\
-    auto zL = (zi[L-1] * z).low(s);\n\t\tziL[0] = {1};\n\t\trep(i,L-1)  ziL[i+1] =\
-    \ (ziL[i] * zL).low(s);\n\n\t\tPoly res(s);\n\t\trep1(k,s-1){\n\t\t\tint i = k/L,\
-    \ j = k%L;\t// x^(iL+j)\n\t\t\trep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);\n\
-    \t\t\tres[k] /= k;\n\t\t}\n\t\treturn res;\n\t}\n};\n\n// \u5408\u6210 f\u25CB\
-    g mod x^s\n// O(ns + sqrt(n)slogs)\n// s\u3092\u6307\u5B9A\u3057\u306A\u3044\u3068\
-    \u304D\u306Fnm\u6B21\u5168\u90E8\u8FD4\u3059 O(n^2m)?\n// \\sum_k f_k g^k = \\\
-    sum_k f_k g^iL+j = \\sum_i g^iL * (\\sum_j f_k g^j)\n// verify: https://www.luogu.com.cn/problem/P5373\n\
-    Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){\n\tint n = si(f)-1,\
-    \ m = si(g)-1;\n\tif(s == -1) s = n*m+1;\n\tint L = 0;\n\twhile(L*L <= n) L++;\n\
-    \tV<Poly<mint>> gi(L);\t// g^i\n\tV<Poly<mint>> giL(L);\t// g^iL\n\tgi[0] = {1};\n\
-    \trep(i,L-1) gi[i+1] = (gi[i] * g).low(s);\n\tauto gL = (gi[L-1] * g).low(s);\n\
-    \tgiL[0] = {1};\n\trep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);\n\n\tPoly<mint>\
-    \ res(s);\n\trep(i,L){\n\t\tPoly<mint> z;\n\t\trep(j,L) if(i*L+j <= n) z += gi[j]\
-    \ * f[i*L+j];\n\t\tres += (z * giL[i]).low(s);\n\t}\n\treturn res;\n}\n\nll norm_mod(ll\
-    \ a, ll m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
+    \t\twhile(ord<s && !at(ord)) ord++;\n\t\tassert(!(p<0 and ord>0));\t// \u9811\u5F35\
+    \u308C\u3070\u3067\u304D\u308B\n\t\tif(p>0 and (s-1)/p < ord) return Poly(s);\t\
+    // s <= p * ord\n\t\tint off = p*ord;\n\t\tint s_ = s-off;\n\t\tconst mint a0\
+    \ = at(ord), ia0 = a0.inv(), ap = a0.pow(p);\n\t\tPoly f(s_); rep(i,s_) f[i] =\
+    \ at(i+ord) * ia0;\n\t\tf = (f.log(s_) * p).exp(s_);\n\t\tPoly res(s);\n\t\trep(i,s_)\
+    \ res[i+off] = f[i] * ap;\n\t\treturn res;\n\t}\n\n\t// f^(1/2) mod x^s\n\t//\
+    \ f[0] should be 1\n\t// 11/6\n\t// verify: https://judge.yosupo.jp/submission/44997\n\
+    \tPoly sqrt(int s) const {\n\t\tassert(at(0) == 1);\n\t\tstatic const mint i2\
+    \ = mint(2).inv();\n\t\tV<mint> f{1},g{1},z{1};\n\t\tfor(int n=1;n<s;n*=2){\n\t\
+    \t\trep(i,n) z[i] *= z[i];\n\t\t\tinvfft(z);\n\t\t\tV<mint> d(2*n);\n\t\t\trep(i,n)\
+    \ d[n+i] = z[i] - at(i) - at(n+i);\n\t\t\tfft(d);\n\t\t\tV<mint> g2(2*n);\n\t\t\
+    \trep(i,n) g2[i] = g[i];\n\t\t\tfft(g2);\n\t\t\trep(i,n*2) d[i] *= g2[i];\n\t\t\
+    \tinvfft(d);\n\t\t\tf.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) f[i] = -d[i]\
+    \ * i2;\n\t\t\tif(n*2 >= s) break;\n\t\t\tz = f;\n\t\t\tfft(z);\n\t\t\tV<mint>\
+    \ eps = g2;\n\t\t\trep(i,n*2) eps[i] *= z[i];\n\t\t\tinvfft(eps);\n\t\t\trep(i,n)\
+    \ eps[i] = 0;\n\t\t\tfft(eps);\n\t\t\trep(i,n*2) eps[i] *= g2[i];\n\t\t\tinvfft(eps);\n\
+    \t\t\tg.resize(n*2);\n\t\t\tfor(int i=n;i<n*2;i++) g[i] -= eps[i];\n\t\t}\n\t\t\
+    f.resize(s);\n\t\treturn f;\n\t}\n\n\t// Taylor Shift\n\t// return f(x+c)\n\t\
+    // O(N logN)\n\t// verify: yosupo\n\tPoly shift(mint c){\n\t\tint n = size();\n\
+    \t\tassert(si(fact) >= n);\t// please InitFact\n\t\tV<mint> f(n); rep(i,n) f[i]\
+    \ = (*this)[i] * fact[i];\n\t\tV<mint> g(n);\n\t\tmint cpow = 1;\n\t\trep(i,n){g[i]\
+    \ = cpow * ifact[i]; cpow *= c;}\n\t\treverse(all(g));\n\t\tV<mint> h = multiply(f,g);\n\
+    \t\tPoly res(n); rep(i,n) res[i] = h[n-1+i] * ifact[i];\n\t\treturn res;\n\t}\n\
+    \n\t// \u5408\u6210\u9006 mod x^s\n\t// O(s^2 + s^1.5 log s)\n\t// \u65B9\u91DD\
+    : lagrange [x^i]g = (1/i [x^i-1](x/f)^i)\n\t// \t\t(x/f)^i = (x/f)^jL (x/f)^k\
+    \ \u3068\u3059\u308C\u3070\u524D\u8A08\u7B97\u306Fs^1.5\u56DEFFT\n\t// \t\t2\u3064\
+    \u306E\u7A4D\u306E\u4E00\u7B87\u6240\u6C42\u3081\u308B\u3060\u3051\u306A\u306E\
+    \u3067O(s)\n\t// z \u3092\u304B\u3051\u307E\u304F\u3063\u305F\u308A z^L \u3092\
+    \u304B\u3051\u307E\u304F\u3063\u305F\u308A\u3059\u308B\u3068\u3053\u308D\u306F\
+    FFT\u6D88\u305B\u308B\u304B\u3089\u9AD8\u901F\u5316\u3067\u304D\u308B\n\t// verify:\
+    \ https://www.luogu.com.cn/problem/P5809\n\tPoly compositeInv(int s){\n\t\tassert(at(0)\
+    \ == 0);\n\t\tassert(at(1) != 0);\n\t\tint L = 0;\n\t\twhile(L*L < s) L++;\n\t\
+    \tPoly z0(s); rep(i,s) z0[i] = at(i+1);\n\t\tPoly z = z0.inv(s);\t// = x/f\n\t\
+    \tV<Poly> zi(L);\t// z^i\n\t\tV<Poly>\tziL(L);\t// z^iL\n\t\tzi[0] = {1};\n\t\t\
+    rep(i,L-1) zi[i+1] = (zi[i] * z).low(s);\n\t\tauto zL = (zi[L-1] * z).low(s);\n\
+    \t\tziL[0] = {1};\n\t\trep(i,L-1)  ziL[i+1] = (ziL[i] * zL).low(s);\n\n\t\tPoly\
+    \ res(s);\n\t\trep1(k,s-1){\n\t\t\tint i = k/L, j = k%L;\t// x^(iL+j)\n\t\t\t\
+    rep(_,k) res[k] += ziL[i].at(_) * zi[j].at(k-1-_);\n\t\t\tres[k] /= k;\n\t\t}\n\
+    \t\treturn res;\n\t}\n};\n\n// \u5408\u6210 f\u25CBg mod x^s\n// O(ns + sqrt(n)slogs)\n\
+    // s\u3092\u6307\u5B9A\u3057\u306A\u3044\u3068\u304D\u306Fnm\u6B21\u5168\u90E8\
+    \u8FD4\u3059 O(n^2m)?\n// \\sum_k f_k g^k = \\sum_k f_k g^iL+j = \\sum_i g^iL\
+    \ * (\\sum_j f_k g^j)\n// verify: https://www.luogu.com.cn/problem/P5373\nPoly<mint>\
+    \ composite(Poly<mint> f, Poly<mint> g, int s=-1){\n\tint n = si(f)-1, m = si(g)-1;\n\
+    \tif(s == -1) s = n*m+1;\n\tint L = 0;\n\twhile(L*L <= n) L++;\n\tV<Poly<mint>>\
+    \ gi(L);\t// g^i\n\tV<Poly<mint>> giL(L);\t// g^iL\n\tgi[0] = {1};\n\trep(i,L-1)\
+    \ gi[i+1] = (gi[i] * g).low(s);\n\tauto gL = (gi[L-1] * g).low(s);\n\tgiL[0] =\
+    \ {1};\n\trep(i,L-1)  giL[i+1] = (giL[i] * gL).low(s);\n\n\tPoly<mint> res(s);\n\
+    \trep(i,L){\n\t\tPoly<mint> z;\n\t\trep(j,L) if(i*L+j <= n) z += gi[j] * f[i*L+j];\n\
+    \t\tres += (z * giL[i]).low(s);\n\t}\n\treturn res;\n}\n\nll norm_mod(ll a, ll\
+    \ m){\n\ta %= m; if(a < 0) a += m;\n\treturn a;\n}\n\n//p: odd (not necessarily\
     \ prime)\nll jacobi(ll a,ll p){\n\ta = norm_mod(a,p);\n\tauto sgn = [](ll x){\
     \ return x&1 ? -1 : 1; };\n\tif(a == 0) return p == 1;\n\telse if(a&1) return\
     \ sgn(((p-1)&(a-1))>>1) * jacobi(p%a,a);\n\telse return sgn(((p&15)*(p&15)-1)/8)\
@@ -592,11 +605,14 @@ data:
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy: []
-  timestamp: '2022-11-15 14:35:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-20 04:07:35+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/linear_recurrence.test.cpp
   - test_oj/polynomial_taylor_shift.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
 documentation_of: math/poly.cpp
 layout: document
 redirect_from:
