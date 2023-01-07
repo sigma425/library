@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.1/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/python.py\"\
+    \  File \"/opt/hostedtoolcache/Python/3.11.1/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/python.py\"\
     , line 96, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "#!/usr/bin/env python3\nfrom atcodertools.client.models.contest import Contest\n\
     from atcodertools.client.atcoder import AtCoderClient\nimport sys\n\n# write contest\
@@ -22,14 +22,15 @@ data:
     \u5F97\u3067\u30A8\u30E9\u30FC Exception = {}'.format(e))\n\nelse:\n    from subprocess\
     \ import run\n    from glob import glob\n\n    run(['rm', '-r', 'tests'])\n  \
     \  run(['mkdir', 'tests'])\n\n    for pl in pls:\n        k = pl.alphabet\n  \
-    \      v = pl.get_url()\n\n        try:\n            smp = at.download_problem_content(pl)\n\
-    \        except Exception as e:\n            print('{}\u554F\u984C\u3067\u5931\
-    \u6557 Exception = {}'.format(k, e))\n        else:\n            for i, tx in\
-    \ enumerate(smp.samples):\n                fn = k + str(i) + '.in'\n         \
-    \       f = open('tests/' + fn, 'w')\n                f.write(tx.get_input())\n\
-    \                f.close()\n\n                fn = k + str(i) + '.out'\n     \
-    \           f = open('tests/' + fn, 'w')\n                f.write(tx.get_output())\n\
-    \                f.close()\n            print('Probiem {} END'.format(k))\n"
+    \      if k == 'Ex':\n            k = 'H'\n        v = pl.get_url()\n\n      \
+    \  try:\n            smp = at.download_problem_content(pl)\n        except Exception\
+    \ as e:\n            print('{}\u554F\u984C\u3067\u5931\u6557 Exception = {}'.format(k,\
+    \ e))\n        else:\n            for i, tx in enumerate(smp.samples):\n     \
+    \           fn = k + str(i) + '.in'\n                f = open('tests/' + fn, 'w')\n\
+    \                f.write(tx.get_input())\n                f.close()\n\n      \
+    \          fn = k + str(i) + '.out'\n                f = open('tests/' + fn, 'w')\n\
+    \                f.write(tx.get_output())\n                f.close()\n       \
+    \     print('Probiem {} END'.format(k))\n"
   dependsOn: []
   isVerificationFile: false
   path: sample_collector.py
