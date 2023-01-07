@@ -26,6 +26,8 @@ else:
 
     for pl in pls:
         k = pl.alphabet
+        if k == 'Ex':
+            k = 'H'
         v = pl.get_url()
 
         try:
