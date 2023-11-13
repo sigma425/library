@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/online_convolution.cpp
     title: math/online_convolution.cpp
   - icon: ':question:'
@@ -372,12 +372,23 @@ data:
     \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
     \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
     \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
-    \ g[i];\n\t}\n};\n#line 86 \"test_oj/online_conv/online_pow.test.cpp\"\n\nvoid\
-    \ test(Poly<mint> f, ll K){\n\tint n = si(f);\n\tassert(f[0]);\n\tauto g = f.pow(K,n);\n\
-    \tOnline_Pow<mint> X(K);\n\trep(i,n){\n\t\tmint waf = X.query(i,f[i]);\n\t\tif(g[i]\
-    \ != waf){\n\t\t\tshow(f);show(K);\n\t\t\tshow(g);\n\t\t\tshow(i);\n\t\t\tshow(waf);\n\
-    \t\t\tassert(0);\n\t\t}\n\t}\n}\nvoid TEST(){\n\tInitFact(TEN(6));\n\n\tfor(ll\
-    \ K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){\n\t\ttest({1},K);\n\t\ttest({314},K);\n\
+    \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
+    \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
+    \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
+    \n*/\nstruct Online_Convolution{\n\tvoid calc(int a,int b,int c,int d){\n\t\t\
+    // f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
+    \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
+    \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
+    \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
+    \t\tassert(GI == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2)\
+    \ + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\
+    \t\t\tint a = L-1, b = L-1+1, c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\t\
+    if(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n};\n#line 86 \"test_oj/online_conv/online_pow.test.cpp\"\
+    \n\nvoid test(Poly<mint> f, ll K){\n\tint n = si(f);\n\tassert(f[0]);\n\tauto\
+    \ g = f.pow(K,n);\n\tOnline_Pow<mint> X(K);\n\trep(i,n){\n\t\tmint waf = X.query(i,f[i]);\n\
+    \t\tif(g[i] != waf){\n\t\t\tshow(f);show(K);\n\t\t\tshow(g);\n\t\t\tshow(i);\n\
+    \t\t\tshow(waf);\n\t\t\tassert(0);\n\t\t}\n\t}\n}\nvoid TEST(){\n\tInitFact(TEN(6));\n\
+    \n\tfor(ll K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){\n\t\ttest({1},K);\n\t\ttest({314},K);\n\
     \t\tfor(int N: {2,3,4,(1<<15)-1,(1<<15),(1<<15)+1}){\n\t\t\tPoly<mint> f(N);\n\
     \t\t\trep(i,N) f[i] = rnd(mint::mod);\n\t\t\ttest(f,K);\n\t\t}\n\t}\n}\n\nint\
     \ main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts\
@@ -431,7 +442,7 @@ data:
   isVerificationFile: true
   path: test_oj/online_conv/online_pow.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:11:43+09:00'
+  timestamp: '2023-11-14 00:03:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_oj/online_conv/online_pow.test.cpp

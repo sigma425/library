@@ -34,7 +34,7 @@ data:
     \u304B\u3089\u76F4\u63A5\u547C\u3073\u51FA\u3057\u305F\u3044\u3053\u3068\u3082\
     \u3042\u308B\u6C17\u304C\u3059\u308B\u306D(\u4E0B\u306E\u5024\u305F\u3061s\u304C\
     \u4E0E\u3048\u3089\u308C\u3066\u308B\u3068\u304D\u3068\u304B)\n\tauto rec = [&](auto&\
-    \ self, V<int> a, int h, V<mint> s)->V<mint>{\n\t\tassert(si(a)+1 == si(s));\n\
+    \ self, V<int> a, int h, V<mint> s) -> V<mint> {\n\t\tassert(si(a)+1 == si(s));\n\
     \t\tint n = si(a);\n\t\tif(n <= 1 || h <= 1){\n\t\t\tV<mint> res(h+1);\n\t\t\t\
     a.pb(h);\n\t\t\trep(i,n+1){\n\t\t\t\tres[0] += s[i];\n\t\t\t\trep(j,a[i]) res[j+1]\
     \ += res[j];\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\tint m = n/2;\n\t\tauto le\
@@ -54,8 +54,8 @@ data:
     \ -> increasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\
     \tint w = a.back();\n\tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a)\
     \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
-    \ length formula\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\tauto\
-    \ b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
+    \ length formula\n// a: decreasing\n\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\
+    \tauto b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
     \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}\n"
   code: "// \u6A2An, \u9AD8\u3055a[0],..,a[n-1] \u306E\u30E4\u30F3\u30B0\u56F3\u5F62\
     \u4E0A\u3067 (0,0) \u304B\u3089 (n,0),..,(n,a[n-1]) \u3078\u306E\u7D4C\u8DEF\u6570\
@@ -81,10 +81,10 @@ data:
     \ \u3053\u3063\u3061\u3092\u5916\u304B\u3089\u76F4\u63A5\u547C\u3073\u51FA\u3057\
     \u305F\u3044\u3053\u3068\u3082\u3042\u308B\u6C17\u304C\u3059\u308B\u306D(\u4E0B\
     \u306E\u5024\u305F\u3061s\u304C\u4E0E\u3048\u3089\u308C\u3066\u308B\u3068\u304D\
-    \u3068\u304B)\n\tauto rec = [&](auto& self, V<int> a, int h, V<mint> s)->V<mint>{\n\
-    \t\tassert(si(a)+1 == si(s));\n\t\tint n = si(a);\n\t\tif(n <= 1 || h <= 1){\n\
-    \t\t\tV<mint> res(h+1);\n\t\t\ta.pb(h);\n\t\t\trep(i,n+1){\n\t\t\t\tres[0] +=\
-    \ s[i];\n\t\t\t\trep(j,a[i]) res[j+1] += res[j];\n\t\t\t}\n\t\t\treturn res;\n\
+    \u3068\u304B)\n\tauto rec = [&](auto& self, V<int> a, int h, V<mint> s) -> V<mint>\
+    \ {\n\t\tassert(si(a)+1 == si(s));\n\t\tint n = si(a);\n\t\tif(n <= 1 || h <=\
+    \ 1){\n\t\t\tV<mint> res(h+1);\n\t\t\ta.pb(h);\n\t\t\trep(i,n+1){\n\t\t\t\tres[0]\
+    \ += s[i];\n\t\t\t\trep(j,a[i]) res[j+1] += res[j];\n\t\t\t}\n\t\t\treturn res;\n\
     \t\t}\n\t\tint m = n/2;\n\t\tauto le = self(self,V<int>(a.begin(),a.begin()+m),a[m],V<mint>(s.begin(),s.begin()+m+1));\n\
     \t\tV<mint> dw(s.begin()+m+1,s.end());\n\t\tV<mint> res(h+1);\n\t\tV<mint> up(n-m);\n\
     \t\t{\n\t\t\tauto le2ri = parallel(le,n-m-1);\n\t\t\trep(i,si(le2ri)) res[i] +=\
@@ -101,14 +101,14 @@ data:
     \ -> increasing\nV<int> ConjugateYoung(V<int> a){\n\tif(a.empty()) return a;\n\
     \tint w = a.back();\n\tV<int> b(w);\n\tint i = 0;\n\trep(j,w){\n\t\twhile(i<si(a)\
     \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
-    \ length formula\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\tauto\
-    \ b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
+    \ length formula\n// a: decreasing\n\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\
+    \tauto b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
     \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/CountYoungPaths.cpp
   requiredBy: []
-  timestamp: '2021-12-26 19:25:24+09:00'
+  timestamp: '2023-11-13 23:58:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/CountYoungPaths.cpp

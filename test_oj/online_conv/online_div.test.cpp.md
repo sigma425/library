@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/online_convolution.cpp
     title: math/online_convolution.cpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: math/poly.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -372,9 +372,20 @@ data:
     \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
     \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
     \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
-    \ g[i];\n\t}\n};\n#line 86 \"test_oj/online_conv/online_div.test.cpp\"\n\nvoid\
-    \ test(Poly<mint> f, Poly<mint> g){\n\tint n = si(f);\n\tassert(g[0]);\n\tauto\
-    \ h = f * g.inv(n);\n\tOnline_Division<mint> X;\n\trep(i,n){\n\t\tassert(X.query(i,f[i],g[i])\
+    \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
+    \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
+    \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
+    \n*/\nstruct Online_Convolution{\n\tvoid calc(int a,int b,int c,int d){\n\t\t\
+    // f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
+    \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
+    \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
+    \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
+    \t\tassert(GI == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2)\
+    \ + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\
+    \t\t\tint a = L-1, b = L-1+1, c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\t\
+    if(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n};\n#line 86 \"test_oj/online_conv/online_div.test.cpp\"\
+    \n\nvoid test(Poly<mint> f, Poly<mint> g){\n\tint n = si(f);\n\tassert(g[0]);\n\
+    \tauto h = f * g.inv(n);\n\tOnline_Division<mint> X;\n\trep(i,n){\n\t\tassert(X.query(i,f[i],g[i])\
     \ == h[i]);\n\t}\n}\nvoid TEST(){\n\ttest({0},{2});\n\ttest({3},{2});\n\ttest({0,0},{9,0});\n\
     \ttest({0,2},{9,3});\n\tfor(int N: {2,3,4,(1<<18)-1,(1<<18),(1<<18)+1}){\n\t\t\
     Poly<mint> f(N),g(N);\n\t\trep(i,N) f[i] = rnd(mint::mod);\n\t\trep(i,N) g[i]\
@@ -429,8 +440,8 @@ data:
   isVerificationFile: true
   path: test_oj/online_conv/online_div.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:11:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-14 00:03:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_oj/online_conv/online_div.test.cpp
 layout: document

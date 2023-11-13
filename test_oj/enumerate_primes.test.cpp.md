@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime.cpp
     title: math/prime.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
@@ -36,17 +36,24 @@ data:
     \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\n\tfor(auto v: x)\
     \ cerr << v << \",\"; cerr << \"}\" << endl;\n#else\n#define show(x) void(0)\n\
     #define dump(x) void(0)\n#define shows(...) void(0)\n#endif\n\n#line 1 \"math/prime.cpp\"\
-    \n\nV<bool> isp;\nV<int> pr;\nV<int> sf; //smallest factor, sf[9*5*11] = 3\nvoid\
-    \ linear_sieve(int X){\t\t// <= X\n\tisp = V<bool>(X+1,true); isp[0] = isp[1]\
-    \ = false;\n\tsf = V<int>(X+1);\n\tfor(int i=2;i<=X;i++){\n\t\tif(isp[i]){\n\t\
-    \t\tpr.pb(i);\n\t\t\tsf[i] = i;\n\t\t}\n\t\tfor(int j=0;i*pr[j]<=X;j++){\n\t\t\
-    \tisp[i*pr[j]] = false;\n\t\t\tsf[i*pr[j]] = pr[j];\n\t\t\tif(i%pr[j] == 0) break;\n\
-    \t\t}\n\t}\n}\n#line 50 \"test_oj/enumerate_primes.test.cpp\"\n\nint main(){\n\
-    \tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts\
-    \ !!\n\tcout << fixed << setprecision(20);\n\n\tint N,A,B; cin >> N >> A >> B;\n\
-    \tlinear_sieve(N);\n\tV<int> ans;\n\tfor(int i=B;i<si(pr);i+=A) ans.pb(pr[i]);\n\
-    \tcout << si(pr) << \" \" << si(ans) << endl;\n\tfor(int v: ans) cout << v <<\
-    \ \" \";\n\tcout << endl;\n}\n"
+    \nV<bool> isp;\nV<int> pr;\nV<int> sf; //smallest factor, sf[9*5*11] = 3\nV<int>\
+    \ mu;\t//[1,-1,0,0,...]\nV<int> tot;\t//[1,p-1,(p-1)p,(p-1)p^2,..]\nV<int> sig;\t\
+    // [1,1+p,1+p+p^2,...]\nvoid linear_sieve(int X){\t\t// <= X\n\tisp = V<bool>(X+1,true);\
+    \ isp[0] = isp[1] = false;\n\tsf = V<int>(X+1);\n\tpr.clear();\n\tfor(int i=2;i<=X;i++){\n\
+    \t\tif(isp[i]){\n\t\t\tpr.pb(i);\n\t\t\tsf[i] = i;\n\t\t}\n\t\tfor(int j=0;i*pr[j]<=X;j++){\n\
+    \t\t\tisp[i*pr[j]] = false;\n\t\t\tsf[i*pr[j]] = pr[j];\n\t\t\tif(i%pr[j] == 0)\
+    \ break;\n\t\t}\n\t}\n\tmu = V<int>(X+1);\n\tmu[1] = 1;\n\tfor(int i=2;i<=X;i++){\n\
+    \t\tint p = sf[i];\n\t\tif(i/p%p == 0) mu[i] = 0;\n\t\telse mu[i] = -mu[i/p];\n\
+    \t}\n\ttot = V<int>(X+1);\n\ttot[1] = 1;\n\tfor(int i=2;i<=X;i++){\n\t\tint p\
+    \ = sf[i];\n\t\tif(i/p%p == 0) tot[i] = tot[i/p] * p;\n\t\telse tot[i] = tot[i/p]\
+    \ * (p-1);\n\t}\n\tsig = V<int>(X+1);\n\tsig[1] = 1;\n\tfor(int i=2;i<=X;i++){\n\
+    \t\tint p = sf[i];\n\t\tint x = i;\n\t\tint w = 1;\n\t\twhile(x%p == 0){\n\t\t\
+    \tx /= p; w = w*p+1;\n\t\t}\n\t\tsig[i] = sig[x] * w;\n\t}\n}\n#line 50 \"test_oj/enumerate_primes.test.cpp\"\
+    \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
+    \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n\tint N,A,B; cin\
+    \ >> N >> A >> B;\n\tlinear_sieve(N);\n\tV<int> ans;\n\tfor(int i=B;i<si(pr);i+=A)\
+    \ ans.pb(pr[i]);\n\tcout << si(pr) << \" \" << si(ans) << endl;\n\tfor(int v:\
+    \ ans) cout << v << \" \";\n\tcout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n\
     #include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\nusing uint\
     \ = unsigned int;\n#define rep(i,n) for(int i=0;i<int(n);i++)\n#define rep1(i,n)\
@@ -79,8 +86,8 @@ data:
   isVerificationFile: true
   path: test_oj/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2020-09-20 08:09:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-14 00:04:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_oj/enumerate_primes.test.cpp
 layout: document

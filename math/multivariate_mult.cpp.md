@@ -38,14 +38,15 @@ data:
     \ *= ni;\n\tV<int> magic(n);\n\trep(i,n){\n\t\tint x = i;\n\t\trep(j,k){\n\t\t\
     \tmagic[i] += x;\n\t\t\tx /= ns[j];\n\t\t}\n\t\tmagic[i] %= k;\n\t}\n\treturn\
     \ magic;\n}\nvector<mint> multivariate_mult(const vector<mint>& f, const vector<mint>&\
-    \ g, const vector<int>& ns, const vector<int>& magic){\n\tassert(si(f) == si(g));\n\
-    \tint n = si(f);\n\tint k = si(ns);\n\tif(k == 0){\n\t\treturn {f[0]*g[0]};\n\t\
-    }\n\tint s = 1; while(s<n*2-1) s*=2;\n\tvector<mint> h(n);\n\tvector<vector<mint>>\
-    \ zf(k,vector<mint>(s));\n\tvector<vector<mint>> zg(k,vector<mint>(s));\n\tvector<vector<mint>>\
-    \ zh(k,vector<mint>(s));\n\trep(i,n) zf[magic[i]][i] = f[i];\n\trep(i,k) fft(zf[i]);\n\
-    \trep(i,n) zg[magic[i]][i] = g[i];\n\trep(i,k) fft(zg[i]);\n\trep(a,k) rep(b,k){\n\
-    \t\tint c = (a+b)%k;\n\t\trep(i,s) zh[c][i] += zf[a][i] * zg[b][i];\n\t}\n\trep(i,k)\
-    \ invfft(zh[i]);\n\trep(i,n) h[i] = zh[magic[i]][i];\n\treturn h;\n}\n"
+    \ g, const vector<int>& ns){\n\tassert(si(f) == si(g));\n\tint n = si(f);\n\t\
+    int k = si(ns);\n\tif(k == 0){\n\t\treturn {f[0]*g[0]};\n\t}\n\tvector<int> magic\
+    \ = calc_magic(ns);\n\tint s = 1; while(s<n*2-1) s*=2;\n\tvector<mint> h(n);\n\
+    \tvector<vector<mint>> zf(k,vector<mint>(s));\n\tvector<vector<mint>> zg(k,vector<mint>(s));\n\
+    \tvector<vector<mint>> zh(k,vector<mint>(s));\n\trep(i,n) zf[magic[i]][i] = f[i];\n\
+    \trep(i,k) fft(zf[i]);\n\trep(i,n) zg[magic[i]][i] = g[i];\n\trep(i,k) fft(zg[i]);\n\
+    \trep(a,k) rep(b,k){\n\t\tint c = (a+b)%k;\n\t\trep(i,s) zh[c][i] += zf[a][i]\
+    \ * zg[b][i];\n\t}\n\trep(i,k) invfft(zh[i]);\n\trep(i,n) h[i] = zh[magic[i]][i];\n\
+    \treturn h;\n}\n"
   code: "/*\n\th[i1+j1][i2+j2]..[ik+jk] += f[i1][i2]..[ik] * g[i1][i2]..[ik] \u3092\
     \u3059\u308B\n\t\u305F\u3060\u3057 \u6DFB\u5B57\u306E\u7BC4\u56F2\u306F 0 <= ip,jp\
     \ < np \u3067\u3001\u8DB3\u3057\u305F\u7D50\u679C\u4E00\u7B87\u6240\u3067\u3082\
@@ -74,19 +75,20 @@ data:
     \ *= ni;\n\tV<int> magic(n);\n\trep(i,n){\n\t\tint x = i;\n\t\trep(j,k){\n\t\t\
     \tmagic[i] += x;\n\t\t\tx /= ns[j];\n\t\t}\n\t\tmagic[i] %= k;\n\t}\n\treturn\
     \ magic;\n}\nvector<mint> multivariate_mult(const vector<mint>& f, const vector<mint>&\
-    \ g, const vector<int>& ns, const vector<int>& magic){\n\tassert(si(f) == si(g));\n\
-    \tint n = si(f);\n\tint k = si(ns);\n\tif(k == 0){\n\t\treturn {f[0]*g[0]};\n\t\
-    }\n\tint s = 1; while(s<n*2-1) s*=2;\n\tvector<mint> h(n);\n\tvector<vector<mint>>\
-    \ zf(k,vector<mint>(s));\n\tvector<vector<mint>> zg(k,vector<mint>(s));\n\tvector<vector<mint>>\
-    \ zh(k,vector<mint>(s));\n\trep(i,n) zf[magic[i]][i] = f[i];\n\trep(i,k) fft(zf[i]);\n\
-    \trep(i,n) zg[magic[i]][i] = g[i];\n\trep(i,k) fft(zg[i]);\n\trep(a,k) rep(b,k){\n\
-    \t\tint c = (a+b)%k;\n\t\trep(i,s) zh[c][i] += zf[a][i] * zg[b][i];\n\t}\n\trep(i,k)\
-    \ invfft(zh[i]);\n\trep(i,n) h[i] = zh[magic[i]][i];\n\treturn h;\n}\n"
+    \ g, const vector<int>& ns){\n\tassert(si(f) == si(g));\n\tint n = si(f);\n\t\
+    int k = si(ns);\n\tif(k == 0){\n\t\treturn {f[0]*g[0]};\n\t}\n\tvector<int> magic\
+    \ = calc_magic(ns);\n\tint s = 1; while(s<n*2-1) s*=2;\n\tvector<mint> h(n);\n\
+    \tvector<vector<mint>> zf(k,vector<mint>(s));\n\tvector<vector<mint>> zg(k,vector<mint>(s));\n\
+    \tvector<vector<mint>> zh(k,vector<mint>(s));\n\trep(i,n) zf[magic[i]][i] = f[i];\n\
+    \trep(i,k) fft(zf[i]);\n\trep(i,n) zg[magic[i]][i] = g[i];\n\trep(i,k) fft(zg[i]);\n\
+    \trep(a,k) rep(b,k){\n\t\tint c = (a+b)%k;\n\t\trep(i,s) zh[c][i] += zf[a][i]\
+    \ * zg[b][i];\n\t}\n\trep(i,k) invfft(zh[i]);\n\trep(i,n) h[i] = zh[magic[i]][i];\n\
+    \treturn h;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/multivariate_mult.cpp
   requiredBy: []
-  timestamp: '2021-12-26 19:30:36+09:00'
+  timestamp: '2023-11-14 00:02:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multivariate_mult.cpp

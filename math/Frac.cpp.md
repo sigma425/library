@@ -35,9 +35,10 @@ data:
     \ r < *this; }\r\n\tbool operator<=(const Frac& r) const { return !(r < *this);\
     \ }\r\n\tbool operator>=(const Frac& r) const { return !(*this < r); }\r\n\tbool\
     \ operator==(const Frac& r) const { return x == r.x && y == r.y; }\r\n\tbool operator!=(const\
-    \ Frac& r) const { return !(*this == r); }\r\n\tFrac inv() const {\r\n\t\treturn\
-    \ Frac(y,x);\r\n\t}\r\n\tfriend ostream& operator<<(ostream &o,const Frac& x){\r\
-    \n\t\treturn o << x.x << \"/\" << x.y;\r\n\t}\r\n};\n"
+    \ Frac& r) const { return !(*this == r); }\r\n\texplicit operator bool() const\
+    \ {return x!=0;}\r\n\tFrac inv() const {\r\n\t\treturn Frac(y,x);\r\n\t}\r\n\t\
+    friend ostream& operator<<(ostream &o,const Frac& x){\r\n\t\treturn o << x.x <<\
+    \ \"/\" << x.y;\r\n\t}\r\n};\n"
   code: "/*\r\n\t\u6709\u7406\u6570\u4F53\r\n\t\u4EFB\u610F/\u6B63, gcd = 1 \u3067\
     \u5E38\u306B\u6301\u3064\r\n\tverified at https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K\
     \ (Q\u4E0A\u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F)\r\n*/\r\nint bsf(ll x) { return\
@@ -64,14 +65,15 @@ data:
     \ r < *this; }\r\n\tbool operator<=(const Frac& r) const { return !(r < *this);\
     \ }\r\n\tbool operator>=(const Frac& r) const { return !(*this < r); }\r\n\tbool\
     \ operator==(const Frac& r) const { return x == r.x && y == r.y; }\r\n\tbool operator!=(const\
-    \ Frac& r) const { return !(*this == r); }\r\n\tFrac inv() const {\r\n\t\treturn\
-    \ Frac(y,x);\r\n\t}\r\n\tfriend ostream& operator<<(ostream &o,const Frac& x){\r\
-    \n\t\treturn o << x.x << \"/\" << x.y;\r\n\t}\r\n};"
+    \ Frac& r) const { return !(*this == r); }\r\n\texplicit operator bool() const\
+    \ {return x!=0;}\r\n\tFrac inv() const {\r\n\t\treturn Frac(y,x);\r\n\t}\r\n\t\
+    friend ostream& operator<<(ostream &o,const Frac& x){\r\n\t\treturn o << x.x <<\
+    \ \"/\" << x.y;\r\n\t}\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/Frac.cpp
   requiredBy: []
-  timestamp: '2021-12-26 19:26:08+09:00'
+  timestamp: '2023-11-13 23:59:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/Frac.cpp

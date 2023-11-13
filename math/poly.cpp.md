@@ -6,10 +6,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/linear_recurrence.test.cpp
     title: test_oj/linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
   - icon: ':x:'
@@ -608,11 +608,11 @@ data:
   timestamp: '2022-11-20 04:07:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
-  - test_oj/polynomial_taylor_shift.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
   - test_oj/linear_recurrence.test.cpp
+  - test_oj/polynomial_taylor_shift.test.cpp
 documentation_of: math/poly.cpp
 layout: document
 redirect_from:

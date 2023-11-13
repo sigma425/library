@@ -295,6 +295,9 @@ data:
       path: graph/enumTrees.cpp
       title: graph/enumTrees.cpp
     - icon: ':warning:'
+      path: graph/eulerianTour.cpp
+      title: graph/eulerianTour.cpp
+    - icon: ':warning:'
       path: graph/eulertour.cpp
       title: graph/eulertour.cpp
     - icon: ':warning:'
@@ -405,11 +408,20 @@ data:
       path: math/LPsolver.cpp
       title: math/LPsolver.cpp
     - icon: ':warning:'
+      path: math/MultiplicativeSum.cpp
+      title: math/MultiplicativeSum.cpp
+    - icon: ':warning:'
       path: math/Precursive.cpp
       title: math/Precursive.cpp
     - icon: ':warning:'
+      path: math/RSK.cpp
+      title: math/RSK.cpp
+    - icon: ':warning:'
       path: math/SumFloor.cpp
       title: math/SumFloor.cpp
+    - icon: ':warning:'
+      path: math/Tellegen.cpp
+      title: math/Tellegen.cpp
     - icon: ':warning:'
       path: math/babygiant.cpp
       title: math/babygiant.cpp
@@ -422,6 +434,9 @@ data:
     - icon: ':warning:'
       path: math/berlekamp-massey.cpp
       title: math/berlekamp-massey.cpp
+    - icon: ':warning:'
+      path: math/divisor_zeta.cpp
+      title: math/divisor_zeta.cpp
     - icon: ':warning:'
       path: math/factorization.cpp
       title: math/factorization.cpp
@@ -452,13 +467,19 @@ data:
     - icon: ':warning:'
       path: math/linear_min_mod.cpp
       title: math/linear_min_mod.cpp
+    - icon: ':warning:'
+      path: math/matroid.cpp
+      title: math/matroid.cpp
     - icon: ':heavy_check_mark:'
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
       path: math/multivariate_mult.cpp
       title: math/multivariate_mult.cpp
-    - icon: ':question:'
+    - icon: ':warning:'
+      path: math/nimber.cpp
+      title: math/nimber.cpp
+    - icon: ':x:'
       path: math/online_convolution.cpp
       title: math/online_convolution.cpp
     - icon: ':warning:'
@@ -467,7 +488,7 @@ data:
     - icon: ':question:'
       path: math/poly.cpp
       title: math/poly.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/prime.cpp
       title: math/prime.cpp
     - icon: ':warning:'
@@ -479,6 +500,9 @@ data:
     - icon: ':warning:'
       path: math/simple_permutation.cpp
       title: math/simple_permutation.cpp
+    - icon: ':warning:'
+      path: math/sparseDet.cpp
+      title: math/sparseDet.cpp
     - icon: ':warning:'
       path: math/sqrt_seg.cpp
       title: math/sqrt_seg.cpp
@@ -555,7 +579,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/FloorKthRoot.test.cpp
       title: test_oj/FloorKthRoot.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -604,10 +628,10 @@ data:
       title: test_oj/beats/simple_sum.test.cpp
   - name: test_oj/online_conv
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/online_conv/online_conv.test.cpp
       title: test_oj/online_conv/online_conv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/online_conv/online_div.test.cpp
       title: test_oj/online_conv/online_div.test.cpp
     - icon: ':x:'

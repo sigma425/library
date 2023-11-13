@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test_oj/online_conv/online_pow.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/online_convolution.cpp\"\n/*\n\tquery(i): f_i, g_i\
@@ -58,7 +58,18 @@ data:
     \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
     \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
     \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
-    \ g[i];\n\t}\n};\n"
+    \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
+    \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
+    \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
+    \n*/\nstruct Online_Convolution{\n\tvoid calc(int a,int b,int c,int d){\n\t\t\
+    // f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
+    \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
+    \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
+    \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
+    \t\tassert(GI == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2)\
+    \ + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\
+    \t\t\tint a = L-1, b = L-1+1, c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\t\
+    if(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n};\n"
   code: "/*\n\tquery(i): f_i, g_i \u3092\u53D7\u3051\u53D6\u3063\u3066 fg_i \u3092\
     \u8FD4\u3059\n\tO(n log^2)\n\t2^18: 300ms\n\t2^19: 700ms\n\t2^20: 1500ms\n\n\t\
     [0] [12] [3456] [7..14] .. \u3068\u308F\u3051\u3066\u3046\u307E\u304F\u3084\u308B\
@@ -99,17 +110,28 @@ data:
     \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
     \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
     \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
-    \ g[i];\n\t}\n};"
+    \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
+    \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
+    \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
+    \n*/\nstruct Online_Convolution{\n\tvoid calc(int a,int b,int c,int d){\n\t\t\
+    // f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
+    \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
+    \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
+    \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
+    \t\tassert(GI == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2)\
+    \ + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\
+    \t\t\tint a = L-1, b = L-1+1, c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\t\
+    if(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/online_convolution.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:11:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-11-14 00:03:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: math/online_convolution.cpp
 layout: document
 redirect_from:

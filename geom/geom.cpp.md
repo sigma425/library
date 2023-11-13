@@ -40,11 +40,11 @@ data:
     }\ninline bool iSSex(L a, L b){\t\t//intersect(excluding endpoint)\n\treturn ccw(a.fs,a.sc,b.fs)*ccw(a.fs,a.sc,b.sc)<0\
     \ && ccw(b.fs,b.sc,a.fs)*ccw(b.fs,b.sc,a.sc)<0;\n}\ninline bool iSP(L s, P p){\t\
     \t//intersect(including endpoint) or overload\n\treturn ccw(s.fs,s.sc,p)==0;\n\
-    }\ninline D dLP(L l, P p) { return abs(perp(l,p)-p);}\ninline D dLL(L a, L b)\
-    \ { return iLL(a,b) ? 0 : dLP(a,b.fs);}\ninline D dLS(L l, L s) { return iLS(l,s)\
-    \ ? 0 : min(dLP(l,s.fs),dLP(l,s.sc));}\ninline D dSP(L s, P p) {\n\tP q=perp(s,p);\n\
-    \treturn iSP(s,q) ? abs(p-q) : min(abs(p-s.fs),abs(p-s.sc));\n}\ninline D dSS(L\
-    \ a, L b) {\n\tif(iSS(a,b)) return 0;\n\treturn min(min(dSP(a,b.fs),dSP(a,b.sc)),min(dSP(b,a.fs),dSP(b,a.sc)));\n\
+    }\ninline D dPP(P a, P b) { return abs(a-b);}\ninline D dLP(L l, P p) { return\
+    \ abs(perp(l,p)-p);}\ninline D dLL(L a, L b) { return iLL(a,b) ? 0 : dLP(a,b.fs);}\n\
+    inline D dLS(L l, L s) { return iLS(l,s) ? 0 : min(dLP(l,s.fs),dLP(l,s.sc));}\n\
+    inline D dSP(L s, P p) {\n\tP q=perp(s,p);\n\treturn iSP(s,q) ? abs(p-q) : min(abs(p-s.fs),abs(p-s.sc));\n\
+    }\ninline D dSS(L a, L b) {\n\tif(iSS(a,b)) return 0;\n\treturn min(min(dSP(a,b.fs),dSP(a,b.sc)),min(dSP(b,a.fs),dSP(b,a.sc)));\n\
     }\ninline P intLL(L a, L b) {\t//intersection\n\tassert(!ispal(a,b));\n\tD t=cro(a.sc-a.fs,a.sc-b.fs)/cro(a.sc-a.fs,b.sc-b.fs);\n\
     \treturn b.fs+t*(b.sc-b.fs);\n}\n//\ninline int iCL(C c, L l){\t\t//num of intersection(s)\n\
     \tD d=dLP(l,c.p);\n\treturn eq(d,c.r) ? 1 : (d<c.r ? 2 : 0);\n}\nbool containCC(C\
@@ -199,11 +199,11 @@ data:
     }\ninline bool iSSex(L a, L b){\t\t//intersect(excluding endpoint)\n\treturn ccw(a.fs,a.sc,b.fs)*ccw(a.fs,a.sc,b.sc)<0\
     \ && ccw(b.fs,b.sc,a.fs)*ccw(b.fs,b.sc,a.sc)<0;\n}\ninline bool iSP(L s, P p){\t\
     \t//intersect(including endpoint) or overload\n\treturn ccw(s.fs,s.sc,p)==0;\n\
-    }\ninline D dLP(L l, P p) { return abs(perp(l,p)-p);}\ninline D dLL(L a, L b)\
-    \ { return iLL(a,b) ? 0 : dLP(a,b.fs);}\ninline D dLS(L l, L s) { return iLS(l,s)\
-    \ ? 0 : min(dLP(l,s.fs),dLP(l,s.sc));}\ninline D dSP(L s, P p) {\n\tP q=perp(s,p);\n\
-    \treturn iSP(s,q) ? abs(p-q) : min(abs(p-s.fs),abs(p-s.sc));\n}\ninline D dSS(L\
-    \ a, L b) {\n\tif(iSS(a,b)) return 0;\n\treturn min(min(dSP(a,b.fs),dSP(a,b.sc)),min(dSP(b,a.fs),dSP(b,a.sc)));\n\
+    }\ninline D dPP(P a, P b) { return abs(a-b);}\ninline D dLP(L l, P p) { return\
+    \ abs(perp(l,p)-p);}\ninline D dLL(L a, L b) { return iLL(a,b) ? 0 : dLP(a,b.fs);}\n\
+    inline D dLS(L l, L s) { return iLS(l,s) ? 0 : min(dLP(l,s.fs),dLP(l,s.sc));}\n\
+    inline D dSP(L s, P p) {\n\tP q=perp(s,p);\n\treturn iSP(s,q) ? abs(p-q) : min(abs(p-s.fs),abs(p-s.sc));\n\
+    }\ninline D dSS(L a, L b) {\n\tif(iSS(a,b)) return 0;\n\treturn min(min(dSP(a,b.fs),dSP(a,b.sc)),min(dSP(b,a.fs),dSP(b,a.sc)));\n\
     }\ninline P intLL(L a, L b) {\t//intersection\n\tassert(!ispal(a,b));\n\tD t=cro(a.sc-a.fs,a.sc-b.fs)/cro(a.sc-a.fs,b.sc-b.fs);\n\
     \treturn b.fs+t*(b.sc-b.fs);\n}\n//\ninline int iCL(C c, L l){\t\t//num of intersection(s)\n\
     \tD d=dLP(l,c.p);\n\treturn eq(d,c.r) ? 1 : (d<c.r ? 2 : 0);\n}\nbool containCC(C\
@@ -331,7 +331,7 @@ data:
   isVerificationFile: false
   path: geom/geom.cpp
   requiredBy: []
-  timestamp: '2021-10-14 02:46:13+09:00'
+  timestamp: '2023-11-13 23:55:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geom/geom.cpp

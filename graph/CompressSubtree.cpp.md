@@ -72,7 +72,33 @@ data:
     \t\t}\n\t}\n\trep(i,M){\n\t\tadd_edge(mp[P(tx[i],x[i])],mp[P(ty[i],y[i])],1);\n\
     \t}\n\n\trep(qt,Q){\n\t\tint a = qx[qt], ta = qtx[qt], b = qy[qt], tb = qty[qt];\n\
     \t\tvector<ll> d = dijkstra<ll>(G,mp[P(ta,a)]);\n\t\tll ans = d[mp[P(tb,b)]];\n\
-    \t\tif(ans == 1e18) puts(\"impossible\");\n\t\telse cout<<ans<<endl;\n\t}\n}\n"
+    \t\tif(ans == 1e18) puts(\"impossible\");\n\t\telse cout<<ans<<endl;\n\t}\n}\n\
+    \n\n/*\n\t\u91CD\u307F\u4ED8\u304D\n\tdw \u304C\u91CD\u307F\u306E\u7DCF\u548C\n\
+    \tdistance(u,v) \u3067\u5F15\u304D\u7B97\u3057\u3066\u308B\u304B\u3089\u53EF\u63DB\
+    \u7FA4\u3058\u3083\u306A\u304D\u3083\u3060\u3081\n\t\u3061\u3083\u3093\u3068\u3084\
+    \u308C\u3070\u30E2\u30CE\u30A4\u30C9\u304C\u4E57\u308B\n*/\n\ntemplate<class E>\n\
+    struct CompressedSubtree{\n\tint N,n;\n\tV<int> depth;\n\tV<ll> dw;\n\tVV<int>\
+    \ par;\n\tV<int> in;\n\tint I;\n\n\tV<int> index;\n\tV<int> vs;\n\n\tCompressedSubtree(const\
+    \ VV<E>& G, int r = 0):N((int)G.size()),n(bsr(N)),depth(N),dw(N),par(N,V<int>(n+1)),in(N),I(0),index(N){\n\
+    \t\tdfs(r,-1,G);\n\t\trep1(i,n){\n\t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1] == -1)\
+    \ par[v][i] = -1;\n\t\t\t\telse par[v][i] = par[par[v][i-1]][i-1];\n\t\t\t}\n\t\
+    \t}\n\t}\n\n\tV<pair<int,int>> ComputeTree(const V<int>& _vs){\n\t\tauto comp\
+    \ = [&](int x,int y){\n\t\t\treturn in[x] < in[y];\n\t\t};\n\t\tvs = _vs;\n\t\t\
+    sort(all(vs),comp);\n\t\tvs.erase(unique(vs.begin(),vs.end()),vs.end());\n\n\t\
+    \tint K = vs.size();\n\t\trep(i,K-1){\n\t\t\tvs.pb(lca(vs[i],vs[i+1]));\n\t\t\
+    }\n\t\tsort(all(vs),comp);\n\t\tvs.erase(unique(vs.begin(),vs.end()),vs.end());\n\
+    \t\tK = vs.size();\n\t\trep(i,K) index[vs[i]] = i;\n\t\tV<pair<int,int>> es;\n\
+    \t\trep1(i,K-1){\n\t\t\tint p = lca(vs[i-1],vs[i]);\n\t\t\tes.pb(pair<int,int>(vs[i],p));\n\
+    \t\t}\n\t\treturn es;\n\t}\n\n\tvoid dfs(int v,int p,const VV<E>& G){\n\t\tin[v]\
+    \ = I++;\n\t\tpar[v][0] = p;\n\t\tfor(auto& e : G[v]){\n\t\t\tint u = e.to;\n\t\
+    \t\tif(u == p) continue;\n\t\t\tdepth[u] = depth[v] + 1;\n\t\t\tdw[u] = dw[v]\
+    \ + e.len;\n\t\t\tdfs(u,v,G);\n\t\t}\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v])\
+    \ swap(u,v);\n\t\tint d = depth[u]-depth[v];\n\t\trep(i,n+1){\n\t\t\tif((d>>i)&1)\
+    \ u=par[u][i];\n\t\t}\n\t\tif(u==v) return u;\n\t\tfor(int i=n;i>=0;i--){\n\t\t\
+    \tif(par[u][i]!=par[v][i]){\n\t\t\t\tu=par[u][i];\n\t\t\t\tv=par[v][i];\n\t\t\t\
+    }\n\t\t}\n\t\treturn par[v][0];\n\t}\n\tll distance(int u,int v){\n\t\treturn\
+    \ dw[u]+dw[v]-2*dw[lca(u,v)];\n\t}\n};\n\nstruct edge{\n\tint to; ll len;\n\t\
+    edge(int to_, ll len_):to(to_),len(len_){}\n};\n"
   code: "/*\n\t\u6728\u304C\u4E0E\u3048\u3089\u308C\u308B\n\t\u30AF\u30A8\u30EA\u3068\
     \u3057\u3066\u30B5\u30A4\u30BA K \u306E\u9802\u70B9\u96C6\u5408\u304C\u6765\u308B\
     \u3068\u3001\u7E2E\u7D04\u3057\u305F\u6728\u3092 O(K log N) \u3067\u3064\u304F\
@@ -136,12 +162,38 @@ data:
     \t\t}\n\t}\n\trep(i,M){\n\t\tadd_edge(mp[P(tx[i],x[i])],mp[P(ty[i],y[i])],1);\n\
     \t}\n\n\trep(qt,Q){\n\t\tint a = qx[qt], ta = qtx[qt], b = qy[qt], tb = qty[qt];\n\
     \t\tvector<ll> d = dijkstra<ll>(G,mp[P(ta,a)]);\n\t\tll ans = d[mp[P(tb,b)]];\n\
-    \t\tif(ans == 1e18) puts(\"impossible\");\n\t\telse cout<<ans<<endl;\n\t}\n}\n"
+    \t\tif(ans == 1e18) puts(\"impossible\");\n\t\telse cout<<ans<<endl;\n\t}\n}\n\
+    \n\n/*\n\t\u91CD\u307F\u4ED8\u304D\n\tdw \u304C\u91CD\u307F\u306E\u7DCF\u548C\n\
+    \tdistance(u,v) \u3067\u5F15\u304D\u7B97\u3057\u3066\u308B\u304B\u3089\u53EF\u63DB\
+    \u7FA4\u3058\u3083\u306A\u304D\u3083\u3060\u3081\n\t\u3061\u3083\u3093\u3068\u3084\
+    \u308C\u3070\u30E2\u30CE\u30A4\u30C9\u304C\u4E57\u308B\n*/\n\ntemplate<class E>\n\
+    struct CompressedSubtree{\n\tint N,n;\n\tV<int> depth;\n\tV<ll> dw;\n\tVV<int>\
+    \ par;\n\tV<int> in;\n\tint I;\n\n\tV<int> index;\n\tV<int> vs;\n\n\tCompressedSubtree(const\
+    \ VV<E>& G, int r = 0):N((int)G.size()),n(bsr(N)),depth(N),dw(N),par(N,V<int>(n+1)),in(N),I(0),index(N){\n\
+    \t\tdfs(r,-1,G);\n\t\trep1(i,n){\n\t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1] == -1)\
+    \ par[v][i] = -1;\n\t\t\t\telse par[v][i] = par[par[v][i-1]][i-1];\n\t\t\t}\n\t\
+    \t}\n\t}\n\n\tV<pair<int,int>> ComputeTree(const V<int>& _vs){\n\t\tauto comp\
+    \ = [&](int x,int y){\n\t\t\treturn in[x] < in[y];\n\t\t};\n\t\tvs = _vs;\n\t\t\
+    sort(all(vs),comp);\n\t\tvs.erase(unique(vs.begin(),vs.end()),vs.end());\n\n\t\
+    \tint K = vs.size();\n\t\trep(i,K-1){\n\t\t\tvs.pb(lca(vs[i],vs[i+1]));\n\t\t\
+    }\n\t\tsort(all(vs),comp);\n\t\tvs.erase(unique(vs.begin(),vs.end()),vs.end());\n\
+    \t\tK = vs.size();\n\t\trep(i,K) index[vs[i]] = i;\n\t\tV<pair<int,int>> es;\n\
+    \t\trep1(i,K-1){\n\t\t\tint p = lca(vs[i-1],vs[i]);\n\t\t\tes.pb(pair<int,int>(vs[i],p));\n\
+    \t\t}\n\t\treturn es;\n\t}\n\n\tvoid dfs(int v,int p,const VV<E>& G){\n\t\tin[v]\
+    \ = I++;\n\t\tpar[v][0] = p;\n\t\tfor(auto& e : G[v]){\n\t\t\tint u = e.to;\n\t\
+    \t\tif(u == p) continue;\n\t\t\tdepth[u] = depth[v] + 1;\n\t\t\tdw[u] = dw[v]\
+    \ + e.len;\n\t\t\tdfs(u,v,G);\n\t\t}\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v])\
+    \ swap(u,v);\n\t\tint d = depth[u]-depth[v];\n\t\trep(i,n+1){\n\t\t\tif((d>>i)&1)\
+    \ u=par[u][i];\n\t\t}\n\t\tif(u==v) return u;\n\t\tfor(int i=n;i>=0;i--){\n\t\t\
+    \tif(par[u][i]!=par[v][i]){\n\t\t\t\tu=par[u][i];\n\t\t\t\tv=par[v][i];\n\t\t\t\
+    }\n\t\t}\n\t\treturn par[v][0];\n\t}\n\tll distance(int u,int v){\n\t\treturn\
+    \ dw[u]+dw[v]-2*dw[lca(u,v)];\n\t}\n};\n\nstruct edge{\n\tint to; ll len;\n\t\
+    edge(int to_, ll len_):to(to_),len(len_){}\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/CompressSubtree.cpp
   requiredBy: []
-  timestamp: '2019-03-25 15:41:23+09:00'
+  timestamp: '2023-11-13 23:57:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/CompressSubtree.cpp
