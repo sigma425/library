@@ -132,3 +132,34 @@ struct Online_Pow{
 		return g[i];
 	}
 };
+
+/*
+	FFT とは限らない時にオンラインで h[i+j] = f[i]*g[j] をしたいとき
+	calc(a,b,c,d) で f[a,b) * g[c,d) を足し込む
+*/
+struct Online_Convolution{
+	void calc(int a,int b,int c,int d){
+		// f[a,b) * g[c,d)
+		for(int i=a;i<b;i++) for(int j=c;j<d;j++){
+			cerr << "(" << i << " , " << j << ")" << endl;
+		}
+	}
+
+	int SI = 0, GI = 0;
+	void set_i(int i){
+		cerr << "set " << i << endl;
+		assert(SI == i); SI++;
+	}
+	void get_i(int i){
+		cerr << "get " << i << endl;
+		assert(GI == i); GI++;
+		assert(i < SI);
+		int K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1 ? 1 : 0);
+		rep(k,K){
+			int L = 1<<k;
+			int a = L-1, b = L-1+1, c = i+1-L, d = i+1;
+			calc(a,b,c,d);
+			if(a != c) calc(c,d,a,b);
+		}
+	}
+};
