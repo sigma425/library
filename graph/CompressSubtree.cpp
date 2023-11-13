@@ -213,3 +213,94 @@ int main(){
 		else cout<<ans<<endl;
 	}
 }
+
+
+/*
+	重み付き
+	dw が重みの総和
+	distance(u,v) で引き算してるから可換群じゃなきゃだめ
+	ちゃんとやればモノイドが乗る
+*/
+
+template<class E>
+struct CompressedSubtree{
+	int N,n;
+	V<int> depth;
+	V<ll> dw;
+	VV<int> par;
+	V<int> in;
+	int I;
+
+	V<int> index;
+	V<int> vs;
+
+	CompressedSubtree(const VV<E>& G, int r = 0):N((int)G.size()),n(bsr(N)),depth(N),dw(N),par(N,V<int>(n+1)),in(N),I(0),index(N){
+		dfs(r,-1,G);
+		rep1(i,n){
+			rep(v,N){
+				if(par[v][i-1] == -1) par[v][i] = -1;
+				else par[v][i] = par[par[v][i-1]][i-1];
+			}
+		}
+	}
+
+	V<pair<int,int>> ComputeTree(const V<int>& _vs){
+		auto comp = [&](int x,int y){
+			return in[x] < in[y];
+		};
+		vs = _vs;
+		sort(all(vs),comp);
+		vs.erase(unique(vs.begin(),vs.end()),vs.end());
+
+		int K = vs.size();
+		rep(i,K-1){
+			vs.pb(lca(vs[i],vs[i+1]));
+		}
+		sort(all(vs),comp);
+		vs.erase(unique(vs.begin(),vs.end()),vs.end());
+		K = vs.size();
+		rep(i,K) index[vs[i]] = i;
+		V<pair<int,int>> es;
+		rep1(i,K-1){
+			int p = lca(vs[i-1],vs[i]);
+			es.pb(pair<int,int>(vs[i],p));
+		}
+		return es;
+	}
+
+	void dfs(int v,int p,const VV<E>& G){
+		in[v] = I++;
+		par[v][0] = p;
+		for(auto& e : G[v]){
+			int u = e.to;
+			if(u == p) continue;
+			depth[u] = depth[v] + 1;
+			dw[u] = dw[v] + e.len;
+			dfs(u,v,G);
+		}
+	}
+
+	int lca(int u,int v){
+		if(depth[u]<depth[v]) swap(u,v);
+		int d = depth[u]-depth[v];
+		rep(i,n+1){
+			if((d>>i)&1) u=par[u][i];
+		}
+		if(u==v) return u;
+		for(int i=n;i>=0;i--){
+			if(par[u][i]!=par[v][i]){
+				u=par[u][i];
+				v=par[v][i];
+			}
+		}
+		return par[v][0];
+	}
+	ll distance(int u,int v){
+		return dw[u]+dw[v]-2*dw[lca(u,v)];
+	}
+};
+
+struct edge{
+	int to; ll len;
+	edge(int to_, ll len_):to(to_),len(len_){}
+};
