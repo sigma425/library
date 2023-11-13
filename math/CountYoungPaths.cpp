@@ -31,7 +31,7 @@ V<mint> CountYoungPaths(V<int> a,int h = -1){
 	// h は a[n-1] より大きいかもしれない
 	// お気持ち → s: 累積前 res: 累積後
 	// こっちを外から直接呼び出したいこともある気がするね(下の値たちsが与えられてるときとか)
-	auto rec = [&](auto& self, V<int> a, int h, V<mint> s)->V<mint>{
+	auto rec = [&](auto& self, V<int> a, int h, V<mint> s) -> V<mint> {
 		assert(si(a)+1 == si(s));
 		int n = si(a);
 		if(n <= 1 || h <= 1){
@@ -101,6 +101,8 @@ V<int> ConjugateYoung(V<int> a){
 }
 
 // hook length formula
+// a: decreasing
+
 mint Hook(V<int> a){
 	int n = accumulate(all(a),0);
 	auto b = ConjugateYoung(a);
