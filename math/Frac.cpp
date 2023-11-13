@@ -47,6 +47,7 @@ struct Frac{
 	bool operator>=(const Frac& r) const { return !(*this < r); }
 	bool operator==(const Frac& r) const { return x == r.x && y == r.y; }
 	bool operator!=(const Frac& r) const { return !(*this == r); }
+	explicit operator bool() const {return x!=0;}
 	Frac inv() const {
 		return Frac(y,x);
 	}
