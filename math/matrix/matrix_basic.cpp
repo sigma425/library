@@ -6,8 +6,8 @@
 template<class T>
 struct Matrix: public vector<vector<T>>{
 
-	Matrix(int n) : vector<vector<T>>(n,vector<T>(n,0)){}
-	Matrix(int h,int w) : vector<vector<T>>(h,vector<T>(w,0)){}
+	Matrix(int n) : vector<vector<T>>(n,vector<T>(n)){}
+	Matrix(int h,int w) : vector<vector<T>>(h,vector<T>(w)){}
 
 	static Matrix E(int n){
 		Matrix a(n,n);
@@ -62,3 +62,22 @@ struct Matrix: public vector<vector<T>>{
 		return o;
 	}
 };
+
+/*
+	テンソル積 (クロネッカー積)
+	A⊗B =[a{0,0}B .. a_{0,w-1}B]
+		  [a{1,0}B .. a_{1,w-1}B]
+			:
+	Aの1マスを分割してBにするイメージ
+*/
+template<class T>
+vector<vector<T>> tensor(vector<vector<T>> A, vector<vector<T>> B){
+	int ah = si(A), aw = si(A[0]), bh = si(B), bw = si(B[0]);
+	vector<vector<T>> C(ah*bh,vector<T>(aw*bw));
+	rep(ai,ah) rep(aj,aw){
+		rep(bi,bh) rep(bj,bw){
+			C[ai*bh+bi][aj*bw+bj] = A[ai][aj] * B[bi][bj];
+		}
+	}
+	return C;
+}
