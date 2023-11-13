@@ -69,13 +69,14 @@ V<int> calc_magic(const vector<int>& ns){
 	}
 	return magic;
 }
-vector<mint> multivariate_mult(const vector<mint>& f, const vector<mint>& g, const vector<int>& ns, const vector<int>& magic){
+vector<mint> multivariate_mult(const vector<mint>& f, const vector<mint>& g, const vector<int>& ns){
 	assert(si(f) == si(g));
 	int n = si(f);
 	int k = si(ns);
 	if(k == 0){
 		return {f[0]*g[0]};
 	}
+	vector<int> magic = calc_magic(ns);
 	int s = 1; while(s<n*2-1) s*=2;
 	vector<mint> h(n);
 	vector<vector<mint>> zf(k,vector<mint>(s));
