@@ -1,3 +1,5 @@
+// #pragma GCC target("avx,avx2")
+// #pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
@@ -67,6 +69,18 @@ template<class D> D divFloor(D a, D b){
 template<class D> D divCeil(D a, D b) {
 	return a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);
 }
+template<class T>
+T rnd(T l,T r){	//[l,r)
+	using D = uniform_int_distribution<T>;
+	static random_device rd;
+	static mt19937 gen(rd());
+	return D(l,r-1)(gen);
+}
+template<class T>
+T rnd(T n){	//[0,n)
+	return rnd(T(0),n);
+}
+
 
 int main(){
 	cin.tie(0);
