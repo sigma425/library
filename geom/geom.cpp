@@ -67,6 +67,7 @@ inline bool iSSex(L a, L b){		//intersect(excluding endpoint)
 inline bool iSP(L s, P p){		//intersect(including endpoint) or overload
 	return ccw(s.fs,s.sc,p)==0;
 }
+inline D dPP(P a, P b) { return abs(a-b);}
 inline D dLP(L l, P p) { return abs(perp(l,p)-p);}
 inline D dLL(L a, L b) { return iLL(a,b) ? 0 : dLP(a,b.fs);}
 inline D dLS(L l, L s) { return iLS(l,s) ? 0 : min(dLP(l,s.fs),dLP(l,s.sc));}
