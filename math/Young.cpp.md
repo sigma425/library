@@ -9,7 +9,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/gym/102220/problem/I
-  bundledCode: "#line 1 \"math/CountYoungPaths.cpp\"\n// \u6A2An, \u9AD8\u3055a[0],..,a[n-1]\
+  bundledCode: "#line 1 \"math/Young.cpp\"\n// \u6A2An, \u9AD8\u3055a[0],..,a[n-1]\
     \ \u306E\u30E4\u30F3\u30B0\u56F3\u5F62\u4E0A\u3067 (0,0) \u304B\u3089 (n,0),..,(n,a[n-1])\
     \ \u3078\u306E\u7D4C\u8DEF\u6570\n// a \u4EE5\u4E0B\u306E increasing sequence\
     \ \u3068\u8A00\u3063\u3066\u3082\u3044\u3044\n// O(N log^2 N) \u305F\u3060\u3057\
@@ -56,7 +56,14 @@ data:
     \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
     \ length formula\n// a: decreasing\n\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\
     \tauto b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
-    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}\n"
+    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}\n\n/*\n\tSSYT\
+    \ of shape A with values [1,M]\n\tA: decreasing\n\tO(M log^2 M)\n\t\u591A\u5206\
+    \ O(N log^2 N) \u306B\u3067\u304D\u308B (N > M \u306A\u3089 ans = 0 \u306B\u6CE8\
+    \u610F)\n\tdiffProd.cpp \u304C\u5FC5\u8981\n*/\nmint CountSSYT(V<ll> A, ll M){\n\
+    \tif(M >= 1000000) assert(false);\n\twhile(!A.empty() && A.back() == 0) A.pop_back();\n\
+    \tint N = si(A);\n\tif(N > M) return 0;\n\trep(i,M-N) A.eb(0);\n\tN = M;\n\tV<mint>\
+    \ B(N); rep(i,N) B[i] = A[i]+N-i;\n\treverse(all(B));\n\tmint numer = diffProd(B);\n\
+    \tmint denom = 1; rep(i,N) denom *= fact[i];\n\treturn numer/denom;\n}\n"
   code: "// \u6A2An, \u9AD8\u3055a[0],..,a[n-1] \u306E\u30E4\u30F3\u30B0\u56F3\u5F62\
     \u4E0A\u3067 (0,0) \u304B\u3089 (n,0),..,(n,a[n-1]) \u3078\u306E\u7D4C\u8DEF\u6570\
     \n// a \u4EE5\u4E0B\u306E increasing sequence \u3068\u8A00\u3063\u3066\u3082\u3044\
@@ -103,18 +110,25 @@ data:
     \ && a[i] == j) i++;\n\t\tb[w-1-j] = si(a)-i;\n\t}\n\treturn b;\n}\n\n// hook\
     \ length formula\n// a: decreasing\n\nmint Hook(V<int> a){\n\tint n = accumulate(all(a),0);\n\
     \tauto b = ConjugateYoung(a);\n\tmint res = fact[n];\n\trep(i,si(a)){\n\t\trep(j,a[i]){\n\
-    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}"
+    \t\t\tres *= invs[a[i]+b[j]-i-j-1];\n\t\t}\n\t}\n\treturn res;\n}\n\n/*\n\tSSYT\
+    \ of shape A with values [1,M]\n\tA: decreasing\n\tO(M log^2 M)\n\t\u591A\u5206\
+    \ O(N log^2 N) \u306B\u3067\u304D\u308B (N > M \u306A\u3089 ans = 0 \u306B\u6CE8\
+    \u610F)\n\tdiffProd.cpp \u304C\u5FC5\u8981\n*/\nmint CountSSYT(V<ll> A, ll M){\n\
+    \tif(M >= 1000000) assert(false);\n\twhile(!A.empty() && A.back() == 0) A.pop_back();\n\
+    \tint N = si(A);\n\tif(N > M) return 0;\n\trep(i,M-N) A.eb(0);\n\tN = M;\n\tV<mint>\
+    \ B(N); rep(i,N) B[i] = A[i]+N-i;\n\treverse(all(B));\n\tmint numer = diffProd(B);\n\
+    \tmint denom = 1; rep(i,N) denom *= fact[i];\n\treturn numer/denom;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: math/CountYoungPaths.cpp
+  path: math/Young.cpp
   requiredBy: []
-  timestamp: '2023-11-13 23:58:51+09:00'
+  timestamp: '2023-12-03 19:00:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/CountYoungPaths.cpp
+documentation_of: math/Young.cpp
 layout: document
 redirect_from:
-- /library/math/CountYoungPaths.cpp
-- /library/math/CountYoungPaths.cpp.html
-title: math/CountYoungPaths.cpp
+- /library/math/Young.cpp
+- /library/math/Young.cpp.html
+title: math/Young.cpp
 ---

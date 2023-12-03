@@ -384,9 +384,6 @@ data:
       path: math/Comb_modM.cpp
       title: math/Comb_modM.cpp
     - icon: ':warning:'
-      path: math/CountYoungPaths.cpp
-      title: math/CountYoungPaths.cpp
-    - icon: ':warning:'
       path: math/Exp.cpp
       title: math/Exp.cpp
     - icon: ':warning:'
@@ -423,6 +420,9 @@ data:
       path: math/Tellegen.cpp
       title: math/Tellegen.cpp
     - icon: ':warning:'
+      path: math/Young.cpp
+      title: math/Young.cpp
+    - icon: ':warning:'
       path: math/babygiant.cpp
       title: math/babygiant.cpp
     - icon: ':warning:'
@@ -434,6 +434,9 @@ data:
     - icon: ':warning:'
       path: math/berlekamp-massey.cpp
       title: math/berlekamp-massey.cpp
+    - icon: ':warning:'
+      path: math/diffProd.cpp
+      title: math/diffProd.cpp
     - icon: ':warning:'
       path: math/divisor_zeta.cpp
       title: math/divisor_zeta.cpp
@@ -488,7 +491,7 @@ data:
     - icon: ':question:'
       path: math/poly.cpp
       title: math/poly.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: math/prime.cpp
     - icon: ':warning:'
@@ -579,7 +582,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/FloorKthRoot.test.cpp
       title: test_oj/FloorKthRoot.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'

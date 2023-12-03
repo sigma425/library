@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/enumerate_primes.test.cpp
     title: test_oj/enumerate_primes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/prime.cpp\"\nV<bool> isp;\nV<int> pr;\nV<int> sf; //smallest\
@@ -44,7 +44,7 @@ data:
   path: math/prime.cpp
   requiredBy: []
   timestamp: '2023-11-14 00:04:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/enumerate_primes.test.cpp
 documentation_of: math/prime.cpp
