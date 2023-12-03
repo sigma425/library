@@ -114,3 +114,24 @@ mint Hook(V<int> a){
 	}
 	return res;
 }
+
+/*
+	SSYT of shape A with values [1,M]
+	A: decreasing
+	O(M log^2 M)
+	多分 O(N log^2 N) にできる (N > M なら ans = 0 に注意)
+	diffProd.cpp が必要
+*/
+mint CountSSYT(V<ll> A, ll M){
+	if(M >= 1000000) assert(false);
+	while(!A.empty() && A.back() == 0) A.pop_back();
+	int N = si(A);
+	if(N > M) return 0;
+	rep(i,M-N) A.eb(0);
+	N = M;
+	V<mint> B(N); rep(i,N) B[i] = A[i]+N-i;
+	reverse(all(B));
+	mint numer = diffProd(B);
+	mint denom = 1; rep(i,N) denom *= fact[i];
+	return numer/denom;
+}
