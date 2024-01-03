@@ -6,6 +6,7 @@
 "test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp": "2021-09-22 00:44:04 +0900",
 "test_oj/beats/simple_min.test.cpp": "2021-09-22 00:44:04 +0900",
 "test_oj/beats/simple_sum.test.cpp": "2021-09-22 00:44:04 +0900",
+"test_oj/enumerate_primes.test.cpp": "2023-11-14 00:04:24 +0900",
 "test_oj/inv_matrix.test.cpp": "2022-11-15 14:34:49 +0900",
 "test_oj/linearEquation.test.cpp": "2022-11-15 14:34:49 +0900",
 "test_oj/linear_recurrence.test.cpp": "2022-11-20 04:07:35 +0900",
