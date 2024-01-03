@@ -609,10 +609,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/polynomial_taylor_shift.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_conv.test.cpp
   - test_oj/linear_recurrence.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: math/poly.cpp
 layout: document
 redirect_from:

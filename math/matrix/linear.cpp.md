@@ -134,8 +134,8 @@ data:
   timestamp: '2022-11-15 14:34:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_oj/inv_matrix.test.cpp
   - test_oj/linearEquation.test.cpp
+  - test_oj/inv_matrix.test.cpp
 documentation_of: math/matrix/linear.cpp
 layout: document
 redirect_from:
