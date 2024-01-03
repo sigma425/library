@@ -7,35 +7,11 @@ data:
       path: 0.cpp
       title: 0.cpp
     - icon: ':warning:'
-      path: BigInt.cpp
-      title: BigInt.cpp
-    - icon: ':warning:'
       path: bsr.cpp
       title: bsr.cpp
     - icon: ':warning:'
-      path: hashmap.cpp
-      title: hashmap.cpp
-    - icon: ':warning:'
-      path: int128.cpp
-      title: int128.cpp
-    - icon: ':warning:'
-      path: interpolation.cpp
-      title: interpolation.cpp
-    - icon: ':warning:'
-      path: mult_CF.cpp
-      title: mult_CF.cpp
-    - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':warning:'
-      path: slide.cpp
-      title: slide.cpp
-    - icon: ':warning:'
-      path: stack_expand.cpp
-      title: stack_expand.cpp
-    - icon: ':warning:'
-      path: timer.cpp
-      title: timer.cpp
   - name: DP
     pages:
     - icon: ':warning:'
@@ -67,169 +43,172 @@ data:
     - icon: ':warning:'
       path: DP/monge/monge.cpp
       title: DP/monge/monge.cpp
-  - name: data structure/2D
+  - name: ds/2D
     pages:
     - icon: ':warning:'
-      path: data structure/2D/2Dseg_BIT.cpp
-      title: data structure/2D/2Dseg_BIT.cpp
+      path: ds/2D/2Dseg_BIT.cpp
+      title: ds/2D/2Dseg_BIT.cpp
     - icon: ':warning:'
-      path: data structure/2D/splay_2Dsegtree.cpp
-      title: data structure/2D/splay_2Dsegtree.cpp
-  - name: data structure
+      path: ds/2D/splay_2Dsegtree.cpp
+      title: ds/2D/splay_2Dsegtree.cpp
+  - name: ds
     pages:
     - icon: ':warning:'
-      path: data structure/BIT.cpp
-      title: data structure/BIT.cpp
+      path: ds/BIT.cpp
+      title: ds/BIT.cpp
     - icon: ':warning:'
-      path: data structure/HL_old.cpp
-      title: data structure/HL_old.cpp
+      path: ds/HL_old.cpp
+      title: ds/HL_old.cpp
     - icon: ':warning:'
-      path: data structure/HLdecomp_lazy.cpp
-      title: data structure/HLdecomp_lazy.cpp
+      path: ds/HLdecomp_lazy.cpp
+      title: ds/HLdecomp_lazy.cpp
     - icon: ':warning:'
-      path: data structure/HLdecomp_simple.cpp
-      title: data structure/HLdecomp_simple.cpp
+      path: ds/HLdecomp_simple.cpp
+      title: ds/HLdecomp_simple.cpp
     - icon: ':warning:'
-      path: data structure/MaxMatching.cpp
-      title: data structure/MaxMatching.cpp
+      path: ds/MaxMatching.cpp
+      title: ds/MaxMatching.cpp
     - icon: ':warning:'
-      path: data structure/RadixHeap.cpp
-      title: data structure/RadixHeap.cpp
+      path: ds/RadixHeap.cpp
+      title: ds/RadixHeap.cpp
     - icon: ':warning:'
-      path: data structure/SparseTable.cpp
-      title: data structure/SparseTable.cpp
+      path: ds/SparseTable.cpp
+      title: ds/SparseTable.cpp
     - icon: ':warning:'
-      path: data structure/decomposing.cpp
-      title: data structure/decomposing.cpp
+      path: ds/decomposing.cpp
+      title: ds/decomposing.cpp
     - icon: ':warning:'
-      path: data structure/fastset.cpp
-      title: data structure/fastset.cpp
+      path: ds/fastset.cpp
+      title: ds/fastset.cpp
     - icon: ':warning:'
-      path: data structure/heap.cpp
-      title: data structure/heap.cpp
+      path: ds/heap.cpp
+      title: ds/heap.cpp
     - icon: ':warning:'
-      path: data structure/kth.cpp
-      title: data structure/kth.cpp
+      path: ds/kth.cpp
+      title: ds/kth.cpp
     - icon: ':warning:'
-      path: data structure/mo.cpp
-      title: data structure/mo.cpp
-  - name: data structure/RBST
+      path: ds/mo.cpp
+      title: ds/mo.cpp
+    - icon: ':warning:'
+      path: ds/slide.cpp
+      title: ds/slide.cpp
+  - name: ds/RBST
     pages:
     - icon: ':warning:'
-      path: data structure/RBST/RBST.cpp
-      title: data structure/RBST/RBST.cpp
+      path: ds/RBST/RBST.cpp
+      title: ds/RBST/RBST.cpp
     - icon: ':warning:'
-      path: data structure/RBST/RBST_copy.cpp
-      title: data structure/RBST/RBST_copy.cpp
+      path: ds/RBST/RBST_copy.cpp
+      title: ds/RBST/RBST_copy.cpp
     - icon: ':warning:'
-      path: data structure/RBST/RBST_pool.cpp
-      title: data structure/RBST/RBST_pool.cpp
+      path: ds/RBST/RBST_pool.cpp
+      title: ds/RBST/RBST_pool.cpp
     - icon: ':warning:'
-      path: data structure/RBST/circular RMQ.cpp
-      title: data structure/RBST/circular RMQ.cpp
-  - name: data structure/segtree
+      path: ds/RBST/circular RMQ.cpp
+      title: ds/RBST/circular RMQ.cpp
+  - name: ds/segtree
     pages:
     - icon: ':warning:'
-      path: data structure/segtree/dynamic.cpp
-      title: data structure/segtree/dynamic.cpp
+      path: ds/segtree/dynamic.cpp
+      title: ds/segtree/dynamic.cpp
     - icon: ':warning:'
-      path: data structure/segtree/lazyseg_dynamic.cpp
-      title: data structure/segtree/lazyseg_dynamic.cpp
+      path: ds/segtree/lazyseg_dynamic.cpp
+      title: ds/segtree/lazyseg_dynamic.cpp
     - icon: ':warning:'
-      path: data structure/segtree/lazyseg_persistent.cpp
-      title: data structure/segtree/lazyseg_persistent.cpp
-    - icon: ':heavy_check_mark:'
-      path: data structure/segtree/segbeats.cpp
-      title: data structure/segtree/segbeats.cpp
-    - icon: ':heavy_check_mark:'
-      path: data structure/segtree/segtree_lazy.cpp
-      title: data structure/segtree/segtree_lazy.cpp
+      path: ds/segtree/lazyseg_persistent.cpp
+      title: ds/segtree/lazyseg_persistent.cpp
     - icon: ':warning:'
-      path: data structure/segtree/segtree_simple.cpp
-      title: data structure/segtree/segtree_simple.cpp
-  - name: data structure/segtree/persistent segtree
+      path: ds/segtree/segbeats.cpp
+      title: ds/segtree/segbeats.cpp
+    - icon: ':warning:'
+      path: ds/segtree/segtree_lazy.cpp
+      title: ds/segtree/segtree_lazy.cpp
+    - icon: ':warning:'
+      path: ds/segtree/segtree_simple.cpp
+      title: ds/segtree/segtree_simple.cpp
+  - name: ds/segtree/persistent segtree
     pages:
     - icon: ':warning:'
-      path: data structure/segtree/persistent segtree/NPCA97.cpp
-      title: data structure/segtree/persistent segtree/NPCA97.cpp
+      path: ds/segtree/persistent segtree/NPCA97.cpp
+      title: ds/segtree/persistent segtree/NPCA97.cpp
     - icon: ':warning:'
-      path: data structure/segtree/persistent segtree/Sign on Fence.cpp
-      title: data structure/segtree/persistent segtree/Sign on Fence.cpp
+      path: ds/segtree/persistent segtree/Sign on Fence.cpp
+      title: ds/segtree/persistent segtree/Sign on Fence.cpp
     - icon: ':warning:'
-      path: data structure/segtree/persistent segtree/hogloid.cpp
-      title: data structure/segtree/persistent segtree/hogloid.cpp
+      path: ds/segtree/persistent segtree/hogloid.cpp
+      title: ds/segtree/persistent segtree/hogloid.cpp
     - icon: ':warning:'
-      path: data structure/segtree/persistent segtree/pers.cpp
-      title: data structure/segtree/persistent segtree/pers.cpp
+      path: ds/segtree/persistent segtree/pers.cpp
+      title: ds/segtree/persistent segtree/pers.cpp
     - icon: ':warning:'
-      path: data structure/segtree/persistent segtree/pers_R-Pass_template.cpp
-      title: data structure/segtree/persistent segtree/pers_R-Pass_template.cpp
-  - name: data structure/segtree/specialized
+      path: ds/segtree/persistent segtree/pers_R-Pass_template.cpp
+      title: ds/segtree/persistent segtree/pers_R-Pass_template.cpp
+  - name: ds/segtree/specialized
     pages:
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_argmax_leftmost.cpp
-      title: data structure/segtree/specialized/segtree_argmax_leftmost.cpp
+      path: ds/segtree/specialized/segtree_argmax_leftmost.cpp
+      title: ds/segtree/specialized/segtree_argmax_leftmost.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_argmax_rightmost.cpp
-      title: data structure/segtree/specialized/segtree_argmax_rightmost.cpp
+      path: ds/segtree/specialized/segtree_argmax_rightmost.cpp
+      title: ds/segtree/specialized/segtree_argmax_rightmost.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_argmin_leftmost.cpp
-      title: data structure/segtree/specialized/segtree_argmin_leftmost.cpp
+      path: ds/segtree/specialized/segtree_argmin_leftmost.cpp
+      title: ds/segtree/specialized/segtree_argmin_leftmost.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_argmin_rightmost.cpp
-      title: data structure/segtree/specialized/segtree_argmin_rightmost.cpp
+      path: ds/segtree/specialized/segtree_argmin_rightmost.cpp
+      title: ds/segtree/specialized/segtree_argmin_rightmost.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_max.cpp
-      title: data structure/segtree/specialized/segtree_max.cpp
+      path: ds/segtree/specialized/segtree_max.cpp
+      title: ds/segtree/specialized/segtree_max.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_min.cpp
-      title: data structure/segtree/specialized/segtree_min.cpp
+      path: ds/segtree/specialized/segtree_min.cpp
+      title: ds/segtree/specialized/segtree_min.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_setmin.cpp
-      title: data structure/segtree/specialized/segtree_setmin.cpp
+      path: ds/segtree/specialized/segtree_setmin.cpp
+      title: ds/segtree/specialized/segtree_setmin.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_simple.cpp
-      title: data structure/segtree/specialized/segtree_simple.cpp
+      path: ds/segtree/specialized/segtree_simple.cpp
+      title: ds/segtree/specialized/segtree_simple.cpp
     - icon: ':warning:'
-      path: data structure/segtree/specialized/segtree_sum.cpp
-      title: data structure/segtree/specialized/segtree_sum.cpp
-  - name: data structure/splay
+      path: ds/segtree/specialized/segtree_sum.cpp
+      title: ds/segtree/specialized/segtree_sum.cpp
+  - name: ds/splay
     pages:
     - icon: ':warning:'
-      path: data structure/splay/L.cpp
-      title: data structure/splay/L.cpp
+      path: ds/splay/L.cpp
+      title: ds/splay/L.cpp
     - icon: ':warning:'
-      path: data structure/splay/LCTree.cpp
-      title: data structure/splay/LCTree.cpp
+      path: ds/splay/LCTree.cpp
+      title: ds/splay/LCTree.cpp
     - icon: ':warning:'
-      path: data structure/splay/arc33C.cpp
-      title: data structure/splay/arc33C.cpp
+      path: ds/splay/arc33C.cpp
+      title: ds/splay/arc33C.cpp
     - icon: ':warning:'
-      path: data structure/splay/splay.cpp
-      title: data structure/splay/splay.cpp
+      path: ds/splay/splay.cpp
+      title: ds/splay/splay.cpp
     - icon: ':warning:'
-      path: data structure/splay/splay_lazy.cpp
-      title: data structure/splay/splay_lazy.cpp
+      path: ds/splay/splay_lazy.cpp
+      title: ds/splay/splay_lazy.cpp
     - icon: ':warning:'
-      path: data structure/splay/splay_simple.cpp
-      title: data structure/splay/splay_simple.cpp
+      path: ds/splay/splay_simple.cpp
+      title: ds/splay/splay_simple.cpp
     - icon: ':warning:'
-      path: data structure/splay/test_template_static.cpp
-      title: data structure/splay/test_template_static.cpp
-  - name: data structure/unionfind
+      path: ds/splay/test_template_static.cpp
+      title: ds/splay/test_template_static.cpp
+  - name: ds/unionfind
     pages:
     - icon: ':warning:'
-      path: data structure/unionfind/quickfind.cpp
-      title: data structure/unionfind/quickfind.cpp
+      path: ds/unionfind/quickfind.cpp
+      title: ds/unionfind/quickfind.cpp
     - icon: ':warning:'
-      path: data structure/unionfind/unionfind.cpp
-      title: data structure/unionfind/unionfind.cpp
+      path: ds/unionfind/unionfind.cpp
+      title: ds/unionfind/unionfind.cpp
     - icon: ':warning:'
-      path: data structure/unionfind/unionfind_dif.cpp
-      title: data structure/unionfind/unionfind_dif.cpp
+      path: ds/unionfind/unionfind_dif.cpp
+      title: ds/unionfind/unionfind_dif.cpp
     - icon: ':warning:'
-      path: data structure/unionfind/unionfind_rollback.cpp
-      title: data structure/unionfind/unionfind_rollback.cpp
+      path: ds/unionfind/unionfind_rollback.cpp
+      title: ds/unionfind/unionfind_rollback.cpp
   - name: geom
     pages:
     - icon: ':warning:'
@@ -459,6 +438,9 @@ data:
       path: math/hadamard.cpp
       title: math/hadamard.cpp
     - icon: ':warning:'
+      path: math/interpolation_simple.cpp
+      title: math/interpolation_simple.cpp
+    - icon: ':warning:'
       path: math/intervalorder.cpp
       title: math/intervalorder.cpp
     - icon: ':warning:'
@@ -547,6 +529,23 @@ data:
     - icon: ':warning:'
       path: math/matrix/rank_mod2.cpp
       title: math/matrix/rank_mod2.cpp
+  - name: misc
+    pages:
+    - icon: ':warning:'
+      path: misc/BigInt.cpp
+      title: misc/BigInt.cpp
+    - icon: ':warning:'
+      path: misc/hashmap.cpp
+      title: misc/hashmap.cpp
+    - icon: ':warning:'
+      path: misc/int128.cpp
+      title: misc/int128.cpp
+    - icon: ':warning:'
+      path: misc/stack_expand.cpp
+      title: misc/stack_expand.cpp
+    - icon: ':warning:'
+      path: misc/timer.cpp
+      title: misc/timer.cpp
   - name: string
     pages:
     - icon: ':warning:'
@@ -611,22 +610,22 @@ data:
       title: test_oj/xorconv.test.cpp
   - name: test_oj/beats
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/point_add_range_sum.test.cpp
       title: test_oj/beats/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/point_set_range_composite.test.cpp
       title: test_oj/beats/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/range_affine_range_sum.test.cpp
       title: test_oj/beats/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
       title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/simple_min.test.cpp
       title: test_oj/beats/simple_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/beats/simple_sum.test.cpp
       title: test_oj/beats/simple_sum.test.cpp
   - name: test_oj/online_conv
@@ -642,7 +641,7 @@ data:
       title: test_oj/online_conv/online_pow.test.cpp
   - name: test_oj/segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/segtree/range_affine_range_sum.test.cpp
       title: test_oj/segtree/range_affine_range_sum.test.cpp
 layout: toppage
