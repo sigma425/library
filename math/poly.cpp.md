@@ -6,10 +6,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/linear_recurrence.test.cpp
     title: test_oj/linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
   - icon: ':x:'

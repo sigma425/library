@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/segtree/range_affine_range_sum.test.cpp
+    title: test_oj/segtree/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.github.io/ac-library/master/document_ja/lazysegtree.html
@@ -154,8 +157,9 @@ data:
   path: ds/segtree/segtree_lazy.cpp
   requiredBy: []
   timestamp: '2024-01-03 19:12:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_oj/segtree/range_affine_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_lazy.cpp
 layout: document
 redirect_from:

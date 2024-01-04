@@ -2,10 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/point_add_range_sum.test.cpp
+    title: test_oj/beats/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/point_set_range_composite.test.cpp
+    title: test_oj/beats/point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/range_affine_range_sum.test.cpp
+    title: test_oj/beats/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+    title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/simple_min.test.cpp
+    title: test_oj/beats/simple_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/beats/simple_sum.test.cpp
+    title: test_oj/beats/simple_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/acl2/submissions/16994422
@@ -246,8 +264,14 @@ data:
   path: ds/segtree/segbeats.cpp
   requiredBy: []
   timestamp: '2024-01-03 19:12:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_oj/beats/point_set_range_composite.test.cpp
+  - test_oj/beats/simple_sum.test.cpp
+  - test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
+  - test_oj/beats/range_affine_range_sum.test.cpp
+  - test_oj/beats/simple_min.test.cpp
+  - test_oj/beats/point_add_range_sum.test.cpp
 documentation_of: ds/segtree/segbeats.cpp
 layout: document
 redirect_from:

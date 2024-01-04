@@ -12,6 +12,9 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
+    - icon: ':warning:'
+      path: template.hpp
+      title: template.hpp
   - name: DP
     pages:
     - icon: ':warning:'
@@ -98,9 +101,6 @@ data:
       path: ds/RBST/RBST.cpp
       title: ds/RBST/RBST.cpp
     - icon: ':warning:'
-      path: ds/RBST/RBST_copy.cpp
-      title: ds/RBST/RBST_copy.cpp
-    - icon: ':warning:'
       path: ds/RBST/RBST_pool.cpp
       title: ds/RBST/RBST_pool.cpp
     - icon: ':warning:'
@@ -117,10 +117,10 @@ data:
     - icon: ':warning:'
       path: ds/segtree/lazyseg_persistent.cpp
       title: ds/segtree/lazyseg_persistent.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segbeats.cpp
       title: ds/segtree/segbeats.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_lazy.cpp
       title: ds/segtree/segtree_lazy.cpp
     - icon: ':warning:'
@@ -464,7 +464,7 @@ data:
     - icon: ':warning:'
       path: math/nimber.cpp
       title: math/nimber.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/online_convolution.cpp
       title: math/online_convolution.cpp
     - icon: ':warning:'
@@ -610,30 +610,30 @@ data:
       title: test_oj/xorconv.test.cpp
   - name: test_oj/beats
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/point_add_range_sum.test.cpp
       title: test_oj/beats/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/point_set_range_composite.test.cpp
       title: test_oj/beats/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/range_affine_range_sum.test.cpp
       title: test_oj/beats/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
       title: test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/simple_min.test.cpp
       title: test_oj/beats/simple_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/beats/simple_sum.test.cpp
       title: test_oj/beats/simple_sum.test.cpp
   - name: test_oj/online_conv
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_conv.test.cpp
       title: test_oj/online_conv/online_conv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_div.test.cpp
       title: test_oj/online_conv/online_div.test.cpp
     - icon: ':x:'
@@ -641,7 +641,7 @@ data:
       title: test_oj/online_conv/online_pow.test.cpp
   - name: test_oj/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/segtree/range_affine_range_sum.test.cpp
       title: test_oj/segtree/range_affine_range_sum.test.cpp
 layout: toppage

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/online_convolution.cpp
     title: math/online_convolution.cpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: math/poly.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -375,8 +375,8 @@ data:
     \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
     \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
     \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
-    \n*/\nstruct Online_Convolution{\n\tvoid calc(int a,int b,int c,int d){\n\t\t\
-    // f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
+    \n*/\nstruct Online_Convolution_Any{\n\tvoid calc(int a,int b,int c,int d){\n\t\
+    \t// f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
     \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
     \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
     \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
@@ -440,8 +440,8 @@ data:
   isVerificationFile: true
   path: test_oj/online_conv/online_div.test.cpp
   requiredBy: []
-  timestamp: '2023-11-14 00:03:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-05 03:20:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/online_conv/online_div.test.cpp
 layout: document
