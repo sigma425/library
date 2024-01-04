@@ -54,7 +54,7 @@ void dmpr(ostream&os,const T&t,const Args&... args){
 #define shows(...) void(0)
 #endif
 
-#include "../../data structure/segtree/segbeats.cpp"
+#include "../../ds/segtree/segbeats.cpp"
 
 struct D{
 	static const ll inf = TEN(13);

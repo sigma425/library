@@ -137,7 +137,7 @@ struct Online_Pow{
 	FFT とは限らない時にオンラインで h[i+j] = f[i]*g[j] をしたいとき
 	calc(a,b,c,d) で f[a,b) * g[c,d) を足し込む
 */
-struct Online_Convolution{
+struct Online_Convolution_Any{
 	void calc(int a,int b,int c,int d){
 		// f[a,b) * g[c,d)
 		for(int i=a;i<b;i++) for(int j=c;j<d;j++){

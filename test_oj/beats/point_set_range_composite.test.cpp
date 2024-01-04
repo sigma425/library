@@ -38,7 +38,7 @@ constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 #define show(x) true
 #endif
 
-#include "../../data structure/segtree/segbeats.cpp"
+#include "../../ds/segtree/segbeats.cpp"
 
 template<unsigned int mod_>
 struct ModInt{
