@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':warning:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: DP

@@ -5,10 +5,19 @@ data:
   - icon: ':warning:'
     path: 0.cpp
     title: 0.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_conv.test.cpp
+    title: test_oj/online_conv/online_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_div.test.cpp
+    title: test_oj/online_conv/online_div.test.cpp
+  - icon: ':x:'
+    path: test_oj/online_conv/online_pow.test.cpp
+    title: test_oj/online_conv/online_pow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\r\n#include <bits/stdc++.h>\r\nusing namespace\
@@ -99,8 +108,11 @@ data:
   requiredBy:
   - 0.cpp
   timestamp: '2024-01-04 00:13:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:
