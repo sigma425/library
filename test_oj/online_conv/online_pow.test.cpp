@@ -23,15 +23,13 @@ void test(Poly<mint> f, ll K){
 void TEST(){
 	InitFact(TEN(6));
 
-	while(true){
-		for(ll K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){
-			test({1},K);
-			test({314},K);
-			for(int N: {2,3,4,(1<<15)-1,(1<<15),(1<<15)+1}){
-				Poly<mint> f(N);
-				rep(i,N) f[i] = rnd(mint::mod);
-				test(f,K);
-			}
+	for(ll K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){
+		test({1},K);
+		test({314},K);
+		for(int N: {2,3,4,(1<<15)-1,(1<<15),(1<<15)+1}){
+			Poly<mint> f(N);
+			rep(i,N) f[i] = rnd(mint::mod);
+			test(f,K);
 		}
 	}
 }
