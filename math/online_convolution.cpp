@@ -98,6 +98,27 @@ struct Online_Division{
 };
 
 /*
+	query(i): f_i を受け取って (e^f)_i を返す
+	f_0 == 0 を仮定
+	O(n log^2)
+*/
+template<class mint>
+struct Online_Exp{
+	V<mint> F;
+	Online_Convolution<mint> X;
+
+	mint query(int i, mint f_i){
+		if(i == 0){
+			assert(f_i == 0);
+			F.eb(1);
+		}else{
+			F.eb(X.query(i-1,F[i-1],f_i*i));
+		}
+		return F[i];
+	}
+};
+
+/*
 	query(i): f_i を受け取って (f^K)_i を返す
 	f_0 != 0 を仮定 (頑張れば外せる)
 	O(n log^2)
