@@ -29,7 +29,7 @@ struct Decomposing{
 	int get(int x){
 		int res = 0;
 		for(const auto& v:vv){	//calc query for each and combine them
-			res += v.end() - lower_bound(all(v),x);
+			res += lower_bound(all(v),x) - x.begin(); // x 未満
 		}
 		return res;
 	}

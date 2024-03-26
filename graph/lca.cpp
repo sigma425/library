@@ -28,13 +28,13 @@ struct LCA{
 		}
 	}
 
-	LCA(const vector<vector<int>>& G){
+	LCA(const vector<vector<int>>& G, int r = 0){
 		N = G.size();
 		n = bsr(N);
 		depth = vector<int>(N,0);
 		par = vector<vector<int>>(N,vector<int>(n+1,0));
 
-		dfs(0,-1,G);
+		dfs(r,-1,G);
 		rep1(i,n){
 			rep(v,N){
 				if(par[v][i-1]==-1){

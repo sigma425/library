@@ -4,6 +4,7 @@
 		f(10) = 719, f(15) = 87811, f(20) = 12826228
 		n = 20 で 7s くらい
 	辺の端点は根に近いほうが値が小さい 特に、根は常に0
+	数え上げは math/famous_seq/unrooted_tree.cpp
 */
 VV<P> enumUnlabeledRootedTrees(int N){
 	using P = pair<int,int>;
