@@ -2,6 +2,7 @@
 	任意mod なら 
 	template なくして costexpr の行消して global に unsigned int mod = 1;
 	で cin>>mod してから使う
+	任意 mod はかなり遅いので、できれば "atcoder/modint" を使う
 */
 
 template<unsigned int mod_>
@@ -78,10 +79,20 @@ using mint = ModInt<998244353>;
 //using mint = ModInt<1000000007>;
 
 V<mint> fact,ifact,invs;
+// a,b >= 0 のみ
 mint Choose(int a,int b){
 	if(b<0 || a<b) return 0;
 	return fact[a] * ifact[b] * ifact[a-b];
 }
+
+/*
+// b >= 0 の範囲で、 Choose(a,b) = a(a-1)..(a-b+1) / b!
+mint Choose(int a,int b){
+	if(b<0 || a<b) return 0;
+	return fact[a] * ifact[b] * ifact[a-b];
+}
+*/
+
 void InitFact(int N){	//[0,N]
 	N++;
 	fact.resize(N);
