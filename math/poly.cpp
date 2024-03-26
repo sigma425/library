@@ -304,10 +304,12 @@ struct Poly: public V<mint>{
 		return res;
 	}
 	Poly& operator+=(const mint& c){
+		if(this->empty()) this->eb(0);
 		(*this)[0] += c;
 		return *this;
 	}
 	Poly& operator-=(const mint& c){
+		if(this->empty()) this->eb(0);
 		(*this)[0] -= c;
 		return *this;
 	}
