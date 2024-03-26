@@ -5,6 +5,12 @@ data:
   - icon: ':warning:'
     path: 0.cpp
     title: 0.cpp
+  - icon: ':warning:'
+    path: math/famous_seq/unrooted_tree.cpp
+    title: math/famous_seq/unrooted_tree.cpp
+  - icon: ':warning:'
+    path: misc/color_debug.cpp
+    title: misc/color_debug.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
@@ -51,13 +57,17 @@ data:
     \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
     \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n\
     /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2 \
-    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(uint x){\r\n\treturn x == 0 ?\
-    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1\
-    \ : 63 ^ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7\
-    \  8  9\r\nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\
-    \nint bsl(uint x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n\
-    }\r\nint bsl(ull x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\
-    \n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
+    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ?\
+    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1\
+    \ : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63\
+    \ ^ __builtin_clzll(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^\
+    \ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\
+    \nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
+    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
     \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
     \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
     }\r\n"
@@ -92,13 +102,17 @@ data:
     \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
     \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n\
     /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2 \
-    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(uint x){\r\n\treturn x == 0 ?\
-    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1\
-    \ : 63 ^ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7\
-    \  8  9\r\nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\
-    \nint bsl(uint x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n\
-    }\r\nint bsl(ull x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\
-    \n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
+    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ?\
+    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1\
+    \ : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63\
+    \ ^ __builtin_clzll(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^\
+    \ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\
+    \nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
+    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
     \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
     \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
     }\r\n"
@@ -106,8 +120,10 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
+  - math/famous_seq/unrooted_tree.cpp
   - 0.cpp
-  timestamp: '2024-01-04 00:13:11+09:00'
+  - misc/color_debug.cpp
+  timestamp: '2024-03-26 11:02:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/online_conv/online_pow.test.cpp

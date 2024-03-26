@@ -10,11 +10,16 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"0.cpp\"\n// #pragma GCC target(\"avx2,avx512f,avx512vl,avx512bw,avx512dq,avx512cd,avx512vbmi,avx512vbmi2,avx512vpopcntdq,avx512bitalg,bmi,bmi2,lzcnt,popcnt\"\
-    )\r\n// #pragma GCC optimize(\"Ofast\")\r\n\r\n#line 2 \"template.hpp\"\n\r\n\
-    #include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\n\
-    using uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
+    links:
+    - https://qiita.com/PruneMazui/items/8a023347772620025ad6
+  bundledCode: "#line 1 \"misc/color_debug.cpp\"\n/*\n\t\u30C7\u30D0\u30C3\u30B0\u7528\
+    \u306B\u30BF\u30FC\u30DF\u30CA\u30EB\u306B\u51FA\u529B\u3059\u308B\u6587\u5B57\
+    \u306E\u8272\u3092\u5909\u3048\u308B\n\thttps://qiita.com/PruneMazui/items/8a023347772620025ad6\n\
+    \tCOLOR(\"4?\")\u3067\u3001\n\t0 1 2 3 4 5 6 7\n\t\u9ED2\u8D64\u7DD1\u9EC3\u9752\
+    \u7D2B\u6C34\u7070\n\n\t\u30B0\u30EA\u30C3\u30C9\u5857\u308A\u5206\u3051\u3068\
+    \u304B\u306B\u4F7F\u3046\u3068\u3044\u3044\u304B\u3082\n*/\n#line 2 \"template.hpp\"\
+    \n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\
+    \nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
     \ for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n\
     #define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
     \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
@@ -56,27 +61,46 @@ data:
     \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
     \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
     \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
-    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 5 \"0.cpp\"\
-    \n\r\nint main(){\r\n\tcin.tie(0);\r\n\tios::sync_with_stdio(false);\t\t//DON'T\
-    \ USE scanf/printf/puts !!\r\n\tcout << fixed << setprecision(20);\r\n\r\n\t\r\
-    \n}\r\n"
-  code: "// #pragma GCC target(\"avx2,avx512f,avx512vl,avx512bw,avx512dq,avx512cd,avx512vbmi,avx512vbmi2,avx512vpopcntdq,avx512bitalg,bmi,bmi2,lzcnt,popcnt\"\
-    )\r\n// #pragma GCC optimize(\"Ofast\")\r\n\r\n#include \"template.hpp\"\r\n\r\
-    \nint main(){\r\n\tcin.tie(0);\r\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
-    \ scanf/printf/puts !!\r\n\tcout << fixed << setprecision(20);\r\n\r\n\t\r\n}\r\
-    \n"
+    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 11 \"misc/color_debug.cpp\"\
+    \n\n#define COLOR(s) (\"\\x1b[\" s \"m\")\n\n\nvoid ANDGrid(){\n\tauto printc\
+    \ = [&](int c){\n\t\tif(c == 0) cout << COLOR(\"47\")<<' '<<COLOR();\n\t\tif(c\
+    \ == 1) cout << COLOR(\"41\")<<'A'<<COLOR();\n\t\tif(c == 2) cout << COLOR(\"\
+    44\")<<'B'<<COLOR();\n\t\tif(c == 3) cout << COLOR(\"45\")<<'X'<<COLOR();\n\t\
+    };\n\tint H,W; cin>>H>>W;\n\tV<string> s(H),a(H),b(H);\n\trep(i,H) cin>>s[i];\n\
+    \trep(i,H){\n\t\tif(i%2==0){\n\t\t\ta[i]=string(W-1,'#')+\".\";\n\t\t\tb[i]=string(W-1,'.')+\"\
+    #\";\n\t\t}else{\n\t\t\ta[i]=\"#\"+string(W-1,'.');\n\t\t\tb[i]=\".\"+string(W-1,'#');\n\
+    \t\t}\n\t}\n\trep(i,H) rep(j,W) if(s[i][j]=='#') a[i][j]=b[i][j]='#';\n\trep(i,H)\
+    \ cout<<a[i]<<endl;\n\tputs(\"\");\n\trep(i,H) cout<<b[i]<<endl;\n\tputs(\"\"\
+    );\n\trep(i,H){\n\t\trep(j,W) printc((a[i][j]=='#')*2 + (b[i][j]=='#'));\n\t\t\
+    cout << endl;\n\t}\n}\n\nint main(){\n\n}\n"
+  code: "/*\n\t\u30C7\u30D0\u30C3\u30B0\u7528\u306B\u30BF\u30FC\u30DF\u30CA\u30EB\u306B\
+    \u51FA\u529B\u3059\u308B\u6587\u5B57\u306E\u8272\u3092\u5909\u3048\u308B\n\thttps://qiita.com/PruneMazui/items/8a023347772620025ad6\n\
+    \tCOLOR(\"4?\")\u3067\u3001\n\t0 1 2 3 4 5 6 7\n\t\u9ED2\u8D64\u7DD1\u9EC3\u9752\
+    \u7D2B\u6C34\u7070\n\n\t\u30B0\u30EA\u30C3\u30C9\u5857\u308A\u5206\u3051\u3068\
+    \u304B\u306B\u4F7F\u3046\u3068\u3044\u3044\u304B\u3082\n*/\n#include \"../template.hpp\"\
+    \n\n#define COLOR(s) (\"\\x1b[\" s \"m\")\n\n\nvoid ANDGrid(){\n\tauto printc\
+    \ = [&](int c){\n\t\tif(c == 0) cout << COLOR(\"47\")<<' '<<COLOR();\n\t\tif(c\
+    \ == 1) cout << COLOR(\"41\")<<'A'<<COLOR();\n\t\tif(c == 2) cout << COLOR(\"\
+    44\")<<'B'<<COLOR();\n\t\tif(c == 3) cout << COLOR(\"45\")<<'X'<<COLOR();\n\t\
+    };\n\tint H,W; cin>>H>>W;\n\tV<string> s(H),a(H),b(H);\n\trep(i,H) cin>>s[i];\n\
+    \trep(i,H){\n\t\tif(i%2==0){\n\t\t\ta[i]=string(W-1,'#')+\".\";\n\t\t\tb[i]=string(W-1,'.')+\"\
+    #\";\n\t\t}else{\n\t\t\ta[i]=\"#\"+string(W-1,'.');\n\t\t\tb[i]=\".\"+string(W-1,'#');\n\
+    \t\t}\n\t}\n\trep(i,H) rep(j,W) if(s[i][j]=='#') a[i][j]=b[i][j]='#';\n\trep(i,H)\
+    \ cout<<a[i]<<endl;\n\tputs(\"\");\n\trep(i,H) cout<<b[i]<<endl;\n\tputs(\"\"\
+    );\n\trep(i,H){\n\t\trep(j,W) printc((a[i][j]=='#')*2 + (b[i][j]=='#'));\n\t\t\
+    cout << endl;\n\t}\n}\n\nint main(){\n\n}"
   dependsOn:
   - template.hpp
   isVerificationFile: false
-  path: 0.cpp
+  path: misc/color_debug.cpp
   requiredBy: []
-  timestamp: '2024-03-26 11:02:36+09:00'
+  timestamp: '2024-03-26 11:11:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: 0.cpp
+documentation_of: misc/color_debug.cpp
 layout: document
 redirect_from:
-- /library/0.cpp
-- /library/0.cpp.html
-title: 0.cpp
+- /library/misc/color_debug.cpp
+- /library/misc/color_debug.cpp.html
+title: misc/color_debug.cpp
 ---

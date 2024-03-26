@@ -151,13 +151,14 @@ data:
     \trep(i,f.size()){\n\t\t\to << f[i];\n\t\t\tif(i != f.size()-1) o << \",\";\n\t\
     \t}\n\t\to << \"]\";\n\t\treturn o;\n\t}\n\n\tPoly operator-() const {\n\t\tPoly\
     \ res = *this;\n\t\tfor(auto& v: res) v = -v;\n\t\treturn res;\n\t}\n\tPoly& operator+=(const\
-    \ mint& c){\n\t\t(*this)[0] += c;\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const\
-    \ mint& c){\n\t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const\
-    \ mint& c){\n\t\tfor(auto& v: *this) v *= c;\n\t\treturn *this;\n\t}\n\tPoly&\
-    \ operator/=(const mint& c){\n\t\treturn *this *= mint(1)/mint(c);\n\t}\n\tPoly&\
-    \ operator+=(const Poly& r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\
-    \t\trep(i,r.size()) (*this)[i] += r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const\
+    \ mint& c){\n\t\tif(this->empty()) this->eb(0);\n\t\t(*this)[0] += c;\n\t\treturn\
+    \ *this;\n\t}\n\tPoly& operator-=(const mint& c){\n\t\tif(this->empty()) this->eb(0);\n\
+    \t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const mint& c){\n\
+    \t\tfor(auto& v: *this) v *= c;\n\t\treturn *this;\n\t}\n\tPoly& operator/=(const\
+    \ mint& c){\n\t\treturn *this *= mint(1)/mint(c);\n\t}\n\tPoly& operator+=(const\
     \ Poly& r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size())\
+    \ (*this)[i] += r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const Poly&\
+    \ r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size())\
     \ (*this)[i] -= r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const Poly&\
     \ r){\n\t\treturn *this = multiply(*this,r);\n\t}\n\n\t// \u4F55\u56DE\u3082\u540C\
     \u3058r\u3067\u5272\u308A\u7B97\u3059\u308B\u306A\u3089\u6BCE\u56DErinv\u3092\u8A08\
@@ -362,7 +363,7 @@ data:
   isVerificationFile: true
   path: test_oj/linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:07:35+09:00'
+  timestamp: '2024-03-26 11:08:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/linear_recurrence.test.cpp

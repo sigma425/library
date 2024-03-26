@@ -2,24 +2,32 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/online_convolution.cpp
+    title: math/online_convolution.cpp
+  - icon: ':question:'
     path: math/poly.cpp
     title: math/poly.cpp
+  - icon: ':question:'
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
     links:
-    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
-  bundledCode: "#line 1 \"test_oj/polynomial_taylor_shift.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\r\n\r\n#include\
-    \ <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\nusing uint\
-    \ = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n) for(int\
-    \ i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n#define\
-    \ per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
+    - https://mathworld.wolfram.com/RootedTree.html
+    - https://oeis.org/A000055
+    - https://oeis.org/A000081
+  bundledCode: "#line 1 \"math/famous_seq/unrooted_tree.cpp\"\n/*\n\tunlabeled rooted\
+    \ tree\t\thttps://oeis.org/A000081\n\tunlabeled unrooted tree\t\thttps://oeis.org/A000055\n\
+    \t\u5217\u6319\u306F graph/enumTrees.cpp \u53C2\u7167\n\n\tonline_convolution\
+    \ \u304C\u30DC\u30C8\u30EB\u30CD\u30C3\u30AF O(N log^2N)\n*/\n\n#line 2 \"template.hpp\"\
+    \n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\
+    \nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
+    \ for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n\
+    #define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
     \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
     \ push_back\r\n#define eb emplace_back\r\n#define fs first\r\n#define sc second\r\
     \ntemplate<class T> using V = vector<T>;\r\ntemplate<class T> using VV = vector<vector<T>>;\r\
@@ -45,7 +53,21 @@ data:
     \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
     \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
     \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
-    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n#line 1 \"math/poly.cpp\"\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n/*\r\nx       0  1  2  3\
+    \  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2  3  3\r\n\u6700\u4E0A\u4F4D\
+    bit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\
+    \n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\n}\r\
+    \nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\nint\
+    \ bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\n\r\n\
+    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsl(x) -1  0  1  0  2  0  1  0 \
+    \ 3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
+    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
+    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
+    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 1 \"math/poly.cpp\"\
     \n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
     \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
     \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
@@ -329,59 +351,110 @@ data:
     \tPoly<mint> a(K+1),b(K+1);\n\tmint pw = 1;\n\trep1(i,K+1){\n\t\tpw *= n+1;\n\t\
     \ta[i-1] = ifact[i];\n\t\tb[i-1] = ifact[i] * pw;\n\t}\n\tauto f = b*a.inv(K+1);\n\
     \tV<mint> res(K+1);\n\trep(k,K+1) res[k] = f[k] * fact[k];\n\treturn res;\n}\n\
-    #line 74 \"test_oj/polynomial_taylor_shift.test.cpp\"\n\r\nint main(){\r\n\tcin.tie(0);\r\
-    \n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\r\n\tcout\
-    \ << fixed << setprecision(20);\r\n\r\n\tint N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\
-    \n\tPoly<mint> f(N); rep(i,N) cin >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N)\
-    \ cout << g[i] << \" \";\r\n\tcout << endl;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
-    \r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\
-    \nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
-    \ for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n\
-    #define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
-    \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
-    \ push_back\r\n#define eb emplace_back\r\n#define fs first\r\n#define sc second\r\
-    \ntemplate<class T> using V = vector<T>;\r\ntemplate<class T> using VV = vector<vector<T>>;\r\
-    \ntemplate<class T,class U> bool chmax(T& x, U y){\r\n\tif(x<y){ x=y; return true;\
-    \ }\r\n\treturn false;\r\n}\r\ntemplate<class T,class U> bool chmin(T& x, U y){\r\
-    \n\tif(y<x){ x=y; return true; }\r\n\treturn false;\r\n}\r\ntemplate<class T>\
-    \ void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end());}\r\ntemplate<class\
-    \ T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}\r\
-    \ntemplate<class T>\r\nV<T> Vec(size_t a) {\r\n    return V<T>(a);\r\n}\r\ntemplate<class\
-    \ T, class... Ts>\r\nauto Vec(size_t a, Ts... ts) {\r\n  return V<decltype(Vec<T>(ts...))>(a,\
-    \ Vec<T>(ts...));\r\n}\r\ntemplate<class S,class T> ostream& operator<<(ostream&\
-    \ o,const pair<S,T> &p){\r\n\treturn o<<\"(\"<<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\
-    \ntemplate<class T> ostream& operator<<(ostream& o,const vector<T> &vc){\r\n\t\
-    o<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\n\to<<\"}\";\r\n\treturn o;\r\
-    \n}\r\nconstexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }\r\n\r\n\
-    #ifdef LOCAL\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x\
-    \ << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\ntemplate<class\
-    \ T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&... args){\r\n\
-    \tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...) cerr << \"\
-    LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define dump(x) cerr\
-    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\tfor(auto v: x)\
-    \ cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\n#define show(x) void(0)\r\
-    \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
-    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
-    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
-    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n#include \"../math/poly.cpp\"\
-    \r\n\r\nint main(){\r\n\tcin.tie(0);\r\n\tios::sync_with_stdio(false);\t\t//DON'T\
-    \ USE scanf/printf/puts !!\r\n\tcout << fixed << setprecision(20);\r\n\r\n\tint\
-    \ N; mint c; cin >> N >> c;\r\n\tInitFact(N);\r\n\tPoly<mint> f(N); rep(i,N) cin\
-    \ >> f[i];\r\n\tauto g = f.shift(c);\r\n\trep(i,N) cout << g[i] << \" \";\r\n\t\
-    cout << endl;\r\n}\r\n"
+    #line 1 \"math/online_convolution.cpp\"\n/*\n\tquery(i): f_i, g_i \u3092\u53D7\
+    \u3051\u53D6\u3063\u3066 fg_i \u3092\u8FD4\u3059\n\tO(n log^2)\n\t2^18: 300ms\n\
+    \t2^19: 700ms\n\t2^20: 1500ms\n\n\t[0] [12] [3456] [7..14] .. \u3068\u308F\u3051\
+    \u3066\u3046\u307E\u304F\u3084\u308B\n*/\ntemplate<class mint>\nstruct Online_Convolution{\n\
+    \tconst int thresh = 3;\n\tV<mint> f,g,h;\n\tVV<mint> fft_f,fft_g;\n\n\tpair<V<mint>,V<mint>>\
+    \ calc_fft(int k){\n\t\t// \u9577\u3055 2^k \u306E suffix \u3092 fft \u3057\u305F\
+    \u3082\u306E\u3092\u8FD4\u3059\n\t\tint L = 1<<k;\n\t\tV<mint> f_suf(2*L), g_suf(2*L);\n\
+    \t\trep(i,L){\n\t\t\tf_suf[i] = f[si(f)-L+i];\n\t\t\tg_suf[i] = g[si(g)-L+i];\n\
+    \t\t}\n\t\tif(k > thresh){\n\t\t\tfft(f_suf); fft(g_suf);\n\t\t}\n\t\treturn {f_suf,\
+    \ g_suf};\n\t}\n\tvoid calc(int k){\n\t\tint L = 1<<k;\n\t\tauto [zf,zg] = calc_fft(k);\n\
+    \t\tV<mint> zh(L*2);\n\t\tbool fst = (k >= si(fft_f));\n\t\tif(fst){\n\t\t\tfft_f.eb(zf);\n\
+    \t\t\tfft_g.eb(zg);\n\t\t}\n\t\tif(k > thresh){\n\t\t\tif(fst){\n\t\t\t\trep(i,L*2)\
+    \ zh[i] += zf[i] * zg[i];\n\t\t\t\tinvfft(zh);\n\t\t\t}else{\n\t\t\t\trep(i,L*2){\n\
+    \t\t\t\t\tzh[i] += zf[i] * fft_g[k][i];\n\t\t\t\t\tzh[i] += zg[i] * fft_f[k][i];\n\
+    \t\t\t\t}\n\t\t\t\tinvfft(zh);\n\t\t\t}\n\t\t}else{\n\t\t\tif(fst){\n\t\t\t\t\
+    rep(i,L) rep(j,L) zh[i+j] += zf[i] * zg[j];\n\t\t\t}else{\n\t\t\t\trep(i,L) rep(j,L)\
+    \ zh[i+j] += zf[i] * fft_g[k][j];\n\t\t\t\trep(i,L) rep(j,L) zh[i+j] += zg[i]\
+    \ * fft_f[k][j];\n\t\t\t}\n\t\t}\n\t\tint off = si(f)-1;\n\t\trep(i,L*2-1){\n\t\
+    \t\tif(si(h) <= off+i) h.eb(0);\n\t\t\th[off + i] += zh[i];\n\t\t}\n\t}\n\n\t\
+    mint query(int i, mint f_i, mint g_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\
+    \t\tg.eb(g_i);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1\
+    \ ? 1 : 0);\n\t\trep(k,K) calc(k);\n\t\treturn h[i];\n\t}\n};\n\n/*\n\tquery(i):\
+    \ f_i, g_i \u3092\u53D7\u3051\u53D6\u3063\u3066 (f/g)_i \u3092\u8FD4\u3059\n\t\
+    g_0 != 0 \u3092\u4EEE\u5B9A\n\tO(n log^2)\n*/\ntemplate<class mint>\nstruct Online_Division{\n\
+    \tV<mint> f,g,h;\n\tOnline_Convolution<mint> X;\n\tmint ig0;\n\n\tmint query(int\
+    \ i, mint f_i, mint g_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\t\tg.eb(g_i);\n\
+    \t\tif(i == 0){\n\t\t\tassert(g_i);\n\t\t\tig0 = g_i.inv();\n\t\t\th.eb(f_i *\
+    \ ig0);\n\t\t}else{\n\t\t\th.eb( (f_i - X.query(i-1,g[i],h[i-1])) * ig0);\n\t\t\
+    }\n\t\treturn h[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\
+    \u3066 (e^f)_i \u3092\u8FD4\u3059\n\tf_0 == 0 \u3092\u4EEE\u5B9A\n\tO(n log^2)\n\
+    */\ntemplate<class mint>\nstruct Online_Exp{\n\tV<mint> F;\n\tOnline_Convolution<mint>\
+    \ X;\n\n\tmint query(int i, mint f_i){\n\t\tif(i == 0){\n\t\t\tassert(f_i == 0);\n\
+    \t\t\tF.eb(1);\n\t\t}else{\n\t\t\tF.eb(X.query(i-1,F[i-1],f_i*i));\n\t\t}\n\t\t\
+    return F[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\u3066\
+    \ (f^K)_i \u3092\u8FD4\u3059\n\tf_0 != 0 \u3092\u4EEE\u5B9A (\u9811\u5F35\u308C\
+    \u3070\u5916\u305B\u308B)\n\tO(n log^2)\n\tg := f^K\n\tg'f = Kgf'\n\t\tf_0 g_1\t\
+    \tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2 + f_2 g_1\n\t= K(f_1 g_0\t\t2f_2 g_0\
+    \ + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1 g_2\n*/\ntemplate<class mint>\nstruct\
+    \ Online_Pow{\n\tOnline_Pow(ll K_):K(K_){}\n\n\tV<mint> f,g;\n\tll K;\n\tOnline_Convolution<mint>\
+    \ X;\t\t// (f-f0)/x * g'\n\tOnline_Convolution<mint> Y;\t\t// f' * g\n\tmint if0;\n\
+    \n\tmint query(int i, mint f_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\t\t\
+    if(i == 0){\n\t\t\tassert(f_i);\n\t\t\tif0 = f_i.inv();\n\t\t\tg.eb(f_i.pow(K));\n\
+    \t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\t\t\tmint X_i = i ==\
+    \ 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i < si(invs));\n\t\t\
+    \tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn g[i];\n\t}\n};\n\n\
+    /*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\u30AA\u30F3\u30E9\u30A4\
+    \u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\u3068\u304D\n\tcalc(a,b,c,d)\
+    \ \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\n*/\nstruct Online_Convolution_Any{\n\
+    \tvoid calc(int a,int b,int c,int d){\n\t\t// f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++)\
+    \ for(int j=c;j<d;j++){\n\t\t\tcerr << \"(\" << i << \" , \" << j << \")\" <<\
+    \ endl;\n\t\t}\n\t}\n\n\tint SI = 0, GI = 0;\n\tvoid set_i(int i){\n\t\tcerr <<\
+    \ \"set \" << i << endl;\n\t\tassert(SI == i); SI++;\n\t}\n\tvoid get_i(int i){\n\
+    \t\tcerr << \"get \" << i << endl;\n\t\tassert(GI == i); GI++;\n\t\tassert(i <\
+    \ SI);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\
+    \t\trep(k,K){\n\t\t\tint L = 1<<k;\n\t\t\tint a = L-1, b = L-1+1, c = i+1-L, d\
+    \ = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\tif(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n\
+    };\n#line 12 \"math/famous_seq/unrooted_tree.cpp\"\n\n/*\n\thttps://mathworld.wolfram.com/RootedTree.html\n\
+    \tf[i+1] = 1/i * \\sum_{1<=j<=i} (\\sum_{d|j} f[d]*d) * f[i-j+1]\n*/\nV<mint>\
+    \ unlabeledRootedTrees(int N){\n\tV<mint> f(N+1),g(N+1);\n\tOnline_Convolution<mint>\
+    \ X;\n\trep1(i,N){\n\t\tif(i == 1){\n\t\t\tf[i] = 1;\n\t\t}else{\n\t\t\tf[i] =\
+    \ X.query(i-2,f[i-1],g[i-1]) / (i-1);\n\t\t}\n\t\tfor(int j=i;j<=N;j+=i) g[j]\
+    \ += f[i]*i;\n\t}\n\treturn f;\n}\n\n/*\n\thttps://mathworld.wolfram.com/RootedTree.html\n\
+    \t\tR: rooted tree \u306E set\n\t\tU: unrooted tree \u306E set\n\t\tA: unrooted\
+    \ tree \u306E\u9802\u70B9\u306E\u3072\u3068\u3064\u306B\u5370\u3092\u3064\u3051\
+    \u305F\u3082\u306E\u306E set\n\t\tB: unrooted tree \u306E\u8FBA\u306E\u3072\u3068\
+    \u3064\u306B\u5370\u3092\u3064\u3051\u305F\u3082\u306E\u306E set\n\t\tA = R, B\
+    \ = H(R, 2)\n\t\t\u540C\u578B A + B = U + R^2 \u304C\u4F5C\u308C\u308B (\u3069\
+    \u3046\u3084\u308B\u3093\u3060\u3063\u3051)\n\t\u3088\u3063\u3066: rooted + H(rooted,\
+    \ 2) = unrooted + rooted^2\n*/\nV<mint> unlabeledUnrootedTrees(int N){\n\tPoly<mint>\
+    \ f = unlabeledRootedTrees(N);\n\tPoly<mint> g(N+1); for(int i=0;i<=N;i+=2) g[i]\
+    \ = f[i/2];\n\treturn (f - (f*f-g)/2).low(N+1);\n}\n"
+  code: "/*\n\tunlabeled rooted tree\t\thttps://oeis.org/A000081\n\tunlabeled unrooted\
+    \ tree\t\thttps://oeis.org/A000055\n\t\u5217\u6319\u306F graph/enumTrees.cpp \u53C2\
+    \u7167\n\n\tonline_convolution \u304C\u30DC\u30C8\u30EB\u30CD\u30C3\u30AF O(N\
+    \ log^2N)\n*/\n\n#include \"../../template.hpp\"\n#include \"../../math/poly.cpp\"\
+    \n#include \"../../math/online_convolution.cpp\"\n\n/*\n\thttps://mathworld.wolfram.com/RootedTree.html\n\
+    \tf[i+1] = 1/i * \\sum_{1<=j<=i} (\\sum_{d|j} f[d]*d) * f[i-j+1]\n*/\nV<mint>\
+    \ unlabeledRootedTrees(int N){\n\tV<mint> f(N+1),g(N+1);\n\tOnline_Convolution<mint>\
+    \ X;\n\trep1(i,N){\n\t\tif(i == 1){\n\t\t\tf[i] = 1;\n\t\t}else{\n\t\t\tf[i] =\
+    \ X.query(i-2,f[i-1],g[i-1]) / (i-1);\n\t\t}\n\t\tfor(int j=i;j<=N;j+=i) g[j]\
+    \ += f[i]*i;\n\t}\n\treturn f;\n}\n\n/*\n\thttps://mathworld.wolfram.com/RootedTree.html\n\
+    \t\tR: rooted tree \u306E set\n\t\tU: unrooted tree \u306E set\n\t\tA: unrooted\
+    \ tree \u306E\u9802\u70B9\u306E\u3072\u3068\u3064\u306B\u5370\u3092\u3064\u3051\
+    \u305F\u3082\u306E\u306E set\n\t\tB: unrooted tree \u306E\u8FBA\u306E\u3072\u3068\
+    \u3064\u306B\u5370\u3092\u3064\u3051\u305F\u3082\u306E\u306E set\n\t\tA = R, B\
+    \ = H(R, 2)\n\t\t\u540C\u578B A + B = U + R^2 \u304C\u4F5C\u308C\u308B (\u3069\
+    \u3046\u3084\u308B\u3093\u3060\u3063\u3051)\n\t\u3088\u3063\u3066: rooted + H(rooted,\
+    \ 2) = unrooted + rooted^2\n*/\nV<mint> unlabeledUnrootedTrees(int N){\n\tPoly<mint>\
+    \ f = unlabeledRootedTrees(N);\n\tPoly<mint> g(N+1); for(int i=0;i<=N;i+=2) g[i]\
+    \ = f[i/2];\n\treturn (f - (f*f-g)/2).low(N+1);\n}\n"
   dependsOn:
+  - template.hpp
   - math/poly.cpp
-  isVerificationFile: true
-  path: test_oj/polynomial_taylor_shift.test.cpp
+  - math/online_convolution.cpp
+  isVerificationFile: false
+  path: math/famous_seq/unrooted_tree.cpp
   requiredBy: []
   timestamp: '2024-03-26 11:08:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test_oj/polynomial_taylor_shift.test.cpp
+documentation_of: math/famous_seq/unrooted_tree.cpp
 layout: document
 redirect_from:
-- /verify/test_oj/polynomial_taylor_shift.test.cpp
-- /verify/test_oj/polynomial_taylor_shift.test.cpp.html
-title: test_oj/polynomial_taylor_shift.test.cpp
+- /library/math/famous_seq/unrooted_tree.cpp
+- /library/math/famous_seq/unrooted_tree.cpp.html
+title: math/famous_seq/unrooted_tree.cpp
 ---

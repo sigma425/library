@@ -53,23 +53,27 @@ data:
     \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
     \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n/*\r\nx       0  1  2  3\
     \  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2  3  3\r\n\u6700\u4E0A\u4F4D\
-    bit\r\n*/\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\
-    \n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n\
-    }\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsl(x) -1  0  1  0  2 \
-    \ 0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(uint x){\r\n\tif(x==0)\
-    \ return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0)\
-    \ return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\
-    \nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic\
-    \ random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
-    \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
-    }\r\n#line 1 \"math/poly.cpp\"\n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\t\
-    poly \u57FA\u672C, MultipointEval, Interpolate\n*/\ntemplate<unsigned int mod_>\n\
-    struct ModInt{\n\tusing uint = unsigned int;\n\tusing ll = long long;\n\tusing\
-    \ ull = unsigned long long;\n\n\tconstexpr static uint mod = mod_;\n\n\tuint v;\n\
-    \tModInt():v(0){}\n\tModInt(ll _v):v(normS(_v%mod+mod)){}\n\texplicit operator\
-    \ bool() const {return v!=0;}\n\tstatic uint normS(const uint &x){return (x<mod)?x:x-mod;}\t\
-    \t// [0 , 2*mod-1] -> [0 , mod-1]\n\tstatic ModInt make(const uint &x){ModInt\
-    \ m; m.v=x; return m;}\n\tModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}\n\
+    bit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\
+    \n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\n}\r\
+    \nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\nint\
+    \ bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\n\r\n\
+    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsl(x) -1  0  1  0  2  0  1  0 \
+    \ 3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
+    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
+    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
+    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 1 \"math/poly.cpp\"\
+    \n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
+    \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
+    \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
+    \tconstexpr static uint mod = mod_;\n\n\tuint v;\n\tModInt():v(0){}\n\tModInt(ll\
+    \ _v):v(normS(_v%mod+mod)){}\n\texplicit operator bool() const {return v!=0;}\n\
+    \tstatic uint normS(const uint &x){return (x<mod)?x:x-mod;}\t\t// [0 , 2*mod-1]\
+    \ -> [0 , mod-1]\n\tstatic ModInt make(const uint &x){ModInt m; m.v=x; return\
+    \ m;}\n\tModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}\n\
     \tModInt operator-(const ModInt& b) const { return make(normS(v+mod-b.v));}\n\t\
     ModInt operator-() const { return make(normS(mod-v)); }\n\tModInt operator*(const\
     \ ModInt& b) const { return make((ull)v*b.v%mod);}\n\tModInt operator/(const ModInt&\
@@ -173,13 +177,14 @@ data:
     \trep(i,f.size()){\n\t\t\to << f[i];\n\t\t\tif(i != f.size()-1) o << \",\";\n\t\
     \t}\n\t\to << \"]\";\n\t\treturn o;\n\t}\n\n\tPoly operator-() const {\n\t\tPoly\
     \ res = *this;\n\t\tfor(auto& v: res) v = -v;\n\t\treturn res;\n\t}\n\tPoly& operator+=(const\
-    \ mint& c){\n\t\t(*this)[0] += c;\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const\
-    \ mint& c){\n\t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const\
-    \ mint& c){\n\t\tfor(auto& v: *this) v *= c;\n\t\treturn *this;\n\t}\n\tPoly&\
-    \ operator/=(const mint& c){\n\t\treturn *this *= mint(1)/mint(c);\n\t}\n\tPoly&\
-    \ operator+=(const Poly& r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\
-    \t\trep(i,r.size()) (*this)[i] += r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const\
+    \ mint& c){\n\t\tif(this->empty()) this->eb(0);\n\t\t(*this)[0] += c;\n\t\treturn\
+    \ *this;\n\t}\n\tPoly& operator-=(const mint& c){\n\t\tif(this->empty()) this->eb(0);\n\
+    \t\t(*this)[0] -= c;\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const mint& c){\n\
+    \t\tfor(auto& v: *this) v *= c;\n\t\treturn *this;\n\t}\n\tPoly& operator/=(const\
+    \ mint& c){\n\t\treturn *this *= mint(1)/mint(c);\n\t}\n\tPoly& operator+=(const\
     \ Poly& r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size())\
+    \ (*this)[i] += r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator-=(const Poly&\
+    \ r){\n\t\tif(size() < r.size()) this->resize(r.size(),0);\n\t\trep(i,r.size())\
     \ (*this)[i] -= r[i];\n\t\treturn *this;\n\t}\n\tPoly& operator*=(const Poly&\
     \ r){\n\t\treturn *this = multiply(*this,r);\n\t}\n\n\t// \u4F55\u56DE\u3082\u540C\
     \u3058r\u3067\u5272\u308A\u7B97\u3059\u308B\u306A\u3089\u6BCE\u56DErinv\u3092\u8A08\
@@ -373,35 +378,39 @@ data:
     \t\tif(i == 0){\n\t\t\tassert(g_i);\n\t\t\tig0 = g_i.inv();\n\t\t\th.eb(f_i *\
     \ ig0);\n\t\t}else{\n\t\t\th.eb( (f_i - X.query(i-1,g[i],h[i-1])) * ig0);\n\t\t\
     }\n\t\treturn h[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\
-    \u3066 (f^K)_i \u3092\u8FD4\u3059\n\tf_0 != 0 \u3092\u4EEE\u5B9A (\u9811\u5F35\
-    \u308C\u3070\u5916\u305B\u308B)\n\tO(n log^2)\n\tg := f^K\n\tg'f = Kgf'\n\t\t\
-    f_0 g_1\t\tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2 + f_2 g_1\n\t= K(f_1 g_0\t\
-    \t2f_2 g_0 + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1 g_2\n*/\ntemplate<class mint>\n\
-    struct Online_Pow{\n\tOnline_Pow(ll K_):K(K_){}\n\n\tV<mint> f,g;\n\tll K;\n\t\
-    Online_Convolution<mint> X;\t\t// (f-f0)/x * g'\n\tOnline_Convolution<mint> Y;\t\
-    \t// f' * g\n\tmint if0;\n\n\tmint query(int i, mint f_i){\n\t\tassert(i == si(f));\n\
-    \t\tf.eb(f_i);\n\t\tif(i == 0){\n\t\t\tassert(f_i);\n\t\t\tif0 = f_i.inv();\n\t\
-    \t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\
-    \t\t\tmint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i\
-    \ < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn\
-    \ g[i];\n\t}\n};\n\n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\
-    \u30AA\u30F3\u30E9\u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\
-    \u3068\u304D\n\tcalc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\
-    \n*/\nstruct Online_Convolution_Any{\n\tvoid calc(int a,int b,int c,int d){\n\t\
-    \t// f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr\
-    \ << \"(\" << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0,\
-    \ GI = 0;\n\tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI\
-    \ == i); SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\
-    \t\tassert(GI == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2)\
-    \ + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\
-    \t\t\tint a = L-1, b = L-1+1, c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\t\
-    if(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n};\n#line 6 \"test_oj/online_conv/online_conv.test.cpp\"\
-    \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
-    \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n\tint A,B; cin\
-    \ >> A >> B;\n\tV<mint> a(A),b(B);\n\trep(i,A) cin >> a[i];\n\trep(i,B) cin >>\
-    \ b[i];\n\tint C = A+B-1;\n\ta.resize(C); b.resize(C);\n\tOnline_Convolution<mint>\
-    \ X;\n\trep(i,C){\n\t\tcout << X.query(i,a[i],b[i]) << \" \";\n\t}\n\tcout <<\
-    \ endl;\n}\n"
+    \u3066 (e^f)_i \u3092\u8FD4\u3059\n\tf_0 == 0 \u3092\u4EEE\u5B9A\n\tO(n log^2)\n\
+    */\ntemplate<class mint>\nstruct Online_Exp{\n\tV<mint> F;\n\tOnline_Convolution<mint>\
+    \ X;\n\n\tmint query(int i, mint f_i){\n\t\tif(i == 0){\n\t\t\tassert(f_i == 0);\n\
+    \t\t\tF.eb(1);\n\t\t}else{\n\t\t\tF.eb(X.query(i-1,F[i-1],f_i*i));\n\t\t}\n\t\t\
+    return F[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\u3066\
+    \ (f^K)_i \u3092\u8FD4\u3059\n\tf_0 != 0 \u3092\u4EEE\u5B9A (\u9811\u5F35\u308C\
+    \u3070\u5916\u305B\u308B)\n\tO(n log^2)\n\tg := f^K\n\tg'f = Kgf'\n\t\tf_0 g_1\t\
+    \tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2 + f_2 g_1\n\t= K(f_1 g_0\t\t2f_2 g_0\
+    \ + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1 g_2\n*/\ntemplate<class mint>\nstruct\
+    \ Online_Pow{\n\tOnline_Pow(ll K_):K(K_){}\n\n\tV<mint> f,g;\n\tll K;\n\tOnline_Convolution<mint>\
+    \ X;\t\t// (f-f0)/x * g'\n\tOnline_Convolution<mint> Y;\t\t// f' * g\n\tmint if0;\n\
+    \n\tmint query(int i, mint f_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\t\t\
+    if(i == 0){\n\t\t\tassert(f_i);\n\t\t\tif0 = f_i.inv();\n\t\t\tg.eb(f_i.pow(K));\n\
+    \t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\t\t\tmint X_i = i ==\
+    \ 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i < si(invs));\n\t\t\
+    \tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn g[i];\n\t}\n};\n\n\
+    /*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\u30AA\u30F3\u30E9\u30A4\
+    \u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\u3068\u304D\n\tcalc(a,b,c,d)\
+    \ \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\n*/\nstruct Online_Convolution_Any{\n\
+    \tvoid calc(int a,int b,int c,int d){\n\t\t// f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++)\
+    \ for(int j=c;j<d;j++){\n\t\t\tcerr << \"(\" << i << \" , \" << j << \")\" <<\
+    \ endl;\n\t\t}\n\t}\n\n\tint SI = 0, GI = 0;\n\tvoid set_i(int i){\n\t\tcerr <<\
+    \ \"set \" << i << endl;\n\t\tassert(SI == i); SI++;\n\t}\n\tvoid get_i(int i){\n\
+    \t\tcerr << \"get \" << i << endl;\n\t\tassert(GI == i); GI++;\n\t\tassert(i <\
+    \ SI);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\
+    \t\trep(k,K){\n\t\t\tint L = 1<<k;\n\t\t\tint a = L-1, b = L-1+1, c = i+1-L, d\
+    \ = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\tif(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n\
+    };\n#line 6 \"test_oj/online_conv/online_conv.test.cpp\"\n\nint main(){\n\tcin.tie(0);\n\
+    \tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\n\tcout <<\
+    \ fixed << setprecision(20);\n\n\tint A,B; cin >> A >> B;\n\tV<mint> a(A),b(B);\n\
+    \trep(i,A) cin >> a[i];\n\trep(i,B) cin >> b[i];\n\tint C = A+B-1;\n\ta.resize(C);\
+    \ b.resize(C);\n\tOnline_Convolution<mint> X;\n\trep(i,C){\n\t\tcout << X.query(i,a[i],b[i])\
+    \ << \" \";\n\t}\n\tcout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
     \ \"../../template.hpp\"\n#include \"../../math/poly.cpp\"\n#include \"../../math/online_convolution.cpp\"\
     \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
@@ -417,7 +426,7 @@ data:
   isVerificationFile: true
   path: test_oj/online_conv/online_conv.test.cpp
   requiredBy: []
-  timestamp: '2024-01-05 18:55:18+09:00'
+  timestamp: '2024-03-26 11:08:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/online_conv/online_conv.test.cpp

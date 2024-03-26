@@ -21,11 +21,11 @@ data:
     vector<vector<int>> par;\n\n\tvoid dfs(int v,int p,const vector<vector<int>>&\
     \ G){\n\t\tif(p<0) depth[v]=0;\n\t\telse depth[v]=depth[p]+1;\n\t\tpar[v][0]=p;\n\
     \t\tfor(int u:G[v]){\n\t\t\tif(u!=p) dfs(u,v,G);\n\t\t}\n\t}\n\n\tLCA(const vector<vector<int>>&\
-    \ G){\n\t\tN = G.size();\n\t\tn = bsr(N);\n\t\tdepth = vector<int>(N,0);\n\t\t\
-    par = vector<vector<int>>(N,vector<int>(n+1,0));\n\n\t\tdfs(0,-1,G);\n\t\trep1(i,n){\n\
-    \t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1]==-1){\n\t\t\t\t\tpar[v][i]=-1;\n\t\t\t\
-    \t}else{\n\t\t\t\t\tpar[v][i]=par[par[v][i-1]][i-1];\n\t\t\t\t}\n\t\t\t}\n\t\t\
-    }\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v]){\n\t\t\tswap(u,v);\n\
+    \ G, int r = 0){\n\t\tN = G.size();\n\t\tn = bsr(N);\n\t\tdepth = vector<int>(N,0);\n\
+    \t\tpar = vector<vector<int>>(N,vector<int>(n+1,0));\n\n\t\tdfs(r,-1,G);\n\t\t\
+    rep1(i,n){\n\t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1]==-1){\n\t\t\t\t\tpar[v][i]=-1;\n\
+    \t\t\t\t}else{\n\t\t\t\t\tpar[v][i]=par[par[v][i-1]][i-1];\n\t\t\t\t}\n\t\t\t\
+    }\n\t\t}\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v]){\n\t\t\tswap(u,v);\n\
     \t\t}\n\t\tint d=depth[u]-depth[v];\n\t\trep(i,n+1){\n\t\t\tif((d>>i)&1) u=par[u][i];\n\
     \t\t}\n\t\tif(u==v) return u;\n\t\tfor(int i=n;i>=0;i--){\n\t\t\tif(par[u][i]!=par[v][i]){\n\
     \t\t\t\tu=par[u][i];\n\t\t\t\tv=par[v][i];\n\t\t\t}\n\t\t}\n\t\treturn par[v][0];\n\
@@ -66,31 +66,32 @@ data:
     struct LCA{\n\tint N,n;\n\tvector<int> depth;\n\tvector<vector<int>> par;\n\n\t\
     void dfs(int v,int p,const vector<vector<int>>& G){\n\t\tif(p<0) depth[v]=0;\n\
     \t\telse depth[v]=depth[p]+1;\n\t\tpar[v][0]=p;\n\t\tfor(int u:G[v]){\n\t\t\t\
-    if(u!=p) dfs(u,v,G);\n\t\t}\n\t}\n\n\tLCA(const vector<vector<int>>& G){\n\t\t\
-    N = G.size();\n\t\tn = bsr(N);\n\t\tdepth = vector<int>(N,0);\n\t\tpar = vector<vector<int>>(N,vector<int>(n+1,0));\n\
-    \n\t\tdfs(0,-1,G);\n\t\trep1(i,n){\n\t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1]==-1){\n\
-    \t\t\t\t\tpar[v][i]=-1;\n\t\t\t\t}else{\n\t\t\t\t\tpar[v][i]=par[par[v][i-1]][i-1];\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v]){\n\
-    \t\t\tswap(u,v);\n\t\t}\n\t\tint d=depth[u]-depth[v];\n\t\trep(i,n+1){\n\t\t\t\
-    if((d>>i)&1) u=par[u][i];\n\t\t}\n\t\tif(u==v) return u;\n\t\tfor(int i=n;i>=0;i--){\n\
-    \t\t\tif(par[u][i]!=par[v][i]){\n\t\t\t\tu=par[u][i];\n\t\t\t\tv=par[v][i];\n\t\
-    \t\t}\n\t\t}\n\t\treturn par[v][0];\n\t}\n\n\tint distance(int u,int v){\n\t\t\
-    return depth[u] + depth[v] - 2*depth[lca(u,v)];\n\t}\n\n\t/*\n\t\tx\u304B\u3089\
-    y\u306B\u3080\u304B\u3063\u3066d\u3046\u3054\u304F\n\t\tdist(x,y) < d \u306A\u3089\
-    \ y \u3092\u8FD4\u3059\n\t\tCF621 F\n\t*/\n\tint jump(int x,int y,int d){\n\t\t\
-    int z = lca(x,y);\n\t\tint d1 = depth[x]-depth[z];\n\t\tint d2 = depth[y]-depth[z];\n\
-    \t\tif(d <= d1){\n\t\t\t// up d from x\n\t\t\trep(i,n+1) if(d&1<<i) x = par[x][i];\n\
-    \t\t\treturn x;\n\t\t}else if(d <= d1+d2){\n\t\t\t// up d1+d2-d from y\n\t\t\t\
-    d = d1+d2-d;\n\t\t\trep(i,n+1) if(d&1<<i) y = par[y][i];\n\t\t\treturn y;\n\t\t\
-    }else{\n\t\t\treturn y;\n\t\t}\n\t}\n};\n\n// weighted graph\n// distance(x,y)\
-    \ \u304C\u91CD\u307F\u4ED8\u304D\u306E\u30B0\u30E9\u30D5\u3067\u6B32\u3057\u3044\
-    \u6642\n\nint bsr(int x){\t//4~7 -> 2\n\tif(x==0) return -1;\n\treturn 31 ^ __builtin_clz(x);\n\
-    }\ntemplate<class D>\nstruct LCA{\n\tint N,n;\n\tvector<int> depth;\n\tV<D> d;\n\
-    \tvector<vector<int>> par;\n\n\tvoid dfs(int v,int p,const vector<vector<pair<int,D>>>&\
-    \ G){\n\t\tpar[v][0] = p;\n\t\tfor(auto e: G[v]) if(e.fs != p){\n\t\t\tdepth[e.fs]\
-    \ = depth[v] + 1;\n\t\t\td[e.fs] = d[v] + e.sc;\n\t\t\tdfs(e.fs,v,G);\n\t\t}\n\
-    \t}\n\n\tLCA(const vector<vector<pair<int,D>>>& G){\n\t\tN = G.size();\n\t\tn\
-    \ = bsr(N);\n\t\tdepth = V<int>(N);\n\t\td = V<D>(N);\n\t\tpar = vector<vector<int>>(N,vector<int>(n+1,0));\n\
+    if(u!=p) dfs(u,v,G);\n\t\t}\n\t}\n\n\tLCA(const vector<vector<int>>& G, int r\
+    \ = 0){\n\t\tN = G.size();\n\t\tn = bsr(N);\n\t\tdepth = vector<int>(N,0);\n\t\
+    \tpar = vector<vector<int>>(N,vector<int>(n+1,0));\n\n\t\tdfs(r,-1,G);\n\t\trep1(i,n){\n\
+    \t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1]==-1){\n\t\t\t\t\tpar[v][i]=-1;\n\t\t\t\
+    \t}else{\n\t\t\t\t\tpar[v][i]=par[par[v][i-1]][i-1];\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    }\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v]){\n\t\t\tswap(u,v);\n\
+    \t\t}\n\t\tint d=depth[u]-depth[v];\n\t\trep(i,n+1){\n\t\t\tif((d>>i)&1) u=par[u][i];\n\
+    \t\t}\n\t\tif(u==v) return u;\n\t\tfor(int i=n;i>=0;i--){\n\t\t\tif(par[u][i]!=par[v][i]){\n\
+    \t\t\t\tu=par[u][i];\n\t\t\t\tv=par[v][i];\n\t\t\t}\n\t\t}\n\t\treturn par[v][0];\n\
+    \t}\n\n\tint distance(int u,int v){\n\t\treturn depth[u] + depth[v] - 2*depth[lca(u,v)];\n\
+    \t}\n\n\t/*\n\t\tx\u304B\u3089y\u306B\u3080\u304B\u3063\u3066d\u3046\u3054\u304F\
+    \n\t\tdist(x,y) < d \u306A\u3089 y \u3092\u8FD4\u3059\n\t\tCF621 F\n\t*/\n\tint\
+    \ jump(int x,int y,int d){\n\t\tint z = lca(x,y);\n\t\tint d1 = depth[x]-depth[z];\n\
+    \t\tint d2 = depth[y]-depth[z];\n\t\tif(d <= d1){\n\t\t\t// up d from x\n\t\t\t\
+    rep(i,n+1) if(d&1<<i) x = par[x][i];\n\t\t\treturn x;\n\t\t}else if(d <= d1+d2){\n\
+    \t\t\t// up d1+d2-d from y\n\t\t\td = d1+d2-d;\n\t\t\trep(i,n+1) if(d&1<<i) y\
+    \ = par[y][i];\n\t\t\treturn y;\n\t\t}else{\n\t\t\treturn y;\n\t\t}\n\t}\n};\n\
+    \n// weighted graph\n// distance(x,y) \u304C\u91CD\u307F\u4ED8\u304D\u306E\u30B0\
+    \u30E9\u30D5\u3067\u6B32\u3057\u3044\u6642\n\nint bsr(int x){\t//4~7 -> 2\n\t\
+    if(x==0) return -1;\n\treturn 31 ^ __builtin_clz(x);\n}\ntemplate<class D>\nstruct\
+    \ LCA{\n\tint N,n;\n\tvector<int> depth;\n\tV<D> d;\n\tvector<vector<int>> par;\n\
+    \n\tvoid dfs(int v,int p,const vector<vector<pair<int,D>>>& G){\n\t\tpar[v][0]\
+    \ = p;\n\t\tfor(auto e: G[v]) if(e.fs != p){\n\t\t\tdepth[e.fs] = depth[v] + 1;\n\
+    \t\t\td[e.fs] = d[v] + e.sc;\n\t\t\tdfs(e.fs,v,G);\n\t\t}\n\t}\n\n\tLCA(const\
+    \ vector<vector<pair<int,D>>>& G){\n\t\tN = G.size();\n\t\tn = bsr(N);\n\t\tdepth\
+    \ = V<int>(N);\n\t\td = V<D>(N);\n\t\tpar = vector<vector<int>>(N,vector<int>(n+1,0));\n\
     \n\t\tdfs(0,-1,G);\n\t\trep1(i,n){\n\t\t\trep(v,N){\n\t\t\t\tif(par[v][i-1]==-1){\n\
     \t\t\t\t\tpar[v][i]=-1;\n\t\t\t\t}else{\n\t\t\t\t\tpar[v][i]=par[par[v][i-1]][i-1];\n\
     \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\tint lca(int u,int v){\n\t\tif(depth[u]<depth[v]){\n\
@@ -103,7 +104,7 @@ data:
   isVerificationFile: false
   path: graph/lca.cpp
   requiredBy: []
-  timestamp: '2020-11-30 23:03:30+09:00'
+  timestamp: '2024-03-26 11:01:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/lca.cpp

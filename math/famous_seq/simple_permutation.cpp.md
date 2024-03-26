@@ -11,7 +11,7 @@ data:
     - https://oeis.org/A059372
     - https://oeis.org/A111111
     - https://official.contest.yandex.com/ptz-mirror/contest/42061/problems/M
-  bundledCode: "#line 1 \"math/simple_permutation.cpp\"\n/*\n\tsimple permutation\n\
+  bundledCode: "#line 1 \"math/famous_seq/simple_permutation.cpp\"\n/*\n\tsimple permutation\n\
     \thttps://oeis.org/A111111\n\tperm tree \u306E\u6DF1\u30551\u306E\u9802\u70B9\u305F\
     \u3061\u3092\u8003\u3048\u308B\u3068\u3001\n\t\ti) sz >= 3 \u3067\u3001\u5916\u5074\
     \u304Csimple perm \u4E2D\u306F\u306A\u3093\u3067\u3082\n\t\t\tex. [4][89][312][567]\n\
@@ -90,15 +90,15 @@ data:
     \t}\n\treturn g;\n}"
   dependsOn: []
   isVerificationFile: false
-  path: math/simple_permutation.cpp
+  path: math/famous_seq/simple_permutation.cpp
   requiredBy: []
-  timestamp: '2022-11-20 04:11:43+09:00'
+  timestamp: '2024-03-26 11:07:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/simple_permutation.cpp
+documentation_of: math/famous_seq/simple_permutation.cpp
 layout: document
 redirect_from:
-- /library/math/simple_permutation.cpp
-- /library/math/simple_permutation.cpp.html
-title: math/simple_permutation.cpp
+- /library/math/famous_seq/simple_permutation.cpp
+- /library/math/famous_seq/simple_permutation.cpp.html
+title: math/famous_seq/simple_permutation.cpp
 ---

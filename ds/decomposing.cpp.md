@@ -23,8 +23,8 @@ data:
     \ break;\n\t\t\tvector<D> nv(vv[K-1].size()+vv[K-2].size());\n\t\t\tmerge(all(vv[K-2]),all(vv[K-1]),nv.begin());\t\
     //reconstruct (with using vv[K-2],vv[K-1])\n\t\t\tvv.pop_back();vv.pop_back();\n\
     \t\t\tvv.pb(nv);\n\t\t}\n\t}\n\tint get(int x){\n\t\tint res = 0;\n\t\tfor(const\
-    \ auto& v:vv){\t//calc query for each and combine them\n\t\t\tres += v.end() -\
-    \ lower_bound(all(v),x);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
+    \ auto& v:vv){\t//calc query for each and combine them\n\t\t\tres += lower_bound(all(v),x)\
+    \ - x.begin(); // x \u672A\u6E80\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   code: "/*\n\tdecomposable problem\n\t\u30C7\u30FC\u30BF\u3092\u8907\u6570\u500B\u306E\
     \u30C7\u30FC\u30BF\u306B\u5206\u3051\u305F\u5F8C\u3001\u305D\u308C\u305E\u308C\
     \u306Bquery\u3092\u6295\u3052\u305F\u5F8C\u7D71\u5408\u3067\u304D\u308B\u5F62\u306A\
@@ -40,13 +40,13 @@ data:
     \t\t\tvector<D> nv(vv[K-1].size()+vv[K-2].size());\n\t\t\tmerge(all(vv[K-2]),all(vv[K-1]),nv.begin());\t\
     //reconstruct (with using vv[K-2],vv[K-1])\n\t\t\tvv.pop_back();vv.pop_back();\n\
     \t\t\tvv.pb(nv);\n\t\t}\n\t}\n\tint get(int x){\n\t\tint res = 0;\n\t\tfor(const\
-    \ auto& v:vv){\t//calc query for each and combine them\n\t\t\tres += v.end() -\
-    \ lower_bound(all(v),x);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
+    \ auto& v:vv){\t//calc query for each and combine them\n\t\t\tres += lower_bound(all(v),x)\
+    \ - x.begin(); // x \u672A\u6E80\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/decomposing.cpp
   requiredBy: []
-  timestamp: '2024-01-03 19:12:30+09:00'
+  timestamp: '2024-03-26 11:01:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/decomposing.cpp

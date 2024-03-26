@@ -21,6 +21,9 @@ data:
       path: DP/CHT.cpp
       title: DP/CHT.cpp
     - icon: ':warning:'
+      path: DP/CHT_old.cpp
+      title: DP/CHT_old.cpp
+    - icon: ':warning:'
       path: DP/CHT_set.cpp
       title: DP/CHT_set.cpp
     - icon: ':warning:'
@@ -253,6 +256,9 @@ data:
       path: graph/bipartite_matching.cpp
       title: graph/bipartite_matching.cpp
     - icon: ':warning:'
+      path: graph/countSpanningTree.cpp
+      title: graph/countSpanningTree.cpp
+    - icon: ':warning:'
       path: graph/cycle.cpp
       title: graph/cycle.cpp
     - icon: ':warning:'
@@ -434,6 +440,9 @@ data:
     - icon: ':warning:'
       path: math/gcd.cpp
       title: math/gcd.cpp
+    - icon: ':warning:'
+      path: math/getOrder.cpp
+      title: math/getOrder.cpp
     - icon: ':heavy_check_mark:'
       path: math/hadamard.cpp
       title: math/hadamard.cpp
@@ -459,6 +468,9 @@ data:
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
+      path: math/mint0.cpp
+      title: math/mint0.cpp
+    - icon: ':warning:'
       path: math/multivariate_mult.cpp
       title: math/multivariate_mult.cpp
     - icon: ':warning:'
@@ -483,9 +495,6 @@ data:
       path: math/rand.cpp
       title: math/rand.cpp
     - icon: ':warning:'
-      path: math/simple_permutation.cpp
-      title: math/simple_permutation.cpp
-    - icon: ':warning:'
       path: math/sparseDet.cpp
       title: math/sparseDet.cpp
     - icon: ':warning:'
@@ -503,6 +512,20 @@ data:
     - icon: ':warning:'
       path: math/zeta.cpp
       title: math/zeta.cpp
+  - name: math/famous_seq
+    pages:
+    - icon: ':warning:'
+      path: math/famous_seq/Stirling.cpp
+      title: math/famous_seq/Stirling.cpp
+    - icon: ':warning:'
+      path: math/famous_seq/powsum.cpp
+      title: math/famous_seq/powsum.cpp
+    - icon: ':warning:'
+      path: math/famous_seq/simple_permutation.cpp
+      title: math/famous_seq/simple_permutation.cpp
+    - icon: ':warning:'
+      path: math/famous_seq/unrooted_tree.cpp
+      title: math/famous_seq/unrooted_tree.cpp
   - name: math/matrix
     pages:
     - icon: ':warning:'
@@ -534,6 +557,9 @@ data:
     - icon: ':warning:'
       path: misc/BigInt.cpp
       title: misc/BigInt.cpp
+    - icon: ':warning:'
+      path: misc/color_debug.cpp
+      title: misc/color_debug.cpp
     - icon: ':warning:'
       path: misc/hashmap.cpp
       title: misc/hashmap.cpp
