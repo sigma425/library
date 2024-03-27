@@ -6,6 +6,9 @@ data:
     path: 0.cpp
     title: 0.cpp
   - icon: ':warning:'
+    path: geom/RotatingPoints.cpp
+    title: geom/RotatingPoints.cpp
+  - icon: ':warning:'
     path: math/famous_seq/unrooted_tree.cpp
     title: math/famous_seq/unrooted_tree.cpp
   - icon: ':warning:'
@@ -122,6 +125,7 @@ data:
   requiredBy:
   - math/famous_seq/unrooted_tree.cpp
   - 0.cpp
+  - geom/RotatingPoints.cpp
   - misc/color_debug.cpp
   timestamp: '2024-03-26 11:02:36+09:00'
   verificationStatus: LIBRARY_SOME_WA

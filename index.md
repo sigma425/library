@@ -215,6 +215,9 @@ data:
   - name: geom
     pages:
     - icon: ':warning:'
+      path: geom/RotatingPoints.cpp
+      title: geom/RotatingPoints.cpp
+    - icon: ':warning:'
       path: geom/argsort.cpp
       title: geom/argsort.cpp
     - icon: ':warning:'
