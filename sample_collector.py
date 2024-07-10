@@ -30,19 +30,24 @@ else:
             k = 'H'
         v = pl.get_url()
 
-        try:
-            smp = at.download_problem_content(pl)
-        except Exception as e:
-            print('{}問題で失敗 Exception = {}'.format(k, e))
-        else:
-            for i, tx in enumerate(smp.samples):
-                fn = k + str(i) + '.in'
-                f = open('tests/' + fn, 'w')
-                f.write(tx.get_input())
-                f.close()
+        num_trial = 10
+        smp = None
+        for t in range(num_trial):
+            try:
+                smp = at.download_problem_content(pl)
+                break
+            except Exception as e:
+                if t == num_trial-1:
+                    print('{}問題で失敗 Exception = {}'.format(k, e))
+                continue
+        for i, tx in enumerate(smp.samples):
+            fn = k + str(i) + '.in'
+            f = open('tests/' + fn, 'w')
+            f.write(tx.get_input())
+            f.close()
 
-                fn = k + str(i) + '.out'
-                f = open('tests/' + fn, 'w')
-                f.write(tx.get_output())
-                f.close()
-            print('Probiem {} END'.format(k))
+            fn = k + str(i) + '.out'
+            f = open('tests/' + fn, 'w')
+            f.write(tx.get_output())
+            f.close()
+        print('Probiem {} END'.format(k))
