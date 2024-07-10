@@ -143,9 +143,9 @@ data:
   timestamp: '2024-03-26 11:07:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_div.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
 documentation_of: math/online_convolution.cpp
 layout: document
 redirect_from:

@@ -123,16 +123,16 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
+  - misc/color_debug.cpp
+  - geom/RotatingPoints.cpp
   - math/famous_seq/unrooted_tree.cpp
   - 0.cpp
-  - geom/RotatingPoints.cpp
-  - misc/color_debug.cpp
   timestamp: '2024-03-26 11:02:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_div.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:

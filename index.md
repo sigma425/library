@@ -573,8 +573,8 @@ data:
       path: misc/stack_expand.cpp
       title: misc/stack_expand.cpp
     - icon: ':warning:'
-      path: misc/timer.cpp
-      title: misc/timer.cpp
+      path: misc/stopwatch.hpp
+      title: misc/stopwatch.hpp
   - name: string
     pages:
     - icon: ':warning:'
