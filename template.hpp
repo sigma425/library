@@ -109,16 +109,3 @@ int bsl(ull x){
 	if(x==0) return -1;
 	return __builtin_ctzll(x);
 }
-
-
-template<class T>
-T rnd(T l,T r){	//[l,r)
-	using D = uniform_int_distribution<T>;
-	static random_device rd;
-	static mt19937 gen(rd());
-	return D(l,r-1)(gen);
-}
-template<class T>
-T rnd(T n){	//[0,n)
-	return rnd(T(0),n);
-}
