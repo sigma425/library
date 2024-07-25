@@ -8,6 +8,7 @@ struct Matrix: public vector<vector<T>>{
 
 	Matrix(int n) : vector<vector<T>>(n,vector<T>(n)){}
 	Matrix(int h,int w) : vector<vector<T>>(h,vector<T>(w)){}
+	Matrix(const vector<vector<T>>& m){(*this) = m;}
 
 	static Matrix E(int n){
 		Matrix a(n,n);

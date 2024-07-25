@@ -6,7 +6,7 @@
 */
 
 template<unsigned int mod_>
-struct ModInt{
+struct ModInt{	
 	using uint = unsigned int;
 	using ll = long long;
 	using ull = unsigned long long;
@@ -74,6 +74,16 @@ struct ModInt{
 		return o;
 	}
 	friend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}
+	// friend ostream& operator<<(ostream &o,const ModInt& x){
+	// 	for(int b=1;b<=100;b++){
+	// 		for(int a=-100;a<=100;a++){
+	// 			if(ModInt(a)/b == x){
+	// 				return o << a << "/" << b;
+	// 			}
+	// 		}
+	// 	}
+	// 	return o<<x.v;
+	// }
 };
 using mint = ModInt<998244353>;
 //using mint = ModInt<1000000007>;
