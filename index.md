@@ -36,8 +36,17 @@ data:
       path: DP/Narou.cpp
       title: DP/Narou.cpp
     - icon: ':warning:'
+      path: DP/axiotis_tzamos_knapsack.hpp
+      title: DP/axiotis_tzamos_knapsack.hpp
+    - icon: ':heavy_check_mark:'
+      path: DP/maxplus_convolution_b_concave.hpp
+      title: DP/maxplus_convolution_b_concave.hpp
+    - icon: ':warning:'
       path: DP/monotone minima.cpp
       title: DP/monotone minima.cpp
+    - icon: ':heavy_check_mark:'
+      path: DP/smawk.hpp
+      title: DP/smawk.hpp
     - icon: ':warning:'
       path: DP/treeKnapsack.cpp
       title: DP/treeKnapsack.cpp
@@ -625,6 +634,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/matrix_basic.test.cpp
       title: test_oj/matrix_basic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/maxplus_convolution_b_concave.test.cpp
+      title: test_oj/maxplus_convolution_b_concave.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/polynomial_taylor_shift.test.cpp
       title: test_oj/polynomial_taylor_shift.test.cpp

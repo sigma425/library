@@ -6,6 +6,15 @@ data:
     path: 0.cpp
     title: 0.cpp
   - icon: ':warning:'
+    path: DP/axiotis_tzamos_knapsack.hpp
+    title: DP/axiotis_tzamos_knapsack.hpp
+  - icon: ':heavy_check_mark:'
+    path: DP/maxplus_convolution_b_concave.hpp
+    title: DP/maxplus_convolution_b_concave.hpp
+  - icon: ':heavy_check_mark:'
+    path: DP/smawk.hpp
+    title: DP/smawk.hpp
+  - icon: ':warning:'
     path: geom/RotatingPoints.cpp
     title: geom/RotatingPoints.cpp
   - icon: ':warning:'
@@ -15,6 +24,9 @@ data:
     path: misc/color_debug.cpp
     title: misc/color_debug.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/maxplus_convolution_b_concave.test.cpp
+    title: test_oj/maxplus_convolution_b_concave.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
@@ -123,16 +135,20 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - misc/color_debug.cpp
-  - geom/RotatingPoints.cpp
-  - math/famous_seq/unrooted_tree.cpp
+  - DP/smawk.hpp
+  - DP/maxplus_convolution_b_concave.hpp
+  - DP/axiotis_tzamos_knapsack.hpp
   - 0.cpp
+  - misc/color_debug.cpp
+  - math/famous_seq/unrooted_tree.cpp
+  - geom/RotatingPoints.cpp
   timestamp: '2024-03-26 11:02:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/maxplus_convolution_b_concave.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:
