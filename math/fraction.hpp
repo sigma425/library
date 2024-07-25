@@ -2,27 +2,19 @@
 	有理数体
 	任意/正, gcd = 1 で常に持つ
 	verified at https://official.contest.yandex.ru/opencupXIX/contest/9262/problems/K (Q上で連立方程式)
-*/
-int bsf(ll x) { return __builtin_ctzll(x); } 
-ll gcd(ll a, ll b){
-	a = abs(a), b = abs(b);
-	if(a==0) return b;
-	if(b==0) return a;
-	int shift = bsf(a|b);
-	a >>= bsf(a);
-	do{
-		b >>= bsf(b);
-		if(a>b) swap(a,b);
-		b -= a;
-	}while(b);
-	return a<<shift;
-}
 
+	using F = Frac<ll>;
+*/
+
+#pragma once
+#include <ostream>
+
+template<class Int>
 struct Frac{
-	ll x,y;		// x/y
-	Frac(ll x_ = 0):x(x_),y(1){}
-	Frac(ll x_,ll y_){
-		ll g = gcd(x_,y_);
+	Int x,y;		// x/y
+	Frac(Int x_ = 0):x(x_),y(1){}
+	Frac(Int x_,Int y_){
+		Int g = __gcd((x_>=0?x_:-x_),(y_>=0?y_:-y_));	// int128だとgcd,absとかが使えないので
 		if(y_ < 0) g = -g;
 		x = x_ / g;
 		y = y_ / g;
@@ -51,7 +43,7 @@ struct Frac{
 	Frac inv() const {
 		return Frac(y,x);
 	}
-	friend ostream& operator<<(ostream &o,const Frac& x){
+	friend std::ostream& operator<<(std::ostream &o,const Frac& x){
 		return o << x.x << "/" << x.y;
 	}
 };
