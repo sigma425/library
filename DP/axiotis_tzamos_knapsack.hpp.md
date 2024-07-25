@@ -104,39 +104,35 @@ data:
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
-    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
-    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
-    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\
-    \ntemplate<class Select>\nvector<int> smawk(int H, int W, Select select){\n\t\
-    auto rec = [&](auto&& self, const vector<int>& hs, const vector<int>& ws) -> vector<int>\
-    \ {\n\t\tint N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\
-    \t\tfor(int i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int\
-    \ w: ws){\n\t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\
-    \t\t\t\tw2.pop_back();\n\t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t\
-    }\n\n\t\tvector<int> a2 = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2))\
-    \ ans[i*2+1] = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i]\
-    \ = w2[j];\n\t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j]\
-    \ != end){\n\t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\t\
-    ans[i] = w2[j];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int>\
-    \ hs(H); iota(all(hs),0);\n\tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n\
-    }\n#line 17 \"DP/maxplus_convolution_b_concave.hpp\"\n\ntemplate<class T, bool\
-    \ is_max>\nvector<T> maxplus_conv(const vector<T>& a, const vector<T>& b){\n\t\
-    int A = a.size(), B = b.size();\n\tauto f = [&](int i, int j){\n\t\treturn a[j]\
-    \ + b[i-j];\n\t};\n\tauto select = [&](int i, int j1, int j2){\n\t\tif(i < j2)\
-    \ return false;\n\t\tif(i-j1 >= B) return true;\n\t\t// max plus convolution,\
-    \ b: concave\n\t\tif(is_max) return f(i,j1) <= f(i,j2);\n\t\t// min plus convolution,\
-    \ b: convex\n\t\telse return f(i,j1) >= f(i,j2);\n\t};\n\tvector<int> amax = smawk(A+B-1,\
-    \ A, select);\n\tvector<T> c(A+B-1);\n\trep(i,A+B-1) c[i] = f(i, amax[i]);\n\t\
-    return c;\n}\n#line 16 \"DP/axiotis_tzamos_knapsack.hpp\"\n\ntemplate<class T>\n\
-    vector<T> knapsack(vector<pair<int,T>> items, int W){\n\tvector<vector<T>> w2vs(W+1);\n\
-    \tfor(auto [w,v]: items){\n\t\tif(w > W) continue;\n\t\tw2vs[w].push_back(v);\n\
-    \t}\n\tconst T inf = 1e18;\n\tvector<T> dp(W+1, -inf); dp[0] = 0;\n\trep1(w,W)\
-    \ if(!w2vs[w].empty()){\n\t\tauto& vs = w2vs[w];\n\t\tsort(all(vs),greater<T>());\n\
-    \t\tint K = min(W/w, si(vs));\n\t\tV<T> b(K+1); rep(i,K) b[i+1] = b[i] + vs[i];\n\
-    \t\trep(r,w){\n\t\t\tint n = (W-r)/w;\n\t\t\tV<T> a(n+1); rep(i,n+1) a[i] = dp[i*w+r];\n\
-    \t\t\tauto c = maxplus_conv<T,true>(a,b);\n\t\t\trep(i,n+1) dp[i*w+r] = c[i];\n\
-    \t\t}\n\t}\n\treturn dp;\n}\n"
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\ntemplate<class\
+    \ Select>\nvector<int> smawk(int H, int W, Select select){\n\tauto rec = [&](auto&&\
+    \ self, const vector<int>& hs, const vector<int>& ws) -> vector<int> {\n\t\tint\
+    \ N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\t\tfor(int\
+    \ i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int w: ws){\n\
+    \t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\t\t\t\tw2.pop_back();\n\
+    \t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t}\n\n\t\tvector<int> a2\
+    \ = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2)) ans[i*2+1]\
+    \ = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i] = w2[j];\n\
+    \t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j] != end){\n\
+    \t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\tans[i] = w2[j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int> hs(H); iota(all(hs),0);\n\
+    \tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n}\n#line 17 \"\
+    DP/maxplus_convolution_b_concave.hpp\"\n\ntemplate<class T, bool is_max>\nvector<T>\
+    \ maxplus_conv(const vector<T>& a, const vector<T>& b){\n\tint A = a.size(), B\
+    \ = b.size();\n\tauto f = [&](int i, int j){\n\t\treturn a[j] + b[i-j];\n\t};\n\
+    \tauto select = [&](int i, int j1, int j2){\n\t\tif(i < j2) return false;\n\t\t\
+    if(i-j1 >= B) return true;\n\t\t// max plus convolution, b: concave\n\t\tif(is_max)\
+    \ return f(i,j1) <= f(i,j2);\n\t\t// min plus convolution, b: convex\n\t\telse\
+    \ return f(i,j1) >= f(i,j2);\n\t};\n\tvector<int> amax = smawk(A+B-1, A, select);\n\
+    \tvector<T> c(A+B-1);\n\trep(i,A+B-1) c[i] = f(i, amax[i]);\n\treturn c;\n}\n\
+    #line 16 \"DP/axiotis_tzamos_knapsack.hpp\"\n\ntemplate<class T>\nvector<T> knapsack(vector<pair<int,T>>\
+    \ items, int W){\n\tvector<vector<T>> w2vs(W+1);\n\tfor(auto [w,v]: items){\n\t\
+    \tif(w > W) continue;\n\t\tw2vs[w].push_back(v);\n\t}\n\tconst T inf = 1e18;\n\
+    \tvector<T> dp(W+1, -inf); dp[0] = 0;\n\trep1(w,W) if(!w2vs[w].empty()){\n\t\t\
+    auto& vs = w2vs[w];\n\t\tsort(all(vs),greater<T>());\n\t\tint K = min(W/w, si(vs));\n\
+    \t\tV<T> b(K+1); rep(i,K) b[i+1] = b[i] + vs[i];\n\t\trep(r,w){\n\t\t\tint n =\
+    \ (W-r)/w;\n\t\t\tV<T> a(n+1); rep(i,n+1) a[i] = dp[i*w+r];\n\t\t\tauto c = maxplus_conv<T,true>(a,b);\n\
+    \t\t\trep(i,n+1) dp[i*w+r] = c[i];\n\t\t}\n\t}\n\treturn dp;\n}\n"
   code: "/*\n\t(w_i,v_i) \u3068 W \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067\
     \ sum = w \u3067\u306E\u4FA1\u5024\u306E\u6700\u5927 dp[w] \u3092 w \\in [0,W]\
     \ \u306B\u3064\u3044\u3066\u6C42\u3081\u308B\n\t\u4E0D\u53EF\u80FD\u306A\u3089\
@@ -169,7 +165,7 @@ data:
   isVerificationFile: false
   path: DP/axiotis_tzamos_knapsack.hpp
   requiredBy: []
-  timestamp: '2024-07-25 10:55:58+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/axiotis_tzamos_knapsack.hpp

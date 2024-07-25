@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: math/mint.cpp
+    title: math/mint.cpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/famous_seq/unrooted_tree.cpp
@@ -12,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
   - icon: ':x:'
@@ -40,53 +43,63 @@ data:
     - https://www.luogu.com.cn/problem/P5373
     - https://www.luogu.com.cn/problem/P5809
   bundledCode: "#line 1 \"math/poly.cpp\"\n/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\
-    \n\tpoly \u57FA\u672C, MultipointEval, Interpolate\n*/\ntemplate<unsigned int\
-    \ mod_>\nstruct ModInt{\n\tusing uint = unsigned int;\n\tusing ll = long long;\n\
-    \tusing ull = unsigned long long;\n\n\tconstexpr static uint mod = mod_;\n\n\t\
-    uint v;\n\tModInt():v(0){}\n\tModInt(ll _v):v(normS(_v%mod+mod)){}\n\texplicit\
-    \ operator bool() const {return v!=0;}\n\tstatic uint normS(const uint &x){return\
-    \ (x<mod)?x:x-mod;}\t\t// [0 , 2*mod-1] -> [0 , mod-1]\n\tstatic ModInt make(const\
-    \ uint &x){ModInt m; m.v=x; return m;}\n\tModInt operator+(const ModInt& b) const\
-    \ { return make(normS(v+b.v));}\n\tModInt operator-(const ModInt& b) const { return\
-    \ make(normS(v+mod-b.v));}\n\tModInt operator-() const { return make(normS(mod-v));\
-    \ }\n\tModInt operator*(const ModInt& b) const { return make((ull)v*b.v%mod);}\n\
-    \tModInt operator/(const ModInt& b) const { return *this*b.inv();}\n\tModInt&\
-    \ operator+=(const ModInt& b){ return *this=*this+b;}\n\tModInt& operator-=(const\
-    \ ModInt& b){ return *this=*this-b;}\n\tModInt& operator*=(const ModInt& b){ return\
-    \ *this=*this*b;}\n\tModInt& operator/=(const ModInt& b){ return *this=*this/b;}\n\
-    \tModInt& operator++(int){ return *this=*this+1;}\n\tModInt& operator--(int){\
-    \ return *this=*this-1;}\n\ttemplate<class T> friend ModInt operator+(T a, const\
-    \ ModInt& b){ return (ModInt(a) += b);}\n\ttemplate<class T> friend ModInt operator-(T\
-    \ a, const ModInt& b){ return (ModInt(a) -= b);}\n\ttemplate<class T> friend ModInt\
-    \ operator*(T a, const ModInt& b){ return (ModInt(a) *= b);}\n\ttemplate<class\
-    \ T> friend ModInt operator/(T a, const ModInt& b){ return (ModInt(a) /= b);}\n\
-    \tModInt pow(ll p) const {\n\t\tif(p<0) return inv().pow(-p);\n\t\tModInt a =\
-    \ 1;\n\t\tModInt x = *this;\n\t\twhile(p){\n\t\t\tif(p&1) a *= x;\n\t\t\tx *=\
-    \ x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn a;\n\t}\n\tModInt inv() const {\t\t//\
-    \ should be prime\n\t\treturn pow(mod-2);\n\t}\n\t// ll extgcd(ll a,ll b,ll &x,ll\
-    \ &y) const{\n\t// \tll p[]={a,1,0},q[]={b,0,1};\n\t// \twhile(*q){\n\t// \t\t\
-    ll t=*p/ *q;\n\t// \t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t// \t}\n\t// \tif(p[0]<0)\
-    \ rep(i,3) p[i]=-p[i];\n\t// \tx=p[1],y=p[2];\n\t// \treturn p[0];\n\t// }\n\t\
-    // ModInt inv() const {\n\t// \tll x,y;\n\t// \textgcd(v,mod,x,y);\n\t// \treturn\
-    \ make(normS(x+mod));\n\t// }\n\n\tbool operator==(const ModInt& b) const { return\
-    \ v==b.v;}\n\tbool operator!=(const ModInt& b) const { return v!=b.v;}\n\tbool\
-    \ operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
+    \n\tpoly \u57FA\u672C, MultipointEval, Interpolate\n*/\n\n#line 1 \"math/mint.cpp\"\
+    \n/*\n\t\u4EFB\u610Fmod \u306A\u3089 \n\ttemplate \u306A\u304F\u3057\u3066 costexpr\
+    \ \u306E\u884C\u6D88\u3057\u3066 global \u306B unsigned int mod = 1;\n\t\u3067\
+    \ cin>>mod \u3057\u3066\u304B\u3089\u4F7F\u3046\n\t\u4EFB\u610F mod \u306F\u304B\
+    \u306A\u308A\u9045\u3044\u306E\u3067\u3001\u3067\u304D\u308C\u3070 \"atcoder/modint\"\
+    \ \u3092\u4F7F\u3046\n*/\n\ntemplate<unsigned int mod_>\nstruct ModInt{\t\n\t\
+    using uint = unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long\
+    \ long;\n\n\tconstexpr static uint mod = mod_;\n\n\tuint v;\n\tModInt():v(0){}\n\
+    \tModInt(ll _v):v(normS(_v%mod+mod)){}\n\texplicit operator bool() const {return\
+    \ v!=0;}\n\tstatic uint normS(const uint &x){return (x<mod)?x:x-mod;}\t\t// [0\
+    \ , 2*mod-1] -> [0 , mod-1]\n\tstatic ModInt make(const uint &x){ModInt m; m.v=x;\
+    \ return m;}\n\tModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}\n\
+    \tModInt operator-(const ModInt& b) const { return make(normS(v+mod-b.v));}\n\t\
+    ModInt operator-() const { return make(normS(mod-v)); }\n\tModInt operator*(const\
+    \ ModInt& b) const { return make((ull)v*b.v%mod);}\n\tModInt operator/(const ModInt&\
+    \ b) const { return *this*b.inv();}\n\tModInt& operator+=(const ModInt& b){ return\
+    \ *this=*this+b;}\n\tModInt& operator-=(const ModInt& b){ return *this=*this-b;}\n\
+    \tModInt& operator*=(const ModInt& b){ return *this=*this*b;}\n\tModInt& operator/=(const\
+    \ ModInt& b){ return *this=*this/b;}\n\tModInt& operator++(int){ return *this=*this+1;}\n\
+    \tModInt& operator--(int){ return *this=*this-1;}\n\ttemplate<class T> friend\
+    \ ModInt operator+(T a, const ModInt& b){ return (ModInt(a) += b);}\n\ttemplate<class\
+    \ T> friend ModInt operator-(T a, const ModInt& b){ return (ModInt(a) -= b);}\n\
+    \ttemplate<class T> friend ModInt operator*(T a, const ModInt& b){ return (ModInt(a)\
+    \ *= b);}\n\ttemplate<class T> friend ModInt operator/(T a, const ModInt& b){\
+    \ return (ModInt(a) /= b);}\n\tModInt pow(ll p) const {\n\t\tif(p<0) return inv().pow(-p);\n\
+    \t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\twhile(p){\n\t\t\tif(p&1) a *= x;\n\
+    \t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn a;\n\t}\n\tModInt inv() const\
+    \ {\t\t// should be prime\n\t\treturn pow(mod-2);\n\t}\n\t// ll extgcd(ll a,ll\
+    \ b,ll &x,ll &y) const{\n\t// \tll p[]={a,1,0},q[]={b,0,1};\n\t// \twhile(*q){\n\
+    \t// \t\tll t=*p/ *q;\n\t// \t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t// \t}\n\t\
+    // \tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t// \tx=p[1],y=p[2];\n\t// \treturn p[0];\n\
+    \t// }\n\t// ModInt inv() const {\n\t// \tll x,y;\n\t// \textgcd(v,mod,x,y);\n\
+    \t// \treturn make(normS(x+mod));\n\t// }\n\n\tbool operator==(const ModInt& b)\
+    \ const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return v!=b.v;}\n\
+    \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    };\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint>\
-    \ fact,ifact,invs;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\t\
-    return fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\t//[0,N]\n\t\
-    N++;\n\tfact.resize(N);\n\tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\
-    \trep1(i,N-1) fact[i] = fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int\
-    \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
-    \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
-    a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
-    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE IF MOD\
-    \ is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst\
-    \ mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\
-    \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
-    \ mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root\
-    \ = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
+    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
+    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
+    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
+    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
+    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
+    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
+    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
+    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
+    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
+    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
+    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line\
+    \ 7 \"math/poly.cpp\"\n\n// inplace_fmt (without bit rearranging)\n// fft:\n//\
+    \ \t\ta[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\\
+    sum_j \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE\
+    \ IF MOD is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\n\
+    const mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>&\
+    \ a){\n\tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2\
+    \ = mod + mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint\
+    \ root = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
     \ & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\
     \tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
     \t\t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\
@@ -289,9 +302,9 @@ data:
     \treturn res;\n}\n\n// Q log^2 Q \u3067\u306F\u3042\u308B\n// \u9AD8\u901F\u306A\
     \u306E\u306F\u3046\u307E\u304F subproduct tree \u3092\u69CB\u7BC9\u3059\u308B\u3089\
     \u3057\u3044\n// maroon https://judge.yosupo.jp/submission/3240 160ms\n// verify:\
-    \ https://judge.yosupo.jp/submission/45006 950ms \u304A\u305B\uFF5E\ntemplate<class\
-    \ mint>\nV<mint> MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\
-    \tint s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
+    \ https://judge.yosupo.jp/submission/45006 950ms\ntemplate<class mint>\nV<mint>\
+    \ MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\tint\
+    \ s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
     \ = {-a[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2] * g[i*2+1];\n\tg[1] = f\
     \ % g[1];\n\tfor(int i=2;i<s+Q;i++) g[i] = g[i>>1] % g[i];\n\tV<mint> res(Q);\n\
     \trep(i,Q) res[i] = g[s+i][0];\n\treturn res;\n}\n\n// N log^2 N \u3067\u306F\u3042\
@@ -324,54 +337,16 @@ data:
     \ta[i-1] = ifact[i];\n\t\tb[i-1] = ifact[i] * pw;\n\t}\n\tauto f = b*a.inv(K+1);\n\
     \tV<mint> res(K+1);\n\trep(k,K+1) res[k] = f[k] * fact[k];\n\treturn res;\n}\n"
   code: "/*\n\t2021/04/14 \u5927\u5E45\u5909\u66F4\n\tpoly \u57FA\u672C, MultipointEval,\
-    \ Interpolate\n*/\ntemplate<unsigned int mod_>\nstruct ModInt{\n\tusing uint =\
-    \ unsigned int;\n\tusing ll = long long;\n\tusing ull = unsigned long long;\n\n\
-    \tconstexpr static uint mod = mod_;\n\n\tuint v;\n\tModInt():v(0){}\n\tModInt(ll\
-    \ _v):v(normS(_v%mod+mod)){}\n\texplicit operator bool() const {return v!=0;}\n\
-    \tstatic uint normS(const uint &x){return (x<mod)?x:x-mod;}\t\t// [0 , 2*mod-1]\
-    \ -> [0 , mod-1]\n\tstatic ModInt make(const uint &x){ModInt m; m.v=x; return\
-    \ m;}\n\tModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}\n\
-    \tModInt operator-(const ModInt& b) const { return make(normS(v+mod-b.v));}\n\t\
-    ModInt operator-() const { return make(normS(mod-v)); }\n\tModInt operator*(const\
-    \ ModInt& b) const { return make((ull)v*b.v%mod);}\n\tModInt operator/(const ModInt&\
-    \ b) const { return *this*b.inv();}\n\tModInt& operator+=(const ModInt& b){ return\
-    \ *this=*this+b;}\n\tModInt& operator-=(const ModInt& b){ return *this=*this-b;}\n\
-    \tModInt& operator*=(const ModInt& b){ return *this=*this*b;}\n\tModInt& operator/=(const\
-    \ ModInt& b){ return *this=*this/b;}\n\tModInt& operator++(int){ return *this=*this+1;}\n\
-    \tModInt& operator--(int){ return *this=*this-1;}\n\ttemplate<class T> friend\
-    \ ModInt operator+(T a, const ModInt& b){ return (ModInt(a) += b);}\n\ttemplate<class\
-    \ T> friend ModInt operator-(T a, const ModInt& b){ return (ModInt(a) -= b);}\n\
-    \ttemplate<class T> friend ModInt operator*(T a, const ModInt& b){ return (ModInt(a)\
-    \ *= b);}\n\ttemplate<class T> friend ModInt operator/(T a, const ModInt& b){\
-    \ return (ModInt(a) /= b);}\n\tModInt pow(ll p) const {\n\t\tif(p<0) return inv().pow(-p);\n\
-    \t\tModInt a = 1;\n\t\tModInt x = *this;\n\t\twhile(p){\n\t\t\tif(p&1) a *= x;\n\
-    \t\t\tx *= x;\n\t\t\tp >>= 1;\n\t\t}\n\t\treturn a;\n\t}\n\tModInt inv() const\
-    \ {\t\t// should be prime\n\t\treturn pow(mod-2);\n\t}\n\t// ll extgcd(ll a,ll\
-    \ b,ll &x,ll &y) const{\n\t// \tll p[]={a,1,0},q[]={b,0,1};\n\t// \twhile(*q){\n\
-    \t// \t\tll t=*p/ *q;\n\t// \t\trep(i,3) swap(p[i]-=t*q[i],q[i]);\n\t// \t}\n\t\
-    // \tif(p[0]<0) rep(i,3) p[i]=-p[i];\n\t// \tx=p[1],y=p[2];\n\t// \treturn p[0];\n\
-    \t// }\n\t// ModInt inv() const {\n\t// \tll x,y;\n\t// \textgcd(v,mod,x,y);\n\
-    \t// \treturn make(normS(x+mod));\n\t// }\n\n\tbool operator==(const ModInt& b)\
-    \ const { return v==b.v;}\n\tbool operator!=(const ModInt& b) const { return v!=b.v;}\n\
-    \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
-    \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
-    \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    };\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint>\
-    \ fact,ifact,invs;\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\t\
-    return fact[a] * ifact[b] * ifact[a-b];\n}\nvoid InitFact(int N){\t//[0,N]\n\t\
-    N++;\n\tfact.resize(N);\n\tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\
-    \trep1(i,N-1) fact[i] = fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int\
-    \ i=N-2;i>=0;i--) ifact[i] = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1]\
-    \ * ifact[i];\n}\n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\t\
-    a[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j\
-    \ \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE IF MOD\
-    \ is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst\
-    \ mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\
-    \tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2 = mod +\
-    \ mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root\
-    \ = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
-    \ & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\
-    \tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
+    \ Interpolate\n*/\n\n#include \"math/mint.cpp\"\n\n// inplace_fmt (without bit\
+    \ rearranging)\n// fft:\n// \t\ta[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n\
+    //\t\ta[i] <- (1/n) \\sum_j \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\
+    \n\n// !!! CHANGE IF MOD is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t\
+    // ord_2 (mod-1)\nconst mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\
+    \nvoid fft(V<mint>& a){\n\tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr\
+    \ uint mod2 = mod + mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic\
+    \ const mint root = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\
+    \tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power\
+    \ of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
     \t\t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\
     \t\t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\
     \t// < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\
@@ -572,9 +547,9 @@ data:
     \treturn res;\n}\n\n// Q log^2 Q \u3067\u306F\u3042\u308B\n// \u9AD8\u901F\u306A\
     \u306E\u306F\u3046\u307E\u304F subproduct tree \u3092\u69CB\u7BC9\u3059\u308B\u3089\
     \u3057\u3044\n// maroon https://judge.yosupo.jp/submission/3240 160ms\n// verify:\
-    \ https://judge.yosupo.jp/submission/45006 950ms \u304A\u305B\uFF5E\ntemplate<class\
-    \ mint>\nV<mint> MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\
-    \tint s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
+    \ https://judge.yosupo.jp/submission/45006 950ms\ntemplate<class mint>\nV<mint>\
+    \ MultipointEval(const Poly<mint>& f, V<mint> a){\n\tint Q = a.size();\n\tint\
+    \ s = 1; while(s < Q) s *= 2;\n\tV<Poly<mint>> g(s+s,{1});\n\trep(i,Q) g[s+i]\
     \ = {-a[i],1};\n\tfor(int i=s-1;i>0;i--) g[i] = g[i*2] * g[i*2+1];\n\tg[1] = f\
     \ % g[1];\n\tfor(int i=2;i<s+Q;i++) g[i] = g[i>>1] % g[i];\n\tV<mint> res(Q);\n\
     \trep(i,Q) res[i] = g[s+i][0];\n\treturn res;\n}\n\n// N log^2 N \u3067\u306F\u3042\
@@ -606,12 +581,13 @@ data:
     \tPoly<mint> a(K+1),b(K+1);\n\tmint pw = 1;\n\trep1(i,K+1){\n\t\tpw *= n+1;\n\t\
     \ta[i-1] = ifact[i];\n\t\tb[i-1] = ifact[i] * pw;\n\t}\n\tauto f = b*a.inv(K+1);\n\
     \tV<mint> res(K+1);\n\trep(k,K+1) res[k] = f[k] * fact[k];\n\treturn res;\n}\n"
-  dependsOn: []
+  dependsOn:
+  - math/mint.cpp
   isVerificationFile: false
   path: math/poly.cpp
   requiredBy:
   - math/famous_seq/unrooted_tree.cpp
-  timestamp: '2024-03-26 11:08:36+09:00'
+  timestamp: '2024-07-25 11:02:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/polynomial_taylor_shift.test.cpp

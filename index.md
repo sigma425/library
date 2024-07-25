@@ -105,6 +105,9 @@ data:
       path: ds/mo.cpp
       title: ds/mo.cpp
     - icon: ':warning:'
+      path: ds/ndarray.cpp
+      title: ds/ndarray.cpp
+    - icon: ':warning:'
       path: ds/slide.cpp
       title: ds/slide.cpp
   - name: ds/RBST
@@ -393,9 +396,6 @@ data:
       path: math/FloorKthRoot.cpp
       title: math/FloorKthRoot.cpp
     - icon: ':warning:'
-      path: math/Frac.cpp
-      title: math/Frac.cpp
-    - icon: ':warning:'
       path: math/IncreasingProb.cpp
       title: math/IncreasingProb.cpp
     - icon: ':warning:'
@@ -441,6 +441,9 @@ data:
       path: math/factorization.cpp
       title: math/factorization.cpp
     - icon: ':warning:'
+      path: math/fraction.hpp
+      title: math/fraction.hpp
+    - icon: ':warning:'
       path: math/game_number.cpp
       title: math/game_number.cpp
     - icon: ':warning:'
@@ -476,7 +479,7 @@ data:
     - icon: ':warning:'
       path: math/matroid.cpp
       title: math/matroid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
@@ -503,9 +506,6 @@ data:
     - icon: ':warning:'
       path: math/primitiveroot.cpp
       title: math/primitiveroot.cpp
-    - icon: ':warning:'
-      path: math/rand.cpp
-      title: math/rand.cpp
     - icon: ':warning:'
       path: math/sparseDet.cpp
       title: math/sparseDet.cpp
@@ -578,6 +578,9 @@ data:
     - icon: ':warning:'
       path: misc/int128.cpp
       title: misc/int128.cpp
+    - icon: ':warning:'
+      path: misc/rand.hpp
+      title: misc/rand.hpp
     - icon: ':warning:'
       path: misc/stack_expand.cpp
       title: misc/stack_expand.cpp
@@ -674,7 +677,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_conv.test.cpp
       title: test_oj/online_conv/online_conv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/online_conv/online_div.test.cpp
       title: test_oj/online_conv/online_div.test.cpp
     - icon: ':x:'

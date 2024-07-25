@@ -52,11 +52,11 @@ data:
     \ s,int t){\n\t\tD flow=0;\n\t\twhile(true){\n\t\t\tbfs(s);\n\t\t\tif(level[t]<0)\
     \ return flow;\n\t\t\titer = vector<int>(N,0);\n\t\t\tD f;\n\t\t\twhile( (f=dfs(s,t,inf))>0\
     \ ) flow+=f;\n\t\t}\n\t}\n\n\tvector<int> calcCut(int s,int t){\n\t\tvector<int>\
-    \ which(N,-1);\t\t\t// 0: S, 1: T\n\t\tauto dfs2 = [&](auto& self, int v) -> void{\n\
-    \t\t\tif(which[v] != -1) return;\n\t\t\twhich[v] = 0;\n\t\t\tfor(auto e: G[v])\
-    \ if(e.cap>0) self(self,e.to);\n\t\t};\n\t\tdfs2(dfs2,s);\n\t\trep(i,N) if(which[i]\
-    \ == -1) which[i] = 1;\n\t\tassert(which[t] == 1);\n\t\treturn which;\n\t}\n};\n\
-    struct UnionFind{\n\tvector<int> par;\n\tUnionFind(int N){\n\t\tpar.assign(N,0);\n\
+    \ which(N,-1);\t\t\t// 0: S, 1: T\n\t\tauto dfs2 = [&](auto& self, int v) -> void\
+    \ {\n\t\t\tif(which[v] != -1) return;\n\t\t\twhich[v] = 0;\n\t\t\tfor(auto e:\
+    \ G[v]) if(e.cap>0) self(self,e.to);\n\t\t};\n\t\tdfs2(dfs2,s);\n\t\trep(i,N)\
+    \ if(which[i] == -1) which[i] = 1;\n\t\tassert(which[t] == 1);\n\t\treturn which;\n\
+    \t}\n};\nstruct UnionFind{\n\tvector<int> par;\n\tUnionFind(int N){\n\t\tpar.assign(N,0);\n\
     \t\trep(i,N) par[i]=i;\n\t}\n\tint find(int x){\n\t\tif(par[x]==x) return x;\n\
     \t\treturn par[x]=find(par[x]);\n\t}\n\tbool same(int x,int y){\n\t\treturn find(x)==find(y);\n\
     \t}\n\tvoid unite(int x,int y){\n\t\tx=find(x),y=find(y);\n\t\tif(x==y) return;\n\
@@ -125,11 +125,11 @@ data:
     \ s,int t){\n\t\tD flow=0;\n\t\twhile(true){\n\t\t\tbfs(s);\n\t\t\tif(level[t]<0)\
     \ return flow;\n\t\t\titer = vector<int>(N,0);\n\t\t\tD f;\n\t\t\twhile( (f=dfs(s,t,inf))>0\
     \ ) flow+=f;\n\t\t}\n\t}\n\n\tvector<int> calcCut(int s,int t){\n\t\tvector<int>\
-    \ which(N,-1);\t\t\t// 0: S, 1: T\n\t\tauto dfs2 = [&](auto& self, int v) -> void{\n\
-    \t\t\tif(which[v] != -1) return;\n\t\t\twhich[v] = 0;\n\t\t\tfor(auto e: G[v])\
-    \ if(e.cap>0) self(self,e.to);\n\t\t};\n\t\tdfs2(dfs2,s);\n\t\trep(i,N) if(which[i]\
-    \ == -1) which[i] = 1;\n\t\tassert(which[t] == 1);\n\t\treturn which;\n\t}\n};\n\
-    struct UnionFind{\n\tvector<int> par;\n\tUnionFind(int N){\n\t\tpar.assign(N,0);\n\
+    \ which(N,-1);\t\t\t// 0: S, 1: T\n\t\tauto dfs2 = [&](auto& self, int v) -> void\
+    \ {\n\t\t\tif(which[v] != -1) return;\n\t\t\twhich[v] = 0;\n\t\t\tfor(auto e:\
+    \ G[v]) if(e.cap>0) self(self,e.to);\n\t\t};\n\t\tdfs2(dfs2,s);\n\t\trep(i,N)\
+    \ if(which[i] == -1) which[i] = 1;\n\t\tassert(which[t] == 1);\n\t\treturn which;\n\
+    \t}\n};\nstruct UnionFind{\n\tvector<int> par;\n\tUnionFind(int N){\n\t\tpar.assign(N,0);\n\
     \t\trep(i,N) par[i]=i;\n\t}\n\tint find(int x){\n\t\tif(par[x]==x) return x;\n\
     \t\treturn par[x]=find(par[x]);\n\t}\n\tbool same(int x,int y){\n\t\treturn find(x)==find(y);\n\
     \t}\n\tvoid unite(int x,int y){\n\t\tx=find(x),y=find(y);\n\t\tif(x==y) return;\n\
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: graph/Flow/ProjectSelection.cpp
   requiredBy: []
-  timestamp: '2021-10-18 03:39:53+09:00'
+  timestamp: '2024-07-25 11:01:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/Flow/ProjectSelection.cpp

@@ -91,31 +91,27 @@ data:
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
-    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
-    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
-    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\
-    \ntemplate<class Select>\nvector<int> smawk(int H, int W, Select select){\n\t\
-    auto rec = [&](auto&& self, const vector<int>& hs, const vector<int>& ws) -> vector<int>\
-    \ {\n\t\tint N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\
-    \t\tfor(int i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int\
-    \ w: ws){\n\t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\
-    \t\t\t\tw2.pop_back();\n\t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t\
-    }\n\n\t\tvector<int> a2 = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2))\
-    \ ans[i*2+1] = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i]\
-    \ = w2[j];\n\t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j]\
-    \ != end){\n\t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\t\
-    ans[i] = w2[j];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int>\
-    \ hs(H); iota(all(hs),0);\n\tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n\
-    }\n#line 17 \"DP/maxplus_convolution_b_concave.hpp\"\n\ntemplate<class T, bool\
-    \ is_max>\nvector<T> maxplus_conv(const vector<T>& a, const vector<T>& b){\n\t\
-    int A = a.size(), B = b.size();\n\tauto f = [&](int i, int j){\n\t\treturn a[j]\
-    \ + b[i-j];\n\t};\n\tauto select = [&](int i, int j1, int j2){\n\t\tif(i < j2)\
-    \ return false;\n\t\tif(i-j1 >= B) return true;\n\t\t// max plus convolution,\
-    \ b: concave\n\t\tif(is_max) return f(i,j1) <= f(i,j2);\n\t\t// min plus convolution,\
-    \ b: convex\n\t\telse return f(i,j1) >= f(i,j2);\n\t};\n\tvector<int> amax = smawk(A+B-1,\
-    \ A, select);\n\tvector<T> c(A+B-1);\n\trep(i,A+B-1) c[i] = f(i, amax[i]);\n\t\
-    return c;\n}\n"
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\ntemplate<class\
+    \ Select>\nvector<int> smawk(int H, int W, Select select){\n\tauto rec = [&](auto&&\
+    \ self, const vector<int>& hs, const vector<int>& ws) -> vector<int> {\n\t\tint\
+    \ N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\t\tfor(int\
+    \ i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int w: ws){\n\
+    \t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\t\t\t\tw2.pop_back();\n\
+    \t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t}\n\n\t\tvector<int> a2\
+    \ = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2)) ans[i*2+1]\
+    \ = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i] = w2[j];\n\
+    \t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j] != end){\n\
+    \t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\tans[i] = w2[j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int> hs(H); iota(all(hs),0);\n\
+    \tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n}\n#line 17 \"\
+    DP/maxplus_convolution_b_concave.hpp\"\n\ntemplate<class T, bool is_max>\nvector<T>\
+    \ maxplus_conv(const vector<T>& a, const vector<T>& b){\n\tint A = a.size(), B\
+    \ = b.size();\n\tauto f = [&](int i, int j){\n\t\treturn a[j] + b[i-j];\n\t};\n\
+    \tauto select = [&](int i, int j1, int j2){\n\t\tif(i < j2) return false;\n\t\t\
+    if(i-j1 >= B) return true;\n\t\t// max plus convolution, b: concave\n\t\tif(is_max)\
+    \ return f(i,j1) <= f(i,j2);\n\t\t// min plus convolution, b: convex\n\t\telse\
+    \ return f(i,j1) >= f(i,j2);\n\t};\n\tvector<int> amax = smawk(A+B-1, A, select);\n\
+    \tvector<T> c(A+B-1);\n\trep(i,A+B-1) c[i] = f(i, amax[i]);\n\treturn c;\n}\n"
   code: "/*\n\t\u6570\u5217 A, B \u304C\u4E0E\u3048\u3089\u308C\u308B\n\t!!!! B !!!!\
     \ \u306F concave (\u4E0A\u306B\u51F8)\n\tC_k = max_{k=i+j} A_i + B_j \u3092\u51FA\
     \u529B\n\tO(|A|+|B|)\n\n\t\u4F8B\u3048\u3070 knapsack \u3067\u540C\u3058 w \u306B\
@@ -139,7 +135,7 @@ data:
   path: DP/maxplus_convolution_b_concave.hpp
   requiredBy:
   - DP/axiotis_tzamos_knapsack.hpp
-  timestamp: '2024-07-25 10:55:58+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/maxplus_convolution_b_concave.test.cpp

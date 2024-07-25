@@ -52,27 +52,24 @@ data:
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
-    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
-    \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
-    \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
-    }\r\n#line 2 \"geom/RotatingPoints.cpp\"\n\n/*\n\t\u6982\u8981:\n\t\t\u4E8C\u6B21\
-    \u5143\u5E73\u9762\u306E\u70B9\u96C6\u5408\u3092 ax + by \u306E\u9806\u306B\u30BD\
-    \u30FC\u30C8\u3059\u308B\n\t\t\u3068\u3044\u3046\u306E\u3092\u3044\u308D\u3093\
-    \u306A (a,b) \u306B\u3064\u3044\u3066\u3084\u308A\u305F\u3044\n\t\t\u3053\u308C\
-    \u306F\u3050\u308B\u3063\u3068\u4E00\u5468\u3055\u305B\u308C\u3070 O(N^2 log)\
-    \ \u3067\u3067\u304D\u308B\n\t\t\u5B9F\u969B\u306F a,b \u3092\u6307\u5B9A\u3057\
-    \u305F\u4E0A\u3067\u8272\u3005\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\u306E\
-    \u3067\u305D\u306E\u60C5\u5831\u3092 Point / Query \u306B\u4E57\u305B\u308B\n\t\
-    \t\u304B\u306A\u308A\u5B9A\u6570\u500D\u304C\u60AA\u3044\u3068\u3044\u3046\u5642\
-    \u304C\u3042\u308A\u307E\u3059\n\t\n\tPoint:\n\t\tx,y,id \u306F\u5FC5\u9808\n\t\
-    \t(x,y) \u306F distinct \u3058\u3083\u306A\u3044\u3068\u52D5\u304B\u306A\u3044\
-    \n\tQuery:\n\t\ta,b \u306F\u5FC5\u9808\n\t\t(a,b) != (0,0) \u3067\u306A\u3044\u3068\
-    \u3044\u3051\u306A\u3044\n\n\tRotatingPoints<Point,Query> RP(ps,qs) \u3067\u547C\
-    \u3093\u3067\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3092\u76F4\u63A5\
-    \u66F8\u304D\u63DB\u3048\u3066\u5168\u3066\u3092\u3084\u308B\n\tEDIT \u3063\u3066\
-    \u66F8\u3044\u3066\u3042\u308B\u5834\u6240\u3092\u554F\u984C\u3054\u3068\u306B\
-    \u5909\u3048\u308B\n\n\tverify:\n\t\tABC344G https://atcoder.jp/contests/abc344/submissions/51711191\n\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 2\
+    \ \"geom/RotatingPoints.cpp\"\n\n/*\n\t\u6982\u8981:\n\t\t\u4E8C\u6B21\u5143\u5E73\
+    \u9762\u306E\u70B9\u96C6\u5408\u3092 ax + by \u306E\u9806\u306B\u30BD\u30FC\u30C8\
+    \u3059\u308B\n\t\t\u3068\u3044\u3046\u306E\u3092\u3044\u308D\u3093\u306A (a,b)\
+    \ \u306B\u3064\u3044\u3066\u3084\u308A\u305F\u3044\n\t\t\u3053\u308C\u306F\u3050\
+    \u308B\u3063\u3068\u4E00\u5468\u3055\u305B\u308C\u3070 O(N^2 log) \u3067\u3067\
+    \u304D\u308B\n\t\t\u5B9F\u969B\u306F a,b \u3092\u6307\u5B9A\u3057\u305F\u4E0A\u3067\
+    \u8272\u3005\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\u306E\u3067\u305D\u306E\
+    \u60C5\u5831\u3092 Point / Query \u306B\u4E57\u305B\u308B\n\t\t\u304B\u306A\u308A\
+    \u5B9A\u6570\u500D\u304C\u60AA\u3044\u3068\u3044\u3046\u5642\u304C\u3042\u308A\
+    \u307E\u3059\n\t\n\tPoint:\n\t\tx,y,id \u306F\u5FC5\u9808\n\t\t(x,y) \u306F distinct\
+    \ \u3058\u3083\u306A\u3044\u3068\u52D5\u304B\u306A\u3044\n\tQuery:\n\t\ta,b \u306F\
+    \u5FC5\u9808\n\t\t(a,b) != (0,0) \u3067\u306A\u3044\u3068\u3044\u3051\u306A\u3044\
+    \n\n\tRotatingPoints<Point,Query> RP(ps,qs) \u3067\u547C\u3093\u3067\u3001\u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3092\u76F4\u63A5\u66F8\u304D\u63DB\u3048\
+    \u3066\u5168\u3066\u3092\u3084\u308B\n\tEDIT \u3063\u3066\u66F8\u3044\u3066\u3042\
+    \u308B\u5834\u6240\u3092\u554F\u984C\u3054\u3068\u306B\u5909\u3048\u308B\n\n\t\
+    verify:\n\t\tABC344G https://atcoder.jp/contests/abc344/submissions/51711191\n\
     */\n\nstruct Point{\n\tll x,y;\n\tint id;\n\tPoint(ll x_,ll y_,int id_):x(x_),y(y_),id(id_){}\n\
     };\nstruct Query{\n\t// ax+by+c >= 0 \u306A (x,y) \u3092\u30AB\u30A6\u30F3\u30C8\
     \n\tll a,b,c;\n\tQuery(ll a_,ll b_,ll c_):a(a_),b(b_),c(c_){}\n};\n\n\ntemplate<class\
@@ -197,7 +194,7 @@ data:
   isVerificationFile: false
   path: geom/RotatingPoints.cpp
   requiredBy: []
-  timestamp: '2024-03-27 19:15:45+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geom/RotatingPoints.cpp

@@ -81,23 +81,19 @@ data:
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
-    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
-    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
-    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\
-    \ntemplate<class Select>\nvector<int> smawk(int H, int W, Select select){\n\t\
-    auto rec = [&](auto&& self, const vector<int>& hs, const vector<int>& ws) -> vector<int>\
-    \ {\n\t\tint N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\
-    \t\tfor(int i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int\
-    \ w: ws){\n\t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\
-    \t\t\t\tw2.pop_back();\n\t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t\
-    }\n\n\t\tvector<int> a2 = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2))\
-    \ ans[i*2+1] = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i]\
-    \ = w2[j];\n\t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j]\
-    \ != end){\n\t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\t\
-    ans[i] = w2[j];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int>\
-    \ hs(H); iota(all(hs),0);\n\tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n\
-    }\n"
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\ntemplate<class\
+    \ Select>\nvector<int> smawk(int H, int W, Select select){\n\tauto rec = [&](auto&&\
+    \ self, const vector<int>& hs, const vector<int>& ws) -> vector<int> {\n\t\tint\
+    \ N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\t\tfor(int\
+    \ i=1;i<N;i+=2) h2.push_back(hs[i]);\n\n\t\tvector<int> w2;\n\t\tfor(int w: ws){\n\
+    \t\t\twhile(!w2.empty() && select(hs[w2.size()-1], w2.back(), w)){\n\t\t\t\tw2.pop_back();\n\
+    \t\t\t}\n\t\t\tif(w2.size() < N) w2.push_back(w);\n\t\t}\n\n\t\tvector<int> a2\
+    \ = self(self, h2, w2);\n\t\tvector<int> ans(N);\n\t\trep(i,si(a2)) ans[i*2+1]\
+    \ = a2[i];\n\t\tint j = 0;\n\t\tfor(int i=0;i<N;i+=2){\n\t\t\tans[i] = w2[j];\n\
+    \t\t\tint end = i == N-1 ? w2.back() : ans[i+1];\n\t\t\twhile(w2[j] != end){\n\
+    \t\t\t\tj++;\n\t\t\t\tif(select(hs[i], ans[i], w2[j])){\n\t\t\t\t\tans[i] = w2[j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t};\n\tvector<int> hs(H); iota(all(hs),0);\n\
+    \tvector<int> ws(W); iota(all(ws),0);\n\treturn rec(rec,hs,ws);\n}\n"
   code: "/*\n\ttotally monotone \u306A H*W \u884C\u5217 A \u306B\u5BFE\u3057\u3001\
     \u5404\u884C\u306Eargmax\u306E\u4F4D\u7F6E\u3092\u8A08\u7B97\u3059\u308B\n\t\t\
     monotone: argmax\u304C\u4E0B\u306E\u884C\u307B\u3069\u53F3\u306B\u3042\u308B\n\
@@ -137,7 +133,7 @@ data:
   requiredBy:
   - DP/maxplus_convolution_b_concave.hpp
   - DP/axiotis_tzamos_knapsack.hpp
-  timestamp: '2024-07-25 10:55:58+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/maxplus_convolution_b_concave.test.cpp

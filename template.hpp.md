@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
   - icon: ':x:'
@@ -81,11 +81,7 @@ data:
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
-    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
-    \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
-    \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
-    }\r\n"
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\
     using ll = long long;\r\nusing uint = unsigned int;\r\nusing ull = unsigned long\
     \ long;\r\n#define rep(i,n) for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int\
@@ -126,11 +122,7 @@ data:
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
-    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
-    \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
-    \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
-    }\r\n"
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: template.hpp
@@ -142,7 +134,7 @@ data:
   - misc/color_debug.cpp
   - math/famous_seq/unrooted_tree.cpp
   - geom/RotatingPoints.cpp
-  timestamp: '2024-03-26 11:02:36+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/online_conv/online_pow.test.cpp

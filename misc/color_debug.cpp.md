@@ -58,10 +58,7 @@ data:
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
     \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\ntemplate<class T>\r\nT rnd(T\
-    \ l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\n\tstatic random_device\
-    \ rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\n}\r\ntemplate<class\
-    \ T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n}\r\n#line 11 \"misc/color_debug.cpp\"\
+    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 11 \"misc/color_debug.cpp\"\
     \n\n#define COLOR(s) (\"\\x1b[\" s \"m\")\n\n\nvoid ANDGrid(){\n\tauto printc\
     \ = [&](int c){\n\t\tif(c == 0) cout << COLOR(\"47\")<<' '<<COLOR();\n\t\tif(c\
     \ == 1) cout << COLOR(\"41\")<<'A'<<COLOR();\n\t\tif(c == 2) cout << COLOR(\"\
@@ -94,7 +91,7 @@ data:
   isVerificationFile: false
   path: misc/color_debug.cpp
   requiredBy: []
-  timestamp: '2024-03-26 11:11:02+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/color_debug.cpp

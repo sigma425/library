@@ -62,18 +62,15 @@ data:
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
     \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n\r\n\r\n\
-    template<class T>\r\nT rnd(T l,T r){\t//[l,r)\r\n\tusing D = uniform_int_distribution<T>;\r\
-    \n\tstatic random_device rd;\r\n\tstatic mt19937 gen(rd());\r\n\treturn D(l,r-1)(gen);\r\
-    \n}\r\ntemplate<class T>\r\nT rnd(T n){\t//[0,n)\r\n\treturn rnd(T(0),n);\r\n\
-    }\r\n#line 1 \"DP/maxplus_convolution_b_concave.hpp\"\n/*\n\t\u6570\u5217 A, B\
-    \ \u304C\u4E0E\u3048\u3089\u308C\u308B\n\t!!!! B !!!! \u306F concave (\u4E0A\u306B\
-    \u51F8)\n\tC_k = max_{k=i+j} A_i + B_j \u3092\u51FA\u529B\n\tO(|A|+|B|)\n\n\t\u4F8B\
-    \u3048\u3070 knapsack \u3067\u540C\u3058 w \u306B\u3064\u3044\u3066\u307E\u3068\
-    \u3081\u305F\u3082\u306E\u3092 B \u3068\u3059\u308B\u3068 mod w \u3054\u3068\u306B\
-    \u3053\u308C\u3092\u547C\u3076\u3053\u3068\u306B\u306A\u308B\n\tB \u304C convex\
-    \ (\u4E0B\u306B\u51F8) \u306E minplus_convolution \u306F select \u306E\u4E2D\u8EAB\
-    \u3060\u3051\u5909\u3048\u308C\u3070\u3088\u3044\n\n\thttps://codeforces.com/blog/entry/98663\n\
+    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 1\
+    \ \"DP/maxplus_convolution_b_concave.hpp\"\n/*\n\t\u6570\u5217 A, B \u304C\u4E0E\
+    \u3048\u3089\u308C\u308B\n\t!!!! B !!!! \u306F concave (\u4E0A\u306B\u51F8)\n\t\
+    C_k = max_{k=i+j} A_i + B_j \u3092\u51FA\u529B\n\tO(|A|+|B|)\n\n\t\u4F8B\u3048\
+    \u3070 knapsack \u3067\u540C\u3058 w \u306B\u3064\u3044\u3066\u307E\u3068\u3081\
+    \u305F\u3082\u306E\u3092 B \u3068\u3059\u308B\u3068 mod w \u3054\u3068\u306B\u3053\
+    \u308C\u3092\u547C\u3076\u3053\u3068\u306B\u306A\u308B\n\tB \u304C convex (\u4E0B\
+    \u306B\u51F8) \u306E minplus_convolution \u306F select \u306E\u4E2D\u8EAB\u3060\
+    \u3051\u5909\u3048\u308C\u3070\u3088\u3044\n\n\thttps://codeforces.com/blog/entry/98663\n\
     \n\tverify:\n\t\thttps://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\n\
     */\n\n#line 1 \"DP/smawk.hpp\"\n/*\n\ttotally monotone \u306A H*W \u884C\u5217\
     \ A \u306B\u5BFE\u3057\u3001\u5404\u884C\u306Eargmax\u306E\u4F4D\u7F6E\u3092\u8A08\
@@ -131,7 +128,7 @@ data:
   isVerificationFile: true
   path: test_oj/maxplus_convolution_b_concave.test.cpp
   requiredBy: []
-  timestamp: '2024-07-25 10:55:58+09:00'
+  timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/maxplus_convolution_b_concave.test.cpp
