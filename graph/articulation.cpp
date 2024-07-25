@@ -16,7 +16,7 @@
 	joi/spring/12/sokoban.cpp 山椒
 
 	多重辺は対応していない、多重辺があっても関節点かどうかには関わりがない。
-	対応したいならEdgeにidみたいなのを持たせておいてif文の判定をそれでやる
+	対応したいならEdgeにidみたいなのを持たせておいてif文の判定をそれでやる 下に置いた
 
 	Articulation Art(G);
 	Art.constructCompressedGraph();
@@ -112,5 +112,94 @@ struct Articulation{
 };
 struct Edge{
 	int to;
+	friend ostream& operator<<(ostream& o,const Edge& e){return o<<e.to;}
+};
+
+
+template<class E>
+struct Articulation{
+	using P = pair<int,E>;
+
+	//in
+	VV<E> G;
+
+	//out
+	V<int> arts;
+	VV<P> biedges;
+
+	//out(constructCompressedGraph)
+	VV<int> H;
+
+
+	//tmp
+	V<int> ord,low;
+	int I;
+	stack<P> st;
+
+	Articulation(const VV<E>& G_):G(G_){	//calc arts,biedges
+		int N = G.size();
+		ord = low = V<int>(N);
+		I = 0;
+
+		rep(i,N) if(ord[i]==0){
+			while(!st.empty()) st.pop();
+			dfs(i);
+		}
+	}
+
+	void constructCompressedGraph(){
+		int N = G.size();
+		int B = biedges.size();		//[N,N+B)
+
+		H = VV<int>(N+B);
+
+		rep(b,B){
+			V<int> vc;
+			for(P p:biedges[b]){
+				int from = p.fs;
+				int to = p.sc.to;
+				vc.pb(from);
+				vc.pb(to);
+			}
+			mkuni(vc);
+			for(int v:vc){
+				H[N+b].pb(v);
+				H[v].pb(N+b);
+			}
+		}
+	}
+
+	void dfs(int v,int pid = -1){
+		ord[v]=++I;
+		low[v]=ord[v];
+		int c=0;
+		bool isart=0;
+		for(auto& e:G[v]) if(e.id!=pid){
+			int u = e.to;
+			if(ord[u]<ord[v]) st.push(P(v,e));
+			if(ord[u]) chmin(low[v],ord[u]);	//back edge
+			else{
+				dfs(u,e.id);
+				c++;
+				chmin(low[v],low[u]);
+				if(low[u]>=ord[v]){
+					isart = 1;
+					vector<P> vp;
+					while(true){
+						P p=st.top();st.pop();
+						vp.pb(p);
+						if(p.fs==v && p.sc.to==u) break;
+					}
+					biedges.pb(vp);
+				}
+			}
+		}
+		if(pid<0) isart=(c>1);
+		if(isart) arts.pb(v);
+	}
+	
+};
+struct Edge{
+	int to,id;
 	friend ostream& operator<<(ostream& o,const Edge& e){return o<<e.to;}
 };

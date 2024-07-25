@@ -92,7 +92,7 @@ struct MaxFlow{
 
 	vector<int> calcCut(int s,int t){
 		vector<int> which(N,-1);			// 0: S, 1: T
-		auto dfs2 = [&](auto& self, int v) -> void{
+		auto dfs2 = [&](auto& self, int v) -> void {
 			if(which[v] != -1) return;
 			which[v] = 0;
 			for(auto e: G[v]) if(e.cap>0) self(self,e.to);
