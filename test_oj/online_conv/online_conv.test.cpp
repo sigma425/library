@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../../template.hpp"
-#include "../../math/poly.cpp"
-#include "../../math/online_convolution.cpp"
+#include "template.hpp"
+#include "math/poly.cpp"
+#include "math/online_convolution.cpp"
 
 int main(){
 	cin.tie(0);

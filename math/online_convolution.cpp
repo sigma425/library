@@ -120,7 +120,7 @@ struct Online_Exp{
 
 /*
 	query(i): f_i を受け取って (f^K)_i を返す
-	f_0 != 0 を仮定 (頑張れば外せる)
+	f_0 = 0 でも OK
 	O(n log^2)
 	g := f^K
 	g'f = Kgf'
@@ -129,28 +129,39 @@ struct Online_Exp{
 */
 template<class mint>
 struct Online_Pow{
-	Online_Pow(ll K_):K(K_){}
+	Online_Pow(ll K_):K(K_),num0(0),hasnon0(false){}
 
 	V<mint> f,g;
 	ll K;
 	Online_Convolution<mint> X;		// (f-f0)/x * g'
 	Online_Convolution<mint> Y;		// f' * g
 	mint if0;
+	int num0;
+	bool hasnon0;
 
 	mint query(int i, mint f_i){
-		assert(i == si(f));
+		if(K == 0){
+			return i == 0 ? 1 : 0;
+		}
+		if(!hasnon0 && f_i == 0){
+			num0++;
+			return 0;
+		}
+
+		hasnon0 = true;
 		f.eb(f_i);
-		if(i == 0){
-			assert(f_i);
+		int ii = i - num0;
+		if(ii == 0){
 			if0 = f_i.inv();
 			g.eb(f_i.pow(K));
 		}else{
-			mint Y_i = Y.query(i-1,f[i]*i,g[i-1]);
-			mint X_i = i == 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));
-			assert(i < si(invs));
-			g.eb( (Y_i*K - X_i) * if0 * invs[i]);
+			mint Y_i = Y.query(ii-1,f[ii]*ii,g[ii-1]);
+			mint X_i = ii == 1 ? 0 : X.query(ii-2,f[ii-1],g[ii-1]*(ii-1));
+			assert(ii < si(invs));
+			g.eb( (Y_i*K - X_i) * if0 * invs[ii]);
 		}
-		return g[i];
+		if(i < __int128(num0)*K) return 0;
+		return g[i-num0*K];
 	}
 };
 
