@@ -1,11 +1,8 @@
 /*
 	素因数分解 1 <= n <= 10^18
-	isprime.cpp が必要
 	pollard_rho's algorithm
 	O(n^0.25 polylog(n)) くらいらしい
 */
-#include<bits/stdc++.h>
-using namespace std;
 
 template<class T>
 T gcd(T a,T b){
@@ -46,13 +43,13 @@ bool isprime(ll n){
 	return 1;
 }
 
-ll f(ll x,ll n){ return (__int128(x)*x+1)%n;}
 ll pollard_single(ll n){
 	if(isprime(n)) return n;
 	if(!(n&1)) return 2;
-	ll i,x,y,p;
-	for(i=1;;i++){
-		x=i; y=f(x,n); p=gcd(y-x,n);
+	ll ph,x,y,p;
+	auto f = [&](ll x, ll n){ return (__int128(x)*x+ph)%n; };
+	for(ph=1;;ph++){
+		x=ph; y=f(x,n); p=gcd(y-x,n);
 		while(p==1){
 			x=f(x,n); y=f(f(y,n),n); p=gcd((y-x+n)%n,n)%n;
 		}
@@ -69,6 +66,7 @@ vector<ll> pollard(ll n){
 	vector<ll> le = pollard(x);
 	vector<ll> ri = pollard(n/x);
 	for(ll d: ri) le.push_back(d);
+	sort(all(le));
 	return le;
 }
 
@@ -77,20 +75,8 @@ ll totient(ll n){
 	map<ll,int> mp; for(ll p: v) mp[p]++;
 	ll phi = 1;
 	for(auto [p,r]: mp){
-		rep(i,r-1) phi *= p;
+		for(int _=0;_<r-1;_++) phi *= p;
 		phi *= p-1;
 	}
 	return phi;
-}
-
-
-int main(){
-	while(true){
-		ll n;
-		cin>>n;
-		vector<ll> ps = pollard(n);
-		printf("factors:  ");
-		for(ll p:ps) cout<<p<<" ";
-		puts("");
-	}
 }
