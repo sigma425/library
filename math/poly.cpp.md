@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mint.cpp
     title: math/mint.cpp
   _extendedRequiredBy:
@@ -15,18 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_pow.test.cpp
     title: test_oj/online_conv/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_oj/polynomial_taylor_shift.test.cpp
     title: test_oj/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://ac.nowcoder.com/acm/contest/11259/H
@@ -588,7 +588,7 @@ data:
   requiredBy:
   - math/famous_seq/unrooted_tree.cpp
   timestamp: '2024-07-25 11:02:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/polynomial_taylor_shift.test.cpp
   - test_oj/linear_recurrence.test.cpp

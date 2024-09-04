@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: DP
@@ -479,7 +479,7 @@ data:
     - icon: ':warning:'
       path: math/matroid.cpp
       title: math/matroid.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/mint.cpp
       title: math/mint.cpp
     - icon: ':warning:'
@@ -491,13 +491,13 @@ data:
     - icon: ':warning:'
       path: math/nimber.cpp
       title: math/nimber.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/online_convolution.cpp
       title: math/online_convolution.cpp
     - icon: ':warning:'
       path: math/periodic_maxmin.cpp
       title: math/periodic_maxmin.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly.cpp
       title: math/poly.cpp
     - icon: ':heavy_check_mark:'
@@ -680,10 +680,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_conv.test.cpp
       title: test_oj/online_conv/online_conv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_div.test.cpp
       title: test_oj/online_conv/online_div.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/online_conv/online_pow.test.cpp
       title: test_oj/online_conv/online_pow.test.cpp
   - name: test_oj/segtree

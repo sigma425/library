@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_conv.test.cpp
     title: test_oj/online_conv/online_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_div.test.cpp
     title: test_oj/online_conv/online_div.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_pow.test.cpp
     title: test_oj/online_conv/online_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\r\n#include <bits/stdc++.h>\r\nusing namespace\
@@ -138,7 +138,7 @@ data:
   - geom/RotatingPoints.cpp
   - misc/color_debug.cpp
   timestamp: '2024-07-25 10:58:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/factorization.test.cpp
   - test_oj/maxplus_convolution_b_concave.test.cpp

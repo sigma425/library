@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mint.cpp
     title: math/mint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly.cpp
     title: math/poly.cpp
   _extendedRequiredBy: []

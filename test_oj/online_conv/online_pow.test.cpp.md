@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mint.cpp
     title: math/mint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/online_convolution.cpp
     title: math/online_convolution.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly.cpp
     title: math/poly.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/aplusb
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
   bundledCode: "#line 1 \"test_oj/online_conv/online_pow.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 2 \"template.hpp\"\n\r\n\
-    #include <bits/stdc++.h>\r\nusing namespace std;\r\nusing ll = long long;\r\n\
-    using uint = unsigned int;\r\nusing ull = unsigned long long;\r\n#define rep(i,n)\
-    \ for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\n\
-    #define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
+    \ \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\n\n#line 2 \"\
+    template.hpp\"\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\nusing\
+    \ ll = long long;\r\nusing uint = unsigned int;\r\nusing ull = unsigned long long;\r\
+    \n#define rep(i,n) for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int i=1;i<=int(n);i++)\r\
+    \n#define per(i,n) for(int i=int(n)-1;i>=0;i--)\r\n#define per1(i,n) for(int i=int(n);i>0;i--)\r\
     \n#define all(c) c.begin(),c.end()\r\n#define si(x) int(x.size())\r\n#define pb\
     \ push_back\r\n#define eb emplace_back\r\n#define fs first\r\n#define sc second\r\
     \ntemplate<class T> using V = vector<T>;\r\ntemplate<class T> using VV = vector<vector<T>>;\r\
@@ -394,50 +394,42 @@ data:
     \ X;\n\n\tmint query(int i, mint f_i){\n\t\tif(i == 0){\n\t\t\tassert(f_i == 0);\n\
     \t\t\tF.eb(1);\n\t\t}else{\n\t\t\tF.eb(X.query(i-1,F[i-1],f_i*i));\n\t\t}\n\t\t\
     return F[i];\n\t}\n};\n\n/*\n\tquery(i): f_i \u3092\u53D7\u3051\u53D6\u3063\u3066\
-    \ (f^K)_i \u3092\u8FD4\u3059\n\tf_0 != 0 \u3092\u4EEE\u5B9A (\u9811\u5F35\u308C\
-    \u3070\u5916\u305B\u308B)\n\tO(n log^2)\n\tg := f^K\n\tg'f = Kgf'\n\t\tf_0 g_1\t\
-    \tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2 + f_2 g_1\n\t= K(f_1 g_0\t\t2f_2 g_0\
-    \ + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1 g_2\n*/\ntemplate<class mint>\nstruct\
-    \ Online_Pow{\n\tOnline_Pow(ll K_):K(K_){}\n\n\tV<mint> f,g;\n\tll K;\n\tOnline_Convolution<mint>\
-    \ X;\t\t// (f-f0)/x * g'\n\tOnline_Convolution<mint> Y;\t\t// f' * g\n\tmint if0;\n\
-    \n\tmint query(int i, mint f_i){\n\t\tassert(i == si(f));\n\t\tf.eb(f_i);\n\t\t\
-    if(i == 0){\n\t\t\tassert(f_i);\n\t\t\tif0 = f_i.inv();\n\t\t\tg.eb(f_i.pow(K));\n\
-    \t\t}else{\n\t\t\tmint Y_i = Y.query(i-1,f[i]*i,g[i-1]);\n\t\t\tmint X_i = i ==\
-    \ 1 ? 0 : X.query(i-2,f[i-1],g[i-1]*(i-1));\n\t\t\tassert(i < si(invs));\n\t\t\
-    \tg.eb( (Y_i*K - X_i) * if0 * invs[i]);\n\t\t}\n\t\treturn g[i];\n\t}\n};\n\n\
-    /*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\u30AA\u30F3\u30E9\u30A4\
-    \u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\u3068\u304D\n\tcalc(a,b,c,d)\
-    \ \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\n*/\nstruct Online_Convolution_Any{\n\
-    \tvoid calc(int a,int b,int c,int d){\n\t\t// f[a,b) * g[c,d)\n\t\tfor(int i=a;i<b;i++)\
-    \ for(int j=c;j<d;j++){\n\t\t\tcerr << \"(\" << i << \" , \" << j << \")\" <<\
-    \ endl;\n\t\t}\n\t}\n\n\tint SI = 0, GI = 0;\n\tvoid set_i(int i){\n\t\tcerr <<\
-    \ \"set \" << i << endl;\n\t\tassert(SI == i); SI++;\n\t}\n\tvoid get_i(int i){\n\
-    \t\tcerr << \"get \" << i << endl;\n\t\tassert(GI == i); GI++;\n\t\tassert(i <\
-    \ SI);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2) > 1 ? 1 : 0);\n\
-    \t\trep(k,K){\n\t\t\tint L = 1<<k;\n\t\t\tint a = L-1, b = L-1+1, c = i+1-L, d\
-    \ = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\tif(a != c) calc(c,d,a,b);\n\t\t}\n\t}\n\
-    };\n#line 6 \"test_oj/online_conv/online_pow.test.cpp\"\n\nvoid test(Poly<mint>\
-    \ f, ll K){\n\tint n = si(f);\n\tassert(f[0]);\n\tauto g = f.pow(K,n);\n\tOnline_Pow<mint>\
-    \ X(K);\n\trep(i,n){\n\t\tmint waf = X.query(i,f[i]);\n\t\tif(g[i] != waf){\n\t\
-    \t\tshow(f);show(K);\n\t\t\tshow(g);\n\t\t\tshow(i);\n\t\t\tshow(waf);\n\t\t\t\
-    assert(0);\n\t\t}\n\t}\n}\nvoid TEST(){\n\tInitFact(TEN(6));\n\n\tfor(ll K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){\n\
-    \t\ttest({1},K);\n\t\ttest({314},K);\n\t\tfor(int N: {2,3,4,(1<<15)-1,(1<<15),(1<<15)+1}){\n\
-    \t\t\tPoly<mint> f(N);\n\t\t\trep(i,N) f[i] = rnd(mint::mod);\n\t\t\ttest(f,K);\n\
-    \t\t}\n\t}\n}\n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t\
-    //DON'T USE scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n\tTEST();\n\
-    \n\tint a,b; cin >> a >> b; cout << a+b << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../../template.hpp\"\n#include \"../../math/poly.cpp\"\n#include \"../../math/online_convolution.cpp\"\
-    \n\nvoid test(Poly<mint> f, ll K){\n\tint n = si(f);\n\tassert(f[0]);\n\tauto\
-    \ g = f.pow(K,n);\n\tOnline_Pow<mint> X(K);\n\trep(i,n){\n\t\tmint waf = X.query(i,f[i]);\n\
-    \t\tif(g[i] != waf){\n\t\t\tshow(f);show(K);\n\t\t\tshow(g);\n\t\t\tshow(i);\n\
-    \t\t\tshow(waf);\n\t\t\tassert(0);\n\t\t}\n\t}\n}\nvoid TEST(){\n\tInitFact(TEN(6));\n\
-    \n\tfor(ll K: V<ll>({0,1,2,-1,TEN(18),-TEN(18)})){\n\t\ttest({1},K);\n\t\ttest({314},K);\n\
-    \t\tfor(int N: {2,3,4,(1<<15)-1,(1<<15),(1<<15)+1}){\n\t\t\tPoly<mint> f(N);\n\
-    \t\t\trep(i,N) f[i] = rnd(mint::mod);\n\t\t\ttest(f,K);\n\t\t}\n\t}\n}\n\nint\
-    \ main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts\
-    \ !!\n\tcout << fixed << setprecision(20);\n\n\tTEST();\n\n\tint a,b; cin >> a\
-    \ >> b; cout << a+b << endl;\n}\n"
+    \ (f^K)_i \u3092\u8FD4\u3059\n\tf_0 = 0 \u3067\u3082 OK\n\tO(n log^2)\n\tg :=\
+    \ f^K\n\tg'f = Kgf'\n\t\tf_0 g_1\t\tf_0 2g_2 + f_1 g_1\t\tf_0 3g_3 + f_1 2g_2\
+    \ + f_2 g_1\n\t= K(f_1 g_0\t\t2f_2 g_0 + f_1 g_1\t\t3f_3 g_0 + 2f_2 g_1 + f_1\
+    \ g_2\n*/\ntemplate<class mint>\nstruct Online_Pow{\n\tOnline_Pow(ll K_):K(K_),num0(0),hasnon0(false){}\n\
+    \n\tV<mint> f,g;\n\tll K;\n\tOnline_Convolution<mint> X;\t\t// (f-f0)/x * g'\n\
+    \tOnline_Convolution<mint> Y;\t\t// f' * g\n\tmint if0;\n\tint num0;\n\tbool hasnon0;\n\
+    \n\tmint query(int i, mint f_i){\n\t\tif(K == 0){\n\t\t\treturn i == 0 ? 1 : 0;\n\
+    \t\t}\n\t\tif(!hasnon0 && f_i == 0){\n\t\t\tnum0++;\n\t\t\treturn 0;\n\t\t}\n\n\
+    \t\thasnon0 = true;\n\t\tf.eb(f_i);\n\t\tint ii = i - num0;\n\t\tif(ii == 0){\n\
+    \t\t\tif0 = f_i.inv();\n\t\t\tg.eb(f_i.pow(K));\n\t\t}else{\n\t\t\tmint Y_i =\
+    \ Y.query(ii-1,f[ii]*ii,g[ii-1]);\n\t\t\tmint X_i = ii == 1 ? 0 : X.query(ii-2,f[ii-1],g[ii-1]*(ii-1));\n\
+    \t\t\tassert(ii < si(invs));\n\t\t\tg.eb( (Y_i*K - X_i) * if0 * invs[ii]);\n\t\
+    \t}\n\t\tif(i < __int128(num0)*K) return 0;\n\t\treturn g[i-num0*K];\n\t}\n};\n\
+    \n/*\n\tFFT \u3068\u306F\u9650\u3089\u306A\u3044\u6642\u306B\u30AA\u30F3\u30E9\
+    \u30A4\u30F3\u3067 h[i+j] = f[i]*g[j] \u3092\u3057\u305F\u3044\u3068\u304D\n\t\
+    calc(a,b,c,d) \u3067 f[a,b) * g[c,d) \u3092\u8DB3\u3057\u8FBC\u3080\n*/\nstruct\
+    \ Online_Convolution_Any{\n\tvoid calc(int a,int b,int c,int d){\n\t\t// f[a,b)\
+    \ * g[c,d)\n\t\tfor(int i=a;i<b;i++) for(int j=c;j<d;j++){\n\t\t\tcerr << \"(\"\
+    \ << i << \" , \" << j << \")\" << endl;\n\t\t}\n\t}\n\n\tint SI = 0, GI = 0;\n\
+    \tvoid set_i(int i){\n\t\tcerr << \"set \" << i << endl;\n\t\tassert(SI == i);\
+    \ SI++;\n\t}\n\tvoid get_i(int i){\n\t\tcerr << \"get \" << i << endl;\n\t\tassert(GI\
+    \ == i); GI++;\n\t\tassert(i < SI);\n\t\tint K = __builtin_ctz(i+2) + (__builtin_popcount(i+2)\
+    \ > 1 ? 1 : 0);\n\t\trep(k,K){\n\t\t\tint L = 1<<k;\n\t\t\tint a = L-1, b = L-1+1,\
+    \ c = i+1-L, d = i+1;\n\t\t\tcalc(a,b,c,d);\n\t\t\tif(a != c) calc(c,d,a,b);\n\
+    \t\t}\n\t}\n};\n#line 6 \"test_oj/online_conv/online_pow.test.cpp\"\n\nint main(){\n\
+    \tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts\
+    \ !!\n\tcout << fixed << setprecision(20);\n\n\tInitFact(2e6);\n\n\tint N; ll\
+    \ M; cin >> N >> M;\n\n\tOnline_Pow<mint> X(M);\n\trep(i,N){\n\t\tmint a; cin\
+    \ >> a;\n\t\tcout << X.query(i, a) << \" \";\n\t}\n\tcout << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#include \"template.hpp\"\n#include \"math/poly.cpp\"\n#include \"math/online_convolution.cpp\"\
+    \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
+    \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n\tInitFact(2e6);\n\
+    \n\tint N; ll M; cin >> N >> M;\n\n\tOnline_Pow<mint> X(M);\n\trep(i,N){\n\t\t\
+    mint a; cin >> a;\n\t\tcout << X.query(i, a) << \" \";\n\t}\n\tcout << endl;\n\
+    }\n"
   dependsOn:
   - template.hpp
   - math/poly.cpp
@@ -446,8 +438,8 @@ data:
   isVerificationFile: true
   path: test_oj/online_conv/online_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-07-25 11:02:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-04 22:49:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/online_conv/online_pow.test.cpp
 layout: document

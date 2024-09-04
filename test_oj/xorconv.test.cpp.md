@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/hadamard.cpp
     title: math/hadamard.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mint.cpp
     title: math/mint.cpp
   _extendedRequiredBy: []

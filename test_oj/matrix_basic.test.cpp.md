@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/matrix_basic.cpp
     title: math/matrix/matrix_basic.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/mint.cpp
     title: math/mint.cpp
   _extendedRequiredBy: []

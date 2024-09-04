@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DP/smawk.hpp
     title: DP/smawk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
