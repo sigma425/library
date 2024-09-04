@@ -7,6 +7,7 @@
 "test_oj/beats/simple_min.test.cpp": "2024-01-05 03:20:46 +0900",
 "test_oj/beats/simple_sum.test.cpp": "2024-01-05 03:20:46 +0900",
 "test_oj/enumerate_primes.test.cpp": "2023-11-14 00:04:24 +0900",
+"test_oj/factorization.test.cpp": "2024-09-04 20:28:21 +0900",
 "test_oj/inv_matrix.test.cpp": "2024-07-25 11:02:07 +0900",
 "test_oj/linearEquation.test.cpp": "2024-07-25 11:02:07 +0900",
 "test_oj/linear_recurrence.test.cpp": "2024-07-25 11:02:07 +0900",
