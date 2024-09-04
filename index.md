@@ -437,9 +437,9 @@ data:
     - icon: ':warning:'
       path: math/divisor_zeta.cpp
       title: math/divisor_zeta.cpp
-    - icon: ':warning:'
-      path: math/factorization.cpp
-      title: math/factorization.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/factorization.hpp
+      title: math/factorization.hpp
     - icon: ':warning:'
       path: math/fraction.hpp
       title: math/fraction.hpp
@@ -625,6 +625,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/factorization.test.cpp
+      title: test_oj/factorization.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/inv_matrix.test.cpp
       title: test_oj/inv_matrix.test.cpp

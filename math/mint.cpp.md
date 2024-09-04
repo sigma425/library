@@ -142,20 +142,20 @@ data:
   isVerificationFile: false
   path: math/mint.cpp
   requiredBy:
-  - math/poly.cpp
   - math/famous_seq/unrooted_tree.cpp
+  - math/poly.cpp
   timestamp: '2024-07-25 11:02:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/polynomial_taylor_shift.test.cpp
-  - test_oj/linearEquation.test.cpp
-  - test_oj/inv_matrix.test.cpp
-  - test_oj/xorconv.test.cpp
   - test_oj/linear_recurrence.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_div.test.cpp
+  - test_oj/xorconv.test.cpp
+  - test_oj/linearEquation.test.cpp
   - test_oj/matrix_basic.test.cpp
+  - test_oj/inv_matrix.test.cpp
 documentation_of: math/mint.cpp
 layout: document
 redirect_from:

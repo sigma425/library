@@ -25,6 +25,9 @@ data:
     title: misc/color_debug.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test_oj/factorization.test.cpp
+    title: test_oj/factorization.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_oj/maxplus_convolution_b_concave.test.cpp
     title: test_oj/maxplus_convolution_b_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,20 +130,21 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - DP/smawk.hpp
-  - DP/maxplus_convolution_b_concave.hpp
-  - DP/axiotis_tzamos_knapsack.hpp
   - 0.cpp
-  - misc/color_debug.cpp
+  - DP/smawk.hpp
+  - DP/axiotis_tzamos_knapsack.hpp
+  - DP/maxplus_convolution_b_concave.hpp
   - math/famous_seq/unrooted_tree.cpp
   - geom/RotatingPoints.cpp
+  - misc/color_debug.cpp
   timestamp: '2024-07-25 10:58:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_oj/online_conv/online_pow.test.cpp
-  - test_oj/online_conv/online_conv.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
+  - test_oj/factorization.test.cpp
   - test_oj/maxplus_convolution_b_concave.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:
