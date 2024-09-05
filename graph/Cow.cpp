@@ -2,7 +2,7 @@
 	牛ゲー
 	x_t - x_s <= const なる式がいっぱいあって、条件をみたすように割り振れるか?
 	initializer Cow(頂点数(変数数))
-	IsValidAssign が 1 を返してきたら vector<D> d が条件を満たす割当になっている
+	satisfiable() が 1 を返してきたら vector<D> d が条件を満たす割当になっている
 
 	x_v <= 3 みたいなのは頂点Z (=0) を作って、始点をZにするとよい
 
@@ -10,25 +10,24 @@
 
 */
 struct Cow{
-	using D = int;
-	const D inf = 1e9;
+	using D = ll;
+	const D inf = 1e18;
 	struct Edge{
 		int to;
 		D cost;
-		Edge(int to,D cost):to(to),cost(cost){}
 	};
 	int N,M;
 	vector<vector<Edge>> G;
 	vector<D> d;
-	Cow(int N):N(N){
-		G.assign(N,vector<Edge>());
-		d.assign(N,inf);
+
+	Cow(int N_):N(N_),G(N_),d(N,inf){}
+
+	// correspond to t-s <= c
+	void add_edge(int t,int s,D c){
+		G[s].pb({t,c});
 	}
-	void add_edge(int t,int s,D c){	// correspond to t-s <= c
-//		printf("%d->%d   :%d\n",t,s,c);
-		G[s].pb(Edge(t,c));
-	}
-	void add_edge(int t,int s,D clow,D chigh){	// clow <= t-s <= chigh
+	// clow <= t-s <= chigh
+	void add_edge(int t,int s,D clow,D chigh){
 		add_edge(t,s,chigh);
 		add_edge(s,t,-clow);
 	}
@@ -42,8 +41,9 @@ struct Cow{
 		d[S]=0
 
 		Tによらなくない?(気づき)
+		Sから到達できない部分で負閉路があったとしてもちゃんと検出される
 	*/
-	bool IsValidAssign(int S = 0){
+	bool satisfiable(int S = 0){
 		vector<int> prev(N);
 		d[S] = 0;
 		rep(ph,N){
