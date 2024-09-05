@@ -12,7 +12,7 @@
 		ARC70 E
 */
 
-struct Narou{
+struct Slope{
 	using D = ll;
 	priority_queue<D> L;
 	priority_queue<D,V<D>,greater<D>> R;
