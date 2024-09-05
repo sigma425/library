@@ -6,9 +6,6 @@
 	using F = Frac<ll>;
 */
 
-#pragma once
-#include <ostream>
-
 template<class Int>
 struct Frac{
 	Int x,y;		// x/y
