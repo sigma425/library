@@ -7,9 +7,6 @@ data:
       path: 0.cpp
       title: 0.cpp
     - icon: ':warning:'
-      path: bsr.cpp
-      title: bsr.cpp
-    - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
     - icon: ':heavy_check_mark:'
@@ -33,17 +30,20 @@ data:
       path: DP/Helvetic_O.cpp
       title: DP/Helvetic_O.cpp
     - icon: ':warning:'
-      path: DP/Narou.cpp
-      title: DP/Narou.cpp
-    - icon: ':warning:'
       path: DP/axiotis_tzamos_knapsack.hpp
       title: DP/axiotis_tzamos_knapsack.hpp
+    - icon: ':warning:'
+      path: DP/hu_tucker.hpp
+      title: DP/hu_tucker.hpp
     - icon: ':heavy_check_mark:'
       path: DP/maxplus_convolution_b_concave.hpp
       title: DP/maxplus_convolution_b_concave.hpp
     - icon: ':warning:'
       path: DP/monotone minima.cpp
       title: DP/monotone minima.cpp
+    - icon: ':warning:'
+      path: DP/slope.hpp
+      title: DP/slope.hpp
     - icon: ':heavy_check_mark:'
       path: DP/smawk.hpp
       title: DP/smawk.hpp
@@ -108,6 +108,12 @@ data:
       path: ds/ndarray.cpp
       title: ds/ndarray.cpp
     - icon: ':warning:'
+      path: ds/persistent_meldable_heap.hpp
+      title: ds/persistent_meldable_heap.hpp
+    - icon: ':warning:'
+      path: ds/persistent_meldable_heap_with_offset.hpp
+      title: ds/persistent_meldable_heap_with_offset.hpp
+    - icon: ':warning:'
       path: ds/slide.cpp
       title: ds/slide.cpp
   - name: ds/RBST
@@ -136,11 +142,14 @@ data:
       path: ds/segtree/segbeats.cpp
       title: ds/segtree/segbeats.cpp
     - icon: ':heavy_check_mark:'
+      path: ds/segtree/segtree_dual.hpp
+      title: ds/segtree/segtree_dual.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_lazy.cpp
       title: ds/segtree/segtree_lazy.cpp
-    - icon: ':warning:'
-      path: ds/segtree/segtree_simple.cpp
-      title: ds/segtree/segtree_simple.cpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/segtree_simple.hpp
+      title: ds/segtree/segtree_simple.hpp
   - name: ds/segtree/persistent segtree
     pages:
     - icon: ':warning:'
@@ -437,6 +446,9 @@ data:
     - icon: ':warning:'
       path: math/divisor_zeta.cpp
       title: math/divisor_zeta.cpp
+    - icon: ':warning:'
+      path: math/factorial_precalc.cpp
+      title: math/factorial_precalc.cpp
     - icon: ':heavy_check_mark:'
       path: math/factorization.hpp
       title: math/factorization.hpp
@@ -500,12 +512,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly.cpp
       title: math/poly.cpp
+    - icon: ':warning:'
+      path: math/power_companion.cpp
+      title: math/power_companion.cpp
     - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: math/prime.cpp
     - icon: ':warning:'
       path: math/primitiveroot.cpp
       title: math/primitiveroot.cpp
+    - icon: ':warning:'
+      path: math/scary_floor_sum.hpp
+      title: math/scary_floor_sum.hpp
     - icon: ':warning:'
       path: math/sparseDet.cpp
       title: math/sparseDet.cpp
@@ -529,6 +547,9 @@ data:
     - icon: ':warning:'
       path: math/famous_seq/Stirling.cpp
       title: math/famous_seq/Stirling.cpp
+    - icon: ':warning:'
+      path: math/famous_seq/eulerian_number.cpp
+      title: math/famous_seq/eulerian_number.cpp
     - icon: ':warning:'
       path: math/famous_seq/powsum.cpp
       title: math/famous_seq/powsum.cpp
@@ -575,6 +596,9 @@ data:
     - icon: ':warning:'
       path: misc/hashmap.cpp
       title: misc/hashmap.cpp
+    - icon: ':warning:'
+      path: misc/highbit.hpp
+      title: misc/highbit.hpp
     - icon: ':warning:'
       path: misc/int128.cpp
       title: misc/int128.cpp
@@ -688,6 +712,12 @@ data:
       title: test_oj/online_conv/online_pow.test.cpp
   - name: test_oj/segtree
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test_oj/segtree/point_add_range_sum.test.cpp
+      title: test_oj/segtree/point_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/segtree/range_affine_point_get.test.cpp
+      title: test_oj/segtree/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/segtree/range_affine_range_sum.test.cpp
       title: test_oj/segtree/range_affine_range_sum.test.cpp

@@ -4,18 +4,18 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"DP/Narou.cpp\"\n/*\r\n\t\u6298\u308C\u7DDA\u3092\u4FDD\u3064\
+  bundledCode: "#line 1 \"DP/slope.hpp\"\n/*\r\n\t\u6298\u308C\u7DDA\u3092\u4FDD\u3064\
     DP\r\n\t\u3067\u304D\u308B\u3053\u3068 : \r\n\t\tf'(x) := min_[x+l <= y <= x+r]\
     \ f(y)\r\n\t\tf'(x) := f(x) + |x-a|\r\n\t\tgiven a -> compute f(a)\r\n\tf(a) \u306E\
     \u8A08\u7B97\u306F O(N) \u3067\u3001\u3053\u308C\u3092log\u306B\u3057\u3088\u3046\
     \u3068\u3059\u308B\u3068BIT\u3092\u4FDD\u3064\u5FC5\u8981\u304C\u51FA\u3066\u304F\
     \u308B\u3001\u3084\u308A\u305F\u304F\u306A\u3044\r\n\t\u307E\u3042\u666E\u901A\
     \u306Fbottom\u304C\u7B54\u3048\u306B\u306A\u308B\r\n\r\n\tverified at \r\n\t\t\
-    1228(CF588) F\r\n\t\tARC70 E\r\n*/\r\n\r\nstruct Narou{\r\n\tusing D = ll;\r\n\
+    1228(CF588) F\r\n\t\tARC70 E\r\n*/\r\n\r\nstruct Slope{\r\n\tusing D = ll;\r\n\
     \tpriority_queue<D> L;\r\n\tpriority_queue<D,V<D>,greater<D>> R;\r\n\tD offL =\
     \ 0, offR = 0;\r\n\tD bottom = 0;\r\n\r\n\t// initially f(x) = 0\r\n\r\n\tvoid\
     \ Min(D l,D r){\t// f'(x) := min_[x+l <= y <= x+r] f(y)\r\n\t\tassert(l <= r);\r\
@@ -46,7 +46,7 @@ data:
     \u4FDD\u3064\u5FC5\u8981\u304C\u51FA\u3066\u304F\u308B\u3001\u3084\u308A\u305F\
     \u304F\u306A\u3044\r\n\t\u307E\u3042\u666E\u901A\u306Fbottom\u304C\u7B54\u3048\
     \u306B\u306A\u308B\r\n\r\n\tverified at \r\n\t\t1228(CF588) F\r\n\t\tARC70 E\r\
-    \n*/\r\n\r\nstruct Narou{\r\n\tusing D = ll;\r\n\tpriority_queue<D> L;\r\n\tpriority_queue<D,V<D>,greater<D>>\
+    \n*/\r\n\r\nstruct Slope{\r\n\tusing D = ll;\r\n\tpriority_queue<D> L;\r\n\tpriority_queue<D,V<D>,greater<D>>\
     \ R;\r\n\tD offL = 0, offR = 0;\r\n\tD bottom = 0;\r\n\r\n\t// initially f(x)\
     \ = 0\r\n\r\n\tvoid Min(D l,D r){\t// f'(x) := min_[x+l <= y <= x+r] f(y)\r\n\t\
     \tassert(l <= r);\r\n\t\toffL -= r;\r\n\t\toffR -= l;\r\n\t}\r\n\tvoid Add(D s){\t\
@@ -72,15 +72,15 @@ data:
     \ res;\r\n\t}\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: DP/Narou.cpp
+  path: DP/slope.hpp
   requiredBy: []
-  timestamp: '2019-09-27 00:09:34+09:00'
+  timestamp: '2024-09-05 20:34:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: DP/Narou.cpp
+documentation_of: DP/slope.hpp
 layout: document
 redirect_from:
-- /library/DP/Narou.cpp
-- /library/DP/Narou.cpp.html
-title: DP/Narou.cpp
+- /library/DP/slope.hpp
+- /library/DP/slope.hpp.html
+title: DP/slope.hpp
 ---

@@ -81,32 +81,33 @@ data:
     \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
-    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
-    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
-    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
-    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
-    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
-    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
-    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
-    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
-    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line\
-    \ 7 \"math/poly.cpp\"\n\n// inplace_fmt (without bit rearranging)\n// fft:\n//\
-    \ \t\ta[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\\
-    sum_j \\zeta^{-ij} a[rev(j)]\n// These two are inversions.\n\n\n// !!! CHANGE\
-    \ IF MOD is unusual !!!\nconst int ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\n\
-    const mint PRIMITIVE_ROOT = 3; // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>&\
-    \ a){\n\tstatic constexpr uint mod = mint::mod;\n\tstatic constexpr uint mod2\
-    \ = mod + mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint\
-    \ root = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n\
-    \ & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\
-    \tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\
-    \t\t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\
-    \t\t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\
-    \t// < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\
-    \t\tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=1000;b++){\n\
+    \t// \t\tModInt ib = ModInt(b).inv();\n\t// \t\tfor(int a=-1000;a<=1000;a++){\n\
+    \t// \t\t\tif(ModInt(a) * ib == x){\n\t// \t\t\t\treturn o << a << \"/\" << b;\n\
+    \t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \treturn o<<x.v;\n\t// }\n};\nusing mint\
+    \ = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\n\
+    // a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
+    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n// b >= 0 \u306E\u7BC4\u56F2\
+    \u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\nmint Choose(int a,int b){\n\t\
+    if(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n*/\n\n\
+    void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line 7 \"math/poly.cpp\"\
+    \n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\ta[rev(i)] <- \\\
+    sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j \\zeta^{-ij} a[rev(j)]\n\
+    // These two are inversions.\n\n\n// !!! CHANGE IF MOD is unusual !!!\nconst int\
+    \ ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst mint PRIMITIVE_ROOT = 3;\
+    \ // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\tstatic constexpr uint\
+    \ mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
+    \ int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root = PRIMITIVE_ROOT;\n\t\
+    static mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n & (n-1))); assert(n\
+    \ >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\tif(!magic[0]){\t\t\
+    // precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\
+    \t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\
+    \t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\
+    // < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\
+    \tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
     \t\t\t\tuint v = (a[i+m] * p).v;\t\t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod -\
     \ v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
     \t\t}\n\t}\n\twhile(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0;\
@@ -378,7 +379,7 @@ data:
   isVerificationFile: true
   path: test_oj/linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2024-07-25 11:02:07+09:00'
+  timestamp: '2024-09-05 20:30:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/linear_recurrence.test.cpp

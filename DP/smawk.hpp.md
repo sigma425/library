@@ -70,18 +70,7 @@ data:
     \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
     \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
     \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
-    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n/*\r\nx       0  1  2  3\
-    \  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2  3  3\r\n\u6700\u4E0A\u4F4D\
-    bit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\
-    \n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1 : 31 ^ __builtin_clz(x);\r\n}\r\
-    \nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\nint\
-    \ bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^ __builtin_clzll(x);\r\n}\r\n\r\n\
-    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsl(x) -1  0  1  0  2  0  1  0 \
-    \ 3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull x){\r\n\tif(x==0) return\
-    \ -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\ntemplate<class\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line 24 \"DP/smawk.hpp\"\ntemplate<class\
     \ Select>\nvector<int> smawk(int H, int W, Select select){\n\tauto rec = [&](auto&&\
     \ self, const vector<int>& hs, const vector<int>& ws) -> vector<int> {\n\t\tint\
     \ N = hs.size();\n\t\tif(N == 0) return {};\n\n\t\tvector<int> h2;\n\t\tfor(int\
@@ -133,7 +122,7 @@ data:
   requiredBy:
   - DP/axiotis_tzamos_knapsack.hpp
   - DP/maxplus_convolution_b_concave.hpp
-  timestamp: '2024-07-25 10:58:46+09:00'
+  timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/maxplus_convolution_b_concave.test.cpp

@@ -47,23 +47,12 @@ data:
     \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
     \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
     \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n\
-    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2 \
-    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ?\
-    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1\
-    \ : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63\
-    \ ^ __builtin_clzll(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^\
-    \ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\
-    \nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n#line 1\
-    \ \"math/factorization.hpp\"\n/*\r\n\t\u7D20\u56E0\u6570\u5206\u89E3 1 <= n <=\
-    \ 10^18\r\n\tpollard_rho's algorithm\r\n\tO(n^0.25 polylog(n)) \u304F\u3089\u3044\
-    \u3089\u3057\u3044\r\n*/\r\n\r\ntemplate<class T>\r\nT gcd(T a,T b){\r\n\ta =\
-    \ abs(a), b = abs(b);\r\n\tif(b==0) return a;\r\n\treturn gcd(b,a%b);\r\n}\r\n\
-    template<class T, class U>\r\nT pow_mod(T x, U p, T mod){\r\n\tassert(p>=0);\r\
+    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line\
+    \ 1 \"math/factorization.hpp\"\n/*\r\n\t\u7D20\u56E0\u6570\u5206\u89E3 1 <= n\
+    \ <= 10^18\r\n\tpollard_rho's algorithm\r\n\tO(n^0.25 polylog(n)) \u304F\u3089\
+    \u3044\u3089\u3057\u3044\r\n*/\r\n\r\ntemplate<class T>\r\nT gcd(T a,T b){\r\n\
+    \ta = abs(a), b = abs(b);\r\n\tif(b==0) return a;\r\n\treturn gcd(b,a%b);\r\n\
+    }\r\ntemplate<class T, class U>\r\nT pow_mod(T x, U p, T mod){\r\n\tassert(p>=0);\r\
     \n\tx %= mod;\r\n\tT a = 1 % mod;\r\n\twhile(p){\r\n\t\tif(p&1) a = a*x%mod;\r\
     \n\t\tx = x*x%mod;\r\n\t\tp >>= 1;\r\n\t}\r\n\treturn a;\r\n}\r\nusing ll = long\
     \ long;\r\nbool isprime(ll n){\r\n\tif(n<=1) return 0;\r\n\tif(n==2) return 1;\r\
@@ -96,7 +85,7 @@ data:
   isVerificationFile: true
   path: test_oj/factorization.test.cpp
   requiredBy: []
-  timestamp: '2024-09-04 20:28:21+09:00'
+  timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/factorization.test.cpp

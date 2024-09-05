@@ -79,29 +79,30 @@ data:
     \ operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
-    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
-    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
-    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
-    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
-    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
-    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
-    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
-    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
-    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line\
-    \ 1 \"math/hadamard.cpp\"\ntemplate<class T>\nvoid hadamard(V<T>& a, bool inv\
-    \ = false){\n\tint n = si(a);\n\tassert(__builtin_popcount(n) == 1);\n\tfor(int\
-    \ i=1;i<n;i<<=1){\n\t\tfor(int j=0;j<n;j+=i<<1){\n\t\t\trep(k,i){\n\t\t\t\tT s\
-    \ = a[j+k], t = a[j+k+i];\n\t\t\t\ta[j+k] = s+t;\n\t\t\t\ta[j+k+i] = s-t;\n\t\t\
-    \t}\n\t\t}\n\t}\n\tif(inv){\n\t\tT in = T(1)/n;\n\t\tfor(auto& x: a) x *= in;\n\
-    \t}\n}\n#line 62 \"test_oj/xorconv.test.cpp\"\n\nint main(){\n\tcin.tie(0);\n\t\
-    ios::sync_with_stdio(false);\t\t//DON'T USE scanf/printf/puts !!\n\tcout << fixed\
-    \ << setprecision(20);\n\n    int N; cin >> N;\n    V<mint> a(1<<N); for(auto&\
-    \ v: a) cin >> v;\n    V<mint> b(1<<N); for(auto& v: b) cin >> v;\n    hadamard(a);\
-    \ hadamard(b);\n    rep(i,1<<N) a[i] *= b[i];\n    hadamard(a,true);\n    for(auto\
-    \ v: a) cout << v << \" \";\n    cout << endl;\n}\n"
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=1000;b++){\n\
+    \t// \t\tModInt ib = ModInt(b).inv();\n\t// \t\tfor(int a=-1000;a<=1000;a++){\n\
+    \t// \t\t\tif(ModInt(a) * ib == x){\n\t// \t\t\t\treturn o << a << \"/\" << b;\n\
+    \t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \treturn o<<x.v;\n\t// }\n};\nusing mint\
+    \ = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\n\
+    // a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
+    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n// b >= 0 \u306E\u7BC4\u56F2\
+    \u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\nmint Choose(int a,int b){\n\t\
+    if(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n*/\n\n\
+    void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line 1 \"math/hadamard.cpp\"\
+    \ntemplate<class T>\nvoid hadamard(V<T>& a, bool inv = false){\n\tint n = si(a);\n\
+    \tassert(__builtin_popcount(n) == 1);\n\tfor(int i=1;i<n;i<<=1){\n\t\tfor(int\
+    \ j=0;j<n;j+=i<<1){\n\t\t\trep(k,i){\n\t\t\t\tT s = a[j+k], t = a[j+k+i];\n\t\t\
+    \t\ta[j+k] = s+t;\n\t\t\t\ta[j+k+i] = s-t;\n\t\t\t}\n\t\t}\n\t}\n\tif(inv){\n\t\
+    \tT in = T(1)/n;\n\t\tfor(auto& x: a) x *= in;\n\t}\n}\n#line 62 \"test_oj/xorconv.test.cpp\"\
+    \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
+    \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\n    int N; cin\
+    \ >> N;\n    V<mint> a(1<<N); for(auto& v: a) cin >> v;\n    V<mint> b(1<<N);\
+    \ for(auto& v: b) cin >> v;\n    hadamard(a); hadamard(b);\n    rep(i,1<<N) a[i]\
+    \ *= b[i];\n    hadamard(a,true);\n    for(auto v: a) cout << v << \" \";\n  \
+    \  cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
     \n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\nusing\
     \ uint = unsigned int;\nusing ull = unsigned long long;\n#define rep(i,n) for(int\
@@ -139,7 +140,7 @@ data:
   isVerificationFile: true
   path: test_oj/xorconv.test.cpp
   requiredBy: []
-  timestamp: '2024-07-25 11:02:07+09:00'
+  timestamp: '2024-09-05 20:30:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/xorconv.test.cpp

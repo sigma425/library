@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: math/factorial_precalc.cpp
+    title: math/factorial_precalc.cpp
+  - icon: ':warning:'
     path: math/famous_seq/unrooted_tree.cpp
     title: math/famous_seq/unrooted_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/polynomial_taylor_shift.test.cpp
     title: test_oj/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/segtree/range_affine_point_get.test.cpp
+    title: test_oj/segtree/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_oj/xorconv.test.cpp
     title: test_oj/xorconv.test.cpp
@@ -78,18 +84,19 @@ data:
     \ operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
-    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
-    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
-    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
-    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
-    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
-    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
-    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
-    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
-    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n"
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=1000;b++){\n\
+    \t// \t\tModInt ib = ModInt(b).inv();\n\t// \t\tfor(int a=-1000;a<=1000;a++){\n\
+    \t// \t\t\tif(ModInt(a) * ib == x){\n\t// \t\t\t\treturn o << a << \"/\" << b;\n\
+    \t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \treturn o<<x.v;\n\t// }\n};\nusing mint\
+    \ = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\n\
+    // a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
+    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n// b >= 0 \u306E\u7BC4\u56F2\
+    \u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\nmint Choose(int a,int b){\n\t\
+    if(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n*/\n\n\
+    void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n"
   code: "/*\n\t\u4EFB\u610Fmod \u306A\u3089 \n\ttemplate \u306A\u304F\u3057\u3066\
     \ costexpr \u306E\u884C\u6D88\u3057\u3066 global \u306B unsigned int mod = 1;\n\
     \t\u3067 cin>>mod \u3057\u3066\u304B\u3089\u4F7F\u3046\n\t\u4EFB\u610F mod \u306F\
@@ -126,36 +133,39 @@ data:
     \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
-    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
-    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
-    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
-    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
-    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
-    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
-    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
-    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
-    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}"
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=1000;b++){\n\
+    \t// \t\tModInt ib = ModInt(b).inv();\n\t// \t\tfor(int a=-1000;a<=1000;a++){\n\
+    \t// \t\t\tif(ModInt(a) * ib == x){\n\t// \t\t\t\treturn o << a << \"/\" << b;\n\
+    \t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \treturn o<<x.v;\n\t// }\n};\nusing mint\
+    \ = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\n\
+    // a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
+    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n// b >= 0 \u306E\u7BC4\u56F2\
+    \u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\nmint Choose(int a,int b){\n\t\
+    if(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n*/\n\n\
+    void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}"
   dependsOn: []
   isVerificationFile: false
   path: math/mint.cpp
   requiredBy:
   - math/famous_seq/unrooted_tree.cpp
+  - math/factorial_precalc.cpp
   - math/poly.cpp
-  timestamp: '2024-07-25 11:02:07+09:00'
+  timestamp: '2024-09-05 20:30:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_oj/polynomial_taylor_shift.test.cpp
+  - test_oj/inv_matrix.test.cpp
+  - test_oj/xorconv.test.cpp
+  - test_oj/segtree/range_affine_point_get.test.cpp
+  - test_oj/linearEquation.test.cpp
   - test_oj/linear_recurrence.test.cpp
+  - test_oj/polynomial_taylor_shift.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_pow.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/xorconv.test.cpp
-  - test_oj/linearEquation.test.cpp
   - test_oj/matrix_basic.test.cpp
-  - test_oj/inv_matrix.test.cpp
 documentation_of: math/mint.cpp
 layout: document
 redirect_from:

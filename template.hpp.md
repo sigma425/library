@@ -18,6 +18,9 @@ data:
     path: geom/RotatingPoints.cpp
     title: geom/RotatingPoints.cpp
   - icon: ':warning:'
+    path: math/factorial_precalc.cpp
+    title: math/factorial_precalc.cpp
+  - icon: ':warning:'
     path: math/famous_seq/unrooted_tree.cpp
     title: math/famous_seq/unrooted_tree.cpp
   - icon: ':warning:'
@@ -39,6 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/online_conv/online_pow.test.cpp
     title: test_oj/online_conv/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/segtree/point_add_range_sum.test.cpp
+    title: test_oj/segtree/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/segtree/range_affine_point_get.test.cpp
+    title: test_oj/segtree/range_affine_point_get.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -73,18 +82,7 @@ data:
     \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
     \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
     \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n\
-    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2 \
-    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ?\
-    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1\
-    \ : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63\
-    \ ^ __builtin_clzll(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^\
-    \ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\
-    \nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n"
+    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\
     using ll = long long;\r\nusing uint = unsigned int;\r\nusing ull = unsigned long\
     \ long;\r\n#define rep(i,n) for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int\
@@ -114,37 +112,29 @@ data:
     \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
     \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
     \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n\r\n\
-    /*\r\nx       0  1  2  3  4  5  6  7  8  9\r\nbsr(x) -1  0  1  1  2  2  2  2 \
-    \ 3  3\r\n\u6700\u4E0A\u4F4Dbit\r\n*/\r\nint bsr(int x){\r\n\treturn x == 0 ?\
-    \ -1 : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(uint x){\r\n\treturn x == 0 ? -1\
-    \ : 31 ^ __builtin_clz(x);\r\n}\r\nint bsr(ll x){\r\n\treturn x == 0 ? -1 : 63\
-    \ ^ __builtin_clzll(x);\r\n}\r\nint bsr(ull x){\r\n\treturn x == 0 ? -1 : 63 ^\
-    \ __builtin_clzll(x);\r\n}\r\n\r\n/*\r\nx       0  1  2  3  4  5  6  7  8  9\r\
-    \nbsl(x) -1  0  1  0  2  0  1  0  3  0\r\n\u6700\u4E0B\u4F4Dbit\r\n*/\r\nint bsl(int\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(uint\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctz(x);\r\n}\r\nint bsl(ll\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\nint bsl(ull\
-    \ x){\r\n\tif(x==0) return -1;\r\n\treturn __builtin_ctzll(x);\r\n}\r\n"
+    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - 0.cpp
   - DP/smawk.hpp
   - DP/axiotis_tzamos_knapsack.hpp
   - DP/maxplus_convolution_b_concave.hpp
   - math/famous_seq/unrooted_tree.cpp
-  - geom/RotatingPoints.cpp
+  - math/factorial_precalc.cpp
   - misc/color_debug.cpp
-  timestamp: '2024-07-25 10:58:46+09:00'
+  - geom/RotatingPoints.cpp
+  - 0.cpp
+  timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_oj/factorization.test.cpp
+  - test_oj/segtree/range_affine_point_get.test.cpp
+  - test_oj/segtree/point_add_range_sum.test.cpp
   - test_oj/maxplus_convolution_b_concave.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_pow.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:

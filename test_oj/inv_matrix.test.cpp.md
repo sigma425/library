@@ -140,24 +140,24 @@ data:
     \tbool operator<(const ModInt& b) const { return v<b.v;}\n\tfriend istream& operator>>(istream\
     \ &o,ModInt& x){\n\t\tll tmp;\n\t\to>>tmp;\n\t\tx=ModInt(tmp);\n\t\treturn o;\n\
     \t}\n\tfriend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}\n\
-    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=100;b++){\n\
-    \t// \t\tfor(int a=-100;a<=100;a++){\n\t// \t\t\tif(ModInt(a)/b == x){\n\t// \t\
-    \t\t\treturn o << a << \"/\" << b;\n\t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \t\
-    return o<<x.v;\n\t// }\n};\nusing mint = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\
-    \nV<mint> fact,ifact,invs;\n// a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\
-    \tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n\
-    // b >= 0 \u306E\u7BC4\u56F2\u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\n\
-    mint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b]\
-    \ * ifact[a-b];\n}\n*/\n\nvoid InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\
-    \tifact.resize(N);\n\tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] =\
-    \ fact[i-1] * i;\n\tifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i]\
-    \ = ifact[i+1] * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line\
-    \ 80 \"test_oj/inv_matrix.test.cpp\"\n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\
-    \t//DON'T USE scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\t\n\
-    \tint n; cin >> n;\n\tauto a = Vec<mint>(n,n);\n\trep(i,n) rep(j,n) cin >> a[i][j];\n\
-    \ta = inv(a);\n\tif(a.empty()){\n\t\tcout << -1 << endl;\n\t\treturn 0;\n\t}\n\
-    \trep(i,n){\n\t\trep(j,n) cout << a[i][j] << \" \";\n\t\tcout << endl;\n\t}\n\
-    }\n"
+    \t// friend ostream& operator<<(ostream &o,const ModInt& x){\n\t// \tfor(int b=1;b<=1000;b++){\n\
+    \t// \t\tModInt ib = ModInt(b).inv();\n\t// \t\tfor(int a=-1000;a<=1000;a++){\n\
+    \t// \t\t\tif(ModInt(a) * ib == x){\n\t// \t\t\t\treturn o << a << \"/\" << b;\n\
+    \t// \t\t\t}\n\t// \t\t}\n\t// \t}\n\t// \treturn o<<x.v;\n\t// }\n};\nusing mint\
+    \ = ModInt<998244353>;\n//using mint = ModInt<1000000007>;\n\nV<mint> fact,ifact,invs;\n\
+    // a,b >= 0 \u306E\u307F\nmint Choose(int a,int b){\n\tif(b<0 || a<b) return 0;\n\
+    \treturn fact[a] * ifact[b] * ifact[a-b];\n}\n\n/*\n// b >= 0 \u306E\u7BC4\u56F2\
+    \u3067\u3001 Choose(a,b) = a(a-1)..(a-b+1) / b!\nmint Choose(int a,int b){\n\t\
+    if(b<0 || a<b) return 0;\n\treturn fact[a] * ifact[b] * ifact[a-b];\n}\n*/\n\n\
+    void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
+    \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
+    ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line 80 \"test_oj/inv_matrix.test.cpp\"\
+    \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
+    \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\t\n\tint n; cin\
+    \ >> n;\n\tauto a = Vec<mint>(n,n);\n\trep(i,n) rep(j,n) cin >> a[i][j];\n\ta\
+    \ = inv(a);\n\tif(a.empty()){\n\t\tcout << -1 << endl;\n\t\treturn 0;\n\t}\n\t\
+    rep(i,n){\n\t\trep(j,n) cout << a[i][j] << \" \";\n\t\tcout << endl;\n\t}\n}\n"
   code: "#ifdef __clang__\n#define IGNORE\n#else\n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\
     \n#endif\n\n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\n\
     using uint = unsigned int;\nusing ull = unsigned long long;\n#define rep(i,n)\
@@ -199,7 +199,7 @@ data:
   isVerificationFile: true
   path: test_oj/inv_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-25 11:02:07+09:00'
+  timestamp: '2024-09-05 20:30:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/inv_matrix.test.cpp
