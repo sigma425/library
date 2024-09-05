@@ -75,9 +75,10 @@ struct ModInt{
 	}
 	friend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}
 	// friend ostream& operator<<(ostream &o,const ModInt& x){
-	// 	for(int b=1;b<=100;b++){
-	// 		for(int a=-100;a<=100;a++){
-	// 			if(ModInt(a)/b == x){
+	// 	for(int b=1;b<=1000;b++){
+	// 		ModInt ib = ModInt(b).inv();
+	// 		for(int a=-1000;a<=1000;a++){
+	// 			if(ModInt(a) * ib == x){
 	// 				return o << a << "/" << b;
 	// 			}
 	// 		}
