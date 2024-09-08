@@ -24,6 +24,9 @@ data:
     path: math/famous_seq/unrooted_tree.cpp
     title: math/famous_seq/unrooted_tree.cpp
   - icon: ':warning:'
+    path: math/linear_equations_mod.hpp
+    title: math/linear_equations_mod.hpp
+  - icon: ':warning:'
     path: misc/color_debug.cpp
     title: misc/color_debug.cpp
   _extendedVerifiedWith:
@@ -122,6 +125,7 @@ data:
   - DP/maxplus_convolution_b_concave.hpp
   - math/famous_seq/unrooted_tree.cpp
   - math/factorial_precalc.cpp
+  - math/linear_equations_mod.hpp
   - misc/color_debug.cpp
   - geom/RotatingPoints.cpp
   - 0.cpp

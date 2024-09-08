@@ -486,6 +486,9 @@ data:
       path: math/isprime.cpp
       title: math/isprime.cpp
     - icon: ':warning:'
+      path: math/linear_equations_mod.hpp
+      title: math/linear_equations_mod.hpp
+    - icon: ':warning:'
       path: math/linear_min_mod.cpp
       title: math/linear_min_mod.cpp
     - icon: ':warning:'
@@ -497,6 +500,9 @@ data:
     - icon: ':warning:'
       path: math/mint0.cpp
       title: math/mint0.cpp
+    - icon: ':warning:'
+      path: math/mod_fraction.hpp
+      title: math/mod_fraction.hpp
     - icon: ':warning:'
       path: math/multivariate_mult.cpp
       title: math/multivariate_mult.cpp
