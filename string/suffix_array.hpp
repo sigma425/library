@@ -129,7 +129,7 @@ struct SuffixArray{
 			for(int i=1;i<(int)v.size();i++){
 				int l=v[i-1],r=v[i];
 				while(true){
-					if(s[l]!=s[r]){
+					if(l == N || r == N || s[l] != s[r]){
 						c++;
 						break;
 					}
