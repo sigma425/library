@@ -643,9 +643,12 @@ data:
     - icon: ':warning:'
       path: string/period_substr.cpp
       title: string/period_substr.cpp
-    - icon: ':heavy_check_mark:'
-      path: string/sa-is.cpp
-      title: string/sa-is.cpp
+    - icon: ':warning:'
+      path: string/suffix_array.hpp
+      title: string/suffix_array.hpp
+    - icon: ':warning:'
+      path: string/suffix_tree.hpp
+      title: string/suffix_tree.hpp
   verificationCategories:
   - name: test_oj
     pages:
@@ -676,7 +679,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/polynomial_taylor_shift.test.cpp
       title: test_oj/polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/sa-is.test.cpp
       title: test_oj/sa-is.test.cpp
     - icon: ':heavy_check_mark:'
