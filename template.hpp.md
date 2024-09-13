@@ -31,6 +31,9 @@ data:
     title: misc/color_debug.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test_oj/cartesian_tree.test.cpp
+    title: test_oj/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_oj/factorization.test.cpp
     title: test_oj/factorization.test.cpp
   - icon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   - test_oj/online_conv/online_div.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
   - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/cartesian_tree.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/bitset.hpp
+    title: ds/bitset.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -30,7 +33,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: misc/highbit.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/bitset.hpp
   timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -90,6 +90,15 @@ data:
       path: ds/SparseTable.cpp
       title: ds/SparseTable.cpp
     - icon: ':warning:'
+      path: ds/bitset.hpp
+      title: ds/bitset.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/cartesian_tree.hpp
+      title: ds/cartesian_tree.hpp
+    - icon: ':warning:'
+      path: ds/clearable_vector_bool.hpp
+      title: ds/clearable_vector_bool.hpp
+    - icon: ':warning:'
       path: ds/decomposing.cpp
       title: ds/decomposing.cpp
     - icon: ':warning:'
@@ -501,6 +510,9 @@ data:
       path: math/mint0.cpp
       title: math/mint0.cpp
     - icon: ':warning:'
+      path: math/mint61.hpp
+      title: math/mint61.hpp
+    - icon: ':warning:'
       path: math/mod_fraction.hpp
       title: math/mod_fraction.hpp
     - icon: ':warning:'
@@ -655,6 +667,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/FloorKthRoot.test.cpp
       title: test_oj/FloorKthRoot.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/cartesian_tree.test.cpp
+      title: test_oj/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
