@@ -6,6 +6,7 @@
 "test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp": "2024-01-05 03:20:46 +0900",
 "test_oj/beats/simple_min.test.cpp": "2024-01-05 03:20:46 +0900",
 "test_oj/beats/simple_sum.test.cpp": "2024-01-05 03:20:46 +0900",
+"test_oj/cartesian_tree.test.cpp": "2024-09-14 08:25:09 +0900",
 "test_oj/enumerate_primes.test.cpp": "2023-11-14 00:04:24 +0900",
 "test_oj/factorization.test.cpp": "2024-09-05 20:28:47 +0900",
 "test_oj/inv_matrix.test.cpp": "2024-09-05 20:30:00 +0900",
