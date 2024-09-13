@@ -54,9 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/segtree/range_affine_point_get.test.cpp
     title: test_oj/segtree/range_affine_point_get.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_oj/suffix_array.test.cpp
+    title: test_oj/suffix_array.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\r\n#include <bits/stdc++.h>\r\nusing namespace\
@@ -133,8 +136,9 @@ data:
   - geom/RotatingPoints.cpp
   - 0.cpp
   timestamp: '2024-09-05 20:28:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_oj/suffix_array.test.cpp
   - test_oj/factorization.test.cpp
   - test_oj/segtree/range_affine_point_get.test.cpp
   - test_oj/segtree/point_add_range_sum.test.cpp

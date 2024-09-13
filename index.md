@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: DP
@@ -655,7 +655,7 @@ data:
     - icon: ':warning:'
       path: string/period_substr.cpp
       title: string/period_substr.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
     - icon: ':warning:'
@@ -694,12 +694,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/polynomial_taylor_shift.test.cpp
       title: test_oj/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
-      path: test_oj/sa-is.test.cpp
-      title: test_oj/sa-is.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/scc.test.cpp
       title: test_oj/scc.test.cpp
+    - icon: ':x:'
+      path: test_oj/suffix_array.test.cpp
+      title: test_oj/suffix_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/xorconv.test.cpp
       title: test_oj/xorconv.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
