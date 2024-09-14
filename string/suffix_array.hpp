@@ -85,7 +85,8 @@ struct SuffixArray{
 	template<class T>
 	void SA(int N,const T s[],int sa[],int K){
 		bool is[N+1];		//stype?
-		int lcnt[K+1]={},scnt[K+1]={};
+		int lcnt[K+1], scnt[K+1];
+		fill_n(lcnt, K+1, 0); fill_n(scnt, K+1, 0);
 		is[N]=1;
 		for(int i=N-1;i>=0;i--){
 			if(i==N-1||s[i]>s[i+1]) is[i]=0;
