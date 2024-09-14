@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: DP
@@ -655,7 +655,7 @@ data:
     - icon: ':warning:'
       path: string/period_substr.cpp
       title: string/period_substr.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
     - icon: ':warning:'
@@ -697,7 +697,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/scc.test.cpp
       title: test_oj/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_oj/suffix_array.test.cpp
       title: test_oj/suffix_array.test.cpp
     - icon: ':heavy_check_mark:'

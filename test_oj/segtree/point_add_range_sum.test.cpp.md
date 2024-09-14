@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree_simple.hpp
     title: ds/segtree/segtree_simple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []

@@ -11,7 +11,6 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    IGNORE_IF_CLANG: ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
     - https://judge.yosupo.jp/problem/staticrmq

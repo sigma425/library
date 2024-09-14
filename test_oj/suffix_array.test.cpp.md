@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/suffixarray
@@ -75,31 +75,31 @@ data:
     copy_n(lbase,K+1,it);\n\t\tfor(int i=N;i>0;i--){\n\t\t\tif(sa[i]>=1&&is[sa[i]-1]){\n\
     \t\t\t\tint c=s[sa[i]-1];\n\t\t\t\tsa[--it[c+1]]=sa[i]-1;\n\t\t\t}\n\t\t}\n\t\
     }\n\ttemplate<class T>\n\tvoid SA(int N,const T s[],int sa[],int K){\n\t\tbool\
-    \ is[N+1];\t\t//stype?\n\t\tint lcnt[K+1]={},scnt[K+1]={};\n\t\tis[N]=1;\n\t\t\
-    for(int i=N-1;i>=0;i--){\n\t\t\tif(i==N-1||s[i]>s[i+1]) is[i]=0;\n\t\t\telse if(s[i]<s[i+1])\
-    \ is[i]=1;\n\t\t\telse is[i]=is[i+1];\n\t\t\tif(!is[i]) lcnt[(int)s[i]]++;\n\t\
-    \t\telse scnt[(int)s[i]]++;\n\t\t}\n\t\tvector<int> v;\t\t//LMSs\n\t\tint lms[N+1];\n\
-    \t\tfill_n(lms,N+1,-1);\n\t\tint c=0;\n\t\trep1(i,N-1){\n\t\t\tif(!is[i-1]&&is[i]){\n\
-    \t\t\t\tlms[i]=c++;\n\t\t\t\tv.pb(i);\n\t\t\t}\n\t\t}\n\t\tint lbase[K+1],sbase[K+1];\n\
-    \t\tlbase[0]=1,sbase[0]=1+lcnt[0];\n\t\trep1(i,K){\n\t\t\tlbase[i]=sbase[i-1]+scnt[i-1];\n\
-    \t\t\tsbase[i]=lbase[i]+lcnt[i];\n\t\t}\n\t\tif(!v.empty()){\n\t\t\tvector<int>\
-    \ v2=v;\n\t\t\tint it[K+1];\t\t\t//iterate\n\t\t\tcopy_n(sbase,K+1,it);\n\t\t\t\
-    fill_n(sa,N+1,-1);\n\t\t\tsa[0]=N;\n\t\t\trep(i,v.size()){\n\t\t\t\tint c=s[v[i]];\n\
-    \t\t\t\tsa[it[c]++]=v[i];\n\t\t\t}\n\t\t\tinduce(N,s,is,sa,lbase,K);\n\t\t\tint\
-    \ c=0;\n\t\t\trep1(i,N) if(lms[sa[i]]>=0) v[c++]=sa[i];\n\t\t\tint s2[v.size()],sa2[v.size()+1];\n\
-    \t\t\tc=0;\n\t\t\ts2[lms[v[0]]]=0;\n\t\t\tfor(int i=1;i<(int)v.size();i++){\n\t\
-    \t\t\tint l=v[i-1],r=v[i];\n\t\t\t\twhile(true){\n\t\t\t\t\tif(l == N || r ==\
-    \ N || s[l] != s[r]){\n\t\t\t\t\t\tc++;\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\
-    \t\t\tl++,r++;\n\t\t\t\t\tif(lms[l]>=0||lms[r]>=0){\n\t\t\t\t\t\tif(lms[l]<0||lms[r]<0)\
-    \ c++;\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\ts2[lms[v[i]]]=c;\n\
-    \t\t\t}\n\t\t\tSA(v.size(),s2,sa2,c);\n\t\t\trep1(i,v.size()) v[i-1]=v2[sa2[i]];\n\
-    \t\t}\n\t\tint it[K+1];\n\t\tcopy_n(sbase,K+1,it);\n\t\tfill_n(sa,N+1,-1);\n\t\
-    \tsa[0]=N;\n\t\trep(i,v.size()){\n\t\t\tint c=s[v[i]];\n\t\t\tsa[it[c]++]=v[i];\n\
-    \t\t}\n\t\tinduce(N,s,is,sa,lbase,K);\n\t}\n\ttemplate<class T>\n\tvoid LCP(int\
-    \ N,const T s[],const int sa[],int lcp[]){\n\t\tint isa[N+1];\n\t\trep(i,N+1)\
-    \ isa[sa[i]]=i;\n\t\tint h=0;\n\t\trep(i,N){\n\t\t\tint j=sa[isa[i]-1];\n\t\t\t\
-    if(h>0) h--;\n\t\t\tfor(;j+h<N&&i+h<N;h++){\n\t\t\t\tif(s[j+h]!=s[i+h]) break;\n\
-    \t\t\t}\n\t\t\tlcp[isa[i]-1]=h;\n\t\t}\n\t}\n};\n#line 5 \"test_oj/suffix_array.test.cpp\"\
+    \ is[N+1];\t\t//stype?\n\t\tint lcnt[K+1], scnt[K+1];\n\t\tfill_n(lcnt, K+1, 0);\
+    \ fill_n(scnt, K+1, 0);\n\t\tis[N]=1;\n\t\tfor(int i=N-1;i>=0;i--){\n\t\t\tif(i==N-1||s[i]>s[i+1])\
+    \ is[i]=0;\n\t\t\telse if(s[i]<s[i+1]) is[i]=1;\n\t\t\telse is[i]=is[i+1];\n\t\
+    \t\tif(!is[i]) lcnt[(int)s[i]]++;\n\t\t\telse scnt[(int)s[i]]++;\n\t\t}\n\t\t\
+    vector<int> v;\t\t//LMSs\n\t\tint lms[N+1];\n\t\tfill_n(lms,N+1,-1);\n\t\tint\
+    \ c=0;\n\t\trep1(i,N-1){\n\t\t\tif(!is[i-1]&&is[i]){\n\t\t\t\tlms[i]=c++;\n\t\t\
+    \t\tv.pb(i);\n\t\t\t}\n\t\t}\n\t\tint lbase[K+1],sbase[K+1];\n\t\tlbase[0]=1,sbase[0]=1+lcnt[0];\n\
+    \t\trep1(i,K){\n\t\t\tlbase[i]=sbase[i-1]+scnt[i-1];\n\t\t\tsbase[i]=lbase[i]+lcnt[i];\n\
+    \t\t}\n\t\tif(!v.empty()){\n\t\t\tvector<int> v2=v;\n\t\t\tint it[K+1];\t\t\t\
+    //iterate\n\t\t\tcopy_n(sbase,K+1,it);\n\t\t\tfill_n(sa,N+1,-1);\n\t\t\tsa[0]=N;\n\
+    \t\t\trep(i,v.size()){\n\t\t\t\tint c=s[v[i]];\n\t\t\t\tsa[it[c]++]=v[i];\n\t\t\
+    \t}\n\t\t\tinduce(N,s,is,sa,lbase,K);\n\t\t\tint c=0;\n\t\t\trep1(i,N) if(lms[sa[i]]>=0)\
+    \ v[c++]=sa[i];\n\t\t\tint s2[v.size()],sa2[v.size()+1];\n\t\t\tc=0;\n\t\t\ts2[lms[v[0]]]=0;\n\
+    \t\t\tfor(int i=1;i<(int)v.size();i++){\n\t\t\t\tint l=v[i-1],r=v[i];\n\t\t\t\t\
+    while(true){\n\t\t\t\t\tif(l == N || r == N || s[l] != s[r]){\n\t\t\t\t\t\tc++;\n\
+    \t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t\tl++,r++;\n\t\t\t\t\tif(lms[l]>=0||lms[r]>=0){\n\
+    \t\t\t\t\t\tif(lms[l]<0||lms[r]<0) c++;\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\
+    \t\t}\n\t\t\t\ts2[lms[v[i]]]=c;\n\t\t\t}\n\t\t\tSA(v.size(),s2,sa2,c);\n\t\t\t\
+    rep1(i,v.size()) v[i-1]=v2[sa2[i]];\n\t\t}\n\t\tint it[K+1];\n\t\tcopy_n(sbase,K+1,it);\n\
+    \t\tfill_n(sa,N+1,-1);\n\t\tsa[0]=N;\n\t\trep(i,v.size()){\n\t\t\tint c=s[v[i]];\n\
+    \t\t\tsa[it[c]++]=v[i];\n\t\t}\n\t\tinduce(N,s,is,sa,lbase,K);\n\t}\n\ttemplate<class\
+    \ T>\n\tvoid LCP(int N,const T s[],const int sa[],int lcp[]){\n\t\tint isa[N+1];\n\
+    \t\trep(i,N+1) isa[sa[i]]=i;\n\t\tint h=0;\n\t\trep(i,N){\n\t\t\tint j=sa[isa[i]-1];\n\
+    \t\t\tif(h>0) h--;\n\t\t\tfor(;j+h<N&&i+h<N;h++){\n\t\t\t\tif(s[j+h]!=s[i+h])\
+    \ break;\n\t\t\t}\n\t\t\tlcp[isa[i]-1]=h;\n\t\t}\n\t}\n};\n#line 5 \"test_oj/suffix_array.test.cpp\"\
     \n\nint main(){\n\tcin.tie(0);\n\tios::sync_with_stdio(false);\t\t//DON'T USE\
     \ scanf/printf/puts !!\n\tcout << fixed << setprecision(20);\n\t\n    string s;\n\
     \    cin >> s;\n    int n = s.size();\n    SuffixArray sa(s);\n\n    for (int\
@@ -117,8 +117,8 @@ data:
   isVerificationFile: true
   path: test_oj/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 08:42:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-14 09:26:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/suffix_array.test.cpp
 layout: document
