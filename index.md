@@ -536,6 +536,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime.cpp
       title: math/prime.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/prime.hpp
+      title: math/prime.hpp
+    - icon: ':warning:'
+      path: math/prime_factor_dfs.hpp
+      title: math/prime_factor_dfs.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/prime_sum.hpp
+      title: math/prime_sum.hpp
     - icon: ':warning:'
       path: math/primitiveroot.cpp
       title: math/primitiveroot.cpp
@@ -670,6 +679,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/cartesian_tree.test.cpp
       title: test_oj/cartesian_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_oj/counting_primes.test.cpp
+      title: test_oj/counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp

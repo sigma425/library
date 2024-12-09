@@ -266,11 +266,11 @@ data:
   timestamp: '2024-01-03 19:12:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
   - test_oj/beats/simple_min.test.cpp
   - test_oj/beats/simple_sum.test.cpp
-  - test_oj/beats/range_chmin_chmax_add_range_sum.test.cpp
-  - test_oj/beats/point_set_range_composite.test.cpp
   - test_oj/beats/range_affine_range_sum.test.cpp
+  - test_oj/beats/point_set_range_composite.test.cpp
   - test_oj/beats/point_add_range_sum.test.cpp
 documentation_of: ds/segtree/segbeats.cpp
 layout: document

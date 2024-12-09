@@ -34,6 +34,9 @@ data:
     path: test_oj/cartesian_tree.test.cpp
     title: test_oj/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_oj/counting_primes.test.cpp
+    title: test_oj/counting_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_oj/factorization.test.cpp
     title: test_oj/factorization.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,27 +129,28 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - DP/smawk.hpp
-  - DP/axiotis_tzamos_knapsack.hpp
-  - DP/maxplus_convolution_b_concave.hpp
+  - 0.cpp
   - math/famous_seq/unrooted_tree.cpp
   - math/factorial_precalc.cpp
   - math/linear_equations_mod.hpp
-  - misc/color_debug.cpp
+  - DP/maxplus_convolution_b_concave.hpp
+  - DP/smawk.hpp
+  - DP/axiotis_tzamos_knapsack.hpp
   - geom/RotatingPoints.cpp
-  - 0.cpp
+  - misc/color_debug.cpp
   timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_oj/suffix_array.test.cpp
-  - test_oj/factorization.test.cpp
   - test_oj/segtree/range_affine_point_get.test.cpp
   - test_oj/segtree/point_add_range_sum.test.cpp
-  - test_oj/maxplus_convolution_b_concave.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_conv.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/cartesian_tree.test.cpp
+  - test_oj/factorization.test.cpp
+  - test_oj/counting_primes.test.cpp
+  - test_oj/maxplus_convolution_b_concave.test.cpp
+  - test_oj/suffix_array.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:

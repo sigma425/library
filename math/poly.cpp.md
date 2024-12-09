@@ -591,11 +591,11 @@ data:
   timestamp: '2024-09-05 20:30:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_oj/linear_recurrence.test.cpp
   - test_oj/polynomial_taylor_shift.test.cpp
-  - test_oj/online_conv/online_div.test.cpp
-  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/linear_recurrence.test.cpp
   - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: math/poly.cpp
 layout: document
 redirect_from:

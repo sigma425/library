@@ -120,8 +120,8 @@ data:
   isVerificationFile: false
   path: DP/smawk.hpp
   requiredBy:
-  - DP/axiotis_tzamos_knapsack.hpp
   - DP/maxplus_convolution_b_concave.hpp
+  - DP/axiotis_tzamos_knapsack.hpp
   timestamp: '2024-09-05 20:28:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
