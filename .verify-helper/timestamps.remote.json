@@ -22,5 +22,6 @@
 "test_oj/segtree/point_add_range_sum.test.cpp": "2024-09-05 20:51:52 +0900",
 "test_oj/segtree/range_affine_point_get.test.cpp": "2024-09-05 20:51:52 +0900",
 "test_oj/segtree/range_affine_range_sum.test.cpp": "2024-01-05 03:20:46 +0900",
+"test_oj/suffix_array.test.cpp": "2024-09-14 09:26:45 +0900",
 "test_oj/xorconv.test.cpp": "2024-09-05 20:30:00 +0900"
 }
