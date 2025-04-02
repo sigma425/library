@@ -70,6 +70,16 @@ vector<ll> pollard(ll n){
 	return le;
 }
 
+vector<pair<long long,int>> factorize(ll n){
+	auto ps = pollard(n);
+	sort(all(ps));
+	map<ll,int> mp;
+	for(ll p: ps) mp[p]++;
+	vector<pair<ll,int>> res;
+	for(auto [p,r]: mp) res.emplace_back(p,r);
+	return res;
+}
+
 ll totient(ll n){
 	auto v = pollard(n);
 	map<ll,int> mp; for(ll p: v) mp[p]++;
