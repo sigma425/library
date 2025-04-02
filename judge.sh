@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-g++ -std=c++17 -O3 -g -Wall -Wshadow -Wextra -D_GLIBCZZ_DEBUG -fsanitize=undefined,address $1.cpp -o $1
+g++ -std=c++20 -O2 -g -Wall -Wshadow -Wextra -D_GLIBCZZ_DEBUG -fsanitize=undefined,address $1.cpp -o $1
 for f in tests/*$1*.in; do
     echo '#### Start ' $f
     of=${f%.in}.out
