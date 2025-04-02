@@ -4,6 +4,7 @@
 */
 
 #include "math/mint.cpp"
+#include "misc/highbit.hpp"
 
 // inplace_fmt (without bit rearranging)
 // fft:
@@ -606,6 +607,71 @@ T divAt(Poly<T> f, Poly<T> g, ll p){
 		p /= 2;
 	}
 	return f.at(0)/g.at(0);
+}
+
+/*
+	input:
+		定数項 non0 な多項式 g
+		0 <= L <= R
+	output:
+		[x^L, x^{L+1}, .., x^R] g^-1
+	complexity:
+		O(n log n log L + n(R-L))
+	description:
+		n := deg(g) かつ g[0] = 1 のとき、
+		[x^k] g^-1 = [x^{n-1}] (x^{k+n-1} % rev(g))
+		x^{L+n-1} % rev(g) を求めて、あとは x をかけていく kitamasa法
+	
+	verify: ucup-3-33 E https://contest.ucup.ac/submission/959600
+*/
+template<class T>
+vector<T> invAtRanges(Poly<T> g, ll L, ll R){
+	assert(g.at(0));
+	while(g.back() == 0) g.pop_back();
+	int n = si(g) - 1;
+	T ig0 = g[0].inv();
+	if(n == 0){
+		vector<T> res(R-L+1);
+		if(L == 0) res[0] = ig0;
+		return res;
+	}
+	rep(i,n+1) g[i] *= ig0;
+	auto rev = g.rev();
+
+	// f -> f^2 % rev(g)
+	// O(nlogn)
+	// TODO: 毎回同じ mod を取っているので高速化できるはず Poly.quotient の rinv あたりを参照
+	auto square = [&](vector<T>& f){
+		assert(si(f) == n);
+		f = Poly(f).square() % rev;
+		f.resize(n);
+	};
+	// f -> xf % rev(g)
+	// O(n)
+	auto plus = [&](vector<T>& f){
+		assert(si(f) == n);
+		f.insert(f.begin(),0);
+		rep(i,n) f[i] -= f[n] * rev[i];
+		f.pop_back();
+	};
+	
+	vector<T> f(n); f[0] = 1;
+	if(L+n-1){
+		int h = highbit(L+n-1);
+		plus(f);
+		per(i,h){
+			square(f);
+			if(((L+n-1)>>i)&1) plus(f);
+		}
+	}
+	vector<T> res(R-L+1);
+	res[0] = f[n-1];
+	rep(t,R-L){
+		plus(f);
+		res[t+1] = f[n-1];
+	}
+	for(auto& v: res) v *= ig0;
+	return res;
 }
 
 /*
