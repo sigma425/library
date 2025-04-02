@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DP/maxplus_convolution_b_concave.hpp
     title: DP/maxplus_convolution_b_concave.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DP/smawk.hpp
     title: DP/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
@@ -41,26 +41,27 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line\
-    \ 1 \"DP/maxplus_convolution_b_concave.hpp\"\n/*\n\t\u6570\u5217 A, B \u304C\u4E0E\
-    \u3048\u3089\u308C\u308B\n\t!!!! B !!!! \u306F concave (\u4E0A\u306B\u51F8)\n\t\
-    C_k = max_{k=i+j} A_i + B_j \u3092\u51FA\u529B\n\tO(|A|+|B|)\n\n\t\u4F8B\u3048\
-    \u3070 knapsack \u3067\u540C\u3058 w \u306B\u3064\u3044\u3066\u307E\u3068\u3081\
-    \u305F\u3082\u306E\u3092 B \u3068\u3059\u308B\u3068 mod w \u3054\u3068\u306B\u3053\
-    \u308C\u3092\u547C\u3076\u3053\u3068\u306B\u306A\u308B\n\tB \u304C convex (\u4E0B\
-    \u306B\u51F8) \u306E minplus_convolution \u306F select \u306E\u4E2D\u8EAB\u3060\
-    \u3051\u5909\u3048\u308C\u3070\u3088\u3044\n\n\thttps://codeforces.com/blog/entry/98663\n\
-    \n\tverify:\n\t\thttps://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\n\
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line 1 \"DP/maxplus_convolution_b_concave.hpp\"\
+    \n/*\n\t\u6570\u5217 A, B \u304C\u4E0E\u3048\u3089\u308C\u308B\n\t!!!! B !!!!\
+    \ \u306F concave (\u4E0A\u306B\u51F8)\n\tC_k = max_{k=i+j} A_i + B_j \u3092\u51FA\
+    \u529B\n\tO(|A|+|B|)\n\n\t\u4F8B\u3048\u3070 knapsack \u3067\u540C\u3058 w \u306B\
+    \u3064\u3044\u3066\u307E\u3068\u3081\u305F\u3082\u306E\u3092 B \u3068\u3059\u308B\
+    \u3068 mod w \u3054\u3068\u306B\u3053\u308C\u3092\u547C\u3076\u3053\u3068\u306B\
+    \u306A\u308B\n\tB \u304C convex (\u4E0B\u306B\u51F8) \u306E minplus_convolution\
+    \ \u306F select \u306E\u4E2D\u8EAB\u3060\u3051\u5909\u3048\u308C\u3070\u3088\u3044\
+    \n\n\thttps://codeforces.com/blog/entry/98663\n\n\tverify:\n\t\thttps://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\n\
     */\n\n#line 1 \"DP/smawk.hpp\"\n/*\n\ttotally monotone \u306A H*W \u884C\u5217\
     \ A \u306B\u5BFE\u3057\u3001\u5404\u884C\u306Eargmax\u306E\u4F4D\u7F6E\u3092\u8A08\
     \u7B97\u3059\u308B\n\t\tmonotone: argmax\u304C\u4E0B\u306E\u884C\u307B\u3069\u53F3\
@@ -117,8 +118,8 @@ data:
   isVerificationFile: true
   path: test_oj/maxplus_convolution_b_concave.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 20:28:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-04-03 02:02:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_oj/maxplus_convolution_b_concave.test.cpp
 layout: document

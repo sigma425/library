@@ -5,10 +5,31 @@ data:
   - icon: ':warning:'
     path: ds/bitset.hpp
     title: ds/bitset.hpp
-  _extendedVerifiedWith: []
+  - icon: ':warning:'
+    path: math/famous_seq/unrooted_tree.cpp
+    title: math/famous_seq/unrooted_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/poly.cpp
+    title: math/poly.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_oj/linear_recurrence.test.cpp
+    title: test_oj/linear_recurrence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_conv.test.cpp
+    title: test_oj/online_conv/online_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_div.test.cpp
+    title: test_oj/online_conv/online_div.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/online_conv/online_pow.test.cpp
+    title: test_oj/online_conv/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_oj/polynomial_taylor_shift.test.cpp
+    title: test_oj/polynomial_taylor_shift.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/highbit.hpp\"\n/*\n\tx       0  1  2  3  4  5  6  7\
@@ -34,10 +55,17 @@ data:
   isVerificationFile: false
   path: misc/highbit.hpp
   requiredBy:
+  - math/famous_seq/unrooted_tree.cpp
+  - math/poly.cpp
   - ds/bitset.hpp
   timestamp: '2024-09-05 20:28:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_oj/linear_recurrence.test.cpp
+  - test_oj/polynomial_taylor_shift.test.cpp
+  - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
+  - test_oj/online_conv/online_div.test.cpp
 documentation_of: misc/highbit.hpp
 layout: document
 redirect_from:

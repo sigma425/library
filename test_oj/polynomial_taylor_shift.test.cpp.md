@@ -7,6 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly.cpp
     title: math/poly.cpp
+  - icon: ':heavy_check_mark:'
+    path: misc/highbit.hpp
+    title: misc/highbit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -99,29 +102,38 @@ data:
     void InitFact(int N){\t//[0,N]\n\tN++;\n\tfact.resize(N);\n\tifact.resize(N);\n\
     \tinvs.resize(N);\n\tfact[0] = 1;\n\trep1(i,N-1) fact[i] = fact[i-1] * i;\n\t\
     ifact[N-1] = fact[N-1].inv();\n\tfor(int i=N-2;i>=0;i--) ifact[i] = ifact[i+1]\
-    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line 7 \"math/poly.cpp\"\
-    \n\n// inplace_fmt (without bit rearranging)\n// fft:\n// \t\ta[rev(i)] <- \\\
-    sum_j \\zeta^{ij} a[j]\n// invfft:\n//\t\ta[i] <- (1/n) \\sum_j \\zeta^{-ij} a[rev(j)]\n\
-    // These two are inversions.\n\n\n// !!! CHANGE IF MOD is unusual !!!\nconst int\
-    \ ORDER_2_MOD_MINUS_1 = 23;\t// ord_2 (mod-1)\nconst mint PRIMITIVE_ROOT = 3;\
-    \ // primitive root of (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\tstatic constexpr uint\
-    \ mod = mint::mod;\n\tstatic constexpr uint mod2 = mod + mod;\n\tstatic const\
-    \ int H = ORDER_2_MOD_MINUS_1;\n\tstatic const mint root = PRIMITIVE_ROOT;\n\t\
-    static mint magic[H-1];\n\n\tint n = si(a);\n\tassert(!(n & (n-1))); assert(n\
-    \ >= 1); assert(n <= 1<<H);\t// n should be power of 2\n\n\tif(!magic[0]){\t\t\
-    // precalc\n\t\trep(i,H-1){\n\t\t\tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\
-    \t\tmagic[i] = w;\n\t\t}\n\t}\n\tint m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\
-    \t\tuint v = a[i+m].v;\t\t\t\t\t// < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\
-    // < 2M\n\t\t\ta[i].v += v;\t\t\t\t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\
-    \tmint p = 1;\n\t\tfor(int h=0,s=0; s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\
-    \t\t\t\tuint v = (a[i+m] * p).v;\t\t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod -\
-    \ v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\
-    \t\t}\n\t}\n\twhile(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0;\
-    \ s<n; s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m]\
-    \ * p).v;\t\t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\
-    \ta[i].v += v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
-    \t\t\t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n;\
-    \ s += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \ * (i+1);\n\trep1(i,N-1) invs[i] = fact[i-1] * ifact[i];\n}\n#line 1 \"misc/highbit.hpp\"\
+    \n/*\n\tx       0  1  2  3  4  5  6  7  8  9\n\tmsb(x) -1  0  1  1  2  2  2  2\
+    \  3  3\n\t\u6700\u4E0A\u4F4Dbit\n*/\nint highbit(int x){\n\treturn 31 - countl_zero<uint>(x);\n\
+    }\nint highbit(uint x){\n\treturn 31 - countl_zero<uint>(x);\n}\nint highbit(ll\
+    \ x){\n\treturn 63 - countl_zero<ull>(x);\n}\nint highbit(ull x){\n\treturn 63\
+    \ - countl_zero<ull>(x);\n}\n\n/*\n\tx       0  1  2  3  4  5  6  7  8  9\n\t\
+    lsb(x) 32  0  1  0  2  0  1  0  3  0\n\t\u6700\u4E0B\u4F4Dbit\n*/\nint lowbit(int\
+    \ x){\n\treturn countr_zero<uint>(x);\n}\nint lowbit(uint x){\n\treturn countr_zero<uint>(x);\n\
+    }\nint lowbit(ll x){\n\treturn countr_zero<ull>(x);\n}\nint lowbit(ull x){\n\t\
+    return countr_zero<ull>(x);\n}\n#line 8 \"math/poly.cpp\"\n\n// inplace_fmt (without\
+    \ bit rearranging)\n// fft:\n// \t\ta[rev(i)] <- \\sum_j \\zeta^{ij} a[j]\n//\
+    \ invfft:\n//\t\ta[i] <- (1/n) \\sum_j \\zeta^{-ij} a[rev(j)]\n// These two are\
+    \ inversions.\n\n\n// !!! CHANGE IF MOD is unusual !!!\nconst int ORDER_2_MOD_MINUS_1\
+    \ = 23;\t// ord_2 (mod-1)\nconst mint PRIMITIVE_ROOT = 3; // primitive root of\
+    \ (Z/pZ)*\n\nvoid fft(V<mint>& a){\n\tstatic constexpr uint mod = mint::mod;\n\
+    \tstatic constexpr uint mod2 = mod + mod;\n\tstatic const int H = ORDER_2_MOD_MINUS_1;\n\
+    \tstatic const mint root = PRIMITIVE_ROOT;\n\tstatic mint magic[H-1];\n\n\tint\
+    \ n = si(a);\n\tassert(!(n & (n-1))); assert(n >= 1); assert(n <= 1<<H);\t// n\
+    \ should be power of 2\n\n\tif(!magic[0]){\t\t// precalc\n\t\trep(i,H-1){\n\t\t\
+    \tmint w = -root.pow(((mod-1)>>(i+2))*3);\n\t\t\tmagic[i] = w;\n\t\t}\n\t}\n\t\
+    int m = n;\n\tif(m >>= 1){\n\t\trep(i,m){\n\t\t\tuint v = a[i+m].v;\t\t\t\t\t\
+    // < M\n\t\t\ta[i+m].v = a[i].v + mod - v;\t\t// < 2M\n\t\t\ta[i].v += v;\t\t\t\
+    \t\t\t// < 2M\n\t\t}\n\t}\n\tif(m >>= 1){\n\t\tmint p = 1;\n\t\tfor(int h=0,s=0;\
+    \ s<n; s += m*2){\n\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 3M\n\t\t\t\ta[i].v += v;\t\
+    \t\t\t\t// < 3M\n\t\t\t}\n\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t}\n\t}\n\t\
+    while(m){\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
+    \t// < M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t// < 4M\n\t\t\t\t\ta[i].v +=\
+    \ v;\t\t\t\t\t// < 4M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\t\t\
+    \t}\n\t\t}\n\t\tif(m >>= 1){\n\t\t\tmint p = 1;\n\t\t\tfor(int h=0,s=0; s<n; s\
+    \ += m*2){\n\t\t\t\tfor(int i=s;i<s+m;i++){\n\t\t\t\t\tuint v = (a[i+m] * p).v;\t\
     \t\t\t\t\t\t\t// < M\n\t\t\t\t\ta[i].v = (a[i].v >= mod2) ? a[i].v - mod2 : a[i].v;\t\
     // < 2M\n\t\t\t\t\ta[i+m].v = a[i].v + mod - v;\t\t\t\t\t\t\t// < 3M\n\t\t\t\t\
     \ta[i].v += v;\t\t\t\t\t\t\t\t\t\t\t// < 3M\n\t\t\t\t}\n\t\t\t\tp *= magic[__builtin_ctz(++h)];\n\
@@ -330,13 +342,34 @@ data:
     \twhile(p){\n\t\tauto gm = g;\n\t\tfor(int i=1;i<si(g);i+=2) gm[i] = -gm[i];\n\
     \t\tauto f2 = f*gm;\n\t\tauto g2 = g*gm;\n\t\tf.clear();g.clear();\n\t\tfor(int\
     \ i=p&1;i<si(f2);i+=2) f.set(i/2,f2[i]);\n\t\tfor(int i=0;i<si(g2);i+=2) g.set(i/2,g2[i]);\n\
-    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n\n/*\n\tinput:\n\t\t\u306F\u3058\
-    \u3081 d \u9805: a_0, a_1, .., a_{d-1}\n\t\td+1 \u9805 reccurence: c_0 * a_{i+d}\
-    \ + .. + c_d * a_i = 0\n\t\ta\u3092\u7121\u99C4\u306B\u4E0E\u3048\u3066\u3082\u826F\
-    \u3044(\u8DB3\u308A\u306A\u3044\u3068\u3001\u30AB\u30B9)\n\t\tll k\n\toutput:\n\
-    \t\ta_k\n\tO(d logd logk)\n\tverified: https://judge.yosupo.jp/problem/find_linear_recurrence\n\
-    */\ntemplate<class T>\nT linearRecurrenceAt(V<T> a, V<T> c, ll k){\n\tassert(!c.empty()\
-    \ && c[0]);\n\tint d = si(c) - 1;\n\tassert(si(a) >= d);\n\treturn divAt((Poly<T>(a.begin(),a.begin()+d)\
+    \t\tp /= 2;\n\t}\n\treturn f.at(0)/g.at(0);\n}\n\n/*\n\tinput:\n\t\t\u5B9A\u6570\
+    \u9805 non0 \u306A\u591A\u9805\u5F0F g\n\t\t0 <= L <= R\n\toutput:\n\t\t[x^L,\
+    \ x^{L+1}, .., x^R] g^-1\n\tcomplexity:\n\t\tO(n log n log L + n(R-L))\n\tdescription:\n\
+    \t\tn := deg(g) \u304B\u3064 g[0] = 1 \u306E\u3068\u304D\u3001\n\t\t[x^k] g^-1\
+    \ = [x^{n-1}] (x^{k+n-1} % rev(g))\n\t\tx^{L+n-1} % rev(g) \u3092\u6C42\u3081\u3066\
+    \u3001\u3042\u3068\u306F x \u3092\u304B\u3051\u3066\u3044\u304F kitamasa\u6CD5\
+    \n\t\n\tverify: ucup-3-33 E https://contest.ucup.ac/submission/959600\n*/\ntemplate<class\
+    \ T>\nvector<T> invAtRanges(Poly<T> g, ll L, ll R){\n\tassert(g.at(0));\n\twhile(g.back()\
+    \ == 0) g.pop_back();\n\tint n = si(g) - 1;\n\tT ig0 = g[0].inv();\n\tif(n ==\
+    \ 0){\n\t\tvector<T> res(R-L+1);\n\t\tif(L == 0) res[0] = ig0;\n\t\treturn res;\n\
+    \t}\n\trep(i,n+1) g[i] *= ig0;\n\tauto rev = g.rev();\n\n\t// f -> f^2 % rev(g)\n\
+    \t// O(nlogn)\n\t// TODO: \u6BCE\u56DE\u540C\u3058 mod \u3092\u53D6\u3063\u3066\
+    \u3044\u308B\u306E\u3067\u9AD8\u901F\u5316\u3067\u304D\u308B\u306F\u305A Poly.quotient\
+    \ \u306E rinv \u3042\u305F\u308A\u3092\u53C2\u7167\n\tauto square = [&](vector<T>&\
+    \ f){\n\t\tassert(si(f) == n);\n\t\tf = Poly(f).square() % rev;\n\t\tf.resize(n);\n\
+    \t};\n\t// f -> xf % rev(g)\n\t// O(n)\n\tauto plus = [&](vector<T>& f){\n\t\t\
+    assert(si(f) == n);\n\t\tf.insert(f.begin(),0);\n\t\trep(i,n) f[i] -= f[n] * rev[i];\n\
+    \t\tf.pop_back();\n\t};\n\t\n\tvector<T> f(n); f[0] = 1;\n\tif(L+n-1){\n\t\tint\
+    \ h = highbit(L+n-1);\n\t\tplus(f);\n\t\tper(i,h){\n\t\t\tsquare(f);\n\t\t\tif(((L+n-1)>>i)&1)\
+    \ plus(f);\n\t\t}\n\t}\n\tvector<T> res(R-L+1);\n\tres[0] = f[n-1];\n\trep(t,R-L){\n\
+    \t\tplus(f);\n\t\tres[t+1] = f[n-1];\n\t}\n\tfor(auto& v: res) v *= ig0;\n\treturn\
+    \ res;\n}\n\n/*\n\tinput:\n\t\t\u306F\u3058\u3081 d \u9805: a_0, a_1, .., a_{d-1}\n\
+    \t\td+1 \u9805 reccurence: c_0 * a_{i+d} + .. + c_d * a_i = 0\n\t\ta\u3092\u7121\
+    \u99C4\u306B\u4E0E\u3048\u3066\u3082\u826F\u3044(\u8DB3\u308A\u306A\u3044\u3068\
+    \u3001\u30AB\u30B9)\n\t\tll k\n\toutput:\n\t\ta_k\n\tO(d logd logk)\n\tverified:\
+    \ https://judge.yosupo.jp/problem/find_linear_recurrence\n*/\ntemplate<class T>\n\
+    T linearRecurrenceAt(V<T> a, V<T> c, ll k){\n\tassert(!c.empty() && c[0]);\n\t\
+    int d = si(c) - 1;\n\tassert(si(a) >= d);\n\treturn divAt((Poly<T>(a.begin(),a.begin()+d)\
     \ * Poly<T>(c)).low(d), Poly<T>(c), k);\n}\n\n// return f(K+1)\n// f[k] = 0^k\
     \ + .. + n^k\n// \\sum_{k>=0} f[k] x^k/k! = e^0x + .. + e^nx = 1-e^(n+1)x / 1-e^x\n\
     // O(KlogK)\n// 0^0 = 1\n// keyword: faulhaber \u30D5\u30A1\u30A6\u30EB\u30CF\u30FC\
@@ -388,10 +421,11 @@ data:
   dependsOn:
   - math/poly.cpp
   - math/mint.cpp
+  - misc/highbit.hpp
   isVerificationFile: true
   path: test_oj/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 20:30:00+09:00'
+  timestamp: '2025-04-03 02:25:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/polynomial_taylor_shift.test.cpp

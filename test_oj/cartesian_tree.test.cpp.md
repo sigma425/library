@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -37,25 +37,27 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line\
-    \ 1 \"ds/cartesian_tree.hpp\"\n/*\n\tcartesian tree\n\t\u4E00\u756A\u5C0F\u3055\
-    \u3044\u3068\u3053\u308D\u3067 i \u5206\u3051\u3066\u3001\u5DE6\u53F3\u306B\u5206\
-    \u5272\n\trange[i] = [l,r) \u306E min/max \u304C A[i]\n\t[l,i) \u306E min \u304C\
-    \ lch[i], [i+1,r) \u306E min \u304C rch[i] \u7A7A\u306A\u3089 -1\n\t\u4E00\u756A\
-    \u5C0F\u3055\u3044\u3068\u3053\u304C root\n\n\ttie-break \u306F\u8F9E\u66F8\u9806\
-    \n\n\tverify: yosupo judge\n*/\ntemplate<class T, bool is_min>\nstruct CartesianTree\
-    \ {\n\tint N;\n\tvector<T> A;\n\tvector<pair<int,int>> range;\n\tvector<int> lch,rch,par;\n\
-    \tint root;\n\n\tCartesianTree(const vector<T>& A_): N(A_.size()), A(A_), range(N),\
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line 1 \"ds/cartesian_tree.hpp\"\
+    \n/*\n\tcartesian tree\n\t\u4E00\u756A\u5C0F\u3055\u3044\u3068\u3053\u308D\u3067\
+    \ i \u5206\u3051\u3066\u3001\u5DE6\u53F3\u306B\u5206\u5272\n\trange[i] = [l,r)\
+    \ \u306E min/max \u304C A[i]\n\t[l,i) \u306E min \u304C lch[i], [i+1,r) \u306E\
+    \ min \u304C rch[i] \u7A7A\u306A\u3089 -1\n\t\u4E00\u756A\u5C0F\u3055\u3044\u3068\
+    \u3053\u304C root\n\n\ttie-break \u306F\u8F9E\u66F8\u9806\n\n\tverify: yosupo\
+    \ judge\n*/\ntemplate<class T, bool is_min>\nstruct CartesianTree {\n\tint N;\n\
+    \tvector<T> A;\n\tvector<pair<int,int>> range;\n\tvector<int> lch,rch,par;\n\t\
+    int root;\n\n\tCartesianTree(const vector<T>& A_): N(A_.size()), A(A_), range(N),\
     \ lch(N,-1), rch(N,-1), par(N,-1){\n\t\tauto less = [&](int i, int j) -> bool\
     \ {\n\t\t\tif(is_min) return (A[i] < A[j]) || (A[i] == A[j] && i < j);\n\t\t\t\
     return (A[i] > A[j]) || (A[i] == A[j] && i < j);\n\t\t};\n\t\tvector<int> st;\n\
@@ -85,7 +87,7 @@ data:
   isVerificationFile: true
   path: test_oj/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 08:25:09+09:00'
+  timestamp: '2025-04-03 02:02:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/cartesian_tree.test.cpp

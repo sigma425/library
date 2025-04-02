@@ -8,10 +8,10 @@ data:
   - icon: ':warning:'
     path: DP/axiotis_tzamos_knapsack.hpp
     title: DP/axiotis_tzamos_knapsack.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DP/maxplus_convolution_b_concave.hpp
     title: DP/maxplus_convolution_b_concave.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DP/smawk.hpp
     title: DP/smawk.hpp
   - icon: ':warning:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/factorization.test.cpp
     title: test_oj/factorization.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/maxplus_convolution_b_concave.test.cpp
     title: test_oj/maxplus_convolution_b_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_oj/suffix_array.test.cpp
     title: test_oj/suffix_array.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\r\n#include <bits/stdc++.h>\r\nusing namespace\
@@ -84,17 +84,19 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include <bits/stdc++.h>\r\nusing namespace std;\r\n\
     using ll = long long;\r\nusing uint = unsigned int;\r\nusing ull = unsigned long\
     \ long;\r\n#define rep(i,n) for(int i=0;i<int(n);i++)\r\n#define rep1(i,n) for(int\
@@ -114,42 +116,44 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - 0.cpp
+  - geom/RotatingPoints.cpp
   - math/famous_seq/unrooted_tree.cpp
-  - math/factorial_precalc.cpp
   - math/linear_equations_mod.hpp
+  - math/factorial_precalc.cpp
+  - misc/color_debug.cpp
+  - DP/axiotis_tzamos_knapsack.hpp
   - DP/maxplus_convolution_b_concave.hpp
   - DP/smawk.hpp
-  - DP/axiotis_tzamos_knapsack.hpp
-  - geom/RotatingPoints.cpp
-  - misc/color_debug.cpp
-  timestamp: '2024-09-05 20:28:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - 0.cpp
+  timestamp: '2025-04-03 02:02:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_oj/segtree/range_affine_point_get.test.cpp
   - test_oj/segtree/point_add_range_sum.test.cpp
+  - test_oj/maxplus_convolution_b_concave.test.cpp
   - test_oj/cartesian_tree.test.cpp
   - test_oj/factorization.test.cpp
   - test_oj/counting_primes.test.cpp
-  - test_oj/maxplus_convolution_b_concave.test.cpp
   - test_oj/suffix_array.test.cpp
-  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_conv.test.cpp
+  - test_oj/online_conv/online_pow.test.cpp
   - test_oj/online_conv/online_div.test.cpp
 documentation_of: template.hpp
 layout: document

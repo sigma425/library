@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -37,52 +37,54 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line\
-    \ 1 \"string/suffix_array.hpp\"\n/*\n\tSA-IS + LCP\n\n\tSuffixArray SA(V<int,ll>)\
-    \ \u3082\u3057\u304F\u306F SA(string)\n\t\u3067SA.sa,isa,lcp\u306B\u5165\u308B\
-    \n\n\t[0,N]   sa[i] = i\u756A\u76EE\u306B\u5C0F\u3055\u3044\u3082\u306E\u306F\
-    \ s[ sa[i],N ) \u306A\u306E\u3067 sa[0] = N\n\t[0,N]   isa[i] = s[i,N) \u304C\u4F55\
-    \u756A\u76EE\u306B\u3044\u308B\u304B\n\t[0,N-1] lcp[i] = s[ sa[i],N ) \u3068 s[\
-    \ sa[i+1],N ) \u306Elcp lcp[0] = 0\n\t\u4EFB\u610F\u306Eprefix\u540C\u58EB\u306E\
-    lcp\u304Csegtree_min\u3067\u6C42\u307E\u308B\n\t\u3042\u308Bsubstring\u304C\u4F55\
-    \u56DE\u51FA\u3066\u304F\u308B\u304B? \u3068\u304B\n\n\ts = abcabac\n\n\t\t(eps)\n\
-    \t\tabac\n\t\tabcabac\n\t\tac\n\t\tbac\n\t\tbcabac\n\t\tc\n\t\tcabac\n*/\n\nstruct\
-    \ SuffixArray{\n\tV<int> sa;\n\tV<int> isa;\n\tV<int> lcp;\n\n\ttemplate<class\
-    \ T>\n\tSuffixArray(const vector<T>& s){\t//int,ll\n\t\tint N = s.size();\n\t\t\
-    T s_arr[N];\n\t\trep(i,N) s_arr[i] = s[i];\n\t\tint sa_arr[N+1];\n\t\tint lcp_arr[N];\n\
-    \t\t{\t//zaatsu\n\t\t\tV<T> vs = s;\n\t\t\tsort(all(vs));\n\t\t\tvs.erase(unique(all(vs)),vs.end());\n\
-    \t\t\trep(i,N) s_arr[i] = lower_bound(all(vs),s[i]) - vs.begin();\n\t\t}\n\t\t\
-    int K = N;\n\t\tSA(N,s_arr,sa_arr,K);\n\t\tLCP(N,s_arr,sa_arr,lcp_arr);\n\t\t\
-    sa = V<int>(sa_arr,sa_arr+(N+1));\n\t\tisa.resize(N+1);\n\t\trep(i,N+1) isa[sa[i]]\
-    \ = i;\n\t\tlcp = V<int>(lcp_arr,lcp_arr+N);\n\t}\n\tSuffixArray(const string&\
-    \ s){\n\t\tint N = s.size();\n\t\tchar s_arr[N];\n\t\trep(i,N) s_arr[i] = s[i];\n\
-    \t\tint sa_arr[N+1];\n\t\tint lcp_arr[N];\n\t\tSA(N,s_arr,sa_arr,256);\n\t\tLCP(N,s_arr,sa_arr,lcp_arr);\n\
-    \t\tsa = V<int>(sa_arr,sa_arr+(N+1));\n\t\tisa.resize(N+1);\n\t\trep(i,N+1) isa[sa[i]]\
-    \ = i;\n\t\tlcp = V<int>(lcp_arr,lcp_arr+N);\n\t}\n\n\tprivate:\n\n\ttemplate<class\
-    \ T>\n\tvoid induce(int N,const T s[],bool is[],int sa[],int lbase[],int K){\n\
-    \t\tint it[K+1];\n\t\tcopy_n(lbase,K+1,it);\n\t\trep(i,N+1){\n\t\t\tif(sa[i]>=1&&!is[sa[i]-1]){\n\
-    \t\t\t\tint c=s[sa[i]-1];\n\t\t\t\tsa[it[c]++]=sa[i]-1;\n\t\t\t}\n\t\t}\n\t\t\
-    copy_n(lbase,K+1,it);\n\t\tfor(int i=N;i>0;i--){\n\t\t\tif(sa[i]>=1&&is[sa[i]-1]){\n\
-    \t\t\t\tint c=s[sa[i]-1];\n\t\t\t\tsa[--it[c+1]]=sa[i]-1;\n\t\t\t}\n\t\t}\n\t\
-    }\n\ttemplate<class T>\n\tvoid SA(int N,const T s[],int sa[],int K){\n\t\tbool\
-    \ is[N+1];\t\t//stype?\n\t\tint lcnt[K+1], scnt[K+1];\n\t\tfill_n(lcnt, K+1, 0);\
-    \ fill_n(scnt, K+1, 0);\n\t\tis[N]=1;\n\t\tfor(int i=N-1;i>=0;i--){\n\t\t\tif(i==N-1||s[i]>s[i+1])\
-    \ is[i]=0;\n\t\t\telse if(s[i]<s[i+1]) is[i]=1;\n\t\t\telse is[i]=is[i+1];\n\t\
-    \t\tif(!is[i]) lcnt[(int)s[i]]++;\n\t\t\telse scnt[(int)s[i]]++;\n\t\t}\n\t\t\
-    vector<int> v;\t\t//LMSs\n\t\tint lms[N+1];\n\t\tfill_n(lms,N+1,-1);\n\t\tint\
-    \ c=0;\n\t\trep1(i,N-1){\n\t\t\tif(!is[i-1]&&is[i]){\n\t\t\t\tlms[i]=c++;\n\t\t\
-    \t\tv.pb(i);\n\t\t\t}\n\t\t}\n\t\tint lbase[K+1],sbase[K+1];\n\t\tlbase[0]=1,sbase[0]=1+lcnt[0];\n\
-    \t\trep1(i,K){\n\t\t\tlbase[i]=sbase[i-1]+scnt[i-1];\n\t\t\tsbase[i]=lbase[i]+lcnt[i];\n\
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line 1 \"string/suffix_array.hpp\"\
+    \n/*\n\tSA-IS + LCP\n\n\tSuffixArray SA(V<int,ll>) \u3082\u3057\u304F\u306F SA(string)\n\
+    \t\u3067SA.sa,isa,lcp\u306B\u5165\u308B\n\n\t[0,N]   sa[i] = i\u756A\u76EE\u306B\
+    \u5C0F\u3055\u3044\u3082\u306E\u306F s[ sa[i],N ) \u306A\u306E\u3067 sa[0] = N\n\
+    \t[0,N]   isa[i] = s[i,N) \u304C\u4F55\u756A\u76EE\u306B\u3044\u308B\u304B\n\t\
+    [0,N-1] lcp[i] = s[ sa[i],N ) \u3068 s[ sa[i+1],N ) \u306Elcp lcp[0] = 0\n\t\u4EFB\
+    \u610F\u306Eprefix\u540C\u58EB\u306Elcp\u304Csegtree_min\u3067\u6C42\u307E\u308B\
+    \n\t\u3042\u308Bsubstring\u304C\u4F55\u56DE\u51FA\u3066\u304F\u308B\u304B? \u3068\
+    \u304B\n\n\ts = abcabac\n\n\t\t(eps)\n\t\tabac\n\t\tabcabac\n\t\tac\n\t\tbac\n\
+    \t\tbcabac\n\t\tc\n\t\tcabac\n*/\n\nstruct SuffixArray{\n\tV<int> sa;\n\tV<int>\
+    \ isa;\n\tV<int> lcp;\n\n\ttemplate<class T>\n\tSuffixArray(const vector<T>& s){\t\
+    //int,ll\n\t\tint N = s.size();\n\t\tT s_arr[N];\n\t\trep(i,N) s_arr[i] = s[i];\n\
+    \t\tint sa_arr[N+1];\n\t\tint lcp_arr[N];\n\t\t{\t//zaatsu\n\t\t\tV<T> vs = s;\n\
+    \t\t\tsort(all(vs));\n\t\t\tvs.erase(unique(all(vs)),vs.end());\n\t\t\trep(i,N)\
+    \ s_arr[i] = lower_bound(all(vs),s[i]) - vs.begin();\n\t\t}\n\t\tint K = N;\n\t\
+    \tSA(N,s_arr,sa_arr,K);\n\t\tLCP(N,s_arr,sa_arr,lcp_arr);\n\t\tsa = V<int>(sa_arr,sa_arr+(N+1));\n\
+    \t\tisa.resize(N+1);\n\t\trep(i,N+1) isa[sa[i]] = i;\n\t\tlcp = V<int>(lcp_arr,lcp_arr+N);\n\
+    \t}\n\tSuffixArray(const string& s){\n\t\tint N = s.size();\n\t\tchar s_arr[N];\n\
+    \t\trep(i,N) s_arr[i] = s[i];\n\t\tint sa_arr[N+1];\n\t\tint lcp_arr[N];\n\t\t\
+    SA(N,s_arr,sa_arr,256);\n\t\tLCP(N,s_arr,sa_arr,lcp_arr);\n\t\tsa = V<int>(sa_arr,sa_arr+(N+1));\n\
+    \t\tisa.resize(N+1);\n\t\trep(i,N+1) isa[sa[i]] = i;\n\t\tlcp = V<int>(lcp_arr,lcp_arr+N);\n\
+    \t}\n\n\tprivate:\n\n\ttemplate<class T>\n\tvoid induce(int N,const T s[],bool\
+    \ is[],int sa[],int lbase[],int K){\n\t\tint it[K+1];\n\t\tcopy_n(lbase,K+1,it);\n\
+    \t\trep(i,N+1){\n\t\t\tif(sa[i]>=1&&!is[sa[i]-1]){\n\t\t\t\tint c=s[sa[i]-1];\n\
+    \t\t\t\tsa[it[c]++]=sa[i]-1;\n\t\t\t}\n\t\t}\n\t\tcopy_n(lbase,K+1,it);\n\t\t\
+    for(int i=N;i>0;i--){\n\t\t\tif(sa[i]>=1&&is[sa[i]-1]){\n\t\t\t\tint c=s[sa[i]-1];\n\
+    \t\t\t\tsa[--it[c+1]]=sa[i]-1;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate<class T>\n\tvoid\
+    \ SA(int N,const T s[],int sa[],int K){\n\t\tbool is[N+1];\t\t//stype?\n\t\tint\
+    \ lcnt[K+1], scnt[K+1];\n\t\tfill_n(lcnt, K+1, 0); fill_n(scnt, K+1, 0);\n\t\t\
+    is[N]=1;\n\t\tfor(int i=N-1;i>=0;i--){\n\t\t\tif(i==N-1||s[i]>s[i+1]) is[i]=0;\n\
+    \t\t\telse if(s[i]<s[i+1]) is[i]=1;\n\t\t\telse is[i]=is[i+1];\n\t\t\tif(!is[i])\
+    \ lcnt[(int)s[i]]++;\n\t\t\telse scnt[(int)s[i]]++;\n\t\t}\n\t\tvector<int> v;\t\
+    \t//LMSs\n\t\tint lms[N+1];\n\t\tfill_n(lms,N+1,-1);\n\t\tint c=0;\n\t\trep1(i,N-1){\n\
+    \t\t\tif(!is[i-1]&&is[i]){\n\t\t\t\tlms[i]=c++;\n\t\t\t\tv.pb(i);\n\t\t\t}\n\t\
+    \t}\n\t\tint lbase[K+1],sbase[K+1];\n\t\tlbase[0]=1,sbase[0]=1+lcnt[0];\n\t\t\
+    rep1(i,K){\n\t\t\tlbase[i]=sbase[i-1]+scnt[i-1];\n\t\t\tsbase[i]=lbase[i]+lcnt[i];\n\
     \t\t}\n\t\tif(!v.empty()){\n\t\t\tvector<int> v2=v;\n\t\t\tint it[K+1];\t\t\t\
     //iterate\n\t\t\tcopy_n(sbase,K+1,it);\n\t\t\tfill_n(sa,N+1,-1);\n\t\t\tsa[0]=N;\n\
     \t\t\trep(i,v.size()){\n\t\t\t\tint c=s[v[i]];\n\t\t\t\tsa[it[c]++]=v[i];\n\t\t\
@@ -117,7 +119,7 @@ data:
   isVerificationFile: true
   path: test_oj/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 09:26:45+09:00'
+  timestamp: '2025-04-03 02:02:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_oj/suffix_array.test.cpp

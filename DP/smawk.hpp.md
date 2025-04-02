@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: DP/axiotis_tzamos_knapsack.hpp
     title: DP/axiotis_tzamos_knapsack.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DP/maxplus_convolution_b_concave.hpp
     title: DP/maxplus_convolution_b_concave.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_oj/maxplus_convolution_b_concave.test.cpp
     title: test_oj/maxplus_convolution_b_concave.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/18/005856
@@ -60,13 +60,14 @@ data:
     \ntemplate<class T> ostream& operator<<(ostream& o,const vector<T> &vc){\r\n\t\
     o<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\n\to<<\"}\";\r\n\treturn o;\r\
     \n}\r\nconstexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }\r\n\r\n\
-    #ifdef LOCAL\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x\
-    \ << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\ntemplate<class\
-    \ T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&... args){\r\n\
-    \tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...) cerr << \"\
-    LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define dump(x) cerr\
-    \ << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\tfor(auto v: x)\
-    \ cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\n#define show(x) void(0)\r\
+    #ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst bool SUBMIT = false;\r\n#define\
+    \ show(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\
+    \nvoid dmpr(ostream& os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid\
+    \ dmpr(ostream&os,const T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\
+    \n}\r\n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
+    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
+    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
+    \nconst bool DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\
     \n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
     \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
     \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
@@ -120,10 +121,10 @@ data:
   isVerificationFile: false
   path: DP/smawk.hpp
   requiredBy:
-  - DP/maxplus_convolution_b_concave.hpp
   - DP/axiotis_tzamos_knapsack.hpp
-  timestamp: '2024-09-05 20:28:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - DP/maxplus_convolution_b_concave.hpp
+  timestamp: '2025-04-03 02:02:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_oj/maxplus_convolution_b_concave.test.cpp
 documentation_of: DP/smawk.hpp

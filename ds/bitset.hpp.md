@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: misc/highbit.hpp
     title: misc/highbit.hpp
   _extendedRequiredBy: []

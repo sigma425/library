@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: sample_collector.py
       title: sample_collector.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: DP
@@ -35,7 +35,7 @@ data:
     - icon: ':warning:'
       path: DP/hu_tucker.hpp
       title: DP/hu_tucker.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DP/maxplus_convolution_b_concave.hpp
       title: DP/maxplus_convolution_b_concave.hpp
     - icon: ':warning:'
@@ -44,7 +44,7 @@ data:
     - icon: ':warning:'
       path: DP/slope.hpp
       title: DP/slope.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DP/smawk.hpp
       title: DP/smawk.hpp
     - icon: ':warning:'
@@ -122,6 +122,9 @@ data:
     - icon: ':warning:'
       path: ds/persistent_meldable_heap_with_offset.hpp
       title: ds/persistent_meldable_heap_with_offset.hpp
+    - icon: ':warning:'
+      path: ds/segment_union.hpp
+      title: ds/segment_union.hpp
     - icon: ':warning:'
       path: ds/slide.cpp
       title: ds/slide.cpp
@@ -268,9 +271,6 @@ data:
       path: graph/DominatorTree.cpp
       title: graph/DominatorTree.cpp
     - icon: ':warning:'
-      path: graph/FunctionalGraph.cpp
-      title: graph/FunctionalGraph.cpp
-    - icon: ':warning:'
       path: graph/MinimalCycle.cpp
       title: graph/MinimalCycle.cpp
     - icon: ':warning:'
@@ -318,6 +318,9 @@ data:
     - icon: ':warning:'
       path: graph/eulertour.cpp
       title: graph/eulertour.cpp
+    - icon: ':warning:'
+      path: graph/functional_graph.hpp
+      title: graph/functional_graph.hpp
     - icon: ':warning:'
       path: graph/lca.cpp
       title: graph/lca.cpp
@@ -534,9 +537,6 @@ data:
       path: math/power_companion.cpp
       title: math/power_companion.cpp
     - icon: ':heavy_check_mark:'
-      path: math/prime.cpp
-      title: math/prime.cpp
-    - icon: ':heavy_check_mark:'
       path: math/prime.hpp
       title: math/prime.hpp
     - icon: ':warning:'
@@ -563,6 +563,9 @@ data:
     - icon: ':warning:'
       path: math/subset_poly.cpp
       title: math/subset_poly.cpp
+    - icon: ':warning:'
+      path: math/suffix_linear_basis.hpp
+      title: math/suffix_linear_basis.hpp
     - icon: ':warning:'
       path: math/unrooted_tree.cpp
       title: math/unrooted_tree.cpp
@@ -615,15 +618,12 @@ data:
   - name: misc
     pages:
     - icon: ':warning:'
-      path: misc/BigInt.cpp
-      title: misc/BigInt.cpp
-    - icon: ':warning:'
       path: misc/color_debug.cpp
       title: misc/color_debug.cpp
     - icon: ':warning:'
       path: misc/hashmap.cpp
       title: misc/hashmap.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: misc/highbit.hpp
       title: misc/highbit.hpp
     - icon: ':warning:'
@@ -647,9 +647,6 @@ data:
       path: string/PalindromicTree.cpp
       title: string/PalindromicTree.cpp
     - icon: ':warning:'
-      path: string/RollingHash.cpp
-      title: string/RollingHash.cpp
-    - icon: ':warning:'
       path: string/SuffixAutomaton.cpp
       title: string/SuffixAutomaton.cpp
     - icon: ':warning:'
@@ -664,6 +661,9 @@ data:
     - icon: ':warning:'
       path: string/period_substr.cpp
       title: string/period_substr.cpp
+    - icon: ':warning:'
+      path: string/rollinghash_segtree.hpp
+      title: string/rollinghash_segtree.hpp
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
@@ -682,7 +682,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/counting_primes.test.cpp
       title: test_oj/counting_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/enumerate_primes.test.cpp
       title: test_oj/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -700,7 +700,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_oj/matrix_basic.test.cpp
       title: test_oj/matrix_basic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_oj/maxplus_convolution_b_concave.test.cpp
       title: test_oj/maxplus_convolution_b_concave.test.cpp
     - icon: ':heavy_check_mark:'

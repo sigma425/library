@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -37,32 +37,33 @@ data:
     <<p.fs<<\",\"<<p.sc<<\")\";\r\n}\r\ntemplate<class T> ostream& operator<<(ostream&\
     \ o,const vector<T> &vc){\r\n\to<<\"{\";\r\n\tfor(const T& v:vc) o<<v<<\",\";\r\
     \n\to<<\"}\";\r\n\treturn o;\r\n}\r\nconstexpr ll TEN(int n) { return (n == 0)\
-    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\n#define show(x) cerr << \"LINE\"\
-    \ << __LINE__ << \" : \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream&\
-    \ os){os<<endl;}\r\ntemplate<class T,class... Args>\r\nvoid dmpr(ostream&os,const\
-    \ T&t,const Args&... args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\
-    \n#define shows(...) cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\
-    \n#define dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\"; \
-    \ \\\r\n\tfor(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\
-    \n#define show(x) void(0)\r\n#define dump(x) void(0)\r\n#define shows(...) void(0)\r\
-    \n#endif\r\n\r\ntemplate<class D> D divFloor(D a, D b){\r\n\treturn a / b - (((a\
-    \ ^ b) < 0 && a % b != 0) ? 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D\
-    \ b) {\r\n\treturn a / b + (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line\
-    \ 10 \"math/linear_equations_mod.hpp\"\n\ntemplate<class T> struct EG { T g, x,\
-    \ y; };\ntemplate<class T>\nEG<T> extgcd_sub(T a, T b) {\n\tif(b == 0){\n\t\t\
-    if (a >= 0) return {a, 1, 0};\n\t\telse return {-a, -1, 0};\n\t}else{\n\t\tauto\
-    \ e = extgcd_sub(b, a % b);\n\t\treturn {e.g, e.y, e.x - a / b * e.y};\n\t}\n\
-    }\ntemplate<class T>\nEG<T> extgcd(T a, T b){\n\tauto e = extgcd_sub(a,b);\n\t\
-    if(e.x < 0){\n\t\tif(b > 0){\n\t\t\te.x += b/e.g;\n\t\t\te.y -= a/e.g;\n\t\t}else{\n\
-    \t\t\te.x -= b/e.g;\n\t\t\te.y += a/e.g;\n\t\t}\n\t}\n\treturn e;\n}\n\n/*\n\t\
-    x = r1 mod m1, x = r2 mod m2\n\t<=> x = r mod m\n*/\ntemplate<class T>\npair<T,T>\
-    \ crt2(T r1, T m1, T r2, T m2){\n\tif(m1 == -1 || m2 == -1) return {0,-1};\n\t\
-    auto e = extgcd(m1,m2);\n\tT g = e.g;\n\tif((r2-r1)%g) return {0,-1};\n\tT q =\
-    \ (r2-r1)/g * e.x % (m2/g);\n\tT r = r1 + m1 * q;\n\tT m = m1 * (m2/g);\n\tif(r\
-    \ < 0) r += m;\n\treturn {r,m};\n}\n\n/*\n\tax = r mod m\n\t<=> x = r' mod m'\n\
-    */\ntemplate<class T>\npair<T,T> get_monic(T a, T r, T m){\n\tif(m == -1) return\
-    \ {0,-1};\n\tauto [rr,mm] = crt2<T>(r,m,0,a);\n\tif(mm == -1) return {0,-1};\n\
-    \treturn {rr/a, mm/a};\n}\n"
+    \ ? 1 : 10 * TEN(n-1); }\r\n\r\n#ifdef LOCAL\r\nconst bool DEBUG = true;\r\nconst\
+    \ bool SUBMIT = false;\r\n#define show(x) cerr << \"LINE\" << __LINE__ << \" :\
+    \ \" << #x << \" = \" << (x) << endl\r\nvoid dmpr(ostream& os){os<<endl;}\r\n\
+    template<class T,class... Args>\r\nvoid dmpr(ostream&os,const T&t,const Args&...\
+    \ args){\r\n\tos<<t<<\" ~ \";\r\n\tdmpr(os,args...);\r\n}\r\n#define shows(...)\
+    \ cerr << \"LINE\" << __LINE__ << \" : \";dmpr(cerr,##__VA_ARGS__)\r\n#define\
+    \ dump(x) cerr << \"LINE\" << __LINE__ << \" : \" << #x << \" = {\";  \\\r\n\t\
+    for(auto v: x) cerr << v << \",\"; cerr << \"}\" << endl;\r\n#else\r\nconst bool\
+    \ DEBUG = false;\r\nconst bool SUBMIT = true;\r\n#define show(x) void(0)\r\n#define\
+    \ dump(x) void(0)\r\n#define shows(...) void(0)\r\n#endif\r\n\r\ntemplate<class\
+    \ D> D divFloor(D a, D b){\r\n\treturn a / b - (((a ^ b) < 0 && a % b != 0) ?\
+    \ 1 : 0);\r\n}\r\ntemplate<class D> D divCeil(D a, D b) {\r\n\treturn a / b +\
+    \ (((a ^ b) > 0 && a % b != 0) ? 1 : 0);\r\n}\r\n#line 10 \"math/linear_equations_mod.hpp\"\
+    \n\ntemplate<class T> struct EG { T g, x, y; };\ntemplate<class T>\nEG<T> extgcd_sub(T\
+    \ a, T b) {\n\tif(b == 0){\n\t\tif (a >= 0) return {a, 1, 0};\n\t\telse return\
+    \ {-a, -1, 0};\n\t}else{\n\t\tauto e = extgcd_sub(b, a % b);\n\t\treturn {e.g,\
+    \ e.y, e.x - a / b * e.y};\n\t}\n}\ntemplate<class T>\nEG<T> extgcd(T a, T b){\n\
+    \tauto e = extgcd_sub(a,b);\n\tif(e.x < 0){\n\t\tif(b > 0){\n\t\t\te.x += b/e.g;\n\
+    \t\t\te.y -= a/e.g;\n\t\t}else{\n\t\t\te.x -= b/e.g;\n\t\t\te.y += a/e.g;\n\t\t\
+    }\n\t}\n\treturn e;\n}\n\n/*\n\tx = r1 mod m1, x = r2 mod m2\n\t<=> x = r mod\
+    \ m\n*/\ntemplate<class T>\npair<T,T> crt2(T r1, T m1, T r2, T m2){\n\tif(m1 ==\
+    \ -1 || m2 == -1) return {0,-1};\n\tauto e = extgcd(m1,m2);\n\tT g = e.g;\n\t\
+    if((r2-r1)%g) return {0,-1};\n\tT q = (r2-r1)/g * e.x % (m2/g);\n\tT r = r1 +\
+    \ m1 * q;\n\tT m = m1 * (m2/g);\n\tif(r < 0) r += m;\n\treturn {r,m};\n}\n\n/*\n\
+    \tax = r mod m\n\t<=> x = r' mod m'\n*/\ntemplate<class T>\npair<T,T> get_monic(T\
+    \ a, T r, T m){\n\tif(m == -1) return {0,-1};\n\tauto [rr,mm] = crt2<T>(r,m,0,a);\n\
+    \tif(mm == -1) return {0,-1};\n\treturn {rr/a, mm/a};\n}\n"
   code: "/*\n\t\u4E00\u5909\u6570 x \u306B\u5BFE\u3057\u3066\u3001 x = r mod m \u3084\
     \ ax = r mod m \u306A\u3069\u306E\u6761\u4EF6\u3092\u8FFD\u52A0\u3057\u305F\u7D50\
     \u679C\u6700\u7D42\u7684\u306B\n\tx = r mod m \u306B\u306A\u308A\u307E\u3059\u3001\
@@ -89,7 +90,7 @@ data:
   isVerificationFile: false
   path: math/linear_equations_mod.hpp
   requiredBy: []
-  timestamp: '2024-09-09 05:31:33+09:00'
+  timestamp: '2025-04-03 02:02:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/linear_equations_mod.hpp
