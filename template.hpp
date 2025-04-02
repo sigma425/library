@@ -47,6 +47,8 @@ template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
 constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 
 #ifdef LOCAL
+const bool DEBUG = true;
+const bool SUBMIT = false;
 #define show(x) cerr << "LINE" << __LINE__ << " : " << #x << " = " << (x) << endl
 void dmpr(ostream& os){os<<endl;}
 template<class T,class... Args>
@@ -58,6 +60,8 @@ void dmpr(ostream&os,const T&t,const Args&... args){
 #define dump(x) cerr << "LINE" << __LINE__ << " : " << #x << " = {";  \
 	for(auto v: x) cerr << v << ","; cerr << "}" << endl;
 #else
+const bool DEBUG = false;
+const bool SUBMIT = true;
 #define show(x) void(0)
 #define dump(x) void(0)
 #define shows(...) void(0)
