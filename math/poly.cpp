@@ -3,7 +3,7 @@
 	poly 基本, MultipointEval, Interpolate
 */
 
-#include "math/mint.cpp"
+#include "math/mint.hpp"
 #include "misc/highbit.hpp"
 
 // inplace_fmt (without bit rearranging)

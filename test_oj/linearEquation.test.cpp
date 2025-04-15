@@ -75,8 +75,8 @@ template<class D> D divCeil(D a, D b) {
 }
 
 
-#include "../math/matrix/linear.cpp"
-#include "../math/mint.cpp"
+#include "math/matrix/linear.cpp"
+#include "math/mint.hpp"
 
 int main(){
 	cin.tie(0);

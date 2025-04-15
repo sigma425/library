@@ -2,7 +2,7 @@
 
 #include "template.hpp"
 #include "ds/segtree/segtree_dual.hpp"
-#include "math/mint.cpp"
+#include "math/mint.hpp"
 
 struct A{
 	// x -> ax + b

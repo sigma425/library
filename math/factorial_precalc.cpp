@@ -5,7 +5,7 @@
 */
 
 #include "template.hpp"
-#include "math/mint.cpp"
+#include "math/mint.hpp"
 const int FACTORIAL_STEP = 1'000'000;
 
 // mod 998'244'353
