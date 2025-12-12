@@ -6,9 +6,10 @@
 template<class T>
 struct Matrix: public vector<vector<T>>{
 
+	Matrix(){}
 	Matrix(int n) : vector<vector<T>>(n,vector<T>(n)){}
 	Matrix(int h,int w) : vector<vector<T>>(h,vector<T>(w)){}
-	Matrix(const vector<vector<T>>& m){(*this) = m;}
+	Matrix(const vector<vector<T>>& m) : vector<vector<T>>(m){}
 
 	static Matrix E(int n){
 		Matrix a(n,n);

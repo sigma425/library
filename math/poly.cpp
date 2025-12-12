@@ -698,9 +698,9 @@ T linearRecurrenceAt(V<T> a, V<T> c, ll k){
 // \sum_{k>=0} f[k] x^k/k! = e^0x + .. + e^nx = 1-e^(n+1)x / 1-e^x
 // O(KlogK)
 // 0^0 = 1
-// keyword: faulhaber ファウルハーバー
+// keyword: faulhaber ファウルハーバー sum of power
 
-vector<mint> SumOfPower(mint n, int K){
+vector<mint> faulhaber(mint n, int K){
 	assert(si(fact) > K);
 	Poly<mint> a(K+1),b(K+1);
 	mint pw = 1;
@@ -713,4 +713,27 @@ vector<mint> SumOfPower(mint n, int K){
 	V<mint> res(K+1);
 	rep(k,K+1) res[k] = f[k] * fact[k];
 	return res;
+}
+
+/*
+	res[0<=k<=K] = sum a_i^k
+	\sum 1/(1-a_i x) を列でみて有理式としてやる
+*/
+template<class mint>
+V<mint> sumOfPower(V<mint> A, int K){
+	using P = pair<Poly<mint>,Poly<mint>>;	// bunshi, bunbo
+	auto mul = [&](P p, P q){
+		auto [f0,g0] = p;
+		auto [f1,g1] = q;
+		return P(f0 * g1 + f1 * g0, g0 * g1);
+	};
+	queue<P> que;
+	for(mint a: A) que.push(P({1}, {1, -a}));
+	while(si(que) > 1){
+		auto p = que.front(); que.pop();
+		auto q = que.front(); que.pop();
+		que.push(mul(p,q));
+	}
+	auto [f,g] = que.front();
+	return (f * g.inv(K+1)).low(K+1);
 }

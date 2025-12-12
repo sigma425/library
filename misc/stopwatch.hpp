@@ -6,4 +6,7 @@ struct Stopwatch{
 		auto now = chrono::steady_clock::now();
 		return int(chrono::duration_cast<chrono::milliseconds>(now-start).count());
 	}
+	void reset(){
+		start = chrono::steady_clock::now();
+	}
 };

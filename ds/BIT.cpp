@@ -2,10 +2,8 @@
 	Binary Indexed Tree
 	1次元
 	kthはまだ手元で試しただけ
+	転置版 (range add, point val) も下にある
 */
-#include <bits/stdc++.h>
-#define rep(i,N) for(int i=0;i<N;i++)
-using namespace std;
 
 struct BIT{
 	using D = int;
@@ -67,6 +65,37 @@ struct BIT{
 		return i;
 	}
 }bit;
+
+/*
+	add(l,r,v) : a[l],..,a[r-1] += v
+	val(i) : return a[i]
+*/
+template<class D>
+struct BITRangeAdd{
+	int N;
+	vector<D> bit;
+	BITRangeAdd(){}
+	BITRangeAdd(int n):N(n),bit(n+1){}
+	void add(int l, int r, D v){	// a[l],..,a[r-1] += v
+		add(l,-v); add(r,v);
+	}
+	void add(int r, D v){	// a[0],..,a[r-1] += v
+		while(r > 0){
+			bit[r] += v;
+			r -= (r&-r);
+		}
+	}
+	D val(int i){	// return a[i]
+		D res = 0;
+		i++;
+		while(i <= N){
+			res += bit[i];
+			i += (i&-i);
+		}
+		return res;
+	}
+};
+
 
 //template ver 一部(区間和とかassign)引き算が必要,kthでは順序も必要(しかも多分順序群を要請する)
 
@@ -131,28 +160,3 @@ struct BIT{
 	}
 }bit;
 
-
-
-int main(){
-	int N;
-	cin>>N;
-	BIT bit(N);
-	while(true){
-		char c;
-		cin>>c;
-		if(c=='a'){
-			int i,x;
-			cin>>i>>x;
-			bit.assign(i,x);
-		}
-		if(c=='k'){
-			int k;
-			cin>>k;
-			cout<<"kth="<<bit.kth(k)<<endl;
-		}
-		cout<<"vals=";
-		rep(i,N) cout<<bit.val(i)<<" ";
-		puts("");
-	}
-
-}

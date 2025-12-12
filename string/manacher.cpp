@@ -5,6 +5,7 @@
 
  	偶数長も考えたいときは
 	s:a$b$a$a$a$b$a$b$a
+	の manacher を is_palindrome の引数にする
 
 	文字列じゃないものに使うとき,1文字を回分とみなしてはいけない場合もある
 	その場合は
@@ -14,6 +15,8 @@
 		continue;
 	}
 	でOK
+
+
 */
 vector<int> manacher(string s){
 	int N = s.size();
@@ -27,4 +30,8 @@ vector<int> manacher(string s){
 		i+=k,j-=k;
 	}
 	return R;
+}
+
+bool is_palindrome(int l, int r, const vector<int>& mana){
+	return mana[l+r-1] >= r-l;
 }

@@ -21,10 +21,11 @@ inline D cro(P a, P b) { return imag(conj(a)*b);}
 inline int ccw (P a, P b, P c){
 	if(sig(cro(b-a,c-a))==1) return 1;
 	if(sig(cro(b-a,c-a))==-1) return -1;
-	if(eq(abs(a-c)+abs(c-b),abs(a-b))) return 0;
-	if(eq(abs(a-b)+abs(b-c),abs(a-c))) return -2;
-	if(eq(abs(c-a)+abs(a-b),abs(c-b))) return 2;
-	assert(false);
+	b -= a, c -= a;
+	if(!sig(abs(c)) || !sig(abs(c-b))) return 0;
+	if(dot(b,c) < 0) return 2;
+	if(dot(-b, c-b) < 0) return -2;
+	return 0;
 }
 inline int ccw(L a,P p){return ccw(a.fs,a.sc,p);}
 inline P proj(P a, P b){		//ベクトルaのbへの射影
@@ -383,3 +384,5 @@ V<ll> enumerateCircleInclusion(V<C> c){
 	mkuni(inclusions);
 	return inclusions;
 }
+
+// 多角形と半直線の交点を求める
