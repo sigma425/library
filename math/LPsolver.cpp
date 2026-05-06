@@ -1,5 +1,5 @@
 /*
-	LP
+	LP 線形計画問題
 	max cx
 	s.t. Ax <= b, x >= 0
 

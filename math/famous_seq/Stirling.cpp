@@ -1,4 +1,14 @@
 /*
+	第二種 Stirling 数
+	- S(n,k) : {1,..,n} を k 個の空でない集合に分割する方法の数
+	- S(n,k) * k! : n 個のものを k 色に塗る方法 k^n のうち全射なものの数
+	- k を fix したときの EGF,OGF はきれいになる
+		EGF は、全射を考えると各色について1個以上だから e^x-1 なので、f_k(x) = (e^x-1)^k / k!
+		OGF は、 f_k(x) = x^k / (1-x)(1-2x)...(1-kx)
+		https://contest.ucup.ac/submission/2316381
+*/
+
+/*
 	return {s(n,0), .., s(n,k)}
 	符号なし. 符号付きにしたかったら (-1)^{n-k} をかける
 	O(k log k log n) ただし、k = n のときは O(n log n)

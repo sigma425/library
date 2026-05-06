@@ -7,7 +7,6 @@ for f in tests/*$1*.in; do
     ./$1 < $f | tee $af
     echo " --- dif mode ---"
     diff -y --ignore-trailing-space --ignore-blank-lines $af $of
-#    diff -y $af $of
     if [[ $? = 1 ]] ; then
         echo -e "\e[33mWA\e[m"
     fi

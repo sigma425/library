@@ -56,6 +56,59 @@ vector<T> charPoly(vector<vector<T>> a){
 	return f[n];
 }
 
+// det(a + x b)
+// O(n^3)
+template <class T> vector<T> detPoly(vector<vector<T>> a, vector<vector<T>> b) {
+  const int n = a.size();
+  T prod = 1;
+  int off = 0;
+  for (int h = 0; h < n; ++h) {
+    for (; ; ) {
+      if (b[h][h]) break;
+      for (int j = h + 1; j < n; ++j) {
+        if (b[h][j]) {
+          prod *= -1;
+          for (int i = 0; i < n; ++i) {
+            swap(a[i][h], a[i][j]);
+            swap(b[i][h], b[i][j]);
+          }
+          break;
+        }
+      }
+      if (b[h][h]) break;
+      if (++off > n) return vector<T>(n + 1, 0);
+      for (int j = 0; j < n; ++j) {
+        b[h][j] = a[h][j];
+        a[h][j] = 0;
+      }
+      for (int i = 0; i < h; ++i) {
+        const T t = b[h][i];
+        for (int j = 0; j < n; ++j) {
+          a[h][j] -= t * a[i][j];
+          b[h][j] -= t * b[i][j];
+        }
+      }
+    }
+    prod *= b[h][h];
+    const T s = mint(1) / b[h][h];
+    for (int j = 0; j < n; ++j) {
+      a[h][j] *= s;
+      b[h][j] *= s;
+    }
+    for (int i = 0; i < n; ++i) if (h != i) {
+      const T t = b[i][h];
+      for (int j = 0; j < n; ++j) {
+        a[i][j] -= t * a[h][j];
+        b[i][j] -= t * b[h][j];
+      }
+    }
+  }
+  const vector<T> fs = charPoly(a);
+  vector<T> gs(n + 1, 0);
+  for (int i = 0; off + i <= n; ++i) gs[i] = prod * fs[off + i];
+  return gs;
+}
+
 /*
 	https://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/division_free_determinant.rs
 	verifyはしてない、使ってないから(?)

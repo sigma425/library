@@ -1,24 +1,39 @@
 /*
-	任意 mod
-	cin >> mod してから使う InitFact とかを先にしないように注意
+	任意 mod, 素数じゃなくてもよい (が inv に注意)
+	2 <= mod < 2^32
+	set_mod(mod) を呼んだタイミングで Barret Reduction の前計算をしている
+
+	verify: QOJ8033 https://qoj.ac/submission/984203
 */
 
-unsigned int mod = 1;
 struct ModInt{
 	using uint = unsigned int;
 	using ll = long long;
 	using ull = unsigned long long;
+	
+	static inline uint mod;
+	static inline ull m;
+	static void set_mod(uint mod_){
+		assert(2 <= mod_);
+		mod = mod_;
+		m = (__uint128_t(1)<<64)/mod;
+	}
+	uint reduce(ull x) const {
+		ull q = (__uint128_t(x)*m) >> 64;
+		ull r = x - q * mod; // 0 <= r < 2*mod
+		return r - mod*(r >= mod); // 0 <= r < mod
+	}
 
 	uint v;
 	ModInt():v(0){}
-	ModInt(ll _v):v(normS(_v%mod+mod)){}
+	ModInt(ll v_):v(normS(v_%mod+mod)){}
 	explicit operator bool() const {return v!=0;}
 	static uint normS(const uint &x){return (x<mod)?x:x-mod;}		// [0 , 2*mod-1] -> [0 , mod-1]
 	static ModInt make(const uint &x){ModInt m; m.v=x; return m;}
 	ModInt operator+(const ModInt& b) const { return make(normS(v+b.v));}
 	ModInt operator-(const ModInt& b) const { return make(normS(v+mod-b.v));}
 	ModInt operator-() const { return make(normS(mod-v)); }
-	ModInt operator*(const ModInt& b) const { return make((ull)v*b.v%mod);}
+	ModInt operator*(const ModInt& b) const { return make(reduce((ull)v*b.v));}
 	ModInt operator/(const ModInt& b) const { return *this*b.inv();}
 	ModInt& operator+=(const ModInt& b){ return *this=*this+b;}
 	ModInt& operator-=(const ModInt& b){ return *this=*this-b;}

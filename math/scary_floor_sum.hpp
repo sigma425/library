@@ -42,32 +42,29 @@ T underpath(S a, S b, S m, S n, T x, T y){
 /*
 	scary floor sum に乗せるためのモノイド
 	\sum_{0 <= x < N} x^[0,e1] * floor( (ax + b) / m )^[0,e2] を計算できる
-
-	可変 mint みたいな感じで、使う前に set_e1_e2 を呼ぶ
 */
-template<class T>
+template<class T, int e1, int e2>
 struct MonoidFloorSum{
+	using ARR = array<array<T, e2+1>, e1+1>;
 	using X = MonoidFloorSum;
-	static inline int e1,e2;
-	static inline vector<vector<T>> comb;
-	static void set_e1_e2(int e1_, int e2_){
-		e1 = e1_, e2 = e2_;
-		int e = max(e1,e2);
-		comb = vector<vector<T>>(e+1,vector<T>(e+1));
-		rep(i,e+1){
-			comb[i][0] = comb[i][i] = T(1);
-			rep1(j,i-1) comb[i][j] = comb[i-1][j-1] + comb[i-1][j];
-		}
-	}
 
-	MonoidFloorSum():dp(e1+1,vector<T>(e2+1)){}
+	MonoidFloorSum():dp(),dx(0),dy(0){}
 
 	T dx, dy;
-	vector<vector<T>> dp;
+	ARR dp;
 
 	static X op(X a, X b){
-		vector<T> xpow(e1+1); xpow[0] = 1; rep(i,e1) xpow[i+1] = xpow[i] * a.dx;
-		vector<T> ypow(e2+1); ypow[0] = 1; rep(i,e2) ypow[i+1] = ypow[i] * a.dy;
+		static const int e = max(e1,e2);
+		static array<array<T, e+1>, e+1> comb;
+		if(comb[0][0] != 1){
+			rep(i,e+1){
+				comb[i][0] = comb[i][i] = T(1);
+				rep1(j,i-1) comb[i][j] = comb[i-1][j-1] + comb[i-1][j];
+			}
+		}
+
+		array<T, e1+1> xpow; xpow[0] = 1; rep(i,e1) xpow[i+1] = xpow[i] * a.dx;
+		array<T, e2+1> ypow; ypow[0] = 1; rep(i,e2) ypow[i+1] = ypow[i] * a.dy;
 
 		rep(k1,e1+1) rep(k2,e2+1){
 			rep(i1,k1+1) rep(i2,k2+1){
@@ -110,9 +107,10 @@ struct MonoidFloorSum{
 	値の範囲は S. だいたい __int128?
 	返り値は T. だいたい mint?
 	https://loj.ac/p/138
+	T = long long での verify: ABC402 G https://atcoder.jp/contests/abc402/submissions/65047734
 */
-template<class S, class T>
-vector<vector<T>> scary_floor_sum_simple(S N, S a, S b, S m, int e1, int e2){
+template<class S, class T, int e1, int e2>
+array<array<T, e2+1>, e1+1> scary_floor_sum_simple(S N, S a, S b, S m){
 	// {	// brute
 	// 	vector<vector<T>> res(e1+1,vector<T>(e2+1));
 	// 	for(S x = 0; x < N; x++){
@@ -126,8 +124,7 @@ vector<vector<T>> scary_floor_sum_simple(S N, S a, S b, S m, int e1, int e2){
 	// 	return res;
 	// }
 
-	using Data = MonoidFloorSum<T>;
-	Data::set_e1_e2(e1,e2);
+	using Data = MonoidFloorSum<T, e1, e2>;
 	auto f = underpath(a, b, m, N, Data::to_x(), Data::to_y());
 	return f.dp;
 }
@@ -141,11 +138,11 @@ vector<vector<T>> scary_floor_sum_simple(S N, S a, S b, S m, int e1, int e2){
 	値の範囲は S, mint で求めよ とかもあるので返り値は T
 	https://loj.ac/p/138
 */
-template<class S, class T>
-vector<vector<T>> scary_floor_sum(S L, S R, S a, S b, S m, int e1, int e2){
+template<class S, class T, int e1, int e2>
+array<array<T, e2+1>, e1+1> scary_floor_sum(S L, S R, S a, S b, S m){
 	assert(L <= R);
 	assert(m > 0);
-	assert(e1 >= 0 && e2 >= 0);
+	static_assert(e1 >= 0 && e2 >= 0);
 
 	// {	// brute
 	// 	vector<vector<T>> res(e1+1,vector<T>(e2+1));
@@ -173,12 +170,24 @@ vector<vector<T>> scary_floor_sum(S L, S R, S a, S b, S m, int e1, int e2){
 	// L = 0 に変形
 	// x \in [L,R) => x \in [0,R-L), (x+L)^k1...
 
-	vector<vector<T>> res(e1+1,vector<T>(e2+1));
+	array<array<T, e2+1>, e1+1> res = {};
 
-	auto f = scary_floor_sum_simple<S,T>(R-L, a, b+a*L, m, e1, e2);
+	auto f = scary_floor_sum_simple<S,T,e1,e2>(R-L, a, b+a*L, m);
+
+	static array<array<T, e1+1>, e1+1> comb;
+	if(comb[0][0] != 1){
+		rep(i,e1+1){
+			comb[i][0] = comb[i][i] = T(1);
+			rep1(j,i-1) comb[i][j] = comb[i-1][j-1] + comb[i-1][j];
+		}
+	}
+	static array<T, e1+1> Lpow;
+	if(Lpow[0] != 1){
+		Lpow[0] = 1; rep(k,e1) Lpow[k+1] = Lpow[k] * T(L);
+	}
 
 	rep(k1,e1+1) rep(k2,e2+1){
-		rep(i,k1+1) res[k1][k2] += f[i][k2] * T(L).pow(k1-i) * Choose(k1,i);
+		rep(i,k1+1) res[k1][k2] += f[i][k2] * Lpow[k1-i] * comb[k1][i];
 	}
 	if(a_flipped){
 		rep(k1,e1+1) if(k1&1) rep(k2,e2+1) res[k1][k2] *= -1;

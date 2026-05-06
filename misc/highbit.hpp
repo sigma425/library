@@ -1,7 +1,10 @@
 /*
 	x       0  1  2  3  4  5  6  7  8  9
 	msb(x) -1  0  1  1  2  2  2  2  3  3
+			?  0  1  2  2  3  3  3  3  4
 	最上位bit
+	2^h <= x なる最大の h を返す
+	x <= 2^h になる最小の h は、highbit(x-1) + 1
 */
 int highbit(int x){
 	return 31 - countl_zero<uint>(x);

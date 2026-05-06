@@ -57,8 +57,8 @@ void dmpr(ostream&os,const T&t,const Args&... args){
 #endif
 
 
-#include "../math/mint.cpp"
-#include "../math/hadamard.cpp"
+#include "math/mint.hpp"
+#include "math/hadamard.cpp"
 
 int main(){
 	cin.tie(0);

@@ -1,10 +1,3 @@
-/*
-	任意mod なら 
-	template なくして costexpr の行消して global に unsigned int mod = 1;
-	で cin>>mod してから使う
-	任意 mod はかなり遅いので、できれば "atcoder/modint" を使う
-*/
-
 template<unsigned int mod_>
 struct ModInt{	
 	using uint = unsigned int;
@@ -48,32 +41,16 @@ struct ModInt{
 	ModInt inv() const {		// should be prime
 		return pow(mod-2);
 	}
-	// ll extgcd(ll a,ll b,ll &x,ll &y) const{
-	// 	ll p[]={a,1,0},q[]={b,0,1};
-	// 	while(*q){
-	// 		ll t=*p/ *q;
-	// 		rep(i,3) swap(p[i]-=t*q[i],q[i]);
-	// 	}
-	// 	if(p[0]<0) rep(i,3) p[i]=-p[i];
-	// 	x=p[1],y=p[2];
-	// 	return p[0];
-	// }
-	// ModInt inv() const {
-	// 	ll x,y;
-	// 	extgcd(v,mod,x,y);
-	// 	return make(normS(x+mod));
-	// }
 
 	bool operator==(const ModInt& b) const { return v==b.v;}
 	bool operator!=(const ModInt& b) const { return v!=b.v;}
 	bool operator<(const ModInt& b) const { return v<b.v;}
-	friend istream& operator>>(istream &o,ModInt& x){
-		ll tmp;
-		o>>tmp;
-		x=ModInt(tmp);
-		return o;
+	friend istream& operator>>(istream &i, ModInt& x){
+		ll v; i >> v;
+		x = ModInt(v);
+		return i;
 	}
-	friend ostream& operator<<(ostream &o,const ModInt& x){ return o<<x.v;}
+	friend ostream& operator<<(ostream &o, const ModInt& x){ return o<<x.v;}
 	// friend ostream& operator<<(ostream &o,const ModInt& x){
 	// 	for(int b=1;b<=1000;b++){
 	// 		ModInt ib = ModInt(b).inv();
@@ -84,7 +61,7 @@ struct ModInt{
 	// 		}
 	// 	}
 	// 	return o<<x.v;
-	// }
+	// } 
 };
 using mint = ModInt<998244353>;
 //using mint = ModInt<1000000007>;
@@ -98,9 +75,14 @@ mint Choose(int a,int b){
 
 /*
 // b >= 0 の範囲で、 Choose(a,b) = a(a-1)..(a-b+1) / b!
+// verify: https://atcoder.jp/contests/arc212/submissions/72412595
 mint Choose(int a,int b){
-	if(b<0 || a<b) return 0;
-	return fact[a] * ifact[b] * ifact[a-b];
+	assert(b >= 0);
+	if(b == 0) return 1;
+
+	if(a-b >= 0) return fact[a] * ifact[b] * ifact[a-b];
+	if(a >= 0) return 0;
+	return fact[-(a-b+1)] * ifact[b] * ifact[-(a+1)] * (b&1 ? -1 : 1);
 }
 */
 

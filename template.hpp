@@ -29,7 +29,7 @@ template<class T> void mkuni(V<T>& v){sort(all(v));v.erase(unique(all(v)),v.end(
 template<class T> int lwb(const V<T>& v, const T& a){return lower_bound(all(v),a) - v.begin();}
 template<class T>
 V<T> Vec(size_t a) {
-    return V<T>(a);
+	return V<T>(a);
 }
 template<class T, class... Ts>
 auto Vec(size_t a, Ts... ts) {
@@ -37,6 +37,23 @@ auto Vec(size_t a, Ts... ts) {
 }
 template<class S,class T> ostream& operator<<(ostream& o,const pair<S,T> &p){
 	return o<<"("<<p.fs<<","<<p.sc<<")";
+}
+
+template<typename Tuple, size_t... Is>
+void print_tuple_impl(ostream& os, const Tuple& tup, index_sequence<Is...>){
+	((os << (Is == 0 ? "" : ",") << get<Is>(tup)), ...);
+}
+template<typename... Args>
+std::ostream& operator<<(std::ostream& os, const std::tuple<Args...>& tup) {
+	os << "(";
+	print_tuple_impl(os, tup, std::index_sequence_for<Args...>{});
+	os << ")";
+	return os;
+}
+
+template<class T> istream& operator>>(istream& i, V<T> &vc){
+	for(T& v: vc) i >> v;
+	return i;
 }
 template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
 	o<<"{";

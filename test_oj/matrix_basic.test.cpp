@@ -34,8 +34,8 @@ constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 #define show(x) true
 #endif
 
-#include "../math/matrix/matrix_basic.cpp"
-#include "../math/mint.cpp"
+#include "math/matrix/matrix_basic.cpp"
+#include "math/mint.hpp"
 
 int main(){
 	cin.tie(0);

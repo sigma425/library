@@ -101,6 +101,7 @@ struct Online_Division{
 	query(i): f_i を受け取って (e^f)_i を返す
 	f_0 == 0 を仮定
 	O(n log^2)
+	verified: https://atcoder.jp/contests/fps-24/tasks/fps_24_s
 */
 template<class mint>
 struct Online_Exp{
@@ -112,7 +113,7 @@ struct Online_Exp{
 			assert(f_i == 0);
 			F.eb(1);
 		}else{
-			F.eb(X.query(i-1,F[i-1],f_i*i));
+			F.eb(X.query(i-1,F[i-1],f_i*i) * invs[i]);
 		}
 		return F[i];
 	}

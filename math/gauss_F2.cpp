@@ -18,26 +18,78 @@
 
     とにかく状態が少なくて計算する回数が多いなら、はじめに全部生成してから演算表(merge,add)を作りましょう
     1299/D.cpp 参照
+
+	正規化について (上三角)
+		前提なしでやると掃き出し法なのでワードサイズをO(1)とみなしてもO(D^2)
+		ただ、もともと上三角なところに add するのは実は O(D) でできる
+		add_and_normalize を追加しました
+		https://contest.ucup.ac/submission/2310974
 */
 
-const int D = 64;
-V<ull> B(D);
+template<int D> struct XorBasis {
+	V<ull> B;
 
-void add(ull x){
-    for(int i=D-1;i>=0;i--){
-        if(B[i] == 0 && x&1ULL<<i){ // add to base
-            B[i] = x;
-            return;
-        }else if(x&1ULL<<i){
-            x ^= B[i];
-        }
-    }
-    // don't add to base
-    // (dependent)
-}
+	XorBasis() : B(D,0) {}
 
-void normalize(){
-    for(int i=D-1;i>=0;i--) if(B[i]){
-        for(int j=i-1;j>=0;j--) chmin(B[i],B[i]^B[j]);
-    }
-}
+	// add x, add したら true
+	// O(D)
+	bool add(ull x){
+		for(int i=D-1;i>=0;i--){
+			if(B[i] == 0 && x&1ULL<<i){ // add to base
+				B[i] = x;
+				return true;
+			}else if(x&1ULL<<i){
+				x ^= B[i];
+			}
+		}
+		// dependent, don't add to base
+		return false;
+	}
+
+	// add x, add したら true
+	// 元々正規化されていれば、追加後も正規化されていることが保証される
+	// O(D)
+	bool add_and_normalize(ull x)
+		per(i,D) chmin(x, x^B[i]);
+		per(i,D) if(B[i] == 0 && x&1ULL<<i){ // add to base
+			B[i] = x;
+			for(int j=i+1;j<D;j++) chmin(B[j], B[j]^B[i]);
+			return true;
+		}
+		// dependent, don't add to base
+		return false;
+	}
+
+	// x が空間に含まれるか
+	// 係数もコードを見ればわかる、が B 自身が変化するのであんま意味ないか？
+	// O(D)
+	bool contains(ull x){
+		for(int i=D-1;i>=0;i--){
+			if(x&1ULL<<i){
+				if(B[i] == 0) return false;
+				x ^= B[i];
+			}
+		}
+		return true;
+	}
+
+	// 同じ空間が同じ B になるように正規化
+	// O(D^2)
+	void normalize(){
+		for(int i=D-1;i>=0;i--) if(B[i]){
+			for(int j=i-1;j>=0;j--) chmin(B[i],B[i]^B[j]);
+		}
+	}
+
+	// 空間に含まれる要素の最大値
+	// O(D)
+	ull get_max(){
+		ull res = 0;
+		for(int i=D-1;i>=0;i--) chmax(res, res ^ B[i]);
+		return res;
+	}
+
+	void clear(){
+		rep(i,D) B[i] = 0;
+	}
+};
