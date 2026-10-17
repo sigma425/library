@@ -62,6 +62,9 @@ namespace geom {
 	int sgn(D a, D b) { return sgn(a - b); }
 	D dot(Point a, Point b) { return a.dot(b); }
 	D cro(Point a, Point b) { return a.cro(b); }
+	D area(Point a, Point b, Point c){
+		return cro(b-a,c-a);
+	}
 
 	int sgncro(Point a, Point b) { return sgn(cro(a,b)); }
 	int sgncro(Point o, Point a, Point b) { return sgn(cro(a-o,b-o)); }

@@ -88,7 +88,7 @@ V<int> ConjugateYoung(V<int> a){
 }
 
 // increasing -> increasing
-V<int> ConjugateYoung(V<int> a){
+V<int> ConjugateYoungI(V<int> a){
 	if(a.empty()) return a;
 	int w = a.back();
 	V<int> b(w);

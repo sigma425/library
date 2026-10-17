@@ -112,7 +112,24 @@ struct lazyseg{
 
 		ライブラリ内で Monoid() や Action() は呼んでない(eやidを呼んでいる) ので、必ずしも定義しなくてもよい
 */
+
 /*
+	atcoder starry sky tree min
+
+	using Seg = atcoder::lazy_segtree<int,
+							[&](int x, int y){return min(x,y);},
+							[&](){return int(1e9);},
+							int,
+							[&](int f, int x){return f+x;},
+							[&](int f, int g){return f+g;},
+							[](){return 0;}>;
+	
+
+*/
+
+
+/*
+初期値は全部inf なので、ちゃんと seg(V<S>(N,S(0))) と初期化すること
 struct StarrySky{
 	const ll inf = TEN(18);
 	struct Monoid{

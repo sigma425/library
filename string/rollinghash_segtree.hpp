@@ -1,5 +1,6 @@
 /*
 	segtree に乗せる用の rolling hash
+	update がある時とかはこっちを使う、ないときは普通に O(1) でやってください
 	query(l,r) = s[l] + s[l+1] * base + .. + s[r-1] * base^(r-l-1)
 
 	verify: ucup 3-21 M https://contest.ucup.ac/submission/825668

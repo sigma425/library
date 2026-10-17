@@ -61,6 +61,12 @@ template<class T> ostream& operator<<(ostream& o,const vector<T> &vc){
 	o<<"}";
 	return o;
 }
+template<class T> ostream& operator<<(ostream& o,const deque<T> &vc){
+	o<<"{";
+	for(const T& v:vc) o<<v<<",";
+	o<<"}";
+	return o;
+}
 constexpr ll TEN(int n) { return (n == 0) ? 1 : 10 * TEN(n-1); }
 
 #ifdef LOCAL
@@ -73,7 +79,7 @@ void dmpr(ostream&os,const T&t,const Args&... args){
 	os<<t<<" ~ ";
 	dmpr(os,args...);
 }
-#define shows(...) cerr << "LINE" << __LINE__ << " : ";dmpr(cerr,##__VA_ARGS__)
+#define shows(...) do{cerr << "LINE" << __LINE__ << " : ";dmpr(cerr,##__VA_ARGS__);}while(0)
 #define dump(x) cerr << "LINE" << __LINE__ << " : " << #x << " = {";  \
 	for(auto v: x) cerr << v << ","; cerr << "}" << endl;
 #else

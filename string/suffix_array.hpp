@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 	SA-IS + LCP
 

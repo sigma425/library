@@ -444,7 +444,7 @@ struct Poly: public V<mint>{
 	// 		2つの積の一箇所求めるだけなのでO(s)
 	// z をかけまくったり z^L をかけまくったりするところはFFT消せるから高速化できる
 	// verify: https://www.luogu.com.cn/problem/P5809
-	Poly compositeInv(int s){
+	Poly compositeInv_slow(int s){
 		assert(at(0) == 0);
 		assert(at(1) != 0);
 		int L = 0;
@@ -467,6 +467,8 @@ struct Poly: public V<mint>{
 		}
 		return res;
 	}
+
+	Poly compositeInv(int s);
 };
 
 // 合成 f○g mod x^s
@@ -474,7 +476,7 @@ struct Poly: public V<mint>{
 // sを指定しないときはnm次全部返す O(n^2m)?
 // \sum_k f_k g^k = \sum_k f_k g^iL+j = \sum_i g^iL * (\sum_j f_k g^j)
 // verify: https://www.luogu.com.cn/problem/P5373
-Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){
+Poly<mint> composite_slow(Poly<mint> f, Poly<mint> g, int s=-1){
 	int n = si(f)-1, m = si(g)-1;
 	if(s == -1) s = n*m+1;
 	int L = 0;
@@ -494,6 +496,125 @@ Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){
 		res += (z * giL[i]).low(s);
 	}
 	return res;
+}
+
+// 合成 f○g mod x^s
+// g[0] = 0 なら O(s log^2 s), 一般には Taylor shift も含めて O(n log n + s log^2 s)
+// ただし n = f.size(), 入力のコピーに O(f.size()+g.size()) かかる
+// s を指定しないときは deg(f)deg(g) 次まで全部返す
+// Kinoshita--Li: https://arxiv.org/abs/2404.05177
+// implementation reference: https://nyaannyaan.github.io/library/fps/fps-composition.hpp.html
+// verify: https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
+// 実装担当者: G   P   T
+
+template<class mint>
+Poly<mint> composite(Poly<mint> f, Poly<mint> g, int s=-1){
+	if(s == -1){
+		if(f.empty()) return {0};
+		if(g.empty()) return {f[0]};
+		s = (si(f)-1) * (si(g)-1) + 1;
+	}
+	assert(s >= 0);
+	if(s == 0) return {};
+	if(f.empty()) return Poly<mint>(s);
+
+	// g = c+h, h[0] = 0 として f(g) = f(x+c)(h).
+	// g[0] != 0 のときは f の s 次以上も定数項へ寄与するので、
+	// f 全体を Taylor shift してから先頭 s 項に切る.
+	if(g.at(0) != 0){
+		int n = si(f);
+		V<mint> fac(n), ifac(n), a(n), b(n);
+		fac[0] = 1;
+		rep1(i,n-1) fac[i] = fac[i-1] * i;
+		ifac[n-1] = fac[n-1].inv();
+		for(int i=n-1;i>0;i--) ifac[i-1] = ifac[i] * i;
+		mint pw = 1;
+		rep(i,n){
+			a[i] = f[i] * fac[i];
+			b[n-1-i] = pw * ifac[i];
+			pw *= g[0];
+		}
+		a = multiply(a,b);
+		rep(i,n) f[i] = a[n-1+i] * ifac[i];
+		g[0] = 0;
+	}
+
+	f.resize(s);
+	g.resize(s);
+	int n = s-1;
+	int h = 1;
+	while(h < s) h *= 2;
+
+	// [y^-1] f(y)/(y-g(x)) を x の偶奇分離で再帰的に求める.
+	// h*k は常に一定。後半は前半の転置計算になっている。
+	auto rec = [&](auto&& self, Poly<mint> Q, int d, int h, int k) -> Poly<mint> {
+		if(d == 0){
+			Poly<mint> T(Q.begin(),Q.begin()+k);
+			T.pb(1);
+			Poly<mint> u = f * T.rev().inv().rev();
+			Poly<mint> P(h*k);
+			rep(i,f.size()) P[k-1-i] = u[i+k];
+			return P;
+		}
+
+		Poly<mint> nQ(4*h*k);
+		rep(i,k) copy(Q.begin()+i*h,Q.begin()+i*h+d+1,nQ.begin()+i*2*h);
+		nQ[k*2*h] += 1;
+		fft(nQ);
+		for(int i=0;i<4*h*k;i+=2) swap(nQ[i],nQ[i+1]);
+		{
+			Poly<mint> nR(2*h*k);
+			rep(i,2*h*k) nR[i] = nQ[i*2] * nQ[i*2+1];
+			invfft(nR);
+			nR[0] -= 1;
+			Q.assign(h*k,0);
+			rep(i,2*k) rep(j,d/2+1) Q[i*h/2+j] = nR[i*h+j];
+		}
+
+		Poly<mint> P = self(self,move(Q),d/2,h/2,k*2);
+		Poly<mint> nP(4*h*k);
+		rep(i,2*k) rep(j,d/2+1) nP[i*2*h+j*2+d%2] = P[i*h/2+j];
+		fft(nP);
+		for(int i=1;i<4*h*k;i*=2) reverse(nQ.begin()+i,nQ.begin()+i*2);
+		rep(i,4*h*k) nP[i] *= nQ[i];
+		invfft(nP);
+		P.assign(h*k,0);
+		rep(i,k) copy(nP.begin()+i*2*h,nP.begin()+i*2*h+d+1,P.begin()+i*h);
+		return P;
+	};
+
+	Poly<mint> Q(h);
+	rep(i,s) Q[i] = -g[i];
+	Poly<mint> res = rec(rec,Q,n,h,1);
+	res.resize(s);
+	reverse(all(res));
+	return res;
+}
+
+// 合成逆 mod x^s
+// O(s log^2 s): 半分までの合成逆を Newton 反復で s 項まで延長する
+// verify: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
+template<class mint>
+Poly<mint> Poly<mint>::compositeInv(int s){
+	assert(at(0) == 0);
+	assert(at(1) != 0);
+	assert(s >= 0);
+	if(s == 0) return {};
+	auto rec = [&](auto&& self, int n) -> Poly<mint> {
+		if(n <= 2){
+			Poly<mint> g(n);
+			if(n == 2) g[1] = mint(1) / at(1);
+			return g;
+		}
+		int m = (n+1)/2, d = n-m;
+		Poly<mint> g = self(self,m);
+		Poly<mint> fg = composite(low(n),g,n);
+		// fg-x は x^m の倍数なので f'(g) は d=n-m 項あれば足りる.
+		// f'(g) = (f(g))'/g' とすることで合成をもう1回行うのを避ける.
+		Poly<mint> fdg = (fg.diff() * g.diff().inv(d)).low(d);
+		return (g - ((fg - Poly<mint>{0,1}) * fdg.inv(d)).low(n)).low(n);
+	};
+	return rec(rec,s);
 }
 
 ll norm_mod(ll a, ll m){

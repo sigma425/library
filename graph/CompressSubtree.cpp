@@ -1,6 +1,7 @@
 /*
 	木が与えられる
 	クエリとしてサイズ K の頂点集合が来ると、縮約した木を O(K log N) でつくる
+	0 を根とした rooted tree になってることに注意！ 0 は常に現れる
 
 	usage:
 		CompressedSubtree CS(tree)
